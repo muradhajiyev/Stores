@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Store;
 
 class RegisterController extends Controller
 {
@@ -47,11 +48,27 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        if($data['role_id'] == "1"){
+
+
+
+            return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
+        }
+        if($data['role_id']=='2'){
+            return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed','store_name' => 'required|string|max:255',
+            'role_id' => 'required|integer',
+            'phone_number' => 'nullable|string|max:20',
+            'address' => 'nullable|string',
+            'email' => 'required|string|email|max:255|unique:stores',
+             ]);
+        }
     }
 
     /**
@@ -62,11 +79,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        if($data['role_id'] == "1"){
+            return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role_id' => $data['role_id'],
         ]);
+        }
+        if($data['role_id'] == "2"){
+
+            $user=User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'role_id' => $data['role_id'],
+
+             ]);
+
+            $store=Store::create([
+                'name' => $data['store_name'],
+                'address' => $data['address'],
+                'email' => $data['store_email'],
+                'phone_number' => $data['phone_number'],
+                'user_id' => $user->id,
+                ]);
+    
+            return $user;
+
+        }
     }
 
 
