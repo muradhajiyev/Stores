@@ -6,28 +6,48 @@
       Categories
       <small>Control panel</small>
    </h1>
-   <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Categories</li>
-   </ol>
+
+   <br>
+
 </section>
 
-<!-- <div class="col-md-4 col-md-offset-1">
-@foreach ($categories as $category)
-<button type="button" name="button">delete</button><span>{{ $category->name }}</span>
-<br>
-@endforeach
-</div> -->
+<div class="col-md-3">
+   <div class="box box-default collapsed-box">
+
+      <div class="box-header with-border">
+         <h3 class="box-title">Expandable</h3>
+         <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+         </div>
+      </div>
+
+      <div class="box-body" style="display: none;">
+         The body of the box
+      </div>
+
+   </div>
+</div>
+
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
+<div id="demo" class="collapse">
+   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</div>
 
 <div class="row">
    <div class="col-xs-12">
       <div class="box">
+
          <div class="box-header">
-            <h3 class="box-title">Hover Data Table</h3>
+            <h3 class="box-title" id="hoverTableID">Categories</h3>
          </div>
-         <!-- /.box-header -->
-         <div class="box-body">
+
+         <div class="box-body" id="body">
+
             <table id="example2" class="table table-bordered table-hover">
+
                <thead>
                   <tr>
                      <th>ID</th>
@@ -43,20 +63,12 @@
                   </tr>
                   @endforeach
                </tbody>
-               <!-- <tfoot>
-               <tr>
-               <th>Rendering engine</th>
-               <th>Browser</th>
-               <th>Platform(s)</th>
-               <th>Engine version</th>
-               <th>CSS grade</th>
-            </tr>
-         </tfoot> -->
-      </table>
-   </div>
-   <!-- /.box-body -->
-   <!-- /.box -->
-<!-- /.col -->
-</div>
 
+            </table>
+
+         </div>
+
+      </div>
+   </div>
+</div>
 @stop
