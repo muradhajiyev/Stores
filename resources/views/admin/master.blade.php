@@ -30,9 +30,14 @@
 
    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-   <!--[if lt IE 9]>
+   <!--[if lt IE 9]>-->
    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+   <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="{{asset("js/specification.js")}}"></script>
+
    <![endif]-->
 
    <!-- Google Font -->
@@ -336,6 +341,22 @@
          <li>
             <a href="{{ url('/categories') }}">
                <i class="fa fa-th"></i> <span>Categories</span>
+               <span class="pull-right-container">
+                  <!-- <small class="label pull-right bg-green">new</small> -->
+               </span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url('/specifications') }}">
+               <i class="fa fa-th"></i> <span>Specifications</span>
+               <span class="pull-right-container">
+                  <!-- <small class="label pull-right bg-green">new</small> -->
+               </span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url('/dropdowns') }}">
+               <i class="fa fa-th"></i> <span>Dropdowns</span>
                <span class="pull-right-container">
                   <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
