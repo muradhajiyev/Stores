@@ -28,6 +28,12 @@ Route::get('/categories', function(){
    return view('admin.categories');
 });
 
+
+Route::get('/storelist', 'StoreController@index')->name('storelist');
+Route::post('/deleteeditstore', 'StoreController@deleteEditStore')->name('deleteeditstore');
+
+Route::post('/addstore', 'StoreController@addStore')->name('addstore');
+
 Route::group(['prefix' => 'admin'], function () {
    Route::get('categories', function(){
       return view('admin.categories');

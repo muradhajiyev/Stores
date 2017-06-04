@@ -33,6 +33,8 @@
    <!--[if lt IE 9]>
    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+   <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/3C65DD01-92D9-5446-816C-70DF600C5E89/main.js" charset="UTF-8"></script></head>
    <![endif]-->
 
    <!-- Google Font -->
@@ -292,7 +294,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                </div>
                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                </div>
             </li>
          </ul>
@@ -341,6 +343,14 @@
                </span>
             </a>
          </li>
+          <li>
+              <a href="{{ url('/storelist') }}">
+                  <i class="fa fa-th"></i> <span>Stores</span>
+               <span class="pull-right-container">
+                  <!-- <small class="label pull-right bg-green">new</small> -->
+               </span>
+              </a>
+          </li>
          <li class="treeview">
             <a href="#">
                <i class="fa fa-pie-chart"></i>
@@ -705,6 +715,8 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3.1.1 -->
+
+
 <script src="plugins/jQuery/jquery-3.1.1.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
