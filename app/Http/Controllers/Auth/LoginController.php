@@ -40,6 +40,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+<<<<<<< HEAD
     protected function authenticated(Request $request, $user)
     {
         if($user->role->name == 'user' ){
@@ -47,6 +48,19 @@ class LoginController extends Controller
         }
         elseif($user->role->name == 'admin'){
             return redirect('/home');
+=======
+
+     protected function redirectTo(){
+
+        if(Auth::user()->role->name == 'user' ){
+            return '/home' ;
         }
+        elseif(Auth::user()->role->name == 'admin' || Auth::user()->role->name == 'store' ){
+            return '/admin';
+>>>>>>> faf54f7219b2196d0003402f1878223e3b2e0203
+        }
+
+
     }
+
 }

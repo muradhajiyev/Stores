@@ -40,7 +40,7 @@
                         </div>
 
 
-                         <div class="form-group{{ $errors->has('store_name') ? ' has-error' : '' }}">
+                      <!--    <div class="form-group{{ $errors->has('store_name') ? ' has-error' : '' }}">
                             <label for="store_name" class="col-md-4 control-label">Store Name</label>
 
                             <div class="col-md-6">
@@ -52,9 +52,9 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
-                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                   <!--       <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <label for="address" class="col-md-4 control-label">Address</label>
 
                             <div class="col-md-6">
@@ -66,23 +66,9 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
-                         <div class="form-group{{ $errors->has('store_email') ? ' has-error' : '' }}">
-                            <label for="store_email" class="col-md-4 control-label">Store Email</label>
-
-                            <div class="col-md-6">
-                                <input id="store_email" type="text" class="form-control" name="store_email"  required autofocus>
-
-                                @if ($errors->has('store_email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('store_email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                         <div class="form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
+                      <!--    <div class="form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
                             <label for="phone_number" class="col-md-4 control-label">Phone Number</label>
 
                             <div class="col-md-6">
@@ -94,7 +80,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>

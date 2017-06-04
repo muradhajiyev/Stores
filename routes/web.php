@@ -24,9 +24,6 @@ Route::get('/storeregister', function(){
 	});
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/categories', function(){
-   return view('admin.categories');
-});
 
 //specifications route
 
@@ -53,6 +50,8 @@ Route::group(['prefix' => 'admin'], function () {
       return view('admin.categories');
    });
 
+
+   Route::get('/categories', 'AdminController@categories');
 });
 
 
