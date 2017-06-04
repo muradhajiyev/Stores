@@ -23,29 +23,29 @@ Route::get('/storeregister', function(){
 	return view('auth/storeregister');
 	});
 
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index')->middleware('auth','onlystoreandadmin');
 
 //specifications route
 
-Route::get('/specifications','SpecificationsController@getSpecifications');
-Route::get('/showDropdowns','SpecificationsController@showDropdowns');
-Route::get('/specificationsForm', 'SpecificationsController@getSpecificationsForm');
-Route::post('/addSpecification','SpecificationsController@store');
-Route::get('deleteSpecification/{id}', ['as'=> 'deleteS', 'uses'=>'SpecificationsController@delete']);
+Route::get('/specifications','SpecificationsController@getSpecifications')->middleware('auth','onlystoreandadmin');
+Route::get('/showDropdowns','SpecificationsController@showDropdowns')->middleware('auth','onlystoreandadmin');
+Route::get('/specificationsForm', 'SpecificationsController@getSpecificationsForm')->middleware('auth','onlystoreandadmin');
+Route::post('/addSpecification','SpecificationsController@store')->middleware('auth','onlystoreandadmin');
+Route::get('deleteSpecification/{id}', ['as'=> 'deleteS', 'uses'=>'SpecificationsController@delete'])->middleware('auth','onlystoreandadmin');
 
 
 //
 
 //dropdowns route
 
-Route::get('/dropdowns','DropdownsController@getDropdowns');
-Route::get('/dropdownsForm', 'DropdownsController@getDropdownsForm');
-Route::post('/addDropdown','DropdownsController@store');
-Route::get('deleteDropdown/{id}', ['as'=> 'deleteD', 'uses'=>'DropdownsController@delete']);
+Route::get('/dropdowns','DropdownsController@getDropdowns')->middleware('auth','onlystoreandadmin');
+Route::get('/dropdownsForm', 'DropdownsController@getDropdownsForm')->middleware('auth','onlystoreandadmin');
+Route::post('/addDropdown','DropdownsController@store')->middleware('auth','onlystoreandadmin');
+Route::get('deleteDropdown/{id}', ['as'=> 'deleteD', 'uses'=>'DropdownsController@delete'])->middleware('auth','onlystoreandadmin');
 
 //
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'onlystoreandadmin']], function () {
    Route::get('categories', function(){
       return view('admin.categories');
    });
@@ -53,5 +53,9 @@ Route::group(['prefix' => 'admin'], function () {
 
    Route::get('/categories', 'AdminController@categories');
 });
+
+  Route::get('/403', function(){
+  	return view('403.403');
+  });
 
 
