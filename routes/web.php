@@ -24,9 +24,6 @@ Route::get('/storeregister', function(){
 	});
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/categories', function(){
-   return view('admin.categories');
-});
 
 
 Route::get('/storelist', 'StoreController@index')->name('storelist');
@@ -35,9 +32,7 @@ Route::post('/deleteeditstore', 'StoreController@deleteEditStore')->name('delete
 Route::post('/addstore', 'StoreController@addStore')->name('addstore');
 
 Route::group(['prefix' => 'admin'], function () {
-   Route::get('categories', function(){
-      return view('admin.categories');
-   });
+   Route::get('/categories', 'AdminController@categories');
 });
 
 
