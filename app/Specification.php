@@ -9,9 +9,12 @@ class Specification extends Model
     public $timestamps = false;
 
     public function type(){
-        $this->belongsTo('App\Type');
+       return $this->belongsTo('App\Type');
     }
     public function unit(){
-        $this->belongsTo('App\Unit');
+       return $this->belongsTo('App\Unit');
+    }
+    public function dropdown(){
+        return $this->belongsTo('App\Dropdown');
     }
 }
