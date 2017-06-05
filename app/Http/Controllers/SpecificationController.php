@@ -15,6 +15,11 @@ class SpecificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+
+        $this->middleware(['auth','adminOrStore']);
+    }
     public function index()
     {
         $specifications = Specification::all();
