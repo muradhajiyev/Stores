@@ -7,6 +7,8 @@
 		<meta name="keywords" content="" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
+				<script src="js/skel.min.js"></script>
+
 		<script src="js/init.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -44,7 +46,16 @@
 				<div class="container">
 					<div class="row" style="height: 500px;">
 						
-
+<section id="banner">
+				<div class="inner">
+					<h2>This is Ion</h2>
+					<p>A free responsive template by <a href="http://templated.co">TEMPLATED</a></p>
+					<ul class="actions">
+						<li><a href="#content" class="button big special">Sign Up</a></li>
+						<li><a href="#elements" class="button big alt">Learn More</a></li>
+					</ul>
+				</div>
+			</section>
 
 
 					</div>
