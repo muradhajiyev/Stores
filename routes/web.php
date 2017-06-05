@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,13 +9,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-   return view('welcome');
+    return view('welcome');
 });
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/storeregister', function(){
@@ -31,8 +27,15 @@ Route::post('/deleteeditstore', 'StoreController@deleteEditStore')->name('delete
 
 Route::post('/addstore', 'StoreController@addStore')->name('addstore');
 
+
 Route::group(['prefix' => 'admin'], function () {
-   Route::get('/categories', 'AdminController@categories');
+    Route::get('/', 'AdminController@index');
+    Route::get('/categories', 'AdminController@categories');
+    Route::resource('dropdowns', 'DropdownController');
+    Route::resource('specifications', 'SpecificationController');
 });
 
 
+Route::get('/403', function(){
+   return view('403.403');
+});
