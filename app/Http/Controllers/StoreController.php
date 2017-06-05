@@ -21,12 +21,12 @@ class StoreController extends Controller
     public function index()
     {
         $userrole=Auth::user();
-       if( $userrole->isStore())
+        if( $userrole->isStore())
 
-           $storelist=Store::where('user_id',$userrole->id)->get();
+            $storelist=Store::where('user_id',$userrole->id)->get();
 
-           else if($userrole->isAdmin())
-               $storelist=Store::all();
+        else if($userrole->isAdmin())
+            $storelist=Store::all();
 
         return view('store.storelist')->with(array('storelist'=>$storelist));
     }
@@ -34,23 +34,23 @@ class StoreController extends Controller
 
     public function deleteEditStore(Request $request)
     {
-if($request->button=='Delete') {
-    $store = Store::find($request->storeid);
-    $store->delete();
+        if($request->button=='Delete') {
+            $store = Store::find($request->storeid);
+            $store->delete();
 
-}
-else if($request->button='Edit'){
-    $store =Store::find($request->storeid);
+        }
+        else if($request->button='Edit'){
+            $store =Store::find($request->storeid);
 
-    $store->name = $request->name;
-    $store->address=$request->address;
-    $store->phone_number=$request->phonenumber;
-    $store->email=$request->email;
-    $store->save();
+            $store->name = $request->name;
+            $store->address=$request->address;
+            $store->phone_number=$request->phonenumber;
+            $store->email=$request->email;
+            $store->save();
 
-}
+        }
 
-     }
+    }
 
 
     public function addStore(Request $request)
