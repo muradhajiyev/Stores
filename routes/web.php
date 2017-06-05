@@ -39,7 +39,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/categories', 'AdminController@categories');
     //dropdowns route
     Route::resource('dropdowns', 'DropdownController');
-
     Route::resource('specifications', 'SpecificationController');
    // Route::get('/dropdowns', 'DropdownsController@getDropdowns');
 //    Route::get('/dropdownsForm', 'DropdownsController@getDropdownsForm');
