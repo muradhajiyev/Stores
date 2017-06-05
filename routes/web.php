@@ -25,12 +25,6 @@ Route::get('/storeregister', function () {
 
 Route::get('/admin', 'AdminController@index');
 
-
-//
-
-
-//
-
 Route::group(['prefix' => 'admin'], function () {
     Route::get('categories', function () {
         return view('admin.categories');
