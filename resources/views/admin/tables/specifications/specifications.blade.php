@@ -38,7 +38,6 @@
                             <form action="/admin/specifications/{{$specification->id}}" method="Post">
                                 {{csrf_field()}}
                                 {{ method_field('DELETE') }}
-
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
