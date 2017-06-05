@@ -27,12 +27,13 @@
                         <td>{{$specification->name}}</td>
                         <td>{{$specification->type->name}}</td>
                         <td>{{$specification->unit->name}}</td>
-                        <td>{{$specification->dropdown->name}}</td>
+
+                        <td>@if($specification->dropdown) {{$specification->dropdown->name}} @endif</td>
+
                         <td>
-                            <button data-toggle="tooltip" data-placement="top" title="Edit Record" type="button"
-                                    class="btn btn-warning">
+                            <a href="/admin/specifications/{{$specification->id}}/edit" data-toggle="tooltip" data-placement="top" title="Edit Record" class="btn btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
+                            </a>
                         </td>
                         <td>
                             <form action="/admin/specifications/{{$specification->id}}" method="Post">
