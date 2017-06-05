@@ -2,7 +2,7 @@
 
 @section('main_content')
     <div class="container">
-        <form method="post" action="/addDropdown">
+        <form method="post" action="/admin/dropdowns">
             {{csrf_field()}}
             <div class="row">
                 <div class="col-md-2">

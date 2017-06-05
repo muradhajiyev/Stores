@@ -2,7 +2,7 @@
 
 @section('main_content')
     <div class="container">
-        <form method="post" action="/addSpecification">
+        <form method="post" action="/admin/specifications">
             {{csrf_field()}}
             <div class="row">
                 <div class="col-md-2">

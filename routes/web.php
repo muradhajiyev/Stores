@@ -12,46 +12,25 @@
 */
 
 Route::get('/', function () {
-   return view('welcome');
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/storeregister', function(){
-	return view('auth/storeregister');
-	});
+Route::get('/storeregister', function () {
+    return view('auth/storeregister');
+});
 
-Route::get('/admin', 'AdminController@index');
-
-//specifications route
-
-Route::get('/specifications','SpecificationsController@getSpecifications');
-Route::get('/showDropdowns','SpecificationsController@showDropdowns');
-Route::get('/specificationsForm', 'SpecificationsController@getSpecificationsForm');
-Route::post('/addSpecification','SpecificationsController@store');
-Route::get('deleteSpecification/{id}', ['as'=> 'deleteS', 'uses'=>'SpecificationsController@delete']);
-
-
-//
-
-//dropdowns route
-
-Route::get('/dropdowns','DropdownsController@getDropdowns');
-Route::get('/dropdownsForm', 'DropdownsController@getDropdownsForm');
-Route::post('/addDropdown','DropdownsController@store');
-Route::get('deleteDropdown/{id}', ['as'=> 'deleteD', 'uses'=>'DropdownsController@delete']);
-
-//
 
 Route::group(['prefix' => 'admin'], function () {
-   Route::get('categories', function(){
-      return view('admin.categories');
-   });
 
+    Route::get('/', 'AdminController@index');
+    Route::get('/categories', 'AdminController@categories');
+    Route::resource('dropdowns', 'DropdownController');
+    Route::resource('specifications', 'SpecificationController');
 
-   Route::get('/categories', 'AdminController@categories');
 });
 
 
