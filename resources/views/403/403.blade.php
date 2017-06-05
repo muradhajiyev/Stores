@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
 
-                       <strong>  Sizin verilen emeliyyati icra etmek selahiiyetiniz yoxdu.</strong>
+                       <strong>  Sizin verilen emeliyyati icra etmek selahiiyetiniz yoxdur.</strong>
 
                     </div>
                 </div>
