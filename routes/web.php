@@ -12,13 +12,14 @@
 */
 
 Route::get('/', function () {
-   return view('welcome');
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+<<<<<<< HEAD
 Route::get('/storeregister', function(){
 	return view('auth/storeregister');
 	});
@@ -42,16 +43,27 @@ Route::get('/dropdowns','DropdownsController@getDropdowns')->middleware('auth','
 Route::get('/dropdownsForm', 'DropdownsController@getDropdownsForm')->middleware('auth','onlystoreandadmin');
 Route::post('/addDropdown','DropdownsController@store')->middleware('auth','onlystoreandadmin');
 Route::get('deleteDropdown/{id}', ['as'=> 'deleteD', 'uses'=>'DropdownsController@delete'])->middleware('auth','onlystoreandadmin');
+=======
+Route::get('/storeregister', function () {
+    return view('auth/storeregister');
+});
+>>>>>>> db9bc77df643ac9d89f573a80b5a14b9ec648f0a
 
-//
 
+<<<<<<< HEAD
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'onlystoreandadmin']], function () {
    Route::get('categories', function(){
       return view('admin.categories');
    });
+=======
+Route::group(['prefix' => 'admin'], function () {
+>>>>>>> db9bc77df643ac9d89f573a80b5a14b9ec648f0a
 
+    Route::get('/', 'AdminController@index');
+    Route::get('/categories', 'AdminController@categories');
+    Route::resource('dropdowns', 'DropdownController');
+    Route::resource('specifications', 'SpecificationController');
 
-   Route::get('/categories', 'AdminController@categories');
 });
 
   Route::get('/403', function(){

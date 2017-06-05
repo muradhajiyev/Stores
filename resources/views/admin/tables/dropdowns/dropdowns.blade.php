@@ -4,30 +4,21 @@
     <div class="container">
         <div class="table-responsive">
             <table class="table table-hover">
-                <col width="150">
-                <col width="150">
-                <col width="150">
-                <col width="150">
-                <col width="200">
+                <col width="400">
+                <col width="400">
                 <col width="50">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Type ID</th>
-                    <th>Unit ID</th>
-                    <th>Dropdown ID</th>
                     <th colspan="2">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                < @foreach($specifications as $specification)
-                    <tr>
-                        <td>{{$specification->id}}</td>
-                        <td>{{$specification->name}}</td>
-                        <td>{{$specification->type_id}}</td>
-                        <td>{{$specification->unit_id}}</td>
-                        <td>{{$specification->dropdown_id}}</td>
+                 @foreach($dropdowns as $dropdown)
+                        <tr>
+                        <td>{{$dropdown->id}}</td>
+                        <td>{{$dropdown->name}}</td>
                         <td>
                             <button data-toggle="tooltip" data-placement="top" title="Edit Record" type="button"
                                     class="btn btn-warning">
@@ -35,12 +26,16 @@
                             </button>
                         </td>
                         <td>
-                            <a href="{{ route('deleteS', ['id' => $specification->id]) }}"  data-placement="top"
-                               title="Delete Record"  class="btn btn-danger" id="deleteSpecification">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </a>
+                            <form action="/admin/dropdowns/{{$dropdown->id}}" method="Post">
+                                {{csrf_field()}}
+                                {{ method_field('DELETE') }}
+
+                               <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+
                         </td>
-                    </tr> @endforeach
+                    </tr>
+                @endforeach
 
                 </tbody>
             </table>
@@ -64,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ url('/specificationsForm') }}" class="btn btn-success">Add New
+            <a href="{{ url('/admin/dropdowns/create') }}" class="btn btn-success">Add New
             </a>
         </div>
     </div>

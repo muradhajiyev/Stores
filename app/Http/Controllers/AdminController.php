@@ -8,6 +8,10 @@ use App\Category;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminOrStore');
+    }
    public function index(Request $request){
       return view('admin.master');
    }
