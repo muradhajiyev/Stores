@@ -34,3 +34,10 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
+
+Route::get('/product', function () {
+    echo 'adsasd';
+});
+
+
+
