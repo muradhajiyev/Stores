@@ -9,7 +9,7 @@
     <link href="{{asset("product/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/font-awesome.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/prettyPhoto.css")}}" rel="stylesheet">
-    <link href="{{asset("product/css/price-range.css")}}" rel="stylesheet">
+    <link href="{{asset("store")}}" rel="stylesheet">
     <link href="{{asset("product/css/animate.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
@@ -26,11 +26,11 @@
 
 <body>
 
-@include('header')
+@include('store.header')
 
 @yield('content')
 
-@include('footer')
+@include('store.footer')
 
 
 <script src="{{asset("product/js/jquery.js")}}"></script>
