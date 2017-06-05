@@ -12,21 +12,25 @@
 */
 
 Route::get('/', function () {
-   return view('welcome');
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/storeregister', function(){
-	return view('auth/storeregister');
-	});
-
-Route::get('/admin', 'AdminController@index');
-
-Route::group(['prefix' => 'admin'], function () {
-   Route::get('/categories', 'AdminController@categories');
+Route::get('/storeregister', function () {
+    return view('auth/storeregister');
 });
 
+Route::get('/cat',['uses'=>'AdminController@manageCategory2']);
 
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', 'AdminController@index');
+
+     Route::get('/categories',['uses'=>'AdminController@manageCategory']);
+     Route::post('add-category',['as'=>'add.category','uses'=>'AdminController@addCategory']);
+
+    Route::resource('dropdowns', 'DropdownController');
+    Route::resource('specifications', 'SpecificationController');
+});

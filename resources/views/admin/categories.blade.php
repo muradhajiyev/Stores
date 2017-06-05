@@ -1,74 +1,98 @@
 @extends('admin.master')
 
 @section('main_content')
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="/css/treeview.css" rel="stylesheet"> -->
+
 <section class="content-header">
    <h1>
       Categories
       <small>Control panel</small>
    </h1>
-
-   <br>
-
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Categories</li>
+   </ol>
 </section>
 
-<div class="col-md-3">
-   <div class="box box-default collapsed-box">
+<br><br>
 
-      <div class="box-header with-border">
-         <h3 class="box-title">Expandable</h3>
-         <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-            </button>
-         </div>
+<div class="row">
+   <div class="col-md-6">
+      <h3>Category List</h3>
+      <ul id="tree1">
+         @foreach($categories as $category)
+         <li>
+            {{ $category->name }}
+            @if(count($category->childs))
+               @include('admin.manageChild',['childs' => $category->childs])
+            @endif
+         </li>
+         @endforeach
+      </ul>
+   </div>
+   <div class="col-md-6">
+      <h3>Add New Category</h3>
+
+      {!! Form::open(['route'=>'add.category']) !!}
+
+      @if ($message = Session::get('success'))
+      <div class="alert alert-success alert-block">
+         <button type="button" class="close" data-dismiss="alert">×</button>
+         <strong>{{ $message }}</strong>
+      </div>
+      @endif
+
+      <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+         {!! Form::label('name','Title:') !!}
+         {!! Form::text('name', old('name'), ['class'=>'form-control', 'placeholder'=>'Enter Title']) !!}
+         <span class="text-danger">{{ $errors->first('name') }}</span>
       </div>
 
-      <div class="box-body" style="display: none;">
-         The body of the box
+      <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
+         {!! Form::label('parent_id','Category:') !!}
+         {!! Form::select('parent_id',$allCategories, old('parent_id'), ['class'=>'form-control', 'placeholder'=>'Select Category']) !!}
+         <span class="text-danger">{{ $errors->first('parent_id') }}</span>
       </div>
+
+      <div class="form-group">
+         <button class="btn btn-success">Add New</button>
+      </div>
+
+      {!! Form::close() !!}
 
    </div>
 </div>
 
-<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
-<div id="demo" class="collapse">
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-</div>
 
-<div class="row">
+
+<!-- <div class="row">
    <div class="col-xs-12">
       <div class="box">
 
          <div class="box-header">
-            <h3 class="box-title" id="hoverTableID">Categories</h3>
+            <h3 class="box-name">Hover Data Table</h3>
          </div>
 
-         <div class="box-body" id="body">
-
+         <div class="box-body">
             <table id="example2" class="table table-bordered table-hover">
-
                <thead>
                   <tr>
                      <th>ID</th>
+                     <th>Parent ID</th>
                      <th>Name</th>
                   </tr>
                </thead>
 
                <tbody>
-                  @foreach ($categories as $category)
-                  <tr>
-                     <td>{{ $category->id }}</td>
-                     <td>{{ $category->name }}</td>
-                  </tr>
-                  @endforeach
+
                </tbody>
-
             </table>
-
          </div>
-
       </div>
    </div>
-</div>
+</div> -->
 @stop

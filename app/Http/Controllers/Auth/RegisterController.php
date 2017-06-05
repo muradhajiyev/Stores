@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use App\Store;
 
 class RegisterController extends Controller
@@ -84,6 +85,16 @@ class RegisterController extends Controller
 
             return $user;
 
+        }
+    }
+
+    protected function redirectTo(){
+
+        if(Auth::user()->role->name == 'user' ){
+            return '/home' ;
+        }
+        elseif(Auth::user()->role->name == 'admin' || Auth::user()->role->name == 'store' ){
+            return '/admin';
         }
     }
 
