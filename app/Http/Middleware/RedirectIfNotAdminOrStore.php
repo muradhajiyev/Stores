@@ -17,7 +17,7 @@ class RedirectIfNotAdminOrStore
     public function handle($request, Closure $next)
     {
         if (Auth::user()->isUser()) {
-            return redirect('/');
+            return redirect('/403');
         }
 
         return $next($request);
