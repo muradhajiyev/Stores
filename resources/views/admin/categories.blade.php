@@ -54,7 +54,6 @@
 
       <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
          {!! Form::label('parent_id','Category:') !!}
-         <!-- {!! Form::select('parent_id',$allCategories, old('parent_id'), ['class'=>'form-control', 'placeholder'=>'Select Category']) !!} -->
          <select class="form-control" name="parent0" id="parent0" >
             <<option selected value="" disabled="true">Select Category</option>
             @foreach($categories as $category)
