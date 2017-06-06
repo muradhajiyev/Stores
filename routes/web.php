@@ -32,6 +32,8 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/blog', function () {
         return view('store.pages.blog');
     });
+
+
     Route::get('/blog-single', function () {
         return view('store.pages.blog-single');
     });
@@ -52,6 +54,10 @@ Route::group(['prefix' => 'store'], function () {
     });
     Route::get('/shop', function () {
         return view('store.pages.shop');
+    });
+
+    Route::get('/profile', function(){
+         return view('store.pages.storeprofile');
     });
 });
 
