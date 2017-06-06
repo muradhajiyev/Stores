@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
+    Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
 });
 
 Route::group(['prefix' => 'store'], function () {
@@ -58,6 +59,10 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/shop', function () {
         return view('store.pages.shop');
     });
+
+
+    Route::resource("product", 'ProductController');
+
 });
 
 

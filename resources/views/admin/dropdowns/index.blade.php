@@ -1,6 +1,7 @@
 @extends('admin.master')
 
 @section('main_content')
+
 <div class="container">
    <div class="table-responsive">
       <table class="table table-hover">
@@ -14,6 +15,7 @@
                <th colspan="2">Action</th>
             </tr>
          </thead>
+
 
          <tbody>
             @foreach($dropdowns as $dropdown)
