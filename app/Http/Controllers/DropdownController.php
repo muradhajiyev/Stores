@@ -24,7 +24,7 @@ class DropdownController extends Controller
     {
         //
         $dropdowns = Dropdown::all();
-        return view('admin.tables.dropdowns.dropdowns')->with('dropdowns', $dropdowns);
+        return view('admin.dropdowns.index')->with('dropdowns', $dropdowns);
     }
 
     /**
@@ -35,7 +35,7 @@ class DropdownController extends Controller
     public function create()
     {
         //
-        return view('admin.tables.dropdowns.addDropdown');
+        return view('admin.dropdowns.create');
     }
 
     /**
