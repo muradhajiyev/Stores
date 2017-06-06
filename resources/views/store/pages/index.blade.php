@@ -179,7 +179,7 @@
                                     <h4 class="panel-title"><a href="#">Shoes</a></h4>
                                 </div>
                             </div>
-                        </div><!--/category-products-->
+                        </div><!--/categproductucts-->
 
                         <div class="brands_products"><!--brands_products-->
                             <h2>Brands</h2>
