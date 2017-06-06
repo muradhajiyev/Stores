@@ -13,11 +13,16 @@ class DropdownController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+
+        $this->middleware(['auth','adminOrStore']);
+    }
     public function index()
     {
         //
         $dropdowns = Dropdown::all();
-        return view('admin.tables.dropdowns.dropdowns')->with('dropdowns', $dropdowns);
+        return view('admin.dropdowns.index')->with('dropdowns', $dropdowns);
     }
 
     /**
@@ -28,7 +33,7 @@ class DropdownController extends Controller
     public function create()
     {
         //
-        return view('admin.tables.dropdowns.addDropdown');
+        return view('admin.dropdowns.create');
     }
 
     /**

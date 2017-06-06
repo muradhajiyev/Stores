@@ -15,10 +15,15 @@ class SpecificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+
+        $this->middleware(['auth','adminOrStore']);
+    }
     public function index()
     {
         $specifications = Specification::all();
-        return view('admin.tables.specifications.specifications')->with('specifications', $specifications);
+        return view('admin.specifications.index')->with('specifications', $specifications);
     }
 
     /**
@@ -32,7 +37,7 @@ class SpecificationController extends Controller
         $types = Type::all();
         $units = Unit::all();
         $dropdowns = Dropdown::all();
-        return view('admin.tables.specifications.specificationForm')->with('types', $types)->with('units', $units)->with('dropdowns', $dropdowns);
+        return view('admin.specifications.create')->with('types', $types)->with('units', $units)->with('dropdowns', $dropdowns);
     }
 
     /**
