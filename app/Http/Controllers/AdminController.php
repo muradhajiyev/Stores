@@ -43,6 +43,14 @@ class AdminController extends Controller
       return back()->with('success', 'New Category added successfully.');
    }
 
+   public function downloadMainCategories() {
+      $result = DB::table('categories')->select('*')
+          ->where('parent_id', null)
+          ->orderBy('id')
+          ->get();
+       return $result;
+   }
+
 
    // public function categories(){
    //    $categories = Category::all();
@@ -72,12 +80,6 @@ class AdminController extends Controller
    //      return $categories;
    //  }
    //
-   // public function downloadMainCategories() {
-   //    $result = DB::table('categories')->select('*')
-   //        ->where('parent_id', null)
-   //        ->orderBy('id')
-   //        ->get();
-   //     return $result;
-   // }
+
 
 }
