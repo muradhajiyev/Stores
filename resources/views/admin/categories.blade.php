@@ -37,84 +37,27 @@
    <div class="col-md-6">
       <h3>Add New Category</h3>
 
-      {!! Form::open(['route'=>'add.category']) !!}
 
-      @if ($message = Session::get('success'))
-      <div class="alert alert-success alert-block">
-         <button type="button" class="close" data-dismiss="alert">×</button>
-         <strong>{{ $message }}</strong>
-      </div>
-      @endif
-
-      <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-         {!! Form::label('name','Title:') !!}
-         {!! Form::text('name', old('name'), ['class'=>'form-control', 'placeholder'=>'Enter Title']) !!}
-         <span class="text-danger">{{ $errors->first('name') }}</span>
-      </div>
-
-      <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
-         {!! Form::label('parent_id','Category:') !!}
-         <!-- {!! Form::select('parent_id',$allCategories, old('parent_id'), ['class'=>'form-control', 'placeholder'=>'Select Category']) !!} -->
-         <select class="form-control" name="parent0" id="parent0" >
-            <<option selected value="" disabled="true">Select Category</option>
-            @foreach($categories as $category)
-               <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
+      <form class="form-horizontal">
+         <label class="control-label">Test:</label>
+         <select name="employee" class="form-control">
+            <option value="">Salam</option>
          </select>
-         <span class="text-danger">{{ $errors->first('parent_id') }}</span>
-      </div>
-
-      <div class="form-group">
-         <button class="btn btn-success">Add New</button>
-      </div>
-
-      {!! Form::close() !!}
-
+      </form>
    </div>
-
 
    <div class="col-md-6">
       <h3>Remove Category</h3>
       <div class="form-group">
-         <label>Customer:</label>
-         <div>
+         <label class="control-label">Category:</label>
             <select name="customer" class="form-control " placeholder="select my name">
                @foreach($categories as $category)
-                  <option value="">{{ $category->name }}</option>
+               <option value="">{{ $category->name }}</option>
                @endforeach
             </select>
-         </div>
       </div>
    </div>
 
 </div>
 
-
-
-<!-- <div class="row">
-<div class="col-xs-12">
-<div class="box">
-
-<div class="box-header">
-<h3 class="box-name">Hover Data Table</h3>
-</div>
-
-<div class="box-body">
-<table id="example2" class="table table-bordered table-hover">
-<thead>
-<tr>
-<th>ID</th>
-<th>Parent ID</th>
-<th>Name</th>
-</tr>
-</thead>
-
-<tbody>
-
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div> -->
 @stop
