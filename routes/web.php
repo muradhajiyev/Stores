@@ -13,10 +13,16 @@ Route::get('/', function () {
     return view('store.pages.index');
 });
 Auth::routes();
+
+
+Route::resource('storecontrol','StoreController' );
+
+
 Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
+
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
 
