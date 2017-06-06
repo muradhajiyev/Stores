@@ -17,8 +17,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
-Route::get('profile', function(){
-	return view('store.storeprofile');
+Route::get('coversection', function(){
+	return view('store.coversection');
 });
 
 Route::group(['prefix' => 'admin'], function () {

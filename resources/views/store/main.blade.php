@@ -27,7 +27,7 @@
 <body>
 
 @include('store.header')
-
+@include('store.coversection')
 @yield('content')
 
 @include('store.footer')
