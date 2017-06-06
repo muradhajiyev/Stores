@@ -16,6 +16,7 @@
                             <strong> You are logged As Admin!</strong>
                         @elseif(\Illuminate\Support\Facades\Auth::user()->isUser())
                             <strong> You are logged As User!</strong>
+
                         @endif
                     </div>
                 </div>

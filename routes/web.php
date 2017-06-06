@@ -10,20 +10,23 @@
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('store.pages.index');
 });
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
-Route::get('coversection', function(){
+Route::get('storeprofile', function(){
 	return view('store.coversection');
 });
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-    Route::get('/categories', 'AdminController@categories');
+
+     Route::get('/categories',['uses'=>'AdminController@manageCategory']);
+     Route::post('add-category',['as'=>'add.category','uses'=>'AdminController@addCategory']);
+
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
 });
@@ -49,7 +52,7 @@ Route::group(['prefix' => 'store'], function () {
         return view('store.pages.contactus');
     });
     Route::get('/login', function () {
-        return view('store.pages.login');
+        return view('auth.login');
     });
     Route::get('/product-details', function () {
         return view('store.pages.product-details');
