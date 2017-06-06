@@ -21,11 +21,8 @@ Route::get('/storeregister', function(){
 
 Route::get('/admin', 'AdminController@index');
 
-
-Route::get('/storelist', 'StoreController@index')->name('storelist');
-Route::post('/deleteeditstore', 'StoreController@deleteEditStore')->name('deleteeditstore');
-
-Route::post('/addstore', 'StoreController@addStore')->name('addstore');
+Route::resource('store','StoreController' );
+Route::get('/paginate','StoreController@paginate')->name('paginate');
 
 
 Route::group(['prefix' => 'admin'], function () {

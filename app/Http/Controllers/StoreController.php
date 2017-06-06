@@ -20,50 +20,127 @@ class StoreController extends Controller
      */
     public function index()
     {
+
         $userrole=Auth::user();
         if( $userrole->isStore())
 
-            $storelist=Store::where('user_id',$userrole->id)->get();
-
+        $storelist=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?) where user_id='.$userrole->id,array(3,1,null,null));
         else if($userrole->isAdmin())
-            $storelist=Store::all();
 
-        return view('store.storelist')->with(array('storelist'=>$storelist));
+        $storelist=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?)',array(3,1,null,null));
+        $count=DB::table('stores')->count() ;
+
+       return view('store.storelist')->with(array('storelist'=>$storelist,'count'=>$count/2));
     }
 
+  public function paginate(Request $request){
 
-    public function deleteEditStore(Request $request)
+
+      $userrole=Auth::user();
+      if( $userrole->isStore())
+
+          $storelist=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?) where user_id='.$userrole->id,array(3,1,null,null));
+      else if($userrole->isAdmin())
+          $storelist=Store::all();
+      $stores=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?)',array(3,1,'name like \'%s%\'','name asc'));
+      $count=DB::table('stores')->count() ;
+
+      return view('store.storelist')->with(array('storelist'=>$storelist,'count'=>$count/2));
+}
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+
+
+    public function create()
     {
-        if($request->button=='Delete') {
-            $store = Store::find($request->storeid);
-            $store->delete();
+        return view('store.storeadd');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|unique:stores',
+            'email'=>'required|email|unique:stores'
 
+        ]);
+        if(!isset($request->id)) {
+            $store = new Store();
+            $store->user_id = $request->user_id;
+            $store->name = $request->name;
+            $store->address = $request->address;
+            $store->phone_number = $request->phonenumber;
+            $store->email = $request->email;
+            $store->save();
         }
-        else if($request->button='Edit'){
-            $store =Store::find($request->storeid);
+        else {
+            $store = Store::find($request->id);
 
             $store->name = $request->name;
-            $store->address=$request->address;
-            $store->phone_number=$request->phonenumber;
-            $store->email=$request->email;
+            $store->address = $request->address;
+            $store->phone_number = $request->phonenumber;
+            $store->email = $request->email;
             $store->save();
-
         }
+
+        return redirect()->action('StoreController@index');
 
     }
 
-
-    public function addStore(Request $request)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
     {
 
-        $store =new Store();
-        $store->user_id=$request->user_id;
-        $store->name = $request->name;
-        $store->address=$request->address;
-        $store->phone_number=$request->phonenumber;
-        $store->email=$request->email;
-        $store->save();
+
+}
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+
+        $store = DB::table('stores')->where('id', $id)->first();
+
+        return view('store.storeedit',array('store'=>$store));
+    }
 
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $store = Store::find($id);
+        $store->delete();
+        return redirect()->action('StoreController@index');
     }
 }

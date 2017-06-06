@@ -31,12 +31,24 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{asset("js/specification.js")}}"></script>
+    <script src="{{ asset("js/grid.js") }}"></script>
+    <!--store css-->
+
+    <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
 
     <![endif]-->
 
@@ -371,8 +383,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/storelist') }}">
-                        <i class="fa fa-th"></i> <span>Dropdown Sources</span>
+                    <a href="{{ url('/store') }}">
+                        <i class="fa fa-th"></i> <span>Stores</span>
                         <span class="pull-right-container">
                   <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
