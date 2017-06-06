@@ -22,7 +22,6 @@ class AdminController extends Controller
    public function manageCategory()
    {
       $categories = Category::where('parent_id', null)->get();
-      //$allCategories = Category::pluck('name','id')->all();
       return view('admin.categories', compact('categories'));
    }
 
