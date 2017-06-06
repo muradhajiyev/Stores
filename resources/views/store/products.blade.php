@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  <section>
+=======
+<section>
+>>>>>>> fb94a516449bbae31b4804dd17cc0b60a12ab272
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -143,7 +147,8 @@
 
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Features Items</h2>
+                        <h2 class="title text-center">Product List</h2>
+
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">

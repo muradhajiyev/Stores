@@ -1,94 +1,61 @@
 <section id="slider"><!--slider-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#slider-carousel" data-slide-to="1"></li>
-                            <li data-target="#slider-carousel" data-slide-to="2"></li>
-                        </ol>
-                        
-                        <div class="carousel-inner">
-                            <div class="item active">
-                            <!--    <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free E-Commerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div> -->
-                                <div class="col-sm-12" style="height: 360px">
-                                    <img src="{{asset("product/images/home/shipping.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
-                                    <!-- <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
-                                </div>
 
-                                <!-- <div class="col-sm-6">
-                                    <img src="images/home/pricing.png"  class="pricing" alt="" /> 
-                                </div> -->
-                            </div>
-                            <div class="item">
+  <div class="container">
+  <hr style="border-color: orange;">
 
-                            <!--    <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>100% Responsive Design</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
-                                    <img src="images/home/pricing.png"  class="pricing" alt="" />
-                                </div> -->
-                                <div class="col-sm-12" style="height: 360px">
-                                    <img src="{{asset("product/images/home/shipping.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
-                                   <!--  <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
-                                </div>
-
-                            </div>
-                            
-                            <div class="item">
-                                <div class="col-sm-12" style="height: 360px">
-                                    <img src="{{asset("product/images/home/shipping.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
-                                    <!-- <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
-                                </div>
-
-                            <!--    <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free Ecommerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-                                    <img src="images/home/pricing.png" class="pricing" alt="" />
-                                </div> -->
-                            </div>
-                            
-                        </div>
-                        
-                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="{{asset("product/images/home/shipping.jpg")}}" class="girl img-responsive" alt="" style="border-radius: 40%" />
-                    <!-- <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
-                </div>
-
-                <div class="col-sm-4">
-                <h2> New Yorker </h2>
-                <p> Just Do It</p>
-                <p> The following example shows how to get a three equal-width columns starting at tablets and scaling to large desktops. On mobile phones, the columns will automatically stack: </p>
-                </div>
-            </div>
-
-          </div>
-
+   <div class="row">
+    <div class="col-sm-12">
+     <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+       <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+       <li data-target="#slider-carousel" data-slide-to="1"></li>
+       <li data-target="#slider-carousel" data-slide-to="2"></li>
+      </ol>
+      
+      <div class="carousel-inner">
+       <div class="item active">
+        <div class="col-sm-12" style="height: 360px">
+         <img src="{{asset("images/banner.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
+     </div>
+       </div>
+       <div class="item">
+        <div class="col-sm-12" style="height: 360px">
+         <img src="{{asset("images/banner1.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
         </div>
-    </section><!--/slider-->
+
+       </div>
+       
+       <div class="item">
+        <div class="col-sm-12" style="height: 360px">
+         <img src="{{asset("images/banner2.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
+        </div>
+       </div>
+       
+      </div>
+      
+      <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+       <i class="fa fa-angle-left"></i>
+      </a>
+      <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+       <i class="fa fa-angle-right"></i>
+      </a>
+     </div>
+     
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-sm-2" style="margin-left: 10%;">
+    	<img src="{{asset("images/home/ecommerce.jpg")}}"  style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 5%;" />
+     <!-- <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
+    </div>
+    <div class="col-sm-4">
+    	<span ><a href="#" style="color: black;"><h2>New Yorker</h2></a></span>
+    	<p><i>Just do it</i></p>   
+    	<p>The Carousel plugin is a component for cycling through elements, like a carousel (slideshow). Tip: Plugins can be included individually (using Bootstrap's individual "carousel.js" file), or all at once (using "bootstrap.js" or <a href="#">see more</a></p>
+    </div>
+   </div>
+<hr style="border-color: orange;">
+    </div>
+
+  </div>
+ </section><!--/slider-->
