@@ -29,7 +29,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ URL::to('store') }}" method="post" >
+                            <form action="{{ URL::to('storecontrol') }}" method="post" >
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 @lang('words.sname')       <input class="group inner list-group-item-text" type="text"  name="name" /> <br>
                                 @lang('words.saddress')   <input  class="group inner list-group-item-text"type="text"  name="address"  /><br>

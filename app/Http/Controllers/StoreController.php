@@ -22,31 +22,20 @@ class StoreController extends Controller
     {
 
         $userrole=Auth::user();
+
         if( $userrole->isStore())
 
-        $storelist=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?) where user_id='.$userrole->id,array(3,1,null,null));
+        $storelist= DB::table('stores')->where('user_id',$userrole->id)->paginate(6);
+
+
         else if($userrole->isAdmin())
 
-        $storelist=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?)',array(3,1,null,null));
-        $count=DB::table('stores')->count() ;
+        $storelist= DB::table('stores')->paginate(6);
 
-       return view('store.storelist')->with(array('storelist'=>$storelist,'count'=>$count/2));
+
+       return view('store.storelist')->with(array('storelist'=>$storelist));
     }
 
-  public function paginate(Request $request){
-
-
-      $userrole=Auth::user();
-      if( $userrole->isStore())
-
-          $storelist=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?) where user_id='.$userrole->id,array(3,1,null,null));
-      else if($userrole->isAdmin())
-          $storelist=Store::all();
-      $stores=DB::select('select * from fn_GetStoreDataByCustomFilter(?,?,?,?)',array(3,1,'name like \'%s%\'','name asc'));
-      $count=DB::table('stores')->count() ;
-
-      return view('store.storelist')->with(array('storelist'=>$storelist,'count'=>$count/2));
-}
 
     /**
      * Show the form for creating a new resource.
