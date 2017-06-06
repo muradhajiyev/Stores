@@ -13,15 +13,15 @@ Route::get('/', function () {
     return view('store.pages.index');
 });
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/storeregister', function(){
-	return view('auth/storeregister');
-	});
-
-Route::get('/admin', 'AdminController@index');
 
 Route::resource('storecontrol','StoreController' );
+
+
+Route::get('/home', 'HomeController@index');
+Route::get('/storeregister', function () {
+    return view('auth/storeregister');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
@@ -31,12 +31,18 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
+    Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
 });
 
 Route::group(['prefix' => 'store'], function () {
     Route::get('/', function () {
         return view('store.pages.index');
     });
+
+    Route::get('/profile', function(){
+        return view('store.pages.storeprofile');
+    });
+
 
     Route::get('/blog', function () {
         return view('store.pages.blog');
@@ -62,6 +68,10 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/shop', function () {
         return view('store.pages.shop');
     });
+
+
+    Route::resource("product", 'ProductController');
+
 });
 
 
