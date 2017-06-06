@@ -10,10 +10,10 @@
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('store.pages.index');
 });
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
@@ -22,6 +22,37 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/categories', 'AdminController@categories');
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
+});
+
+Route::group(['prefix' => 'store'], function () {
+    Route::get('/', function () {
+        return view('store.pages.index');
+    });
+
+    Route::get('/blog', function () {
+        return view('store.pages.blog');
+    });
+    Route::get('/blog-single', function () {
+        return view('store.pages.blog-single');
+    });
+    Route::get('/cart', function () {
+        return view('store.pages.cart');
+    });
+    Route::get('/checkout', function () {
+        return view('store.pages.checkout');
+    });
+    Route::get('/contactus', function () {
+        return view('store.pages.contactus');
+    });
+    Route::get('/login', function () {
+        return view('auth.login');
+    });
+    Route::get('/product-details', function () {
+        return view('store.pages.product-details');
+    });
+    Route::get('/shop', function () {
+        return view('store.pages.shop');
+    });
 });
 
 
