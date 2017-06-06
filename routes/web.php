@@ -17,9 +17,14 @@ Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
+
+
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-    Route::get('/categories', 'AdminController@categories');
+
+     Route::get('/categories',['uses'=>'AdminController@manageCategory']);
+     Route::post('add-category',['as'=>'add.category','uses'=>'AdminController@addCategory']);
+
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
 });
