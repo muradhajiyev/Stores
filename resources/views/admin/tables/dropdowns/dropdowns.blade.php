@@ -20,10 +20,9 @@
                         <td>{{$dropdown->id}}</td>
                         <td>{{$dropdown->name}}</td>
                         <td>
-                            <button data-toggle="tooltip" data-placement="top" title="Edit Record" type="button"
-                                    class="btn btn-warning">
+                            <a href="/admin/dropdowns/{{$dropdown->id}}/edit" data-toggle="tooltip" data-placement="top" title="Edit Record" class="btn btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
+                            </a>
                         </td>
                         <td>
                             <form action="/admin/dropdowns/{{$dropdown->id}}" method="Post">

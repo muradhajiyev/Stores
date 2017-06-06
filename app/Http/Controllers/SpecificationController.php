@@ -117,12 +117,13 @@ class SpecificationController extends Controller
             $specification->type_id = $type;
             $specification->unit_id = $unit;
             $specification->dropdown_id = $dropdown;
-            if($type!=="dropdown"){
+            if(Type::find($type)->name!=='dropdown'){
                 $specification->dropdown_id = null;
+
             }
             $specification->save();
         }
-        return redirect('/admin/specifications');
+      return redirect('/admin/specifications');
     }
 
     /**

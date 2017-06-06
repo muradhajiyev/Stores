@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/categories', 'AdminController@categories');
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
+    Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
 });
 
 

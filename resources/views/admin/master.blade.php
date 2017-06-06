@@ -38,6 +38,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{asset("js/specification.js")}}"></script>
 
+
     <![endif]-->
 
     <!-- Google Font -->
@@ -627,6 +628,7 @@
     <script src="{{ asset('dist/js/pages/dashboard.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js')}}"></script>
+    <script src="{{asset("js/dropdown.js")}}"></script>
 </div>
 </body>
 </html>

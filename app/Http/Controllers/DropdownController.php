@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Dropdown;
 use \App\DropdownValue;
 use Illuminate\Support\Facades\DB;
+
 class DropdownController extends Controller
 {
     /**
@@ -16,8 +17,9 @@ class DropdownController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth','adminOrStore']);
+        $this->middleware(['auth', 'adminOrStore']);
     }
+
     public function index()
     {
         //
@@ -81,6 +83,8 @@ class DropdownController extends Controller
     public function edit($id)
     {
         //
+        $dropdown = Dropdown::find($id);
+        return view('admin.tables.dropdowns.editDropdown')->with('dropdown', $dropdown);
     }
 
     /**
@@ -92,7 +96,36 @@ class DropdownController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dropdown = Dropdown::find($id);
+        if ($dropdown) {
+            $dropdownName = $request->dropdownName;
+            $dropdown->name = $dropdownName;
+            $dropdown->save();
+            foreach ($request->dropdown_value as $value) {
+                if($value) {
+                    $dropdownValue = new DropdownValue;
+                    $dropdownValue->dropdown_id = $dropdown->id;
+                    $dropdownValue->dropdown_value = $value;
+                    $dropdownValue->save();
+                }
+            }
+        }
+
+        return redirect('/admin/dropdowns');
+
+    }
+
+    public function updateDropdownValue(Request $request)
+    {
+        $id = $request->dropdownValueId;
+        $dropdownValue = $request->editedDropdownValue;
+        $dropdownV = DropdownValue::find($id);
+        if ($dropdownV) {
+            $dropdownV->dropdown_value = $dropdownValue;
+            $dropdownV->save();
+            return redirect('/admin/dropdowns/' . $dropdownV->dropdown_id . '/edit');
+        }
+        return redirect('/admin/dropdowns');
     }
 
     /**
@@ -108,4 +141,6 @@ class DropdownController extends Controller
         $dropdowns->delete();
         return redirect('/admin/dropdowns');
     }
+
+
 }
