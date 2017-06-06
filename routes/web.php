@@ -17,12 +17,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
-<<<<<<< HEAD
 
-Route::get('/cat',['uses'=>'AdminController@manageCategory2']);
 
-=======
->>>>>>> 5bbc5a8027aefb59cd35969af7bc204f39402134
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
 
@@ -32,11 +28,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
 });
-<<<<<<< HEAD
-=======
 
 
 Route::get('/403', function(){
    return view('403.403');
 });
->>>>>>> 5bbc5a8027aefb59cd35969af7bc204f39402134

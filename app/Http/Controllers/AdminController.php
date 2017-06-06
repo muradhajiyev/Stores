@@ -14,7 +14,7 @@ class AdminController extends Controller
     {
         $this->middleware(['auth','adminOrStore']);
     }
-    
+
    public function index(Request $request){
       return view('admin.master');
    }
@@ -24,13 +24,6 @@ class AdminController extends Controller
       $categories = Category::where('parent_id', null)->get();
       $allCategories = Category::pluck('name','id')->all();
       return view('admin.categories', compact('categories','allCategories'));
-   }
-
-   public function manageCategory2()
-   {
-      $categories = Category::where('parent_id', null)->get();
-      $allCategories = Category::pluck('name','id')->all();
-      return view('admin.categoryTreeview', compact('categories','allCategories'));
    }
 
    /**

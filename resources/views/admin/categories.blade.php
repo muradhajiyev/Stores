@@ -65,6 +65,19 @@
       {!! Form::close() !!}
 
    </div>
+
+   <div class="col-md-6">
+            <h3>Remove Category</h3>
+            <div class="form-group col-md-6">
+               <label>Customer:</label>
+               <div>
+                  <select name="customer" class="form-control " placeholder="select my name">
+                     <option value="">kkk</option>
+                  </select>
+               </div>
+            </div>
+   </div>
+
 </div>
 
 
