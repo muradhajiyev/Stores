@@ -84,7 +84,7 @@ class DropdownController extends Controller
     {
         //
         $dropdown = Dropdown::find($id);
-        return view('admin.tables.dropdowns.editDropdown')->with('dropdown', $dropdown);
+        return view('admin.dropdowns.edit')->with('dropdown', $dropdown);
     }
 
     /**

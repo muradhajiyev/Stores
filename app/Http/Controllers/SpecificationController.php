@@ -94,7 +94,7 @@ class SpecificationController extends Controller
         $types = Type::all()->except($specification->type_id);
         $units = Unit::all()->except($specification->unit_id);
         $dropdowns = Dropdown::all()->except($specification->dropdown_id);
-        return view('admin.tables.specifications.editSpecification')->with('specification',$specification)->
+        return view('admin.specifications.edit')->with('specification',$specification)->
         with('types', $types)->with('units', $units)->with('dropdowns', $dropdowns);
     }
 
