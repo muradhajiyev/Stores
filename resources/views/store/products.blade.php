@@ -1,10 +1,4 @@
-@extends('store.main')
-@section('title',' Home')
-
-@section('content')
-
- 
-    <section>
+<section>
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -115,7 +109,7 @@
                                     <h4 class="panel-title"><a href="#">Shoes</a></h4>
                                 </div>
                             </div>
-                        </div><!--/categproductucts-->
+                        </div><!--/category-products-->
 
                         <div class="brands_products"><!--brands_products-->
                             <h2>Brands</h2>
@@ -149,7 +143,7 @@
 
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Features Items</h2>
+                        <h2 class="title text-center">Product List</h2>
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
@@ -694,5 +688,3 @@
             </div>
         </div>
     </section>
-
-@endsection
