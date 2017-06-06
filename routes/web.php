@@ -17,10 +17,6 @@ Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
-Route::get('storeprofile', function(){
-	return view('store.coversection');
-});
-
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
 
@@ -35,6 +31,11 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/', function () {
         return view('store.pages.index');
     });
+
+    Route::get('/profile', function(){
+        return view('store.pages.storeprofile');
+    });
+
 
     Route::get('/blog', function () {
         return view('store.pages.blog');
