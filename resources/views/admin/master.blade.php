@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
+
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <title>Admin | Dashboard</title>
@@ -33,7 +33,7 @@
    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>-->
-=======
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,7 +95,7 @@
     <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
 
     <script src="{{ asset('js/specification.js' )}}"></script>
->>>>>>> 401863cfbe9773a09b9efcaed0ccc73bafe5d9d2
+
 
 
 </head>
@@ -650,7 +650,7 @@
                 </div>
                 <!-- /.tab-pane -->
             </div>
-<<<<<<< HEAD
+
             <!-- /.form-group -->
 
             <div class="form-group">
@@ -715,7 +715,7 @@ $.widget.bridge('uibutton', $.ui.button);
 
 <script src="{{ asset('js/specification.js' )}}"></script>
 <script src="{{ asset('/js/treeview.js') }}"></script>
-=======
+
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
@@ -769,7 +769,7 @@ $.widget.bridge('uibutton', $.ui.button);
 
     <script src="{{ asset('/js/treeview.js') }}"></script>
 
->>>>>>> 401863cfbe9773a09b9efcaed0ccc73bafe5d9d2
+
 
 </div>
        </div>
