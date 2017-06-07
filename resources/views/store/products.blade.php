@@ -150,9 +150,9 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt="" />
+                                        <a href="#"><img src="{{asset("product/images/home/product5.jpg")}}" alt="" />
                                         <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <p>Easy Polo Black Edition</p></a>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                         <!-- <div class="product-overlay">
