@@ -68,7 +68,8 @@
 
 
             @if(\Illuminate\Support\Facades\Auth::user()->isStore())
-                <a class="btn btn-success" href="{{URL::to('storecontrol/create')}}">@lang('words.addstore')</a>
+                <!-- <i class="fa fa-car" style="font-size:20px; color:red;"></i> -->
+                <a class="btn btn-success" href="{{URL::to('storecontrol/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore') </a>
 
             @endif
         </ol>

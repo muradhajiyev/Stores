@@ -70,7 +70,7 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/shop', function () {
         return view('store.pages.shop');
     });
-}
+});
 
     Route::resource("product", 'ProductController');
 

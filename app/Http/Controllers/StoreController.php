@@ -23,12 +23,12 @@ class StoreController extends Controller
 
         $userrole=Auth::user();
 
-        if( $userrole->isStore())
+        // if( $userrole->isStore())
 
-        $storelist= DB::table('stores')->where('user_id',$userrole->id)->paginate(6);
+        // $storelist= DB::table('stores')->where('user_id',$userrole->id)->paginate(6);
 
 
-        else if($userrole->isAdmin())
+        // else if($userrole->isAdmin())
 
         $storelist= DB::table('stores')->paginate(6);
 
