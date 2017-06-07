@@ -67,17 +67,11 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/shop', function () {
         return view('store.pages.shop');
     });
+
 });
+Route::resource("product", 'ProductController');
 
-    Route::resource("product", 'ProductController');
-<<<<<<< HEAD
-    Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
-});
-=======
-
->>>>>>> 17b1d2feea410ee9f0253957aba8f4c553f9455d
-
-
+Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
 Route::get('/403', function () {
     return view('403.403');
 });
