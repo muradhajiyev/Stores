@@ -68,7 +68,7 @@ Route::group(['prefix' => 'store'], function () {
 
 
     Route::resource("product", 'ProductController');
-
+    Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
 });
 
 

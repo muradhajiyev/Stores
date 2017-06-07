@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -23,8 +25,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
-        return view('store.product.createProduct');
+        $brands=Brand::all();
+        $parentCategories=Category::all()->where('parent_id', null);
+        return view('store.product.create')->with('brands', $brands)->with('parentCategories', $parentCategories);
     }
 
     /**

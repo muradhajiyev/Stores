@@ -38,5 +38,6 @@
 <script src="{{asset("product/js/bootstrap.min.js")}}"></script>
 <script src="{{asset("product/js/jquery.prettyPhoto.js")}}"></script>
 <script src="{{asset("product/js/main.js")}}"></script>
+<script src="{{asset("js/dynamicProductForm.js")}}"></script>
 </body>
 </html>
