@@ -41,17 +41,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('dropdowns', 'DropdownController');
 
     Route::resource('specifications', 'SpecificationController');
-   // Route::get('/dropdowns', 'DropdownsController@getDropdowns');
-//    Route::get('/dropdownsForm', 'DropdownsController@getDropdownsForm');
-//    Route::post('/addDropdown', 'DropdownsController@store');
-//    Route::get('deleteDropdown/{id}', ['as' => 'deleteD', 'uses' => 'DropdownsController@delete']);
-    //specifications route
-
-//    Route::get('/specifications', 'SpecificationsController@getSpecifications');
-//    Route::get('/showDropdowns', 'SpecificationsController@showDropdowns');
-//    Route::get('/specificationsForm', 'SpecificationsController@getSpecificationsForm');
-//    Route::post('/addSpecification', 'SpecificationsController@store');
-//    Route::get('deleteSpecification/{id}', ['as' => 'deleteS', 'uses' => 'SpecificationsController@delete']);
 
 });
 
