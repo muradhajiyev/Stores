@@ -45,14 +45,11 @@ class LoginController extends Controller
      protected function redirectTo(){
 
         if(Auth::user()->role->name == 'user' ){
-            return '/home' ;
+            return '/';
         }
         elseif(Auth::user()->role->name == 'admin' || Auth::user()->role->name == 'store' ){
             return '/admin';
-
-        }
-
-
+         }
     }
 
 }

@@ -5,18 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Category;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+
     public function __construct()
     {
-        $this->middleware('adminOrStore');
+        $this->middleware(['auth','adminOrStore']);
     }
+
    public function index(Request $request){
       return view('admin.master');
-   }
-   public function categories(){
-      $categories = Category::all();
-      return view('admin.categories')->withCategories($categories);
    }
 }

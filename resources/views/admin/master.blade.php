@@ -1,48 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
+<!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
-    <!-- Morris chart -->
-    <link rel="stylesheet" href="{{ asset('plugins/morris/morris.css')}}">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
-    <!-- Date Picker -->
-    <link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css')}}">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}">
-    <!-- bootstrap wysihtml5 - text editor -->
+    {{--<!-- Morris chart -->--}}
+    {{--<link rel="stylesheet" href="{{ asset('plugins/morris/morris.css')}}">--}}
+    {{--<!-- jvectormap -->--}}
+    {{--<link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">--}}
+    {{--<!-- Date Picker -->--}}
+    {{--<link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css')}}">--}}
+    {{--<!-- Daterange picker -->--}}
+    {{--<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}">--}}
+    {{--<!-- bootstrap wysihtml5 - text editor -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>-->
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{{asset("js/specification.js")}}"></script>
+    <script src="{{ asset("js/grid.js") }}"></script>
+    <!--store css-->
+    <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
     <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- Category CSS -->
+   <link href="{{ asset('css/treeview.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+
+    {{--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--}}
+
+    <script src="{{ asset('js/specification.js' )}}"></script>
+
+    <script src="{{ asset('js/dropdown.js' )}}"></script>
+
 
 </head>
 
@@ -277,17 +297,12 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Arsalan Iravani</span>
+                            <span class="hidden-xs">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-
-                                <p>
-                                    Arsalan Iravani - Web Developer
-                                    <small>Member since Nov. 2012</small>
-                                </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
@@ -333,8 +348,7 @@
                     <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Arsalan Iravani</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <p>{{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
                 </div>
             </div>
             <!-- search form -->
@@ -347,177 +361,43 @@
             </span>
                 </div>
             </form>
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
+
+
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li>
                     <a href="{{ url('/admin/categories') }}">
                         <i class="fa fa-th"></i> <span>Categories</span>
                         <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/admin/categories') }}">
-                        <i class="fa fa-th"></i> <span>Categories</span>
+                    <a href="{{ url('/admin/specifications') }}">
+                        <i class="fa fa-list" aria-hidden="true"></i> <span>Specifications</span>
                         <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
                     </a>
                 </li>
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-pie-chart"></i>
-                        <span>Charts</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-               </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                        <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                        <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                        <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-laptop"></i>
-                        <span>UI Elements</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-               </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                        <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                        <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                        <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                        <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                        <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i> <span>Forms</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-               </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                        <li><a href="/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-table"></i> <span>Tables</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-               </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="{{ url('/admin/specifications') }}">
-                                <i class="fa fa-th"></i> <span>Specifications</span>
-                                <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
-               </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/admin/dropdowns') }}">
-                                <i class="fa fa-th"></i> <span>Dropdowns</span>
-                                <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
-               </span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li>
-                    <a href="pages/calendar.html">
-                        <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <a href="{{ url('/admin/dropdowns') }}">
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i> <span>Dropdown Sources</span>
                         <span class="pull-right-container">
-                  <small class="label pull-right bg-red">3</small>
-                  <small class="label pull-right bg-blue">17</small>
                </span>
                     </a>
                 </li>
                 <li>
-                    <a href="pages/mailbox/mailbox.html">
-                        <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <a href="{{ url('/admin/store') }}">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
+
                         <span class="pull-right-container">
-                  <small class="label pull-right bg-yellow">12</small>
-                  <small class="label pull-right bg-green">16</small>
-                  <small class="label pull-right bg-red">5</small>
                </span>
+
                     </a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-folder"></i> <span>Examples</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-               </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                        <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-                        <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-                        <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-                        <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                        <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                        <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                        <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                        <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-share"></i> <span>Multilevel</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-               </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-circle-o"></i> Level One
-                                <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                     </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                <li class="treeview">
-                                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                                        <span class="pull-right-container">
-                              <i class="fa fa-angle-left pull-right"></i>
-                           </span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                    </ul>
-                </li>
-                <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-                <li class="header">LABELS</li>
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
             </ul>
         </section>
-        <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -527,16 +407,6 @@
         <section class="content">
             @yield('main_content')
         </section>
-        <!-- /.content-wrapper -->
-
-
-        <!-- <footer class="main-footer">
-           <div class="pull-right hidden-xs">
-              <b>Version</b> 2.4.0
-           </div>
-           <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-           reserved.
-        </footer> -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -555,6 +425,7 @@
                             <a href="javascript:void(0)">
                                 <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
+
                                 <div class="menu-info">
                                     <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
@@ -565,6 +436,7 @@
                         <li>
                             <a href="javascript:void(0)">
                                 <i class="menu-icon fa fa-user bg-yellow"></i>
+
 
                                 <div class="menu-info">
                                     <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
@@ -713,6 +585,7 @@
                                 <input type="checkbox" class="pull-right">
                             </label>
                         </div>
+
                         <!-- /.form-group -->
 
                         <div class="form-group">
@@ -746,6 +619,7 @@
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <!-- Morris.js charts -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="{{ asset('plugins/morris/morris.min.js')}}"></script>
     <!-- Sparkline -->
@@ -758,6 +632,7 @@
     <!-- daterangepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <!-- datepicker -->
     <!-- datepicker -->
     <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
     <!-- Bootstrap WYSIHTML5 -->
@@ -772,6 +647,15 @@
     <script src="{{ asset('dist/js/pages/dashboard.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js')}}"></script>
+    <script src="{{ asset('/js/adminCustomJS.js')}}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="{{ asset('/js/treeview.js') }}"></script>
+
+
+</div>
 </div>
 </body>
 </html>
