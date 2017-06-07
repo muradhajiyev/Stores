@@ -1,4 +1,5 @@
 <section id="slider"><!--slider-->
+
   <div class="container">
   <hr style="border-color: orange;">
 
