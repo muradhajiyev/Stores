@@ -17,18 +17,18 @@ class ForeignKeys extends Migration
            $table->foreign('parent_id')->references('id')->on('categories');
        });
 
-       Schema::table('products', function (Blueprint $table) {
+       Schema::table('product', function (Blueprint $table) {
            $table->foreign('profile_image_id')->references('id')->on('images');
            $table->foreign('brand_id')->references('id')->on('brands');
            $table->foreign('category_id')->references('id')->on('categories');
        });
 
        Schema::table('images', function (Blueprint $table) {
-           $table->foreign('product_id')->references('id')->on('products');
+           $table->foreign('product_id')->references('id')->on('product');
        });
 
        Schema::table('specification_values', function (Blueprint $table) {
-           $table->foreign('product_id')->references('id')->on('products');
+           $table->foreign('product_id')->references('id')->on('product');
            $table->foreign('specification_id')->references('id')->on('specifications');
        });
 
