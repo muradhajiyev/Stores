@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.html"><img
+                        <a href="#"><img
                                     src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt=""/></a>
                     </div>
                     <div class="btn-group pull-right">
