@@ -1,22 +1,9 @@
 @extends('admin.master')
 
 @section('main_content')
-    <section class="content-header">
-        <h1>
-            Categories
-            <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Categories</li>
-        </ol>
-    </section>
-
-    <br><br>
-
     <div class="row">
-        <div class="col-md-6">
-            <h3>Category List</h3>
+
+        <div class="col-md-8">
             <ul id="tree1">
                 @foreach($categories as $category)
                     <li>
@@ -29,11 +16,9 @@
                 @endforeach
             </ul>
         </div>
-        <div class="col-md-6">
 
-            <button type="button" onclick="window.location='{{ route("categories.create") }}'" class="btn btn-default">Add</button>
-        </div>
+
+            <button type="button" onclick="window.location='{{ route("categories.create") }}'" class="btn btn-success col-md-3">Add New Category</button>
 
     </div>
-
 @stop
