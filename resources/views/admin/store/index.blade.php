@@ -67,8 +67,9 @@
         <ol class="breadcrumb">
 
 
+
             @if(Auth::user()->isStore())
-                <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}">@lang('words.addstore')</a>
+                <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore')</a>
 
             @endif
         </ol>
