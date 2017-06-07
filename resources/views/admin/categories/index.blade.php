@@ -27,6 +27,7 @@
                 @foreach($categories as $category)
                     <li>
                         {{ $category->name }}
+                        <i onclick="window.location='{{ route("categories.create", ['id' => $category->id]) }}'" class="fa fa-plus" aria-hidden="true"></i>
                         @if(count($category->childs))
                             @include('admin.categories.manageChild',['childs' => $category->childs])
                         @endif
