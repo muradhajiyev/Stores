@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
+    Route::resource('categories', 'CategoryController');
     Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
 });
 
