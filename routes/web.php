@@ -22,9 +22,7 @@ Route::get('/storeregister', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-
     Route::resource('store', 'StoreController');
-
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
@@ -39,7 +37,6 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/profile', function () {
         return view('store.pages.storeprofile');
     });
-
 
     Route::get('/blog', function () {
         return view('store.pages.blog');
