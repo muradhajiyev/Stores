@@ -46,15 +46,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
-
-    <![endif]-->
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-
-
-<!--<link href="{{ asset('css/treeview.css') }}" rel="stylesheet">-->
+    <!-- Category CSS -->
+   <link href="{{ asset('css/treeview.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -373,39 +369,35 @@
                     <a href="{{ url('/admin/categories') }}">
                         <i class="fa fa-th"></i> <span>Categories</span>
                         <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('/admin/specifications') }}">
-                        <i class="fa fa-th"></i> <span>Specifications</span>
+                        <i class="fa fa-list" aria-hidden="true"></i> <span>Specifications</span>
                         <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ url('/admin/dropdowns') }}">
-                        <i class="fa fa-th"></i> <span>Dropdown Sources</span>
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i> <span>Dropdown Sources</span>
                         <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('/admin/store') }}">
-                        <i class="fa fa-th"></i> <span>Stores</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
+
                         <span class="pull-right-container">
-                  <!-- <small class="label pull-right bg-green">new</small> -->
                </span>
 
                     </a>
                 </li>
             </ul>
         </section>
-        <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -415,17 +407,6 @@
         <section class="content">
             @yield('main_content')
         </section>
-        <!-- /.content-wrapper -->
-
-
-        <!-- <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
-     </div>
-     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-     reserved.
-     </footer> -->
-
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -678,5 +659,3 @@
 </div>
 </body>
 </html>
-
-
