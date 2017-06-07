@@ -15,9 +15,6 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::resource('storecontrol','StoreController' );
-
-
 Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
@@ -25,9 +22,9 @@ Route::get('/storeregister', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-
-     Route::get('/categories',['uses'=>'AdminController@manageCategory']);
-     Route::post('add-category',['as'=>'add.category','uses'=>'AdminController@addCategory']);
+    Route::resource('store', 'StoreController');
+    Route::get('/categories', ['uses' => 'AdminController@manageCategory']);
+    Route::post('add-category', ['as' => 'add.category', 'uses' => 'AdminController@addCategory']);
 
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
@@ -40,7 +37,7 @@ Route::group(['prefix' => 'store'], function () {
         return view('store.pages.index');
     });
 
-    Route::get('/profile', function(){
+    Route::get('/profile', function () {
         return view('store.pages.storeprofile');
     });
 
@@ -76,6 +73,6 @@ Route::group(['prefix' => 'store'], function () {
 });
 
 
-Route::get('/403', function(){
-   return view('403.403');
+Route::get('/403', function () {
+    return view('403.403');
 });
