@@ -22,8 +22,8 @@ Route::get('/storeregister', function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
 
-     Route::get('/categories',['uses'=>'AdminController@manageCategory']);
-     Route::post('add-category',['as'=>'add.category','uses'=>'AdminController@addCategory']);
+     Route::get('/categories',['uses'=>'CategoryController@manageCategory']);
+     Route::post('add-category',['as'=>'add.category','uses'=>'CategoryController@addCategory']);
 
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
