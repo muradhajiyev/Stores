@@ -21,7 +21,7 @@
 
                         <div class="caption">
 
-                            <form action="{{ URL::to('/admin/storecontrol/') }}" method="post" >
+                            <form action="{{ URL::to('/admin/store') }}" method="post" >
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 @lang('words.sname')       <input class="group inner list-group-item-text" type="text"  name="name"  value="{{$store->name}}"/> <br>
                                 @lang('words.saddress')   <input  class="group inner list-group-item-text"type="text"  name="address"   value="{{$store->address}}"/><br>
