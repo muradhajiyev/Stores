@@ -14,4 +14,4 @@ $(document).ready(function () {
             $('#specificationDropdown').prop('required',false);
         }
     });
-});
+})  ;
