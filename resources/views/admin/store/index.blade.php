@@ -36,7 +36,7 @@
                                     {{$store->email}}</p>
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
-                                        <form action="{{ URL::to('storecontrol/'.$store->id) }}" method="POST" >
+                                        <form action="{{ URL::to('/admin/storecontrol/'.$store->id) }}" method="POST" >
                                             <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                             <input name="_method" type="hidden" value="DELETE" >
 
@@ -45,7 +45,7 @@
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
-                                        <form action="{{ URL::to('storecontrol/'.$store->id.'/edit') }}" method="get" >
+                                        <form action="{{ URL::to('/admin/storecontrol/'.$store->id.'/edit') }}" method="get" >
                                             @if(\Illuminate\Support\Facades\Auth::user()->isStore())
                                                 <input type="submit" class=" btn btn-success" value="@lang('words.edit')" >
                                             @endif
@@ -68,7 +68,7 @@
 
 
             @if(\Illuminate\Support\Facades\Auth::user()->isStore())
-                <a class="btn btn-success" href="{{URL::to('storecontrol/create')}}">@lang('words.addstore')</a>
+                <a class="btn btn-success" href="{{URL::to('/admin/storecontrol/create')}}">@lang('words.addstore')</a>
 
             @endif
         </ol>
