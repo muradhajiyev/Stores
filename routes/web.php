@@ -22,9 +22,7 @@ Route::get('/storeregister', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-
     Route::resource('store', 'StoreController');
-
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');

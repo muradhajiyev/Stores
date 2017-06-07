@@ -27,6 +27,8 @@
                 @foreach($categories as $category)
                     <li>
                         {{ $category->name }}
+                        <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                        <button href="#"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                         @if(count($category->childs))
                             @include('admin.categories.manageChild',['childs' => $category->childs])
                         @endif
