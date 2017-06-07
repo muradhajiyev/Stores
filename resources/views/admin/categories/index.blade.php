@@ -27,7 +27,8 @@
                 @foreach($categories as $category)
                     <li>
                         {{ $category->name }}
-                        <i onclick="window.location='{{ route("categories.create", ['id' => $category->id]) }}'" class="fa fa-plus" aria-hidden="true"></i>
+                        <i onclick="window.location='{{ route("categories.create", ['id' => $category->id]) }}'"
+                           class="fa fa-plus" aria-hidden="true"></i>
                         @if(count($category->childs))
                             @include('admin.categories.manageChild',['childs' => $category->childs])
                         @endif
@@ -36,8 +37,9 @@
             </ul>
         </div>
         <div class="col-md-6">
-
-            <button type="button" onclick="window.location='{{ route("categories.create") }}'" class="btn btn-default">Add</button>
+            <button type="button" onclick="window.location='{{ route("categories.create") }}'" class="btn btn-default">
+                Add
+            </button>
         </div>
 
     </div>
