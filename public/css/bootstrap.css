@@ -4950,7 +4950,7 @@ a.badge:focus {
   float: right;
 }
 .list-group-item > .badge + .badge {
-  margin-right: 5px;
+  margin-right: 0px;
 }
 .nav-pills > li > a > .badge {
   margin-left: 3px;

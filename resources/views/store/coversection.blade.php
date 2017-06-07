@@ -13,7 +13,7 @@
       
       <div class="carousel-inner">
        <div class="item active">
-        <div class="col-sm-12" style="height: 360px">
+        <div class="col-sm-12" style="height: 360px;">
          <img src="{{asset("images/banner.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
      </div>
        </div>
@@ -46,7 +46,7 @@
     <div class="col-sm-2" style="margin-left: 6%;">
     	<img src="{{asset("images/home/default-logo.png")}}"  style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;" />
     </div>
-    <div class="col-sm-4" style="margin-left: 1%;">
+    <div class="col-sm-8" style="margin-left: 1%;">
     	<span ><a href="#" style="color: black;"><h2>New Yorker</h2></a></span>
     	<p><i>The Only Art Gallery in the World Located in a Railroad Station</i></p>   
     	<p>The New Yorker is an American magazine of reportage, commentary, criticism, essays, fiction, satire, cartoons, and poetry. It is published by Condé Nast. Started as a weekly in 1925, the magazine is now published 47 times annually, with five of these issues covering two-week spans.
