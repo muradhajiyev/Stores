@@ -9,19 +9,30 @@
                         <h2> @lang('createProduct.header1') </h2>
                         <form action="#">
                             <div class="row">
-                                    <h4>@lang('createProduct.header2')</h4>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Name" name="productName" class="form-control" required>
-                                        </div>
-
-                                    </div>
-                                <div class="col-md-3">
+                                <h4>@lang('createProduct.header2')</h4>
+                                <div class="col-md-5">
                                     <div class="form-group">
-                                        <input type="number" placeholder="Price" name="productPrice" class="form-control" required>
+                                        <input type="text" placeholder="Name" name="productName" class="form-control"
+                                               required>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="number" placeholder="Price" name="productPrice"
+                                               class="form-control" required>
                                     </div>
                                 </div>
-
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select class="form-control category" name="productCategory" required>
+                                            <option selected disabled>Select</option>
+                                            @foreach($currencies as $currency)
+                                                <option value="{{$currency->id}}">{{$currency->iso}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
                             </div>
                             <hr/>
@@ -31,11 +42,11 @@
 
 
                                     <div class="form-group">
-                                        <select class="form-control category" name="productCategory" required>
+                                        <select class="form-control category" id="0" name="productCategory" required>
                                             <option selected disabled>Select</option>
                                             @foreach($parentCategories as $parent)
                                                 <option value="{{$parent->id}}">{{$parent->name}}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -62,7 +73,7 @@
                                         <option selected disabled>Select</option>
                                         @foreach($brands as $brand)
                                             <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                            @endforeach
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -80,7 +91,8 @@
 
                                 <div class="col-sm-8 col-sm-offset-6">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">@lang('createProduct.submit')</button>
+                                        <button type="submit"
+                                                class="btn btn-success">@lang('createProduct.submit')</button>
                                     </div>
                                 </div>
                             </div>

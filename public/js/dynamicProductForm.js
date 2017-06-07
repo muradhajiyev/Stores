@@ -1,21 +1,25 @@
 $(document).ready(function () {
 
     $('.category').on('change', function (event) {
-            getSubCategories(event.target.value);
+        getSubCategories(event.target.value);
     });
 });
-var getSubCategories=function(id){
+var getSubCategories = function (id) {
+    var selectId = 1;
 
-    $('.subCategories').append('<div class="form-group"> <select class="form-control category"> </select> </div>');
-    var appendArea=$('.subCategories select');
-    if(id) {
-        $.get('/store/subCategory/'+id, function (data) {
-            var categoryArray=JSON.parse(data);
-          for(x in categoryArray){
-             appendArea.append(
-                 '<option value="'+categoryArray[x].id+'"> ' + categoryArray[x].name+'</option> ')
-          }
-         });
+    if (id) {
+        $.get('/subCategory/' + id, function (data) {
+            var categoryArray = JSON.parse(data);
+            if(categoryArray) {
+                if(categoryArray.length!==0) {
+                    $('.subCategories').append('<div class="form-group"><select class="form-control category" required id="' + selectId + '" ></div>');
+
+                    for (x in categoryArray) {
+
+                    }
+                }
+            }
+        });
 
     }
 };

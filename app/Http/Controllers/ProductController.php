@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Brand;
 use App\Category;
+use App\currency;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -27,7 +28,8 @@ class ProductController extends Controller
     {
         $brands=Brand::all();
         $parentCategories=Category::all()->where('parent_id', null);
-        return view('store.product.create')->with('brands', $brands)->with('parentCategories', $parentCategories);
+        $currencies=currency::all();
+        return view('store.product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies);
     }
 
     /**
