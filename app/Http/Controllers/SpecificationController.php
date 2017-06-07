@@ -89,6 +89,13 @@ class SpecificationController extends Controller
     public function edit($id)
     {
         //
+
+        $specification=Specification::find($id);
+        $types = Type::all()->except($specification->type_id);
+        $units = Unit::all()->except($specification->unit_id);
+        $dropdowns = Dropdown::all()->except($specification->dropdown_id);
+        return view('admin.specifications.edit')->with('specification',$specification)->
+        with('types', $types)->with('units', $units)->with('dropdowns', $dropdowns);
     }
 
     /**
@@ -100,7 +107,23 @@ class SpecificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $specification=Specification::find($id);
+        $name = $request->specificationName;
+        $type = $request->specificationType;
+        $unit = $request->specificationUnit;
+        $dropdown = $request->specificationDropdown;
+        if($specification){
+            $specification->name = $name;
+            $specification->type_id = $type;
+            $specification->unit_id = $unit;
+            $specification->dropdown_id = $dropdown;
+            if(Type::find($type)->name!=='dropdown'){
+                $specification->dropdown_id = null;
+
+            }
+            $specification->save();
+        }
+      return redirect('/admin/specifications');
     }
 
     /**
