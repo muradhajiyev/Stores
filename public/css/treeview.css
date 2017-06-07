@@ -1,16 +1,21 @@
- /*.tree, .tree ul {
+#tree1 {
+   color: cyan;
+   font-size: 20px;
+}
+
+ #tree1, #tree1 ul {
     margin:0;
     padding:0;
     list-style:none
 }
-.tree ul {
+#tree1 ul {
     margin-left:1em;
     position:relative
 }
-.tree ul ul {
+#tree1 ul ul {
     margin-left:.5em
 }
-.tree ul:before {
+#tree1 ul:before {
     content:"";
     display:block;
     width:0;
@@ -20,7 +25,7 @@
     left:0;
     border-left:1px solid
 }
-.tree li {
+#tree1 li {
     margin:0;
     padding:0 1em;
     line-height:2em;
@@ -28,7 +33,7 @@
     font-weight:700;
     position:relative
 }
-.tree ul li:before {
+#tree1 ul li:before {
     content:"";
     display:block;
     width:10px;
@@ -39,7 +44,7 @@
     top:1em;
     left:0
 }
-.tree ul li:last-child:before {
+#tree1 ul li:last-child:before {
     background:#fff;
     height:auto;
     top:1em;
@@ -50,11 +55,11 @@
     margin-right:5px;
 }
 
-.tree li a {
+#tree1 li a {
     text-decoration: none;
     color:#369;
 }
-.tree li button, .tree li button:active, .tree li button:focus {
+#tree1 li button, #tree1 li button:active, #tree1 li button:focus {
     text-decoration: none;
     color:#369;
     border:none;
@@ -62,4 +67,4 @@
     margin:0px 0px 0px 0px;
     padding:0px 0px 0px 0px;
     outline: 0;
-}*/
+}

@@ -50,9 +50,8 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-
-
-<!--<link href="{{ asset('css/treeview.css') }}" rel="stylesheet">-->
+    <!-- Category CSS -->
+   <link href="{{ asset('css/treeview.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

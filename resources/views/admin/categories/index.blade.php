@@ -1,12 +1,6 @@
 @extends('admin.master')
 
 @section('main_content')
-
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link href="/css/treeview.css" rel="stylesheet"> -->
-
     <section class="content-header">
         <h1>
             Categories
@@ -27,8 +21,7 @@
                 @foreach($categories as $category)
                     <li>
                         {{ $category->name }}
-                        <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                        <button href="#"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <i onclick="window.location='{{ route("categories.create", ['id' => $category->id]) }}'" class="fa fa-plus" aria-hidden="true"></i>
                         @if(count($category->childs))
                             @include('admin.categories.manageChild',['childs' => $category->childs])
                         @endif
