@@ -28,36 +28,17 @@
                     <li>
                         {{ $category->name }}
                         @if(count($category->childs))
-                            @include('admin.manageChild',['childs' => $category->childs])
+                            @include('admin.categories.manageChild',['childs' => $category->childs])
                         @endif
                     </li>
                 @endforeach
             </ul>
         </div>
         <div class="col-md-6">
-            <h3>Add New Category</h3>
 
-
-            <form class="form-horizontal">
-                <label class="control-label">Test:</label>
-                <select name="employee" class="form-control">
-                    <option value="">Salam</option>
-                </select>
-            </form>
+            <button type="button" onclick="window.location='{{ route("categories.create") }}'" class="btn btn-default">Add</button>
         </div>
 
-        <div class="col-md-6">
-            <h3>Remove Category</h3>
-            <div class="form-group">
-                <label class="control-label">Category:</label>
-                <select name="customer" class="form-control " placeholder="select my name">
-                    @foreach($categories as $category)
-                        <option value="">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
     </div>
+
 @stop
-
-

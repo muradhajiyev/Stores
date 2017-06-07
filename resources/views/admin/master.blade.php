@@ -663,7 +663,7 @@
     <script src="{{ asset('dist/js/pages/dashboard.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js')}}"></script>
- <script src="{{ asset('/js/adminCustomJS.js')}}"></script>
+    <script src="{{ asset('/js/adminCustomJS.js')}}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -675,3 +675,5 @@
 </div>
 </body>
 </html>
+
+
