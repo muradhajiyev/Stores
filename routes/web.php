@@ -22,7 +22,7 @@ Route::get('/storeregister', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-    Route::resource('storecontrol', 'StoreController');
+    Route::resource('store', 'StoreController');
     Route::get('/categories', ['uses' => 'AdminController@manageCategory']);
     Route::post('add-category', ['as' => 'add.category', 'uses' => 'AdminController@addCategory']);
 

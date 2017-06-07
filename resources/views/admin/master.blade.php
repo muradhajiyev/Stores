@@ -394,7 +394,7 @@
              </a>
                 </li>
                 <li>
-                    <a href="{{ url('/admin/storecontrol') }}">
+                    <a href="{{ url('/admin/store') }}">
                         <i class="fa fa-th"></i> <span>Stores</span>
                         <span class="pull-right-container">
                   <!-- <small class="label pull-right bg-green">new</small> -->
