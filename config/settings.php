@@ -9,5 +9,7 @@ return [
    | This value is limit for the number of cover photos a store user can upload
    */
 
-   'limit' => "3",
+   'max_cover_photo_count' => "3",
+
+   'max_product_photo_count' => "3",
    ];
