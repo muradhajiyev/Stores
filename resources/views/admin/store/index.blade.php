@@ -10,12 +10,20 @@
 
         <div class="container">
             <div class="well well-sm">
+
                 <strong>Category Title</strong>
                 <div class="btn-group">
                     <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
                                 class="glyphicon glyphicon-th"></span>Grid</a>
                 </div>
+                <form action="{{URL::to('/admin/store/')}}"  method="GET" class="item  col-xs-4 col-lg-4">
+
+                    <input type="text" placeholder="Search" name="searchtext" >
+                    <input type="submit" class=" btn btn-success" value="SEARCH" >
+                </form>
+
+
             </div>
 
 
@@ -73,8 +81,10 @@
 
             @endif
         </ol>
+        <div class="container">
+        {{$storelist->appends(request()->only('searchtext'))->render()}}
+        </div>
 
-        {!! $storelist->render() !!}
     </section>
 
 
