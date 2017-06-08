@@ -7,6 +7,10 @@
    cursor: pointer;
 }
 
+#tree1 button i {
+   color: #DB4C3F;
+}
+
 #tree1, #tree1 ul {
    margin:0;
    padding:0;
