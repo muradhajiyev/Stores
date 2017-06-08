@@ -1,53 +1,32 @@
 $(document).ready(function () {
 
-    $('body').on('change', '.category', function (event) {
-        getSubCategories(event.target.value, event.target.id);
+    $('.parentCategory').livequery('change', function (event) {
 
+        $(this).nextAll('.parentCategory').remove();
+        $(this).nextAll('label').remove();
+        getSubCategories(event.target.value);
     });
 });
-var selectId = 0;
 
-var getSubCategories = function (id, elementId) {
+var getSubCategories = function (id) {
     if (id) {
         $.get('/subCategory/' + id, function (data) {
             var categoryArray = JSON.parse(data);
+            var selectElement = '<label style="padding:7px;float:left; font-size:12px;">No Record Found !</label>';
+            var optionElement = '';
             if (categoryArray) {
-                var childElementId = parseInt(elementId) + 1;
-                var childElement = $('#' + childElementId);
-                var appendElement;
                 if (categoryArray.length !== 0) {
-                    if (childElement.length > 0) {
-                        appendElement = childElement;
-                    } else {
+                    selectElement = '<div class="form-group parentCategory"><select class="form-control parentCategorySelect" name="subCategory" required> ' +
+                        '<option value="" selected="selected" disabled>-- Sub Category --</option> ';
 
-                        selectId = selectId + 1;
-                        $('.subCategories').append('<div class="form-group"><select class="form-control category" required id="' + selectId + '" ></div>');
-                        appendElement = $('#' + selectId);
+                    for (x in categoryArray) {
+                        optionElement += '<option value="' + categoryArray[x].id + '">' + categoryArray[x].name + '</option> '
                     }
-                    if (appendElement) {
-                        appendElement.empty();
-                        for (x in categoryArray) {
-                            appendElement.append('<option value="' + categoryArray[x].id + '">' + categoryArray[x].name + '</option>');
-                        }
-                    }
-                } else {
-                    console.log(deleteElement(childElement, childElementId));
+                    selectElement = selectElement + optionElement + '</select> </div>';
                 }
-
             }
+            $('#subCategories').append(selectElement);
+
         });
-
     }
-};
-var deleteElement = function (element, elementId) {
-    if (element.length > 0) {
-        element.remove();
-        elementId = parseInt(elementId) + 1;
-        element = $('#' + elementId);
-        deleteElement(element);
-    } else {
-        return 0;
-    }
-
-
 };

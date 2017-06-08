@@ -34,6 +34,7 @@
 
 
 <script src="{{asset("product/js/jquery.js")}}"></script>
+<script src="{{asset("js/jquery.livequery.js")}}"></script>
 <script src="{{asset("product/js/price-range.js")}}"></script>
 <script src="{{asset("product/js/jquery.scrollUp.min.js")}}"></script>
 <script src="{{asset("product/js/bootstrap.min.js")}}"></script>

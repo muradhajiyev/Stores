@@ -39,18 +39,16 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h4>@lang('createProduct.header3')</h4>
-
-
-                                    <div class="form-group">
-                                        <select class="form-control category" id="0" name="productCategory" required>
-                                            <option selected disabled>Select</option>
-                                            @foreach($parentCategories as $parent)
-                                                <option value="{{$parent->id}}">{{$parent->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="subCategories">
+                                    <div id="subCategories">
+                                        <div class="form-group parentCategory">
+                                            <select class="form-control parentCategorySelect" id="0" name="productCategory"
+                                                    required>
+                                                <option selected disabled>Select</option>
+                                                @foreach($parentCategories as $parent)
+                                                    <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
                                     </div>
 
