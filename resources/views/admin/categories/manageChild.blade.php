@@ -2,11 +2,10 @@
     @foreach($childs as $child)
         <li>
             {{ $child->name }}
-            <i onclick="window.location='{{ route("categories.create", ['id' => $child->id]) }}'" class="fa fa-plus"
+            <i onclick="window.location='{{ route("categories.show", ['id' => $child->id]) }}'" class="fa fa-plus"
                aria-hidden="true"></i>
             @if(count($child->childs))
                 @include('admin.categories.manageChild',['childs' => $child->childs])
-
             @else
                 <form action="/admin/categories/{{$child->id}}" style="display: inline" method="Post">
                     {{csrf_field()}}
