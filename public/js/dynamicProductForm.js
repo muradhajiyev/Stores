@@ -33,10 +33,8 @@ var getSpecifications = function (id) {
     $('#productSpec').empty();
 if(id){
     $.get('/api/specifications/'+id, function (data) {
-        console.log(data);
         if(data.length>0){
             $('#specifications').attr('hidden', false);
-
             data.forEach(function (spec) {
              $('#productSpec').append('<option id="'+spec.id+'">'+spec.name+'</option>');
             });

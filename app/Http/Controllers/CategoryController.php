@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth','adminOrStore']);
+        $this->middleware(['auth', 'adminOrStore']);
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,10 +54,10 @@ class CategoryController extends Controller
         $parentId = $request->parentId;
         $name = $request->categoryName;
         $specificationValues = $request->specificationValues;
-        if($parentId>0) {
+        if ($parentId > 0) {
             $categories->parent_id = $parentId;
             $categories->name = $name;
-        }else{
+        } else {
             $categories->name = $name;
         }
         $categories->save();
@@ -68,30 +68,30 @@ class CategoryController extends Controller
         Category_Specification::insert($massInsert);
 
         $category = Category::where('parent_id', null)->get();
-        return view('admin.categories.index')->with('categories',$category);
+        return view('admin.categories.index')->with('categories', $category);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $specifications = Specification::all();
-        if ($id>0) {
+        if ($id > 0) {
             $categories = Category::find($id);
-        }else{
-             $categories = null;
+        } else {
+            $categories = null;
         }
-        return view('admin.categories.create')->with('categories',$categories)->with('specifications',$specifications);
-        }
+        return view('admin.categories.create')->with('categories', $categories)->with('specifications', $specifications);
+    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -102,8 +102,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -114,12 +114,12 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category=Category::find($id);
+        $category = Category::find($id);
         $category->delete();
 
         return redirect('/admin/categories');
@@ -132,8 +132,9 @@ class CategoryController extends Controller
         return $subCategories;
     }
 
-    public function getSpecificationsByCategoryId($id){
-        return Category::find($id)->specifications;
+    public function getSpecificationsByCategoryId($id)
+    {
+        return Category::find($id)->specifications()->distinct('name')->get();
     }
 
 }
