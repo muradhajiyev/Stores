@@ -28,12 +28,12 @@
                 </div>
             </div>
             <br>
-            <div class="row" id="dropdownValue">
+            <div class="row" id="dropdownValue" hidden="true">
                 <div class="col-md-2">
                     <label class="form-group">Dropdowns:</label>
                 </div>
-                <div class="col-md-4">
-                    <select class="form-control" id="specificationDropdown" name="specificationDropdown">
+                <div  class="col-md-4">
+                    <select  class="form-control" id="specificationDropdown" name="specificationDropdown">
                         <option value="" selected disabled>Select Dropdown</option>
                         @foreach($dropdowns as $dropdown)
                             <option value="{{$dropdown->id}}">{{$dropdown->name}}</option>

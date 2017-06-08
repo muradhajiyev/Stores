@@ -20,6 +20,7 @@ class SpecificationController extends Controller
 
         $this->middleware(['auth','adminOrStore']);
     }
+
     public function index()
     {
         $specifications = Specification::all();

@@ -9,14 +9,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('store.pages.index');
 });
+Route::get('/','HomeController@show');
+
 Auth::routes();
-
-
-Route::resource('storecontrol','StoreController' );
-
 
 Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
@@ -25,28 +24,25 @@ Route::get('/storeregister', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-
-     Route::get('/categories',['uses'=>'AdminController@manageCategory']);
-     Route::post('add-category',['as'=>'add.category','uses'=>'AdminController@addCategory']);
-
+    Route::resource('store', 'StoreController');
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
+    Route::resource('categories', 'CategoryController');
     Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
 });
 
 Route::group(['prefix' => 'store'], function () {
-    Route::get('/', function () {
-        return view('store.pages.index');
-    });
+    Route::get('/', 'HomeController@show');
 
-    Route::get('/profile', function(){
+    Route::get('/profile', function () {
         return view('store.pages.storeprofile');
     });
-
 
     Route::get('/blog', function () {
         return view('store.pages.blog');
     });
+
+
     Route::get('/blog-single', function () {
         return view('store.pages.blog-single');
     });
@@ -68,13 +64,12 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/shop', function () {
         return view('store.pages.shop');
     });
-
+});
 
     Route::resource("product", 'ProductController');
 
-});
 
 
-Route::get('/403', function(){
-   return view('403.403');
+Route::get('/403', function () {
+    return view('403.403');
 });

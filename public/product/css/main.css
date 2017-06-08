@@ -866,13 +866,13 @@ h2.title {
 	font-size: 24px;
 	font-weight: 700;
 }
-.product-overlay h2{
+/*.product-overlay h2{
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
 	font-weight: 700;
 }
-
+*/
 
 .productinfo p{
   font-family: 'Roboto', sans-serif;
@@ -889,7 +889,7 @@ h2.title {
  position:relative;
 }
 
-.product-overlay {
+/*.product-overlay {
   background:#FE980F;
   top: 0;
   display: none;
@@ -899,15 +899,16 @@ h2.title {
   width: 100%;
   display: block;
 
-}
-
-.single-products:hover .product-overlay {
+}*/
+/*.product-overlay*/
+.single-products:hover  {
   display:block;
   height:100%;
 }
 
 
-.product-overlay .overlay-content {
+/*.product-overlay */
+.overlay-content {
   bottom: 0;
   position: absolute;
   bottom: 0;
@@ -915,7 +916,8 @@ h2.title {
   width: 100%;
 }
 
-.product-overlay .add-to-cart {
+/*.product-overlay */
+.add-to-cart {
   background:#fff;
   border: 0 none;
   border-radius: 0;
@@ -925,19 +927,20 @@ h2.title {
   margin-bottom: 25px;
 }
 
-.product-overlay .add-to-cart:hover {
+/*.product-overlay*/
+ .add-to-cart:hover {
   background:#fff;
   color: #FE980F;
 }
 
-
+/*
 .product-overlay p{
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: #fff;
 }
-
+*/
 
 
 .add-to-cart {
@@ -1094,16 +1097,16 @@ h2.title {
 }
 
 .pagination {
-  display: inline-block;
+  display: initial;
   margin-bottom: 25px;
   margin-top: 0;
-  padding-left: 15px;
+  padding-left: 25px;
 }
 
 .pagination  li:first-child  a, .pagination  li:first-child  span {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-  margin-left: 0;
+  margin-left: 2%;
 }
 
 .pagination  li:last-child  a, .pagination  li:last-child  span {
