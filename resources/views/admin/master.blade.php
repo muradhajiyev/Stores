@@ -67,6 +67,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
 
+   </select>
+
 <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
