@@ -10,12 +10,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
         <div class="container">
             <div class="well well-sm">
+
                 <strong>Category Title</strong>
                 <div class="btn-group">
                     <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
                                 class="glyphicon glyphicon-th"></span>Grid</a>
                 </div>
+                <form action="{{URL::to('/admin/store/')}}"  method="GET" class="item  col-xs-4 col-lg-4">
+
+                    <input type="text" placeholder="Search" name="searchtext" >
+                    <input type="submit" class=" btn btn-success" value="SEARCH" >
+                </form>
+
+
             </div>
 
 
@@ -67,7 +75,9 @@
                 <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore')</a>
  @endif
         </ol>
+        <div class="container">
+        {{$storelist->appends(request()->only('searchtext'))->render()}}
+        </div>
 
-        {!! $storelist->render() !!}
     </section>
 @stop

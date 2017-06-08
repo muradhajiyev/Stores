@@ -37,6 +37,7 @@
                                 @lang('words.semail')   <input class="group inner list-group-item-text"type="text"   name="email"  /><br>
 
                                 <input type="file" name="avatar">
+                                <input type="file" name="cover">
 
 
                                 <input type="hidden"  name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}"><br>
