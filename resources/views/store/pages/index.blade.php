@@ -159,9 +159,9 @@
                             <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="" />
+                                        <a href="/store/profile" style="font-size: 25px; color: black;"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="" />
                                         <hr>
-                                        <?php echo $store->name ?>
+                                        <?php echo $store->name ?> </a>
                                     </div>
                                     
                                             

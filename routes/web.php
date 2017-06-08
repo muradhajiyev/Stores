@@ -12,14 +12,14 @@
 Route::get('/', function () {
     return view('store.pages.index');
 });
-Auth::routes();
+Route::get('/','HomeController@show');
 
+Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
-Route::get('show','HomeController@show');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
@@ -31,9 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::group(['prefix' => 'store'], function () {
-    Route::get('/', function () {
-        return view('store.pages.index');
-    });
+    Route::get('/', 'HomeController@show');
 
     Route::get('/profile', function () {
         return view('store.pages.storeprofile');
