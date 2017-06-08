@@ -13,20 +13,20 @@ Route::get('/', function () {
     return view('store.pages.index');
 });
 Auth::routes();
+
+
 Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
 
-
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-
-     Route::get('/categories',['uses'=>'AdminController@manageCategory']);
-     Route::post('add-category',['as'=>'add.category','uses'=>'AdminController@addCategory']);
-
+    Route::resource('store', 'StoreController');
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
+    Route::resource('categories', 'CategoryController');
+    Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
 });
 
 Route::group(['prefix' => 'store'], function () {
@@ -34,9 +34,15 @@ Route::group(['prefix' => 'store'], function () {
         return view('store.pages.index');
     });
 
+    Route::get('/profile', function () {
+        return view('store.pages.storeprofile');
+    });
+
     Route::get('/blog', function () {
         return view('store.pages.blog');
     });
+
+
     Route::get('/blog-single', function () {
         return view('store.pages.blog-single');
     });
@@ -60,7 +66,10 @@ Route::group(['prefix' => 'store'], function () {
     });
 });
 
+    Route::resource("product", 'ProductController');
 
-Route::get('/403', function(){
-   return view('403.403');
+
+
+Route::get('/403', function () {
+    return view('403.403');
 });
