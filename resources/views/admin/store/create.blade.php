@@ -29,12 +29,17 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ URL::to('/admin/storecontrol/') }}" method="post" >
+                            <form action="{{ URL::to('/admin/store') }}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 @lang('words.sname')       <input class="group inner list-group-item-text" type="text"  name="name" /> <br>
                                 @lang('words.saddress')   <input  class="group inner list-group-item-text"type="text"  name="address"  /><br>
                                 @lang('words.snumber')<input  class="group inner list-group-item-text" type="text"  name="phonenumber"  /><br>
                                 @lang('words.semail')   <input class="group inner list-group-item-text"type="text"   name="email"  /><br>
+
+                                <input type="file" name="avatar">
+                                <input type="file" name="cover">
+
+
                                 <input type="hidden"  name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}"><br>
                                 <input type="submit" class="btn-success" value="@lang('words.create')" >
 
