@@ -19,6 +19,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
+Route::get('show','HomeController@show');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
