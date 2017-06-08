@@ -25,10 +25,5 @@
                 @endforeach
             </ul>
         </div>
-
-        <button type="button" onclick="window.location='{{ route("categories.create") }}'"
-                class="btn btn-success col-md-3">Add New Category
-        </button>
-
     </div>
 @stop
