@@ -10,9 +10,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('store.pages.index');
-});
 Route::get('/','HomeController@show');
 
 Auth::routes();
