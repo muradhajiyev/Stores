@@ -152,25 +152,21 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">top Stores</h2>
-                         <?php
-                                        foreach($stores as $store){
-                                            ?>
-                                            <div class="col-sm-4">
+                       
+                           @foreach($stores as $store)
+                                         
+                          <div class="col-sm-4">
                             <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <a href="/store/profile" style="font-size: 25px; color: black;"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="" />
                                         <hr>
-                                        <?php echo $store->name ?> </a>
+                                        {{$store->name}} </a>
                                     </div>
-                                    
-                                            
-                                         
-
                                 </div>
                             </div>
-                        </div>   <?php
-                                        }?>
+                        </div>
+                        @endforeach   
 
                     </div>
                     <div>
