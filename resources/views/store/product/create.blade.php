@@ -54,14 +54,16 @@
 
                                 </div>
                             </div>
+                            <div id="specifications" hidden>
                             <hr/>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8" >
                                     <h4>@lang('createProduct.header4')</h4>
-                                    <select class="form-control" name="productSpec" required>
-                                        <option selected disabled>Select</option>
+                                    <select class="form-control" name="productSpec" id="productSpec" required>
+                                        <option selected disabled>Select Specifications</option>
                                     </select>
                                 </div>
+                            </div>
                             </div>
                             <hr/>
                             <div class="row">
@@ -76,7 +78,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <h4>@lang('createProduct.header7')</h4>
-                                    <input type="checkbox" name="isNew" class="form-control" required/>
+                                    <input type="checkbox" name="isNew"  required/>
                                 </div>
                             </div>
                             <hr/>

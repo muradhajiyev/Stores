@@ -99,5 +99,8 @@ class CategoryController extends Controller
         return $subCategories;
     }
 
+    public function getSpecificationsByCategoryId($id){
+        return Category::find($id)->specifications;
+    }
 
 }

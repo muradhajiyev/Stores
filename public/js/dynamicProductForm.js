@@ -1,16 +1,15 @@
 $(document).ready(function () {
-
     $('.parentCategory').livequery('change', function (event) {
-
         $(this).nextAll('.parentCategory').remove();
         $(this).nextAll('label').remove();
         getSubCategories(event.target.value);
+        getSpecifications(event.target.value);
     });
 });
 
 var getSubCategories = function (id) {
     if (id) {
-        $.get('/subCategory/' + id, function (data) {
+        $.get('/api/subCategory/' + id, function (data) {
             var categoryArray = JSON.parse(data);
             var selectElement = '<label style="padding:7px;float:left; font-size:12px;">No Record Found !</label>';
             var optionElement = '';
@@ -29,4 +28,19 @@ var getSubCategories = function (id) {
 
         });
     }
+};
+var getSpecifications = function (id) {
+    $('#productSpec').empty();
+if(id){
+    $.get('/api/specifications/'+id, function (data) {
+        console.log(data);
+        if(data.length>0){
+            $('#specifications').attr('hidden', false);
+
+            data.forEach(function (spec) {
+             $('#productSpec').append('<option id="'+spec.id+'">'+spec.name+'</option>');
+            });
+        }
+    })
+}
 };

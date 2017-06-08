@@ -17,4 +17,7 @@ class Category extends Model
     public function childs() {
         return $this->hasMany('App\Category','parent_id','id') ;
     }
+    public function specifications(){
+        return $this->belongsToMany('App\Specification', 'category__specifications', 'categ_id', 'spec_id');
+    }
 }
