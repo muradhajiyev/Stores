@@ -10,6 +10,7 @@
 
 
 
+<<<<<<< HEAD
         <div class="container" style="height: 100%;width: 100%;">
             <div class="" >
                 <div class="item  " style="margin-top: 1%; box-shadow: 1px 1px 1px black;">
@@ -81,6 +82,7 @@
                                     </form>
 
             <!-- /page content -->
+
                 </div>
             </div>
 </div>

@@ -23,7 +23,9 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {  $userrole=Auth::user();
+
         $searchtext=strtolower($request->searchtext);
+
 
         if(isset($searchtext))
         {
@@ -76,7 +78,10 @@ class StoreController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:stores',
             'email'=>'required|email|unique:stores',
+
             'profile' => 'image|mimes:jpeg,bmp,png|max:4000',
+
+
             'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
 
         ]);

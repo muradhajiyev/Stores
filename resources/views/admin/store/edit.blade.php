@@ -1,5 +1,6 @@
 @extends('admin.master')
 
+
                                 @section('main_content')
                                     <section class="content-header">
 
@@ -95,6 +96,7 @@
 
                                     </section>
 @stop
+
 
 
 
