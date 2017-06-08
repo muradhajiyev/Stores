@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Blog | @yield('title')</title>
+    <title>@yield('title')</title>
     <link href="{{asset("product/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/font-awesome.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/prettyPhoto.css")}}" rel="stylesheet">
@@ -13,6 +13,7 @@
     <link href="{{asset("product/css/animate.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
     <!--[if lt IE 9]>
     <script src="{{asset("product/js/html5shiv.js")}}"></script>
     <script src="{{asset("product/js/respond.min.js")}}"></script>

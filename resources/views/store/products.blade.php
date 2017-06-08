@@ -1,8 +1,4 @@
-<<<<<<< HEAD
- <section>
-=======
 <section>
->>>>>>> fb94a516449bbae31b4804dd17cc0b60a12ab272
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -133,8 +129,8 @@
                         <div class="price-range"><!--price-range-->
                             <h2>Price Range</h2>
                             <div class="well text-center">
-                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                                <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+                                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
                             </div>
                         </div><!--/price-range-->
 
@@ -153,18 +149,18 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt="" />
+                                        <a href="#"><img src="{{asset("product/images/home/product5.jpg")}}" alt="" />
                                         <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <p>Easy Polo Black Edition</p></a>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
+                                        <!-- <div class="product-overlay">
+                                            <div class="overlay-content">
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                                        </div> -->
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
@@ -183,13 +179,7 @@
                                         <p>Easy Polo Black Edition</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
+                                
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
@@ -208,13 +198,7 @@
                                         <p>Easy Polo Black Edition</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
@@ -233,13 +217,7 @@
                                         <p>Easy Polo Black Edition</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
+                                    
                                     <img src="{{asset("store")}}" class="new" alt="" />
                                 </div>
                                 <div class="choose">
@@ -250,7 +228,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                       <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
@@ -259,14 +237,7 @@
                                         <p>Easy Polo Black Edition</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
-                                    <img src="{{asset("product/images/home/product5.jpg")}}" class="new" alt="" />
+                                    
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
@@ -285,13 +256,7 @@
                                         <p>Easy Polo Black Edition</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
@@ -302,7 +267,10 @@
                             </div>
                         </div>
 
-                    </div><!--features_items-->
+                    </div>
+
+
+                    <!--features_items-->
 
                     <div class="category-tab"><!--category-tab-->
                         <div class="col-sm-12">
