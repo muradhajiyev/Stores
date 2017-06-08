@@ -18,22 +18,37 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {  $userrole=Auth::user();
+        $searchtext=$request->searchtext;
+        if(isset($searchtext))
+        {
+            if( $userrole->isStore())
 
-        $userrole=Auth::user();
-
-        if( $userrole->isStore())
-
-        $storelist= DB::table('stores')->where('user_id',$userrole->id)->paginate(6);
-
-
-        else if($userrole->isAdmin())
-
-        $storelist= DB::table('stores')->paginate(6);
+                $storelist= DB::table('stores')->where([
+                    ['user_id', '=', $userrole->id],
+                    ['name', 'LIKE', "%".$searchtext."%"]])->paginate(6);
 
 
-       return view('admin.store.index')->with(array('storelist'=>$storelist));
+            else if($userrole->isAdmin())
+
+                $storelist= DB::table('stores')->where('name', 'LIKE', "%".$searchtext."%")->paginate(6);
+
+        }
+        else {
+            $userrole = Auth::user();
+
+            if ($userrole->isStore())
+
+                $storelist = DB::table('stores')->where('user_id', $userrole->id)->paginate(6);
+
+
+            else if ($userrole->isAdmin())
+
+                $storelist = DB::table('stores')->paginate(6);
+
+        }
+        return view('admin.store.index')->with(array('storelist'=>$storelist));
     }
 
 
