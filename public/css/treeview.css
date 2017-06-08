@@ -4,7 +4,7 @@
 
 #tree1 i {
    color: #18A55D;
-   cursor: pointer;
+   cursor: alias;
 }
 
 #tree1, #tree1 ul {
