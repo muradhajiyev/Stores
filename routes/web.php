@@ -13,8 +13,9 @@
 Route::get('/', function () {
     return view('store.pages.index');
 });
-Auth::routes();
+Route::get('/','HomeController@show');
 
+Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
@@ -31,9 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::group(['prefix' => 'store'], function () {
-    Route::get('/', function () {
-        return view('store.pages.index');
-    });
+    Route::get('/', 'HomeController@show');
 
     Route::get('/profile', function () {
         return view('store.pages.storeprofile');
