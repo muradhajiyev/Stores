@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Store;
+use App\Image;
+use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
@@ -27,8 +29,10 @@ class StoreController extends Controller
 
         $storelist= DB::table('stores')->where('user_id',$userrole->id)->paginate(6);
 
+        // return $storelist;
 
-        else if($userrole->isAdmin())
+
+        elseif($userrole->isAdmin())
 
         $storelist= DB::table('stores')->paginate(6);
 
@@ -60,13 +64,25 @@ class StoreController extends Controller
 
         ]);
         if(!isset($request->id)) {
+            $imgId = 1;
+            if($request->hasFile('avatar')){
+            $image = new Image();
+            $image->file_name = substr($request->file('avatar')->store('public'),7);
+            $image->extension = $request->avatar->extension();
+            $image->file_size = filesize($request->avatar);
+            $image->path = $request->file('avatar')->store('public');
+            $image->save();
+            $imgId = $image->id;
+            }
+
             $store = new Store();
             $store->user_id = $request->user_id;
             $store->name = $request->name;
             $store->address = $request->address;
             $store->phone_number = $request->phonenumber;
             $store->email = $request->email;
-            $store->save();
+            $store->profile_image_id = $imgId;
+            $store->save();        
         }
         else {
             $store = Store::find($request->id);

@@ -1,3 +1,4 @@
+
 @extends('admin.master')
 
 @section('main_content')
@@ -7,7 +8,6 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
-
         <div class="container">
             <div class="well well-sm">
                 <strong>Category Title</strong>
@@ -24,7 +24,7 @@
                 @foreach($storelist as $store)
                     <div class="item  col-xs-4 col-lg-4">
                         <div class="thumbnail">
-                            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                            <img class="group list-group-image" src="{{asset('storage/default-avatar.png')}}" alt="" />
                             <div class="caption">
                                 <h3 class="group inner list-group-item-heading">
                                     {{$store->name}}</h3>
@@ -39,9 +39,7 @@
                                         <form action="{{ URL::to('/admin/store/'.$store->id) }}" method="POST" >
                                             <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                             <input name="_method" type="hidden" value="DELETE" >
-
-
-                                            <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" >
+                                                                                     <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" >
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
@@ -65,18 +63,11 @@
             </div>
         </div>
         <ol class="breadcrumb">
-
-
-
-            @if(Auth::user()->isStore())
+@if(Auth::user()->isStore())
                 <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore')</a>
-
-            @endif
+ @endif
         </ol>
 
         {!! $storelist->render() !!}
     </section>
-
-
-
 @stop
