@@ -1,4 +1,5 @@
 <ul>
+<<<<<<< HEAD
     @foreach($childs as $child)
         <li>
             {{ $child->name }}
