@@ -6,6 +6,10 @@
    color: #18A55D;
 }
 
+#tree1 button i {
+   color: #FF0000;
+}
+
 #tree1, #tree1 ul {
    margin:0;
    padding:0;
