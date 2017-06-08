@@ -1,4 +1,3 @@
-
 @extends('admin.master')
 
 @section('main_content')
@@ -11,20 +10,12 @@
 
         <div class="container">
             <div class="well well-sm">
-
                 <strong>Category Title</strong>
                 <div class="btn-group">
                     <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
                                 class="glyphicon glyphicon-th"></span>Grid</a>
                 </div>
-                <form action="{{URL::to('/admin/store/')}}"  method="GET" class="item  col-xs-4 col-lg-4">
-
-                    <input type="text" placeholder="Search" name="searchtext" >
-                    <input type="submit" class=" btn btn-success" value="SEARCH" >
-                </form>
-
-
             </div>
 
 
@@ -33,7 +24,7 @@
                 @foreach($storelist as $store)
                     <div class="item  col-xs-4 col-lg-4">
                         <div class="thumbnail">
-                            <img class="group list-group-image" src="{{asset('storage/default-avatar.png')}}" alt="" />
+                            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
                             <div class="caption">
                                 <h3 class="group inner list-group-item-heading">
                                     {{$store->name}}</h3>
@@ -45,14 +36,16 @@
                                     {{$store->email}}</p>
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
-                                        <form action="{{ URL::to('/admin/store/'.$store->id) }}" method="POST" >
+                                        <form action="{{ URL::to('storecontrol/'.$store->id) }}" method="POST" >
                                             <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                             <input name="_method" type="hidden" value="DELETE" >
-                                                                                     <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" >
+
+
+                                            <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" >
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
-                                        <form action="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" method="get" >
+                                        <form action="{{ URL::to('storecontrol/'.$store->id.'/edit') }}" method="get" >
                                             @if(\Illuminate\Support\Facades\Auth::user()->isStore())
                                                 <input type="submit" class=" btn btn-success" value="@lang('words.edit')" >
                                             @endif
@@ -72,16 +65,18 @@
             </div>
         </div>
         <ol class="breadcrumb">
-@if(Auth::user()->isStore())
-                <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore')</a>
- @endif
-        </ol>
-        <div class="container">
-        {{$storelist->appends(request()->only('searchtext'))->render()}}
-        </div>
 
+
+            @if(\Illuminate\Support\Facades\Auth::user()->isStore())
+                <!-- <i class="fa fa-car" style="font-size:20px; color:red;"></i> -->
+                <a class="btn btn-success" href="{{URL::to('storecontrol/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore') </a>
+
+            @endif
+        </ol>
+
+        {!! $storelist->render() !!}
     </section>
 
 
-@stop
 
+@stop
