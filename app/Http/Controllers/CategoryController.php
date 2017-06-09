@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Category_Specification;
 use App\Specification;
 use Illuminate\Http\Request;
 use App\Category;
 
+
 class CategoryController extends Controller
 {
+    //
+
+
     public function __construct()
     {
         $this->middleware(['auth', 'adminOrStore']);
@@ -73,6 +78,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
+
         $specifications = Specification::orderBy('id')->get();;
         if ($id > 0) {
             $categories = Category::find($id);
@@ -134,6 +140,18 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect('/admin/categories');
+    }
+
+
+    public function getSubCategories($id)
+    {
+        $subCategories = Category::all()->where('parent_id', $id)->toJson();
+        return $subCategories;
+    }
+
+    public function getSpecificationsByCategoryId($id)
+    {
+        return Category::find($id)->specifications()->distinct('name')->get();
     }
 
 }
