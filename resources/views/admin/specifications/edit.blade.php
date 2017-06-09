@@ -51,8 +51,11 @@
                 </div>
                 <div class="col-md-4 ">
                     <select class="form-control" id="specificationUnit" name="specificationUnit" required>
+                        @if($specification->unit)
                         <option value="{{$specification->unit->id}}" selected >{{$specification->unit->name}}</option>
-                        @foreach($units as $unit)
+                        @endif
+                        <option value="">No unit applicable</option>
+                    @foreach($units as $unit)
                             <option value="{{$unit->id}}">{{$unit->name}}</option>
                         @endforeach
                     </select>

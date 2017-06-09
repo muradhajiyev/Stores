@@ -70,6 +70,8 @@ Route::resource("product", 'ProductController');
 Route::group(['prefix' => 'api'], function () {
     Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
     Route::get('specifications/{id}','CategoryController@getSpecificationsByCategoryId');
+    Route::get('specification/{id}/type', 'SpecificationController@getSpecTypeAndUnit');
+    Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
     });
 Route::get('/403', function () {
     return view('403.403');

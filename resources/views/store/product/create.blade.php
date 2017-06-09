@@ -57,20 +57,36 @@
                             <div id="specifications" hidden>
                             <hr/>
                             <div class="row">
-                                <div class="col-md-8" >
+                                <div class="col-md-3 form-group" >
                                     <h4>@lang('createProduct.header4')</h4>
                                     <select class="form-control" name="productSpec" id="productSpec" required>
-                                        <option selected disabled>Select Specifications</option>
+
                                     </select>
                                 </div>
+                                <div class="col-md-3 form-group" id="specValue" hidden>
+                                    <h4>@lang('createProduct.header8')</h4>
+
+                                </div>
+                                <div class="col-md-2 form-group" id="specUnit" hidden >
+                                    <h4>@lang('createProduct.header9')</h4>
+
+                                </div>
                             </div>
+                                <div class="row">
+                                    <div class="col-md-2 form-group" id="newSpec" hidden>
+
+                                        <button id="addNewSpec"  class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+
+                                    </div>
+
+                                </div>
                             </div>
                             <hr/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4>@lang('createProduct.header5')</h4>
                                     <select class="form-control" name="productBrand">
-                                        <option selected disabled>Select</option>
+                                        <option selected disabled>Select Brand</option>
                                         @foreach($brands as $brand)
                                             <option value="{{$brand->id}}">{{$brand->name}}</option>
                                         @endforeach
