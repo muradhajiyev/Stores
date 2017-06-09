@@ -160,7 +160,7 @@
                             <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <a href="{{ url('store/profile') }}" style="font-size: 25px; color: gray;"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="" />
+                                        <a href="{{ route('store.index', $store->id)}}" style="font-size: 25px; color: gray;"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="" />
                                         <hr>
 
                                         {{$store->name}} </a>
