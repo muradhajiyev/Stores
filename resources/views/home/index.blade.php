@@ -153,28 +153,6 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">top Stores</h2>
-<<<<<<< HEAD:resources/views/store/pages/index.blade.php
-
-
-                        @foreach($stores as $store)
-                            <div class="col-sm-4">
-                                <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <a href="/store/profile" style="font-size: 25px; color: black;"><img
-                                                        src="{{asset("images/home/default-logo.png")}}" alt=""
-                                                        style=""/>
-                                                <hr>
-
-                                                {{$store->name}} </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-=======
-
-    
                            @foreach($stores as $store)
                                          
                           <div class="col-sm-4">
@@ -191,8 +169,6 @@
 
                         </div>      
                         @endforeach   
->>>>>>> 7193e632608350304705beaa2e268f5d706872e4:resources/views/home/index.blade.php
-
 
                     </div>
                     <div>
