@@ -52,7 +52,7 @@
     	<img src="{{asset("images/home/default-logo.png")}}"  style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;" />
     </div>
     <div class="col-sm-8 descript" style=" margin-top: 2%;">
-    	<span ><a href="#" style="color: orange;font-size: 30px;">New Yorker</span></a>
+    	<span ><a href="#" style="color: orange;font-size: 30px;">New Yorker</a></span>
     	<p style="margin-top: 2%; "><i>The Only Art Gallery in the World Located in a Railroad Station</i></p>   
     	<p style="text-align: justify;">The New Yorker is an American magazine of reportage, commentary, criticism, essays, fiction, satire, cartoons, and poetry. It is published by Condé Nast. Started as a weekly in 1925, the magazine is now published 47 times annually, with five of these issues covering two-week spans.
 
