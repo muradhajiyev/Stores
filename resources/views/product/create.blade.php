@@ -1,4 +1,4 @@
-@extends('store.main')
+@extends('layouts.main')
 @section('title',' Add Product')
 @section('content')
     <section id="form"><!--form-->
