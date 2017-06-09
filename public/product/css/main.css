@@ -21,6 +21,16 @@ outline: none;
 text-decoration:none;
 }
 
+#toggleButton{
+  border-radius: 0px;
+  border-color: #edaf5e;
+}
+#toggleButton:hover{
+  color: black;
+  background-color: #EEEEE0;
+  border-color: #EEEEE0;
+}
+
 a:focus {
   outline:none;
   outline-offset: 0;
@@ -1097,16 +1107,16 @@ h2.title {
 }
 
 .pagination {
-  display: inline-block;
+  display: initial;
   margin-bottom: 25px;
   margin-top: 0;
-  padding-left: 15px;
+  padding-left: 25px;
 }
 
 .pagination  li:first-child  a, .pagination  li:first-child  span {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-  margin-left: 0;
+  margin-left: 2%;
 }
 
 .pagination  li:last-child  a, .pagination  li:last-child  span {

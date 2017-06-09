@@ -28,6 +28,7 @@
 <body>
 
 @include('store.header')
+
 @yield('content')
 
 @include('store.footer')

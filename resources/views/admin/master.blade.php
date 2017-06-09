@@ -37,21 +37,22 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>-->
 
-    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
-    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
+{{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
 
-    <!--store css-->
+<!--store css-->
     <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
     <!-- Category CSS -->
     <link href="{{ asset('css/treeview.css') }}" rel="stylesheet">
 
 
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"/>
 
 
 </head>
@@ -636,7 +637,6 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js')}}"></script>
     <script src="{{ asset('/js/adminCustomJS.js')}}"></script>
-
 
 
     <script src="{{ asset('/js/treeview.js') }}"></script>

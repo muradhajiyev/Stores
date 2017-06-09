@@ -10,6 +10,8 @@ return [
     'semail'=>'Store Email',
     'snumber'=>'Store Phone Number',
     'save'=>'Save Changes',
-    'create'=>'Create New Store'
+    'create'=>'Create New Store',
+ 'cover'=>'Choose Cover Photo',
+    'profile'=>'Choose Profile Photo',
 
 ];
