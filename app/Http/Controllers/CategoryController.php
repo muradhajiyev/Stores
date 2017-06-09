@@ -50,7 +50,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $categories = new Category();
-        $specifications = new Category_Specification();
         $parentId = $request->parentId;
         $name = $request->categoryName;
         $specificationValues = $request->specificationValues;
@@ -79,7 +78,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $specifications = Specification::all();
+
+        $specifications = Specification::orderBy('id')->get();;
         if ($id > 0) {
             $categories = Category::find($id);
         } else {
@@ -96,7 +96,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $specifications = Specification::orderBy('id')->get();
+        $selected_ids = Category_Specification::where('categ_id', '=', $id)->get();
+        return view('admin.categories.edit')->with('category', $category)->with('specifications', $specifications)->with('selected_ids', $selected_ids);
+
     }
 
     /**
@@ -108,7 +112,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name = $request->categoryName;
+        $category_specification = Category_Specification::where('categ_id', $id);
+        $category_specification->delete();
+        $specificationValues = $request->specificationValues;
+        $massInsert = [];
+        for ($i = 0; $i < count($specificationValues); $i++) {
+            $massInsert[] = ['categ_id' => $category->id, 'spec_id' => $specificationValues[$i]];
+        }
+        Category_Specification::insert($massInsert);
+        $category->save();
+        return redirect('/admin/categories');
     }
 
     /**
@@ -119,6 +134,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $specification = Category_Specification::where('categ_id', $id);
+        $specification->delete();
         $category = Category::find($id);
         $category->delete();
 

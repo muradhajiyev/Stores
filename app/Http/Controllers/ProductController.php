@@ -32,10 +32,13 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         $brands=Brand::all();
         $parentCategories=Category::all()->where('parent_id', null);
         $currencies=currency::all();
-        return view('store.product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies);
+        return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies);
+
+
     }
 
     /**
