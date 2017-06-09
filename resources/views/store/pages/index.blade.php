@@ -147,152 +147,33 @@
                     </div>
                 </div>
 
+
+                    <!-- Stores in Home -->
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">top Stores</h2>
-                        <div class="col-sm-4">
+                       
+                           @foreach($stores as $store)
+                                         
+                          <div class="col-sm-4">
                             <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="" />
+                                        <a href="/store/profile" style="font-size: 25px; color: black;"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="" />
                                         <hr>
-                                        <p style="font-size: 25px;">New Yorker</p></a>
+                                        {{$store->name}} </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                         <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="/store/profile"><img src="{{asset("images/home/default-logo.png")}}" alt="" />
-                                        <hr>
-                                        <p style="font-size: 25px;">Dolce Gabbana</p></a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
+                        @endforeach   
 
-                    </div><!--features_items-->
+                    </div>
+                    <div>
+                                            {{$stores->links()}}
+
+                    </div>
+                    <!--features_items--><br>
 
                     <div class="category-tab"><!--category-tab-->
                         <div class="col-sm-12">

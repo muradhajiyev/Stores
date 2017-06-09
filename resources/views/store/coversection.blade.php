@@ -43,16 +43,16 @@
      
     </div>
    </div>
-   <div class="row">
+   <div class="row ">
     <div class="col-sm-2" style="margin-left: 6%;">
     	<img src="{{asset("images/home/default-logo.png")}}"  style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;" />
     </div>
-    <div class="col-sm-8" style="margin-left: 1%; margin-top: 2%;">
+    <div class="col-sm-8 descript" style=" margin-top: 2%;">
     	<span ><a href="#" style="color: orange;font-size: 30px;">New</span> <span style="color: gray;font-size: 30px;">Yorker</span></a>
-    	<p style="margin-top: 2%;"><i>The Only Art Gallery in the World Located in a Railroad Station</i></p>   
-    	<p>The New Yorker is an American magazine of reportage, commentary, criticism, essays, fiction, satire, cartoons, and poetry. It is published by Condé Nast. Started as a weekly in 1925, the magazine is now published 47 times annually, with five of these issues covering two-week spans.
+    	<p style="margin-top: 2%; "><i>The Only Art Gallery in the World Located in a Railroad Station</i></p>   
+    	<p style="text-align: justify;">The New Yorker is an American magazine of reportage, commentary, criticism, essays, fiction, satire, cartoons, and poetry. It is published by Condé Nast. Started as a weekly in 1925, the magazine is now published 47 times annually, with five of these issues covering two-week spans.
 
-     </p><p id="show" style="display: none;">
+     </p><p id="show" style="display: none; text-align:justify;">
         Although its reviews and events listings often focus on the cultural life of New York City, The New Yorker has a wide audience outside of New York and is read internationally. It is well known for its illustrated and often topical covers, its commentaries on popular culture and eccentric Americana, its attention to modern fiction by the inclusion of short stories and literary reviews, its rigorous fact checking and copyediting, its journalism on politics and social issues, and its single-panel cartoons sprinkled throughout each issue.
       </p> <span id="toggle" style="color: blue" class="hideLink"><u>See more</u></span>
     </div>
