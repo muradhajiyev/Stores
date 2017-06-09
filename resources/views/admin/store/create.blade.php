@@ -10,55 +10,89 @@
 
 
 
-        <div class="container">
+<<<<<<< HEAD
+        <div class="container" style="height: 100%;width: 100%;">
+            <div class="" >
+                <div class="item  " style="margin-top: 1%; box-shadow: 1px 1px 1px black;">
+                    <div class="thumbnail" style="margin-top: 1%">
+                        <h1 style="margin-left: 5%">ADD NEW STORE </h1>
+                        <hr>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                                    <form class="form-horizontal form-label-left" novalidate style="margin-top: 5%; width:90%;margin-left: 5%;" action="{{ URL::to('/admin/store') }}" method="post" enctype="multipart/form-data">
+
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <div class="item form-group" >
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> @lang('words.sname') <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input id="name" class="form-control col-md-7 col-xs-12"  name="name" required="required" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address"> @lang('words.saddress')
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="email" id="address" name="address"  required="required"   class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                        </div>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phonenumber"> @lang('words.snumber')
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="phonenumber" name="phonenumber"  class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                        </div>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">@lang('words.semail') <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="email" id="email" name="email" required="required"  class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                        </div>
+                                        <input type="hidden"  name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}"><br>
 
 
-            <div id="stores" class="row list-group">
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">@lang('words.cover')
+                                                </label>
+                                                <input type="file" name="avatar" class="btn btn-file">
+<br>
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">@lang('words.profile')
+                                                </label>
+                                                <input type="file" name="cover"  class="btn btn-file">
 
+ <br>
 
-                <div class="item  col-xs-4 col-lg-4">
-                    <div class="thumbnail">
+                                                <button type="button" class="btn btn-primary" onclick="redirect()">Cancel</button>
+                                                <input type="submit" class="btn btn-success" value="@lang('words.create')" >
 
-                        <div class="caption">
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            <form action="{{ URL::to('/admin/store') }}" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                @lang('words.sname')       <input class="group inner list-group-item-text" type="text"  name="name" /> <br>
-                                @lang('words.saddress')   <input  class="group inner list-group-item-text"type="text"  name="address"  /><br>
-                                @lang('words.snumber')<input  class="group inner list-group-item-text" type="text"  name="phonenumber"  /><br>
-                                @lang('words.semail')   <input class="group inner list-group-item-text"type="text"   name="email"  /><br>
+                                            </div>
+                                        </div>
+                                    </form>
 
-                                <input type="file" name="avatar">
-                                <input type="file" name="cover">
+            <!-- /page content -->
 
-
-                                <input type="hidden"  name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}"><br>
-                                <input type="submit" class="btn-success" value="@lang('words.create')" >
-
-                            </form>
-
-
-                            <div >
-
-
-                             </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+</div>
+            </div>
 
-
-        </div>
-        </div>
-
+        <script>
+            function redirect(){
+                window.location="{{URL::to('/admin/store')}}";
+            }
+        </script>
 
     </section>
 @stop

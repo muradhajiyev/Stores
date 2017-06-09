@@ -11,19 +11,11 @@
 
         <div class="container">
             <div class="well well-sm">
+                <form action="{{URL::to('/admin/store/')}}"  method="GET" >
 
-                <strong>Category Title</strong>
-                <div class="btn-group">
-                    <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                                class="glyphicon glyphicon-th"></span>Grid</a>
-                </div>
-                <form action="{{URL::to('/admin/store/')}}"  method="GET" class="item  col-xs-4 col-lg-4">
-
-                    <input type="text" placeholder="Search" name="searchtext" >
-                    <input type="submit" class=" btn btn-success" value="SEARCH" >
+                    <input type="text" placeholder="Search" name="searchtext"  style="width: 75%">
+                    <input type="submit" class=" btn btn-success" value="SEARCH"  style="width: 20%">
                 </form>
-
 
             </div>
 
@@ -52,14 +44,9 @@
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
-                                        <form action="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" method="get" >
-                                            @if(\Illuminate\Support\Facades\Auth::user()->isStore())
-                                                <input type="submit" class=" btn btn-success" value="@lang('words.edit')" >
-                                            @endif
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+                                        <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}"> <i class="fa fa-cog fa-3x" aria-hidden="true" ></i></a>
 
-                                        </form>
                                     </div>
 
 
