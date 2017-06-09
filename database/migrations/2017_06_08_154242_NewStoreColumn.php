@@ -15,11 +15,10 @@ class NewStoreColumn extends Migration
     {
         //
          Schema::table('stores', function (Blueprint $table) {
-            $table->String('slogan');
-            $table->String('description');
+            $table->String('slogan')->nullable();
+            $table->String('description')->nullable();
         });
-         DB::statement("ALTER TABLE stores MODIFY COLUMN slogan VARCHAR(255) AFTER updated_at");
-         DB::statement("ALTER TABLE stores MODIFY COLUMN description VARCHAR(255) AFTER slogan");
+         
     }
 
     /**
