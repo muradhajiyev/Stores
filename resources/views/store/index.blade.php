@@ -61,13 +61,12 @@
         <i>{{$store->slogan}}</i>   
       
        </p>  
-    	<p style="text-align: justify;">{{$store->description}}
-
-     </p><p id="show" style="display: none; text-align:justify;"> 
+    	<p style="text-align: justify;">{{$store->description}}</p>
+      
+      <p id="show" style="display: none; text-align:justify;"> 
 
             <!-- This part is not connected/ for this length of text should be increased -->
-
-
+            
         Although its reviews and events listings often focus on the cultural life of New York City, The New Yorker has a wide audience outside of New York and is read internationally. It is well known for its illustrated and often topical covers, its commentaries on popular culture and eccentric Americana, its attention to modern fiction by the inclusion of short stories and literary reviews, its rigorous fact checking and copyediting, its journalism on politics and social issues, and its single-panel cartoons sprinkled throughout each issue.
       </p> <span id="toggle" style="color: blue" class="hideLink"><u>See more</u></span>
     </div>
