@@ -18,7 +18,7 @@ class NewStoreColumn extends Migration
             $table->String('slogan')->nullable();
             $table->String('description')->nullable();
         });
-         
+
     }
 
     /**
@@ -29,7 +29,7 @@ class NewStoreColumn extends Migration
     public function down()
     {
         Schema::table('stores', function (Blueprint $table) {
-    $table->dropColumn(['slogan', 'description']);
-});
+          $table->dropColumn(['slogan', 'description']);
+      });
     }
 }
