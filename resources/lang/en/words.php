@@ -13,5 +13,5 @@ return [
     'create'=>'Create New Store',
  'cover'=>'Choose Cover Photo',
     'profile'=>'Choose Profile Photo',
-
+'description'=>'Description'
 ];
