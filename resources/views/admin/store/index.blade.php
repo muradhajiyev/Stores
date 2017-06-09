@@ -40,7 +40,7 @@
                                         <form action="{{ URL::to('/admin/store/'.$store->id) }}" method="POST" >
                                             <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                             <input name="_method" type="hidden" value="DELETE" >
-                                                                                     <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" >
+                                            <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" >
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
