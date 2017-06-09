@@ -140,4 +140,14 @@ class SpecificationController extends Controller
         $specification->delete();
         return redirect('/admin/specifications');
     }
+
+    public function getSpecTypeAndUnit($specId){
+        $specification=Specification::find($specId);
+        if($specification && $specification->unit){
+            return [$specification->type->name,$specification->unit->name];
+        }else{
+            return [$specification->type->name];
+        }
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Specification;
 use Illuminate\Http\Request;
 use \App\Dropdown;
 use \App\DropdownValue;
@@ -102,7 +103,7 @@ class DropdownController extends Controller
             $dropdown->name = $dropdownName;
             $dropdown->save();
             foreach ($request->dropdown_value as $value) {
-                if($value) {
+                if ($value) {
                     $dropdownValue = new DropdownValue;
                     $dropdownValue->dropdown_id = $dropdown->id;
                     $dropdownValue->dropdown_value = $value;
@@ -121,8 +122,12 @@ class DropdownController extends Controller
         $dropdownValue = $request->editedDropdownValue;
         $dropdownV = DropdownValue::find($id);
         if ($dropdownV) {
-            $dropdownV->dropdown_value = $dropdownValue;
-            $dropdownV->save();
+            if ($dropdownValue) {
+                $dropdownV->dropdown_value = $dropdownValue;
+                $dropdownV->save();
+            } else {
+                DropdownValue::destroy($id);
+            }
             return redirect('/admin/dropdowns/' . $dropdownV->dropdown_id . '/edit');
         }
         return redirect('/admin/dropdowns');
@@ -140,6 +145,13 @@ class DropdownController extends Controller
         $dropdowns = Dropdown::find($id);
         $dropdowns->delete();
         return redirect('/admin/dropdowns');
+    }
+
+    public function getDropdownValues($id)
+    {
+        $specification = Specification::find($id);
+        if ($specification)
+            return DropdownValue::all()->where('dropdown_id', $specification->dropdown_id);
     }
 
 

@@ -21,10 +21,16 @@ class HomeController extends Controller
 
         return view('home.index', ['stores'=>$stores]);
     }
-    public function profile(){
-        $stores = Store::all();
 
-        return view('store.index', ['stores'=>$stores]);
+
+    public function profile($id){
+       $store = Store::find($id);
+
+        return view('store.index', ['store' => $store]);
+
+        // $stores = Store::all();
+
+        // return view('store.index', ['stores'=>$stores]);
     }
 
     /**
