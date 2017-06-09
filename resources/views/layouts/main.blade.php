@@ -27,10 +27,10 @@
 
 <body>
 
-@include('store.header')
+@include('layouts.header')
 @yield('content')
 
-@include('store.footer')
+@include('layouts.footer')
 
 
 <script src="{{asset("product/js/jquery.js")}}"></script>
