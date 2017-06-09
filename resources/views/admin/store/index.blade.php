@@ -13,7 +13,7 @@
             <div class="well well-sm">
                 <form action="{{URL::to('/admin/store/')}}"  method="GET" >
 
-                    <input type="text" placeholder="Search" name="searchtext"  style="width: 75%">
+                    <input type="search" class="search-field " placeholder="Search &hellip;" name="searchtext"  style="width: 79%">
                     <input type="submit" class=" btn btn-success" value="SEARCH"  style="width: 20%">
                 </form>
 
@@ -45,7 +45,8 @@
                                     </div>
                                     <div class="col-xs-12 col-md-6">
 
-                                        <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}"> <i class="fa fa-cog fa-3x" aria-hidden="true" ></i></a>
+
+                                        <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" style="text-decoration: none; float: right"> <i class="fa fa-cog fa-3x" aria-hidden="true" ></i></a>
 
                                     </div>
 
