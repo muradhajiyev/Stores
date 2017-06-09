@@ -18,8 +18,13 @@ class HomeController extends Controller
     }
     public function show(){
         $stores = Store::orderBy('created_at', 'desc')->paginate(12);
-        // $stores = Store::all();
-        return view('store.pages.index', ['stores'=>$stores]);
+
+        return view('home.index', ['stores'=>$stores]);
+    }
+    public function profile(){
+        $stores = Store::all();
+
+        return view('store.index', ['stores'=>$stores]);
     }
 
     /**
