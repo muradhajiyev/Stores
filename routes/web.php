@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'store'], function () {
     Route::get('/', 'HomeController@show');
 
-    Route::get('/profile', 'HomeController@profile');
+    Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
 
     Route::get('/blog', function () {
         return view('temp.blog');
