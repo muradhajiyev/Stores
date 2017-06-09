@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddToStore extends Migration
+class AddTimeStampsToStoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddToStore extends Migration
      */
     public function up()
     {
-         Schema::table('stores', function (Blueprint $table) {
+        Schema::table('stores', function (Blueprint $table) {
             $table->timestamps();
-        });
-    }
+        });    }
 
     /**
      * Reverse the migrations.
