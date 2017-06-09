@@ -23,7 +23,9 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {  $userrole=Auth::user();
-        $searchtext=$request->searchtext;
+
+        $searchtext=strtolower($request->searchtext);
+
 
         if(isset($searchtext))
         {
@@ -31,12 +33,12 @@ class StoreController extends Controller
 
                 $storelist= DB::table('stores')->where([
                     ['user_id', '=', $userrole->id],
-                    ['name', 'LIKE', "%".$searchtext."%"]])->paginate(6);
+                    [DB::raw('LOWER(name)'),  'LIKE', "%".$searchtext."%"]])->paginate(6);
 
 
             else if($userrole->isAdmin())
 
-                $storelist= DB::table('stores')->where('name', 'LIKE', "%".$searchtext."%")->paginate(6);
+                $storelist= DB::table('stores')->where(DB::raw('LOWER(name)'), 'LIKE', "%".$searchtext."%")->paginate(6);
 
         }
         else {
@@ -76,7 +78,10 @@ class StoreController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:stores',
             'email'=>'required|email|unique:stores',
-            'avatar' => 'image|mimes:jpeg,bmp,png|max:4000',
+
+            'profile' => 'image|mimes:jpeg,bmp,png|max:4000',
+
+
             'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
 
         ]);
