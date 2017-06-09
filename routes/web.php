@@ -31,35 +31,33 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'store'], function () {
     Route::get('/', 'HomeController@show');
 
-    Route::get('/profile', function () {
-        return view('store.index');
-    });
+    Route::get('/profile', 'HomeController@profile');
 
     Route::get('/blog', function () {
-        return view('pages.blog');
+        return view('temp.blog');
     });
 
 
     Route::get('/blog-single', function () {
-        return view('pages.blog-single');
+        return view('temp.blog-single');
     });
     Route::get('/cart', function () {
-        return view('pages.cart');
+        return view('temp.cart');
     });
     Route::get('/checkout', function () {
-        return view('pages.checkout');
+        return view('temp.checkout');
     });
     Route::get('/contactus', function () {
-        return view('pages.contactus');
+        return view('temp.contactus');
     });
     Route::get('/login', function () {
         return view('auth.login');
     });
     Route::get('/product-details', function () {
-        return view('pages.product-details');
+        return view('temp.product-details');
     });
     Route::get('/shop', function () {
-        return view('pages.shop');
+        return view('temp.shop');
     });
 });
 
