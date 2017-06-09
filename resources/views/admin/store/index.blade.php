@@ -14,7 +14,9 @@
          <div class="thumbnail" style="box-shadow: 1px 1px 1px black; margin-right: 100px;">
           <div class="row">
             <div class="well well-sm">
+                <form action="{{URL::to('/admin/store/')}}"  method="GET" >
 
+<<<<<<< HEAD
                 <form action="{{URL::to('/admin/store/')}}"  method="GET" class="item  col-xs-4 col-lg-4" style="margin-left: 1%;">
 
                     <input type="text" placeholder="Search" name="searchtext">
@@ -32,6 +34,11 @@
                 <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}" style="margin-left: 29%"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore')</a>
             @endif
         
+=======
+                    <input type="text" placeholder="Search" name="searchtext"  style="width: 75%">
+                    <input type="submit" class=" btn btn-success" value="SEARCH"  style="width: 20%">
+                </form>
+>>>>>>> a6477de3b3dee37884b40894753583091025a8a5
 
             </div>
 
@@ -60,15 +67,22 @@
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
+<<<<<<< HEAD
                                         <!-- <form action="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" method="get" >
                                             @if(\Illuminate\Support\Facades\Auth::user()->isStore())
                                                 <input type="submit" class=" btn btn-success" value="@lang('words.edit')" >
                                             @endif
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+=======
+>>>>>>> a6477de3b3dee37884b40894753583091025a8a5
 
+                                        <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}"> <i class="fa fa-cog fa-3x" aria-hidden="true" ></i></a>
 
+<<<<<<< HEAD
                                         </form> -->
                                         <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" class=" btn btn-danger" style="background-color: green; border: 0;"><i class="fa fa-pencil-square-o"> </i> Edit</a>
+=======
+>>>>>>> a6477de3b3dee37884b40894753583091025a8a5
                                     </div>
 
 
