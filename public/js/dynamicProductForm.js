@@ -21,6 +21,9 @@ $(document).ready(function () {
     $('#productSpec').on('change', function (event) {
         appendSpecValues(event.target.value);
     });
+    $('#addNewSpec').on('click', function (event) {
+        event.preventDefault();
+    });
 });
 
 var getSubCategories = function (id) {
@@ -53,7 +56,7 @@ var getSpecifications = function (id) {
             if (data.length > 0) {
                 $('#specifications').attr('hidden', false);
                 if(data.length>1){
-                    console.log('>1');
+
                     $('#newSpec').attr('hidden', false);
                 }else{
                     $('#newSpec').attr('hidden', true);
@@ -86,12 +89,14 @@ var appendSpecValues = function (id) {
             } else if (data[0] === InputTypes.dropdown) {
 
                     $.get('/api/dropdownValues/'+id, function (data) {
-                        console.log(data);
-                        if(data) {
+                        var dropdownArray = JSON.parse(data);
+                        if(dropdownArray) {
+                            console.log(dropdownArray);
                             element = '<select name="specValue" required id="specValueId" class="form-control">';
-                            data.forEach(function (value) {
-                                element += '<option value="' + value.id + '"> ' + value.dropdown_value + '</option>';
-                            });
+                            for(x in dropdownArray) {
+                                console.log(dropdownArray[x]);
+                                element += '<option value="' + dropdownArray[x].id + '"> ' + dropdownArray[x].dropdown_value + '</option>';
+                            }
                             element+='</select>';
                         }
                     });
