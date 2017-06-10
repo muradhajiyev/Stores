@@ -78,14 +78,15 @@ class StoreController extends Controller
      */
     public function store(Request $request) {
 
-        $this->validate($request, [
-            'name' => 'required|unique:stores',
-            'email'=>'required|email|unique:stores',
-
-            'avatar' => 'image|mimes:jpeg,bmp,png|max:4000',
-        ]);
         if(!isset($request->id)) {
+            $this->validate($request, [
+                'name' => 'required|unique:stores',
+                'email'=>'required|email|:stores',
+                'description'=>'required|max:255',
+                'avatar' => 'image|mimes:jpeg,bmp,png|max:4000',
+                //'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
 
+            ]);
             //default image id if user has not chosen any profile picture
             $imgId = 1;
             if($request->hasFile('avatar')){
@@ -103,6 +104,8 @@ class StoreController extends Controller
             $store->user_id = $request->user_id;
             $store->name = $request->name;
             $store->address = $request->address;
+            $store->description=$request->description;
+            $store->slogan=$request->slogan;
             $store->phone_number = $request->phonenumber;
             $store->email = $request->email;
             $store->profile_image_id = $imgId;
@@ -137,12 +140,22 @@ class StoreController extends Controller
             // }    
         }
         else {
+            $this->validate($request, [
+                'name' => 'required',
+                'email'=>'required|email',
+                'description'=>'required|max:255',
+                'profile' => 'image|mimes:jpeg,bmp,png|max:4000',
+                'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
+
+            ]);
             $store = Store::find($request->id);
 
             $store->name = $request->name;
             $store->address = $request->address;
             $store->phone_number = $request->phonenumber;
             $store->email = $request->email;
+            $store->description=$request->description;
+            $store->slogan=$request->slogan;
             $store->save();
         }
        
