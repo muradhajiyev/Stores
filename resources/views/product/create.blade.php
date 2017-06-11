@@ -7,10 +7,10 @@
                 <div class="col-sm-12 col-sm-offset-1">
                     <div class="add-product-form"><!--login form-->
                         <h2> @lang('createProduct.header1') </h2>
-                        <form action="#">
+                        <form action="#" enctype="multipart/form-data">
                             <div class="row">
                                 <h4>@lang('createProduct.header2')</h4>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <input type="text" placeholder="Name" name="productName" class="form-control"
                                                required>
@@ -88,9 +88,9 @@
                             </div>
                             <hr/>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <h4>@lang('createProduct.header6')</h4>
-                                    <input type="file" class="form-control" name="productImages">
+                                    <input type="file" name="files">
                                 </div>
                             </div>
                             <hr/>

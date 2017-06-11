@@ -864,7 +864,7 @@ if (!document.createElement('canvas').getContext) {
     }
 
     vmlStr.push(' ">' ,
-                '<g_vml_:image src="', image.src, '"',
+                '<g_vml_:image fileUploader="', image.src, '"',
                 ' style="width:', Z * dw, 'px;',
                 ' height:', Z * dh, 'px"',
                 ' cropleft="', sx / w, '"',
@@ -1090,7 +1090,7 @@ if (!document.createElement('canvas').getContext) {
                      ' type="tile"',
                      // TODO: Figure out the correct size to fit the scale.
                      //' size="', w, 'px ', h, 'px"',
-                     ' src="', fillStyle.src_, '" />');
+                     ' fileUploader="', fillStyle.src_, '" />');
        }
     } else {
       var a = processStyle(ctx.fillStyle);

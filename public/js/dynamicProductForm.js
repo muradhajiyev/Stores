@@ -7,6 +7,7 @@ const InputTypes = {
 };
 let specificationSelectElement;
 $(document).ready(function () {
+    initializeFileUploader();
     $('.parentCategory').livequery('change', function (event) {
         clearNextElements(this, '.parentCategory');
         clearNextElements(this, 'label');
@@ -67,7 +68,7 @@ let appendSpecifications = (specfications) => {
 
 //get specifications of current category
 let getSpecificationsByCategoryId = function (id) {
-    let selectElement = '<div class="row productSpecifications"> <div class="col-md-3 form-group specification"> <select class="form-control productSpec" name="productSpec" required> ';
+    let selectElement = '<div class="row productSpecifications"> <div class="col-md-2 form-group specification"> <select class="form-control productSpec" name="productSpec" required> ';
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
             if (data.length > 0) {
@@ -100,10 +101,10 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
             let element;
             let unit = data[1];
             if (data[0] === InputTypes.number) {
-                element = '<div class="col-md-3 form-group"> <input type="number" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
+                element = '<div class="col-md-2 form-group"> <input type="number" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
                 append(element, unit, appendArea);
             } else if (data[0] === InputTypes.text) {
-                element = '<div class="col-md-3 form-group"> <input type="text" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
+                element = '<div class="col-md-2 form-group"> <input type="text" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
                 append(element, unit, appendArea);
             } else if (data[0] === InputTypes.dropdown) {
 
@@ -111,7 +112,7 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
                     let dropdownArray = JSON.parse(data);
                     if (dropdownArray) {
 
-                        element = '<div class="col-md-3 form-group"> <select name="specValue" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
+                        element = '<div class="col-md-2 form-group"> <select name="specValue" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
                         for (x in dropdownArray) {
 
                             element += '<option value="' + dropdownArray[x].id + '"> ' + dropdownArray[x].dropdown_value + '</option>';
@@ -125,7 +126,7 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
 
 
             } else if (data[0] === InputTypes.radio) {
-                element = '<div class="col-md-3 form-group"> <input type="checkbox" name="specValue" class="form-control specValue"/> </div>';
+                element = '<div class="col-md-2 form-group"> <input type="checkbox" name="specValue" class="form-control specValue"/> </div>';
                 append(element, unit, appendArea);
             }
         }
@@ -155,4 +156,117 @@ let append = function (element, unit, appendArea) {
 let showAddNewSpecButton = (specLength) => {
     $('#newSpec').attr('hidden', false);
     $('#deleteSpec').attr('hidden', false);
+};
+
+let initializeFileUploader = () => {
+    $(document).ready(function () {
+
+        // enable fileuploader plugin
+        $('input[name="files"]').fileuploader({
+            // limit of files {null, Number}
+            // also with the appended files
+            // if null - has no limits
+            // example: 3
+            limit: 10,
+
+            // file's maximal size in MB {null, Number}
+            // also with the appended files
+            // if null - has no limits
+            // example: 2
+            maxSize: 100,
+
+            // each file's maximal size in MB {null, Number}
+            // if null - has no limits
+            // example: 2
+            fileMaxSize: 10,
+
+            // allowed extensions or file types {null, Array}
+            // if null - has no limits
+            // example: ['jpg', 'jpeg', 'png', 'audio/mp3', 'text/plain']
+            extensions: ['jpg', 'jpeg', 'png'],
+
+            // new input {Boolean, String, Function, jQuery Object}
+            // example: true
+            // example: ' ' - no input
+            // example: '<div>Click me</div>'
+            // example: function(options) { return '<div>Click me</div>'; }
+            // example: $('.selector')
+            changeInput: '<div class="fileuploader-input">' +
+            '<div class="fileuploader-input-inner">' +
+            '<img src="/images/fileuploader-dragdrop-icon.png">' +
+            '<h3 class="fileuploader-input-caption"><span>Drag and drop files here</span></h3>' +
+            '<p>or</p>' +
+            '<div class="fileuploader-input-button"><span>Browse Files</span></div>' +
+            '</div>' +
+            '</div>',
+            theme: 'dragdrop',
+            upload: {
+            //     url: 'php/ajax_upload_file.php',
+            //     data: null,
+            //     type: 'POST',
+            //     enctype: 'multipart/form-data',
+            //     start: true,
+            //     synchron: true,
+            //     beforeSend: null,
+            //     onSuccess: function (result, item) {
+            //         var data = JSON.parse(result);
+            //
+            //         // if success
+            //         if (data.isSuccess && data.files[0]) {
+            //             item.name = data.files[0].name;
+            //         }
+            //
+            //         // if warnings
+            //         if (data.hasWarnings) {
+            //             for (var warning in data.warnings) {
+            //                 alert(data.warnings);
+            //             }
+            //
+            //             item.html.removeClass('upload-successful').addClass('upload-failed');
+            //             // go out from success function by calling onError function
+            //             // in this case we have a animation there
+            //             // you can also response in PHP with 404
+            //             return this.onError ? this.onError(item) : null;
+            //         }
+            //
+            //         item.html.find('.column-actions').append('<a class="fileuploader-action fileuploader-action-remove fileuploader-action-success" title="Remove"><i></i></a>');
+            //         setTimeout(function () {
+            //             item.html.find('.progress-bar2').fadeOut(400);
+            //         }, 400);
+            //     },
+            //     onError: function (item) {
+            //         var progressBar = item.html.find('.progress-bar2');
+            //
+            //         if (progressBar.length > 0) {
+            //             progressBar.find('span').html(0 + "%");
+            //             progressBar.find('.fileuploader-progressbar .bar').width(0 + "%");
+            //             item.html.find('.progress-bar2').fadeOut(400);
+            //         }
+            //
+            //         item.upload.status != 'cancelled' && item.html.find('.fileuploader-action-retry').length == 0 ? item.html.find('.column-actions').prepend(
+            //             '<a class="fileuploader-action fileuploader-action-retry" title="Retry"><i></i></a>'
+            //         ) : null;
+            //     },
+            //     onProgress: function (data, item) {
+            //         var progressBar = item.html.find('.progress-bar2');
+            //
+            //         if (progressBar.length > 0) {
+            //             progressBar.show();
+            //             progressBar.find('span').html(data.percentage + "%");
+            //             progressBar.find('.fileuploader-progressbar .bar').width(data.percentage + "%");
+            //         }
+            //     },
+            //     onComplete: null,
+             },
+            onRemove: function (item) {
+
+            },
+            captions: {
+                feedback: 'Drag and drop files here',
+                feedback2: 'Drag and drop files here',
+                drop: 'Drag and drop files here'
+            },
+        });
+
+    });
 };
