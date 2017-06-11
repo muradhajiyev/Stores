@@ -14,11 +14,12 @@ class NewStoreColumn extends Migration
     public function up()
     {
         //
-         Schema::table('stores', function (Blueprint $table) {
-            $table->String('slogan')->nullable();
-            $table->String('description')->nullable();
+        Schema::table('stores', function (Blueprint $table) {
+            $table->String('slogan');
+            $table->String('description');
         });
-         
+        DB::statement("ALTER TABLE stores MODIFY COLUMN slogan VARCHAR(255) AFTER updated_at");
+        DB::statement("ALTER TABLE stores MODIFY COLUMN description VARCHAR(255) AFTER slogan");
     }
 
     /**
@@ -29,7 +30,7 @@ class NewStoreColumn extends Migration
     public function down()
     {
         Schema::table('stores', function (Blueprint $table) {
-    $table->dropColumn(['slogan', 'description']);
-});
+            $table->dropColumn(['slogan', 'description']);
+        });
     }
 }
