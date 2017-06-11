@@ -19,8 +19,8 @@
                     <label class="form-group">Category Name:</label>
                 </div>
                 <div class="col-md-4 ">
-                    <input type="text" name="categoryName" id="categoryName" class="form-control"
-                           placeholder="name..." required>
+                    <input style="width: 280px" type="text" name="categoryName" id="categoryName" class="form-control"
+                           placeholder="Category Name..." required>
                 </div>
             </div>
             <br>
