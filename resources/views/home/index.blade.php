@@ -1,4 +1,4 @@
-@extends('store.main')
+@extends('layouts.main')
 @section('title',' Home')
 
 @section('content')
@@ -8,36 +8,51 @@
         <div class="container">
             <div class="row">
 
-                @include('store.left-sidebar')
+            @include('layouts.left-sidebar')
 
 
-                <!-- Stores in Home -->
+            <!-- Stores in Home -->
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">top Stores</h2>
 
-                        @foreach($stores as $store)
+                        @if(!empty($categoryName))
+                            <h2 class="title text-center">{{$categoryName}} Selling Stores</h2>
+                        @else
+                            <h2 class="title text-center">Top Stores</h2>
+                        @endif
 
-                            <div class="col-sm-4">
-                                <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <a href="/store/profile" style="font-size: 25px; color: black;"><img
-                                                        src="{{asset("images/home/default-logo.png")}}" alt=""
-                                                        style=""/>
-                                                <hr>{{$store->name}} </a>
+                        @if(count($stores)==0)
+                            <center>
+                                <h1>
+                                    Not Found!
+                                </h1>
+                            </center>
+                        @else
+                            @foreach($stores as $store)
+
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper"
+                                         style="box-shadow: 1px 2px 2px gray; height: 350px;">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <a href="{{ url('store/profile') }}"
+                                                   style="font-size: 25px; color: gray;"><img
+                                                            src="{{asset("images/home/default-logo.png")}}" alt=""
+                                                            style=""/>
+                                                    <hr>
+                                                    {{$store->name}} </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-
+                            @endforeach
                     </div>
                     <div>
                         {{$stores->links()}}
 
                     </div>
-                    <!--features_items--><br>
+                @endif
+                <!--features_items--><br>
 
                     <div class="category-tab"><!--category-tab-->
                         <div class="col-sm-12">

@@ -1,4 +1,4 @@
-@extends('store.main')
+@extends('layouts.main')
 @section('title',' Blog')
 
 @section('content')
@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
 
-                @include('store.left-sidebar')
+                @include('layouts.left-sidebar')
 
                 <div class="col-sm-9">
                     <div class="blog-post-area">
