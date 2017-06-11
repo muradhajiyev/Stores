@@ -151,7 +151,7 @@ class DropdownController extends Controller
     {
         $specification = Specification::find($id);
         if ($specification)
-            return DropdownValue::all()->where('dropdown_id', $specification->dropdown_id);
+            return DropdownValue::all()->where('dropdown_id', $specification->dropdown_id)->toJson();
     }
 
 
