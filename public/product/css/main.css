@@ -21,6 +21,16 @@ outline: none;
 text-decoration:none;
 }
 
+#toggleButton{
+  border-radius: 0px;
+  border-color: #edaf5e;
+}
+#toggleButton:hover{
+  color: black;
+  background-color: #EEEEE0;
+  border-color: #EEEEE0;
+}
+
 a:focus {
   outline:none;
   outline-offset: 0;

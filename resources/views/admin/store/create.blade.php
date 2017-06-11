@@ -8,7 +8,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
-
         <div class="container" style="height: 100%;width: 100%;">
             <div class="" >
                 <div class="item  " style="margin-top: 1%; box-shadow: 1px 1px 1px black;">
