@@ -4,16 +4,27 @@
     <section id="form"><!--form-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-1">
+                <div class="col-sm-12 col-sm-offset-1">
                     <div class="add-product-form"><!--login form-->
                         <h2> @lang('createProduct.header1') </h2>
-                        <form action="#">
+                        <form action="/products" method="post" enctype="multipart/form-data">
+                            {{csrf_field()}}
                             <div class="row">
+
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
                                 <h4>@lang('createProduct.header2')</h4>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Name" name="productName" class="form-control"
-                                               required>
+                                        <input type="text" placeholder="Name" name="productName" class="form-control" required>
                                     </div>
 
                                 </div>
@@ -25,8 +36,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <select class="form-control" name="productCategory" required>
-                                            <option selected disabled>Currency</option>
+                                        <select class="form-control" name="productCurrency" required>
+                                            <option selected value="" disabled>Currency</option>
                                             @foreach($currencies as $currency)
                                                 <option value="{{$currency->id}}">{{$currency->iso}}</option>
                                             @endforeach
@@ -37,49 +48,38 @@
                             </div>
                             <hr/>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <h4>@lang('createProduct.header3')</h4>
                                     <div id="subCategories">
                                         <div class="form-group parentCategory">
-                                            <select class="form-control parentCategorySelect" id="0" name="productCategory"
-                                                    required>
-                                                <option selected disabled>Select</option>
+                                            <select class="form-control parentCategorySelect"  name="productCategory" required>
+                                                <option selected value="" disabled>Select category</option>
                                                 @foreach($parentCategories as $parent)
                                                     <option value="{{$parent->id}}">{{$parent->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
-                            <div id="specifications" hidden>
-                            <hr/>
+
+
+                            <div class="row" >
+                                <div class="col-md-12" id="specificationsArea" >
+
+
+                                </div>
+
+                            </div>
+
                             <div class="row">
-                                <div class="col-md-3 form-group" >
-                                    <h4>@lang('createProduct.header4')</h4>
-                                    <select class="form-control" name="productSpec" id="productSpec" required>
-
-                                    </select>
+                                <div class="col-md-1 form-group" id="newSpec" hidden>
+                                    <button id="addNewSpec"  class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>
-                                <div class="col-md-3 form-group" id="specValue" hidden>
-                                    <h4>@lang('createProduct.header8')</h4>
-
+                                <div class="col-md-1 form-group" id="deleteSpec" hidden>
+                                <button id="deleteLastSpec"  class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
                                 </div>
-                                <div class="col-md-2 form-group" id="specUnit" hidden >
-                                    <h4>@lang('createProduct.header9')</h4>
 
-                                </div>
-                            </div>
-                                <div class="row">
-                                    <div class="col-md-2 form-group" id="newSpec" hidden>
-
-                                        <button id="addNewSpec"  class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
-
-                                    </div>
-
-                                </div>
                             </div>
                             <hr/>
                             <div class="row">
@@ -94,14 +94,14 @@
                                 </div>
                                 <div class="col-md-2">
                                     <h4>@lang('createProduct.header7')</h4>
-                                    <input type="checkbox" name="isNew"  required/>
+                                    <input type="checkbox" name="isNew" />
                                 </div>
                             </div>
                             <hr/>
                             <div class="row">
                                 <div class="col-md-8">
                                     <h4>@lang('createProduct.header6')</h4>
-                                    <input type="file" class="form-control" name="productImages">
+                                    <input type="file" name="files[]" multiple>
                                 </div>
                             </div>
                             <hr/>
@@ -112,7 +112,7 @@
                                 <div class="col-sm-8 col-sm-offset-6">
                                     <div class="form-group">
                                         <button type="submit"
-                                                class="btn btn-success">@lang('createProduct.submit')</button>
+                                                class="btn btn-primary">@lang('createProduct.submit')</button>
                                     </div>
                                 </div>
                             </div>

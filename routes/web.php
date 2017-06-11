@@ -62,7 +62,7 @@ Route::group(['prefix' => 'store'], function () {
         return view('temp.shop');
     });
 });
-Route::resource("product", 'ProductController');
+Route::resource("products", 'ProductController');
 Route::group(['prefix' => 'api'], function () {
     Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
     Route::get('specifications/{id}','CategoryController@getSpecificationsByCategoryId');
