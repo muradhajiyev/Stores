@@ -8,6 +8,7 @@ const InputTypes = {
 let specificationSelectElement;
 $(document).ready(function () {
     initializeFileUploader();
+   //console.log( $('#subCategories').children('.parentCategorySelect').last());
     $('.parentCategory').livequery('change', function (event) {
         clearNextElements(this, '.parentCategory');
         clearNextElements(this, 'label');
@@ -162,7 +163,7 @@ let initializeFileUploader = () => {
     $(document).ready(function () {
 
         // enable fileuploader plugin
-        $('input[name="files"]').fileuploader({
+        $('input[name="file"]').fileuploader({
             // limit of files {null, Number}
             // also with the appended files
             // if null - has no limits

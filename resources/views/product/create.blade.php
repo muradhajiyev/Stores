@@ -7,13 +7,24 @@
                 <div class="col-sm-12 col-sm-offset-1">
                     <div class="add-product-form"><!--login form-->
                         <h2> @lang('createProduct.header1') </h2>
-                        <form action="#" enctype="multipart/form-data">
+                        <form action="/products" method="post" enctype="multipart/form-data">
+                            {{csrf_field()}}
                             <div class="row">
+
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
                                 <h4>@lang('createProduct.header2')</h4>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Name" name="productName" class="form-control"
-                                               required>
+                                        <input type="text" placeholder="Name" name="productName" class="form-control" required>
                                     </div>
 
                                 </div>
@@ -90,7 +101,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h4>@lang('createProduct.header6')</h4>
-                                    <input type="file" name="files">
+                                    <input type="file" name="files[]" multiple>
                                 </div>
                             </div>
                             <hr/>
