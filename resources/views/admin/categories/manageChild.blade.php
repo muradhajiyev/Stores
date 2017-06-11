@@ -4,6 +4,8 @@
             {{ $child->name }}
             <i onclick="window.location='{{ route("categories.show", ['id' => $child->id]) }}'" class="fa fa-plus"
                aria-hidden="true"></i>
+            <i onclick="window.location='{{ route("categories.edit", ['id' => $child->id]) }}'" class="fa fa-pencil"
+               aria-hidden="true"></i>
             @if(count($child->childs))
                 @include('admin.categories.manageChild',['childs' => $child->childs])
             @else

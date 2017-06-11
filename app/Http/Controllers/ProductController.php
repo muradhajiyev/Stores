@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
+use App\Category;
+use App\currency;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+
+        $this->middleware(['auth', 'adminOrStore'])->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +32,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
-        return view('product.createProduct');
+
+        $brands=Brand::all();
+        $parentCategories=Category::all()->where('parent_id', null);
+        $currencies=currency::all();
+        return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies);
+
+
     }
 
     /**

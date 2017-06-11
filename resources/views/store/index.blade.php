@@ -51,16 +51,29 @@
     <div class="col-sm-2" style="margin-left: 6%;">
     	<img src="{{asset("images/home/default-logo.png")}}"  style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;" />
     </div>
-    <div class="col-sm-8 descript" style=" margin-top: 2%;">
-    	<span ><a href="#" style="color: orange;font-size: 30px;">New Yorker</span></a>
-    	<p style="margin-top: 2%; "><i>The Only Art Gallery in the World Located in a Railroad Station</i></p>   
-    	<p style="text-align: justify;">The New Yorker is an American magazine of reportage, commentary, criticism, essays, fiction, satire, cartoons, and poetry. It is published by Condé Nast. Started as a weekly in 1925, the magazine is now published 47 times annually, with five of these issues covering two-week spans.
 
-     </p><p id="show" style="display: none; text-align:justify;">
+   
+    <div class="col-sm-8 descript" style=" margin-top: 2%;">
+    	 <a href="#" style="color: orange;font-size: 30px;"><span >{{$store->name}}</span></a> 
+
+    	 <p style="margin-top: 2%; ">
+      
+        <i>{{$store->slogan}}</i>   
+      
+       </p>  
+    	<p style="text-align: justify;">{{$store->description}}</p>
+      
+      <p id="show" style="display: none; text-align:justify;"> 
+
+            <!-- This part is not connected/ for this length of text should be increased -->
+            
         Although its reviews and events listings often focus on the cultural life of New York City, The New Yorker has a wide audience outside of New York and is read internationally. It is well known for its illustrated and often topical covers, its commentaries on popular culture and eccentric Americana, its attention to modern fiction by the inclusion of short stories and literary reviews, its rigorous fact checking and copyediting, its journalism on politics and social issues, and its single-panel cartoons sprinkled throughout each issue.
       </p> <span id="toggle" style="color: blue" class="hideLink"><u>See more</u></span>
     </div>
    </div>
+
+
+
 <hr style="border-color: orange;">
     </div>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -82,7 +95,10 @@
           });
           </script>
   </div>
- </section><!--/slider-->
+ </section>
+
+
+ <!--cover/slider ended-->
 
 
 
@@ -245,13 +261,6 @@
                                         <p>Easy Polo Black Edition</p></a>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                        <!-- <div class="product-overlay">
-                                            <div class="overlay-content">
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-                                        </div> -->
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
