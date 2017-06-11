@@ -43,6 +43,7 @@
     <script src="{{ asset("js/grid.js") }}"></script>
     <!--store css-->
     <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
+    <link rel="stylesheet" href="{{ asset("/css/dropzone.css")}}">
 
 
     <!-- Google Font -->
@@ -650,6 +651,7 @@
     <script src="{{ asset("js/grid.js") }}"></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="{{ asset('js/specification.js' )}}"></script>
+    <script src="{{asset('js/dropzone.js')}}"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
