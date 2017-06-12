@@ -25,9 +25,8 @@
                     <tr>
                         <td>{{$specification->id}}</td>
                         <td>{{$specification->name}}</td>
-                        <td>{{$specification->type->name}}</td>
-                        <td>{{$specification->unit->name}}</td>
-
+                        <td>@if($specification->type) {{$specification->type->name}} @endif</td>
+                        <td>@if($specification->unit) {{$specification->unit->name}} @endif</td>
                         <td>@if($specification->dropdown) {{$specification->dropdown->name}} @endif</td>
 
                         <td>

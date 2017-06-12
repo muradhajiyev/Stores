@@ -37,16 +37,13 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>-->
 
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
-{{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
 
-<!--store css-->
+    <!--store css-->
     <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
-
+    <link rel="stylesheet" href="{{ asset("/css/dropzone.css")}}">
 
     <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 
     <!-- Category CSS -->
@@ -55,6 +52,8 @@
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"/>
+
+    <script src="{{ asset('js/dropdown.js' )}}"></script>
 
 
 </head>
@@ -612,21 +611,23 @@
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <!-- Morris.js charts -->
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>--}}
-    {{--<script src="{{ asset('plugins/morris/morris.min.js')}}"></script>--}}
-    {{--<!-- Sparkline -->--}}
-    {{--<script src="{{ asset('plugins/sparkline/jquery.sparkline.min.js')}}"></script>--}}
-    {{--<!-- jvectormap -->--}}
-    {{--<script src="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>--}}
-    {{--<script src="{{ asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>--}}
-    {{--<!-- jQuery Knob Chart -->--}}
-    {{--<script src="{{ asset('plugins/knob/jquery.knob.js')}}"></script>--}}
-    {{--<!-- daterangepicker -->--}}
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>--}}
-    {{--<script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>--}}
-    {{--<!-- datepicker -->--}}
-    {{--<script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>--}}
-    {{--<!-- Bootstrap WYSIHTML5 -->--}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{{ asset('plugins/morris/morris.min.js')}}"></script>
+    <!-- Sparkline -->
+    <script src="{{ asset('plugins/sparkline/jquery.sparkline.min.js')}}"></script>
+    <!-- jvectormap -->
+    <script src="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+    <script src="{{ asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{ asset('plugins/knob/jquery.knob.js')}}"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <!-- datepicker -->
+    <!-- datepicker -->
+    <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+    <!-- Bootstrap WYSIHTML5 -->
     <script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
     <!-- Slimscroll -->
     <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
@@ -645,6 +646,7 @@
     <script src="{{ asset("js/grid.js") }}"></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="{{ asset('js/specification.js' )}}"></script>
+    <script src="{{asset('js/dropzone.js')}}"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>

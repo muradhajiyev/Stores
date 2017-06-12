@@ -9,6 +9,8 @@
                         {{ $category->name }}
                         <i onclick="window.location='{{ route("categories.show", ['id' => $category->id]) }}'"
                            class="fa fa-plus" aria-hidden="true"></i>
+                        <i onclick="window.location='{{ route("categories.edit", ['id' => $category->id]) }}'"
+                           class="fa fa-pencil" aria-hidden="true"></i>
                         @if(count($category->childs))
                             @include('admin.categories.manageChild',['childs' => $category->childs])
 
@@ -23,6 +25,8 @@
                         @endif
                     </li>
                 @endforeach
+                <i onclick="window.location='{{ route("categories.show", ['id' => 0]) }}'" class="fa fa-plus"
+                   aria-hidden="true"></i>
             </ul>
         </div>
     </div>
