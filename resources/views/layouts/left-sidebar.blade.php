@@ -24,7 +24,7 @@
                             <div class="panel-body">
                                 <ul>
                                     @foreach($childCategory as $childCategory)
-                                        <li><a id="categoryPressed" href="{{ url('/'.$childCategory->name.'/stores/'.$childCategory->id) }}">{{$childCategory->name}}</a></li>
+                                        <li><a id="categoryPressed" href="{{ url('/') . '?' . http_build_query(['id' => $childCategory->id, 'category_name' => $childCategory->name ]) }}">{{$childCategory->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -34,7 +34,7 @@
                 @else
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a id="categoryPressed" href="{{ url('/'.$category->name.'/stores/'.$category->id) }}">{{$category->name}}</a></h4>
+                            <h4 class="panel-title"><a id="categoryPressed" href="{{ url('/') . '?' . http_build_query(['id' => $category->id, 'category_name' => $category->name ]) }}">{{$category->name}}</a></h4>
                         </div>
                     </div>
                 @endif
@@ -42,4 +42,6 @@
         </div><!--/categproductucts-->
     </div>
 </div>
+
+
 

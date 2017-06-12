@@ -260,6 +260,10 @@ a#scrollUp i{
 	background:none;
 	color:#fdb45e;
 }
+#categoryPressed.active{
+  background:none;
+  color:#fdb45e;
+}
 
 .search_box input {
   background: #F0F0E9;

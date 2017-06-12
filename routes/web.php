@@ -11,7 +11,6 @@
 */
 
 Route::get('/','HomeController@show');
-Route::get('/{name}/stores/{id}', 'HomeController@showSpecificStores');
 
 Auth::routes();
 
@@ -33,7 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'store'], function () {
 
-    Route::get('/', 'HomeController@show');
+//    Route::get('/?category={name}/{id}', 'HomeController@showSpecificStores');
 
     Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
 
