@@ -15,6 +15,7 @@ class ProductController extends Controller
 
         $this->middleware(['auth', 'adminOrStore'])->except('index');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +34,9 @@ class ProductController extends Controller
     public function create()
     {
 
-        $brands=Brand::all();
-        $parentCategories=Category::all()->where('parent_id', null);
-        $currencies=currency::all();
+        $brands = Brand::all();
+        $parentCategories = Category::all()->where('parent_id', null);
+        $currencies = currency::all();
         return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies);
 
 
@@ -44,18 +45,38 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'productName' => 'required|max:100',
+            'productPrice' => 'required|numeric|min:0',
+            'productCurrency' => 'required',
+            'productCategory' => 'required',
+
+        ]);
+        $productName = $request->productName;
+        $productPrice = $request->productPrice;
+        $productCurrency = $request->productCurrency;
+        $productCategory = $request->productCategory;
+        $filename = 'hello';
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $photo) {
+                $filename = $photo->store('images');
+
+            }
+        }
+        return $filename;
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -66,7 +87,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -77,8 +98,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -89,7 +110,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -13,21 +13,30 @@
     <link href="{{asset("product/css/animate.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
+    <link href="{{asset("css/jquery.fileuploader.css")}}" rel="stylesheet">
+    <link href="{{asset("css/jquery.fileuploader-theme-dragdrop.css")}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
-    <!--[if lt IE 9]>
+
+    {{--<!--[if lt IE 9]>--}}
     <script src="{{asset("product/js/html5shiv.js")}}"></script>
-    <script src="{{asset("product/js/respond.min.js")}}"></script>
-    <![endif]-->
+    <script src="{{asset("product/js/respond.min.js")}}" ></script>
+    {{--<![endif]-->--}}
+
     <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset("product/images/ico/apple-touch-icon-72-precomposed.png")}}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="{{asset("product/images/ico/apple-touch-icon-72-precomposed.png")}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset("product/images/ico/apple-touch-icon-57-precomposed.png")}}">
 </head><!--/head-->
 
 <body>
 
+
 @include('layouts.header')
+
 @yield('content')
 
 @include('layouts.footer')
@@ -41,5 +50,8 @@
 <script src="{{asset("product/js/jquery.prettyPhoto.js")}}"></script>
 <script src="{{asset("product/js/main.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
+<script src="{{asset("js/fileUploader/jquery.fileuploader.js")}}"></script>
+
+
 </body>
 </html>

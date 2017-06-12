@@ -18,10 +18,6 @@
                             <li><a href=""><i class="fa fa-linkedin"></i></a></li>
                             <li><a href=""><i class="fa fa-dribbble"></i></a></li>
                             <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                           <!--  <li><a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Logout</a>
-                            </li> -->
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="">
                                 {{ csrf_field() }}
                             </form>
@@ -38,7 +34,7 @@
                 <div class="col-sm-6">
                     <div class="logo pull-left">
                         <a href="#"><img
-                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt=""/></a>
+                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt="" style="width:70px;height:70px;"/></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -80,7 +76,7 @@
 
                                 @elseif(Auth::check())
                                 <div class="dropdown">
-                                <button class="btn btn-warning dropdown-toggle"  type="button" data-toggle="dropdown">{{Auth::user()->name}}
+                                <button id="toggleButton" class="btn btn-warning dropdown-toggle"  type="button" data-toggle="dropdown">{{Auth::user()->name}}
                                 <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
