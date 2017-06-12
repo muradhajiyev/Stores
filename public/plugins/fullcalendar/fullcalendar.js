@@ -1219,7 +1219,7 @@ function commonlyAmbiguate(inputs, preserveTime) {
 	return moms;
 }
 
-// Transfers all the flags related to ambiguous time/zone from the `src` moment to the `dest` moment
+// Transfers all the flags related to ambiguous time/zone from the `fileUploader` moment to the `dest` moment
 function transferAmbigs(src, dest) {
 	if (src._ambigTime) {
 		dest._ambigTime = true;

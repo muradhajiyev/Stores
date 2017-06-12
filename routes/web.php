@@ -11,6 +11,7 @@
 */
 
 Route::get('/','HomeController@show');
+Route::get('/{name}/stores/{id}', 'HomeController@showSpecificStores');
 
 Auth::routes();
 
@@ -19,6 +20,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
+ Route::post('/postCover', 'StoreController@postCover');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
@@ -30,6 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::group(['prefix' => 'store'], function () {
+
     Route::get('/', 'HomeController@show');
 
     Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
@@ -61,7 +64,7 @@ Route::group(['prefix' => 'store'], function () {
         return view('temp.shop');
     });
 });
-Route::resource("product", 'ProductController');
+Route::resource("products", 'ProductController');
 Route::group(['prefix' => 'api'], function () {
     Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
     Route::get('specifications/{id}','CategoryController@getSpecificationsByCategoryId');

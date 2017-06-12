@@ -2,6 +2,7 @@
 @extends('admin.master')
 
 @section('main_content')
+
     <section class="content-header">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -9,23 +10,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
-        <div class="container">
-            <div class="well well-sm">
-                <form action="{{URL::to('/admin/store/')}}"  method="GET" >
+        <div class="container">                       
 
+
+            <div class="well well-sm">
+
+           <form action="{{URL::to('/admin/store/')}}"  method="GET" >
                     <input type="search" class="search-field " placeholder="Search &hellip;" name="searchtext"  style="width: 79%">
                     <input type="submit" class=" btn btn-success" value="SEARCH"  style="width: 20%">
                 </form>
 
             </div>
 
-
-            <div id="stores" class="row list-group">
+            <div id="stores" class="row list-group" style="margin-right: 2%; margin-left: 2%;">
 
                 @foreach($storelist as $store)
                     <div class="item  col-xs-4 col-lg-4">
                         <div class="thumbnail">
-                            <img class="group list-group-image" src="{{asset('storage/default-avatar.png')}}" alt="" />
+                            <img class="group list-group-image" src="{{asset("images/home/default-avatar.png")}}" alt="StorePicture" />
                             <div class="caption">
                                 <h3 class="group inner list-group-item-heading">
                                     {{$store->name}}</h3>
@@ -46,8 +48,7 @@
                                     <div class="col-xs-12 col-md-6">
 
 
-                                        <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" style="text-decoration: none; float: right"> <i class="fa fa-cog fa-3x" aria-hidden="true" ></i></a>
-
+                                        <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" class=" btn btn-danger" style="background-color: green; border: 0;"><i class="fa fa-pencil-square-o"> </i> Edit</a>
                                     </div>
 
 
@@ -59,15 +60,17 @@
                 @endforeach
             </div>
         </div>
-        <ol class="breadcrumb">
-@if(Auth::user()->isStore())
-                <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore')</a>
- @endif
-        </ol>
+
+            <ol class="breadcrumb">
+                @if(Auth::user()->isStore())
+                    <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}"><i class="fa fa-plus fa-fw" style="color:white;"></i>@lang('words.addstore')</a>
+                @endif
+            </ol>
+
         <div class="container">
         {{$storelist->appends(request()->only('searchtext'))->render()}}
         </div>
-
+</div>
     </section>
 
 

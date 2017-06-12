@@ -9,6 +9,7 @@ use App\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Store_Image;
 
+
 class StoreController extends Controller
 {
     public function __construct()
@@ -69,6 +70,7 @@ class StoreController extends Controller
     {
         return view('admin.store.create');
     }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -81,18 +83,19 @@ class StoreController extends Controller
                 'name' => 'required|unique:stores',
                 'email'=>'required|email|:stores',
                 'description'=>'required|max:255',
-                'profile' => 'image|mimes:jpeg,bmp,png|max:4000',
-                'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
+                'avatar' => 'image|mimes:jpeg,bmp,png|max:4000',
+                //'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
 
             ]);
             //default image id if user has not chosen any profile picture
             $imgId = 1;
             if($request->hasFile('avatar')){
             $image = new Image();
-            $image->file_name = substr($request->file('avatar')->store('public'),7);
+            $path = "afterResearch";//$request->file('avatar')->store('public');
+            $image->file_name = substr($path,7);
             $image->extension = $request->avatar->extension();
             $image->file_size = filesize($request->avatar);
-            $image->path = $request->file('avatar')->store('public');
+            $image->path = $path;
             $image->save();
             $imgId = $image->id;
             }
@@ -107,20 +110,34 @@ class StoreController extends Controller
             $store->email = $request->email;
             $store->profile_image_id = $imgId;
             $store->save();
-            
-            //request will send array of cover photos, then this part can be in foreach;
-            if($request->hasFile('cover')){
-                $cimage = new Image();
-                $cimage->file_name = substr($request->file('cover')->store('public'),7);
-                $cimage->extension = $request->cover->extension();
-                $cimage->file_size = filesize($request->cover);
-                $cimage->path = $request->file('cover')->store('public');
-                $cimage->save();
+
+            $str = $request->img_ids;
+            $ids = explode(",",$str);
+
+             //for each img_ids (cover image ids) recieved we should populate Store_Image table.
+            foreach ($ids as $i) {
+              if($i == '1'){}
+              else{
                 $storeImg = new Store_Image();
                 $storeImg->store_id = $store->id;
-                $storeImg->image_id = $cimage->id;
-                $storeImg->save();  
-            }    
+                $storeImg->image_id = $i;
+                $storeImg->save(); 
+                }   
+            }
+             //return $y;
+            //request will send array of cover photos, then this part can be in foreach;
+            // if($request->hasFile('cover')){
+            //     $cimage = new Image();
+            //     $cimage->file_name = substr($request->file('cover')->store('public'),7);
+            //     $cimage->extension = $request->cover->extension();
+            //     $cimage->file_size = filesize($request->cover);
+            //     $cimage->path = $request->file('cover')->store('public');
+            //     $cimage->save();
+            //     $storeImg = new Store_Image();
+            //     $storeImg->store_id = $store->id;
+            //     $storeImg->image_id = $cimage->id;
+            //     $storeImg->save();  
+            // }    
         }
         else {
             $this->validate($request, [
@@ -141,6 +158,9 @@ class StoreController extends Controller
             $store->slogan=$request->slogan;
             $store->save();
         }
+       
+
+       // $str = "1,34,67";
 
         return redirect()->action('StoreController@index');
 
@@ -197,4 +217,25 @@ class StoreController extends Controller
         //files and images of store should be deleted
         return redirect()->action('StoreController@index');
     }
+
+    public function postCover(Request $request) {
+
+        $this->validate($request, [
+            'file' => 'image|mimes:jpeg,bmp,png|max:4000',
+        ]);
+
+            $image = new Image();
+            $path = "afterResearch";//$request->file('file')->store('public');
+            $image->file_name = substr($path,7);
+            $image->extension = $request->file->extension();
+            $image->file_size = filesize($request->file);
+            $image->path = $path;
+            $image->save();
+            $imgId = $image->id;
+         return response()->json($imgId, 200);
+         // return response()->json('error', 400);
+   }
+
 }
+ 
+

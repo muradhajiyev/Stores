@@ -15,8 +15,7 @@
                             @include('admin.categories.manageChild',['childs' => $category->childs])
 
                         @else
-                            <form action="/admin/categories/{{$category->id}}" style="display: inline"
-                                  method="Post">
+                            <form action="/admin/categories/{{$category->id}}" style="display: inline" method="Post">
                                 {{csrf_field()}}
                                 {{ method_field('DELETE') }}
                                 <button type="submit"><i class="fa fa-minus" aria-hidden="true"></i>
