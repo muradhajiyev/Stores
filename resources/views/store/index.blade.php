@@ -70,7 +70,7 @@
         {{substr($store->description, 150)}}
             <!-- This part is not connected/ for this length of text should be increased -->
 
-      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></p>
+      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
     </div>
    </div>
 
@@ -102,7 +102,7 @@
 
  <!--cover/slider ended-->
 
-
+@include('layouts.headerbottom')
 
     <section>
         <div class="container">

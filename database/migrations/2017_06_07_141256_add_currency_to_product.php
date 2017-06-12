@@ -17,7 +17,7 @@ class AddCurrencyToProduct extends Migration
             $table->integer('currency_id');
             $table->foreign('currency_id')->references('id')->on('currencies');
         });
-        
+
     }
 
     /**
