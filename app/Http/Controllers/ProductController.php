@@ -62,14 +62,8 @@ class ProductController extends Controller
         $productPrice = $request->productPrice;
         $productCurrency = $request->productCurrency;
         $productCategory = $request->productCategory;
-        $filename = 'hello';
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $photo) {
-                $filename = $photo->store('images');
 
-            }
-        }
-        return $filename;
+        return $request->all();
 
     }
 
