@@ -160,6 +160,7 @@ let showAddNewSpecButton = (specLength) => {
     $('#deleteSpec').attr('hidden', false);
 };
 
+//initialize dropzone
 let initializeFileUploader = () => {
     token = $('input[name="_token"]').val();
     Dropzone.autoDiscover = false;
@@ -181,6 +182,7 @@ let initializeFileUploader = () => {
 
 };
 
+//add hidden field to document for image id
 let addImageHiddenField = (id) => {
 let inputElement='<input type="hidden" name="imageIds[]" value="'+id+'"'+'/>';
 $('#imageIds').append(inputElement);

@@ -59,6 +59,19 @@
                             </div>
                             <hr/>
                             <div class="row">
+
+                                <div class="col-md-6">
+                                    <h4>@lang('createProduct.header10')</h4>
+                                    <select name="productStore" required class="form-control">
+                                        <option value="">Choose a store</option>
+                                        @foreach($stores as $store)
+                                            <option value="{{$store->id}}">{{$store->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <h4>@lang('createProduct.header3')</h4>
                                     <div id="subCategories">
@@ -108,7 +121,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     <h4>@lang('createProduct.header7')</h4>
-                                    <input type="checkbox" name="isNew"/>
+                                    <input type="hidden" name="isNew" value="0"/>
+                                    <input type="checkbox" name="isNew" value="1"/>
                                 </div>
                             </div>
 
@@ -124,6 +138,7 @@
                                 </div>
                             </div>
                             <hr/>
+
                             <div class="row">
 
                                 <div class="col-sm-8 col-sm-offset-6">
