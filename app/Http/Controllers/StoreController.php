@@ -82,7 +82,7 @@ class StoreController extends Controller
             $this->validate($request, [
                 'name' => 'required|unique:stores',
                 'email'=>'required|email|:stores',
-                'description'=>'required|max:255',
+                'description'=>'required|max:1000',
                 'avatar' => 'image|mimes:jpeg,bmp,png|max:4000',
                 //'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
 
