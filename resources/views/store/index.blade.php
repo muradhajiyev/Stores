@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', "Store | {$store->name}")
+
 @section('content')
 
 <section id="slider"><!--slider-->
@@ -9,38 +11,38 @@
 
    <div class="row">
     <div class="col-sm-12">
-     <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="box-shadow: 1px 1px 1px 1px gray; background: url('/images/home/default-cover.png');">
+     <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="background: url('/images/home/default-cover.png');">
       <ol class="carousel-indicators">
        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
        <li data-target="#slider-carousel" data-slide-to="1"></li>
        <li data-target="#slider-carousel" data-slide-to="2"></li>
       </ol>
       
-      <div class="carousel-inner">
-       <div class="item active">
-        <div class="col-sm-12" style="height: 360px;">
-         <img src="{{asset("images/banner.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
+      <div class="carousel-inner" >
+       <div class="item active" style="width:1350px;margin-left: -10%;">
+        <div class="col-sm-12" style="height: 380px;">
+         <img src="{{asset("images/banner.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%; "/>
      </div>
        </div>
-       <div class="item">
-        <div class="col-sm-12" style="height: 360px">
-         <img src="{{asset("images/banner1.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
+       <div class="item" style="width:1400px;margin-left: -10%;">
+        <div class="col-sm-12" style="height: 380px">
+         <img src="{{asset("images/banner1.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%;"/>
         </div>
 
        </div>
        
-       <div class="item">
-        <div class="col-sm-12" style="height: 360px">
-         <img src="{{asset("images/banner2.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%"/>
+       <div class="item" style="width:1400px;margin-left: -10%;">
+        <div class="col-sm-12" style="height: 380px">
+         <img src="{{asset("images/banner2.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%;"/>
         </div>
        </div>
        
       </div>
       
-      <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+      <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev" style="margin-left: 1%;">
        <i class="fa fa-angle-left"></i>
       </a>
-      <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+      <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next" style="margin-right: 2%;">
        <i class="fa fa-angle-right"></i>
       </a>
      </div>
@@ -61,15 +63,14 @@
         <i>{{$store->slogan}}</i>   
       
        </p>  
-    	<p style="text-align: justify;">{{$store->description}}
+    	<span style="text-align: justify;">
+      {{substr($store->description, 0, 150)}}
 
-     </p><p id="show" style="display: none; text-align:justify;"> 
-
+     </span><span id="show" style="display: none; text-align:justify;"> 
+        {{substr($store->description, 150)}}
             <!-- This part is not connected/ for this length of text should be increased -->
 
-
-        Although its reviews and events listings often focus on the cultural life of New York City, The New Yorker has a wide audience outside of New York and is read internationally. It is well known for its illustrated and often topical covers, its commentaries on popular culture and eccentric Americana, its attention to modern fiction by the inclusion of short stories and literary reviews, its rigorous fact checking and copyediting, its journalism on politics and social issues, and its single-panel cartoons sprinkled throughout each issue.
-      </p> <span id="toggle" style="color: blue" class="hideLink"><u>See more</u></span>
+      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></p>
     </div>
    </div>
 
@@ -85,11 +86,11 @@
               });
           });
           $(".hideLink").on("click", function(){
-          if($(this).text()=="See less")
+          if($(this).text()=="see less")
           {
-              $(this).text("See more");
+              $(this).text("see more");
           } else {
-              $(this).text("See less");
+              $(this).text("see less");
           }
           $(".ISProductBody").toggle(); 
               return false;
@@ -107,8 +108,145 @@
         <div class="container">
             <div class="row">
 
-                @include('layouts.left-sidebar')
-
+              <div class="col-sm-3">
+          <div class="left-sidebar">
+            <h2>Category</h2>
+            <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                      <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                      Sportswear
+                    </a>
+                  </h4>
+                </div>
+                <div id="sportswear" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <ul>
+                      <li><a href="#">Nike </a></li>
+                      <li><a href="#">Under Armour </a></li>
+                      <li><a href="#">Adidas </a></li>
+                      <li><a href="#">Puma</a></li>
+                      <li><a href="#">ASICS </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                      <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                      Mens
+                    </a>
+                  </h4>
+                </div>
+                <div id="mens" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <ul>
+                      <li><a href="#">Fendi</a></li>
+                      <li><a href="#">Guess</a></li>
+                      <li><a href="#">Valentino</a></li>
+                      <li><a href="#">Dior</a></li>
+                      <li><a href="#">Versace</a></li>
+                      <li><a href="#">Armani</a></li>
+                      <li><a href="#">Prada</a></li>
+                      <li><a href="#">Dolce and Gabbana</a></li>
+                      <li><a href="#">Chanel</a></li>
+                      <li><a href="#">Gucci</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordian" href="#womens">
+                      <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                      Womens
+                    </a>
+                  </h4>
+                </div>
+                <div id="womens" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <ul>
+                      <li><a href="#">Fendi</a></li>
+                      <li><a href="#">Guess</a></li>
+                      <li><a href="#">Valentino</a></li>
+                      <li><a href="#">Dior</a></li>
+                      <li><a href="#">Versace</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href="#">Kids</a></h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href="#">Fashion</a></h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href="#">Households</a></h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href="#">Interiors</a></h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href="#">Clothing</a></h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href="#">Bags</a></h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href="#">Shoes</a></h4>
+                </div>
+              </div>
+            </div><!--/category-products-->
+          
+            <div class="brands_products"><!--brands_products-->
+              <h2>Brands</h2>
+              <div class="brands-name">
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
+                  <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+                  <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
+                  <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
+                  <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
+                  <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
+                  <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+                </ul>
+              </div>
+            </div><!--/brands_products-->
+            
+            <div class="price-range"><!--price-range-->
+              <h2>Price Range</h2>
+              <div class="well text-center">
+                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+              </div>
+            </div><!--/price-range-->
+            
+            <div class="shipping text-center"><!--shipping-->
+              <img src="images/home/shipping.jpg" alt="" />
+            </div><!--/shipping-->
+          
+          </div>
+        </div>
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Product List</h2>
