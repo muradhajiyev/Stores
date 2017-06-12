@@ -70,6 +70,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('specifications/{id}','CategoryController@getSpecificationsByCategoryId');
     Route::get('specification/{id}/type', 'SpecificationController@getSpecTypeAndUnit');
     Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
+    Route::post('uploadFile', 'UploadFileController@upload');
     });
 Route::get('/403', function () {
     return view('403.403');
