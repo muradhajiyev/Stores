@@ -154,7 +154,7 @@
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">top Stores</h2>
                            @foreach($stores as $store)
-                                         
+
                           <div class="col-sm-4">
                             <div class="product-image-wrapper" style="box-shadow: 1px 2px 2px gray; height: 350px;">
                                 <div class="single-products">
@@ -167,8 +167,8 @@
                                 </div>
                             </div>
 
-                        </div>      
-                        @endforeach   
+                        </div>
+                        @endforeach
 
                     </div>
                     <div>
@@ -588,8 +588,7 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
-                    </div><!--/recommended_items-->
-
+                    </div>
                 </div>
             </div>
         </div>

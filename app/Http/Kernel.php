@@ -58,6 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'adminOrStore'=> \App\Http\Middleware\RedirectIfNotAdminOrStore::class,
-        
+
     ];
 }

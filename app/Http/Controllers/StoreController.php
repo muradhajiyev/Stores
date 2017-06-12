@@ -13,7 +13,7 @@ class StoreController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('getAllStores');
     }
 
     /**
@@ -107,7 +107,7 @@ class StoreController extends Controller
             $store->email = $request->email;
             $store->profile_image_id = $imgId;
             $store->save();
-            
+
             //request will send array of cover photos, then this part can be in foreach;
             if($request->hasFile('cover')){
                 $cimage = new Image();
@@ -119,8 +119,8 @@ class StoreController extends Controller
                 $storeImg = new Store_Image();
                 $storeImg->store_id = $store->id;
                 $storeImg->image_id = $cimage->id;
-                $storeImg->save();  
-            }    
+                $storeImg->save();
+            }
         }
         else {
             $this->validate($request, [
@@ -197,4 +197,13 @@ class StoreController extends Controller
         //files and images of store should be deleted
         return redirect()->action('StoreController@index');
     }
+
+
+    public function getAllStores()
+    {
+        $stores = Store::all()->toJson();
+        return $stores;
+    }
+
+
 }
