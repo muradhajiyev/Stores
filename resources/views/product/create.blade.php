@@ -130,7 +130,7 @@
                             <hr/>
                             <div class="row">
                                 <h4>@lang('createProduct.header6')</h4>
-                                <div class="col-md-8  dropzone" id="fileUpload" >
+                                <div class="col-md-6  dropzone" id="fileUpload" >
 
                                 </div>
                                 <div id="imageIds">
@@ -156,5 +156,4 @@
             </div>
         </div>
     </section><!--/form-->
-
 @endsection

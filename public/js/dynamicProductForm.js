@@ -8,6 +8,7 @@ const InputTypes = {
 let specificationSelectElement;
 $(document).ready(function () {
     initializeFileUploader();
+    $('#submitProduct').attr('disabled', 'disabled');
     //console.log( $('#subCategories').children('.parentCategorySelect').last());
     $('.parentCategory').livequery('change', function (event) {
         clearNextElements(this, '.parentCategory');
@@ -70,16 +71,21 @@ let appendSpecifications = (specfications) => {
 
 //get specifications of current category
 let getSpecificationsByCategoryId = function (id) {
-    let selectElement = '<div class="row productSpecifications"> <div class="col-md-2 form-group specification"> <select class="form-control productSpec" name="productSpec" required> ';
+    let div1 = $("<div></div>").attr("class", "row productSpecifications");
+    let div2 = $("<div></div>").attr("class", "col-md-2 form-group specification");
+
+    let selectElement = $("<select></select>").attr("class", "form-control productSpec").attr("name", "productSpec[]").attr('required', true);
+
+
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
             if (data.length > 0) {
-                selectElement += '<option selected disabled>Select Specifications</option>';
+                selectElement.append('<option selected value="" disabled>Select Specifications</option>');
                 data.forEach(function (spec) {
-                    selectElement += '<option value="' + spec.id + '">' + spec.name + '</option>';
+                    selectElement.append('<option value="' + spec.id + '">' + spec.name + '</option>');
                 });
-                selectElement += '</select> </div> </div>';
-                appendSpecifications(selectElement);
+                appendSpecifications(div1.append(div2.append(selectElement)));
+
                 showAddNewSpecButton(data.length);
                 specificationSelectElement = selectElement;
             }
@@ -103,10 +109,10 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
             let element;
             let unit = data[1];
             if (data[0] === InputTypes.number) {
-                element = '<div class="col-md-2 form-group"> <input type="number" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
+                element = '<div class="col-md-2 form-group"> <input type="number" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
                 append(element, unit, appendArea);
             } else if (data[0] === InputTypes.text) {
-                element = '<div class="col-md-2 form-group"> <input type="text" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
+                element = '<div class="col-md-2 form-group"> <input type="text" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
                 append(element, unit, appendArea);
             } else if (data[0] === InputTypes.dropdown) {
 
@@ -114,10 +120,10 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
                     let dropdownArray = JSON.parse(data);
                     if (dropdownArray) {
 
-                        element = '<div class="col-md-2 form-group"> <select name="specValue" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
+                        element = '<div class="col-md-2 form-group"> <select name="specValue[]" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
                         for (x in dropdownArray) {
 
-                            element += '<option value="' + dropdownArray[x].id + '"> ' + dropdownArray[x].dropdown_value + '</option>';
+                            element += '<option> ' + dropdownArray[x].dropdown_value + '</option>';
                         }
                         element += '</select> </div>';
 
@@ -128,7 +134,7 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
 
 
             } else if (data[0] === InputTypes.radio) {
-                element = '<div class="col-md-2 form-group"> <input type="checkbox" name="specValue" class="form-control specValue"/> </div>';
+                element = '<div class="col-md-2 form-group"> <input type="checkbox" name="specValue[]" class="form-control specValue"/> </div>';
                 append(element, unit, appendArea);
             }
         }
@@ -140,7 +146,19 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
 //duplicate the same specification select element when new button is pressed
 let duplicateSpecifications = () => {
     if (specificationSelectElement) {
-        appendSpecifications(specificationSelectElement);
+        specificationSelectElement = $(specificationSelectElement).clone();
+        let div1 = $("<div></div>").attr("class", "row productSpecifications");
+        let div2 = $("<div></div>").attr("class", "col-md-2 form-group specification");
+        let selectedValues = $('select[name="productSpec[]"]').map(function () {
+            return this.value;
+        }).get();
+        selectedValues.forEach(function (data) {
+
+            //$(specificationSelectElement+' option[value="'+data+'"]').attr('disabled', true);
+        });
+        appendSpecifications(div1.append(div2.append(specificationSelectElement)));
+
+
     }
 };
 
@@ -164,26 +182,28 @@ let showAddNewSpecButton = (specLength) => {
 let initializeFileUploader = () => {
     token = $('input[name="_token"]').val();
     Dropzone.autoDiscover = false;
-    let myDropzone = new Dropzone("#fileUpload", {
-        url: "/api/uploadFile",
-        addRemoveLinks: true,
-        success: function (file, response) {
-            addImageHiddenField(response);
-        },
-        init: function () {
-            this.on('sending', function (file, xhr, formData) {
-                formData.append('_token', token);
-            });
-            this.on('removedfile', function (file) {
+    if ($('#fileUpload').length > 0) {
+        let myDropzone = new Dropzone("#fileUpload", {
+            url: "/api/uploadFile",
+            addRemoveLinks: true,
+            success: function (file, response) {
+                addImageHiddenField(response);
+            },
+            init: function () {
+                this.on('sending', function (file, xhr, formData) {
+                    formData.append('_token', token);
+                });
+                this.on('removedfile', function (file) {
 
-            });
-        }
-    });
-
+                });
+            }
+        });
+    }
 };
 
 //add hidden field to document for image id
 let addImageHiddenField = (id) => {
-let inputElement='<input type="hidden" name="imageIds[]" value="'+id+'"'+'/>';
-$('#imageIds').append(inputElement);
+    let inputElement = '<input type="hidden" name="imageIds[]" value="' + id + '"' + '/>';
+    $('#imageIds').append(inputElement);
+    $('#submitProduct').removeAttr('disabled');
 };

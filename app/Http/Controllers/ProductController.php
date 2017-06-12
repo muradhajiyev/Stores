@@ -7,6 +7,7 @@ use App\Category;
 use App\currency;
 use App\Product;
 use App\Product_Image;
+use App\Specification_Value;
 use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ class ProductController extends Controller
     {
 
         $this->middleware(['auth', 'adminOrStore'])->except('index');
-        $this->middleware(['storeOwner'])->only('store');
+        $this->middleware(['storeOwner'])->only('store', 'update', 'edit', 'destroy');
     }
 
     /**
@@ -42,7 +43,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $parentCategories = Category::all()->where('parent_id', null);
         $currencies = currency::all();
-        $stores=Store::all()->where('user_id', Auth::user()->id);
+        $stores = Store::all()->where('user_id', Auth::user()->id);
         return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies)->with('stores', $stores);
 
 
@@ -62,7 +63,7 @@ class ProductController extends Controller
             'productPrice' => 'required|numeric|min:0',
             'productCurrency' => 'required',
             'productCategory' => 'required',
-            'imageIds'=>'required'
+            'imageIds' => 'required'
 
         ]);
         $productName = $request->productName;
@@ -70,10 +71,13 @@ class ProductController extends Controller
         $productCurrency = $request->productCurrency;
         $productCategory = $request->productCategory;
         $productStore = $request->productStore;
-        $isNew=$request->isNew;
-        $productBrand=$request->productBrand;
-        $imageIDs=$request->imageIds;
-        $profileImageId=reset($imageIDs);
+        $isNew = $request->isNew;
+        $productBrand = $request->productBrand;
+        $imageIDs = $request->imageIds;
+        $profileImageId = reset($imageIDs);
+
+        $productSpec = $request->productSpec;
+        $specValue = $request->specValue;
         $product = Product::create([
             'name' => $productName,
             'price' => $productPrice,
@@ -82,7 +86,7 @@ class ProductController extends Controller
             'store_id' => $productStore,
             'is_new' => $isNew,
             'brand_id' => $productBrand,
-            'profile_image_id' =>$profileImageId
+            'profile_image_id' => $profileImageId
         ]);
         foreach ($imageIDs as $imageID) {
             Product_Image::create([
@@ -91,7 +95,16 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect('/store/'.$productStore);
+        for ($i = 0; $i < count($productSpec); $i++) {
+            if ($productSpec[$i] && $specValue[$i]) {
+                Specification_Value::create(['product_id' => $product->id,
+                    'specification_id' => $productSpec[$i],
+                    'value' => $specValue[$i]]);
+            }
+        }
+
+
+        return redirect('/store/' . $productStore);
 
     }
 
