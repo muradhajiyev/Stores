@@ -12,10 +12,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function show(){
         $stores = Store::orderBy('created_at', 'desc')->paginate(12);
 
@@ -28,7 +24,7 @@ class HomeController extends Controller
 
         return view('store.index', ['store' => $store]);
 
-        // $stores = Store::all();
+        // $stores = Store::all(); 
 
         // return view('store.index', ['stores'=>$stores]);
     }

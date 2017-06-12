@@ -54,7 +54,7 @@
 
    
     <div class="col-sm-8 descript" style=" margin-top: 2%;">
-    	 <a href="#" style="color: orange;font-size: 30px;"><span >{{$store->name}}</span></a> 
+    	 <a href="{{ route('store.index', $store->id)}}" style="color: orange;font-size: 30px;"><span >{{$store->name}}</span></a> 
 
     	 <p style="margin-top: 2%; ">
       
