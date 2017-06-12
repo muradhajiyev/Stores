@@ -1,5 +1,8 @@
 <header id="header"><!--header-->
     <div class="header_top"><!--header_top-->
+    <title>@yield('page-title')</title>
+<link rel="icon" href="{!! asset('product/images/ico/apple-touch-icon-144-precomposed.png') !!}"/>
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -33,8 +36,8 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo pull-left">
-                        <a href="#"><img
-                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt=""/></a>
+                        <a href="{{ url('/store') }}"><img
+                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt="" style="width:70px;height:70px;"/></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
