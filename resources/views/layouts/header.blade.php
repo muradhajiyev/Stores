@@ -34,7 +34,7 @@
                 <div class="col-sm-6">
                     <div class="logo pull-left">
                         <a href="#"><img
-                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt=""/></a>
+                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt="" style="width:70px;height:70px;"/></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
