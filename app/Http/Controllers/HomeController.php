@@ -15,7 +15,7 @@ class HomeController extends Controller
      * @return void
      */
     public function show(){
-        $stores = Store::orderBy('created_at', 'desc')->paginate(12);
+        $stores = Store::orderBy('created_at', 'desc')->paginate(12); 
         return view('home.index', ['stores'=>$stores]);
     }
     public function showSpecificStores($name,$id)
