@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use App\currency;
+use App\Product;
+use App\Product_Image;
+use App\Specification_Value;
+use App\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,6 +19,7 @@ class ProductController extends Controller
     {
 
         $this->middleware(['auth', 'adminOrStore'])->except('index');
+        $this->middleware(['storeOwner'])->only('create','store', 'update', 'edit', 'destroy');
     }
 
     /**
@@ -31,13 +37,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
 
         $brands = Brand::all();
         $parentCategories = Category::all()->where('parent_id', null);
         $currencies = currency::all();
-        return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies);
+        $store= Store::find($request->store);
+        return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies)->with('store', $store);
 
 
     }
@@ -56,20 +63,48 @@ class ProductController extends Controller
             'productPrice' => 'required|numeric|min:0',
             'productCurrency' => 'required',
             'productCategory' => 'required',
+            'imageIds' => 'required'
 
         ]);
         $productName = $request->productName;
         $productPrice = $request->productPrice;
         $productCurrency = $request->productCurrency;
         $productCategory = $request->productCategory;
-        $filename = 'hello';
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $photo) {
-                $filename = $photo->store('images');
+        $productStore = $request->store;
+        $isNew = $request->isNew;
+        $productBrand = $request->productBrand;
+        $imageIDs = $request->imageIds;
+        $profileImageId = reset($imageIDs);
 
+        $productSpec = $request->productSpec;
+        $specValue = $request->specValue;
+        $product = Product::create([
+            'name' => $productName,
+            'price' => $productPrice,
+            'category_id' => $productCategory,
+            'currency_id' => $productCurrency,
+            'store_id' => $productStore,
+            'is_new' => $isNew,
+            'brand_id' => $productBrand,
+            'profile_image_id' => $profileImageId
+        ]);
+        foreach ($imageIDs as $imageID) {
+            Product_Image::create([
+                'product_id' => $product->id,
+                'image_id' => $imageID
+            ]);
+        }
+
+        for ($i = 0; $i < count($productSpec); $i++) {
+            if ($productSpec[$i] && $specValue[$i]) {
+                Specification_Value::create(['product_id' => $product->id,
+                    'specification_id' => $productSpec[$i],
+                    'value' => $specValue[$i]]);
             }
         }
-        return $filename;
+
+
+        return redirect('/store/' . $productStore);
 
     }
 

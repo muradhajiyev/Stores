@@ -65,21 +65,21 @@
 
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="" style="font-size: 20px; color: orange;"><img src="{{asset("images/home/default-avatar.png")}}" alt="" style="box-shadow: 0px 2px 4px 0px gray;"/>
+                            <a href="{{ route('store.index', $store->id)}}" style="font-size: 20px;color: orange;"><img src="{{asset("images/home/default-avatar.png")}}" alt="" style="box-shadow: 0px 2px 4px 0px gray;"/>
                            <hr>  {{$store->name}}</a><p><i> {{$store->email}}</i></p>
                         </div>
                     </div>
                     </a>
                      <div class="row">
                         <div class="col-xs-12 col-md-6">
-                            <form action="{{ URL::to('/admin/store/'.$store->id) }}" method="POST" >
+                            <form action="{{ URL::to('/admin/stores/'.$store->id) }}" method="POST" >
                                 <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                 <input name="_method" type="hidden" value="DELETE" >
                                 <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" style="margin-left: 15%;background-color: #f48064;border:0;">
                             </form>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a href="{{ URL::to('/admin/store/'.$store->id.'/edit') }}" class="btn btn-danger" style="background-color: #5fbe28; border: 0;"><i class="fa fa-pencil-square-o"> </i> Edit</a>
+                            <a href="{{ URL::to('/admin/stores/'.$store->id.'/edit') }}" class="btn btn-danger" style="background-color: #5fbe28; border: 0;"><i class="fa fa-pencil-square-o"> </i> Edit</a>
                         </div>
 
 
@@ -90,7 +90,9 @@
 
             </div>
         </div>
+
        
+
         <div class="container">
         {{$storelist->appends(request()->only('searchtext'))->render()}}
         </div>

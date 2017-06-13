@@ -53,7 +53,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"/>
 
-    <script src="{{ asset('js/dropdown.js' )}}"></script>
+
 
 
 </head>
@@ -380,7 +380,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/admin/store') }}">
+                    <a href="{{ url('/admin/stores') }}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
 
                         <span class="pull-right-container">
@@ -659,7 +659,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <script src="{{asset('js/multiselect.js')}}"></script>
 
-
+    <script src="{{ asset('js/dropdown.js' )}}"></script>
 </div>
 </div>
 </body>

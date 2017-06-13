@@ -23,8 +23,10 @@ Route::get('/storeregister', function () {
  Route::post('/postCover', 'StoreController@postCover');
 
 Route::group(['prefix' => 'admin'], function () {
+
     Route::get('/', 'AdminController@index');
-    Route::resource('store', 'StoreController');
+
+    Route::resource('stores', 'StoreController');
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
@@ -64,13 +66,19 @@ Route::group(['prefix' => 'store'], function () {
         return view('temp.shop');
     });
 });
+
 Route::resource("products", 'ProductController');
+
 Route::group(['prefix' => 'api'], function () {
+
     Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
     Route::get('specifications/{id}','CategoryController@getSpecificationsByCategoryId');
     Route::get('specification/{id}/type', 'SpecificationController@getSpecTypeAndUnit');
     Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
-    });
+    
+    Route::post('uploadFile', 'UploadFileController@upload');
+});
+
 Route::get('/403', function () {
     return view('403.403');
 });

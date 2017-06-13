@@ -2,12 +2,15 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +47,13 @@ class User extends Authenticatable
     }
     public function isUser(){
         if($this->role->name=='user'){
+            return true;
+        }
+        return false;
+    }
+    public function isStoreOwner($id){
+        $store=Store::find($id);
+        if($store&&($this->id===$store->user_id)){
             return true;
         }
         return false;
