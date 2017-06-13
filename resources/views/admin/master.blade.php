@@ -37,10 +37,9 @@
    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>-->
 
-
-   <!--store css-->
-   <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
-   <link rel="stylesheet" href="{{ asset("/css/dropzone.css")}}">
+    <!--store css-->
+    <!-- <link rel="stylesheet" href="{{ asset("/css/grid.css")}}"> -->
+    <link rel="stylesheet" href="{{ asset("/css/dropzone.css")}}">
 
    <!-- Google Font -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -377,11 +376,19 @@
                <i class="fa fa-chevron-down" aria-hidden="true"></i> <span>Dropdown Sources</span>
                <span class="pull-right-container">
                </span>
+<<<<<<< HEAD
             </a>
          </li>
          <li>
             <a href="{{ url('/admin/store') }}">
                <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
+=======
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/admin/stores') }}">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
+>>>>>>> ab8a3bd467a882b6f86cd65dbf449ce370bd71cf
 
                <span class="pull-right-container">
                </span>
