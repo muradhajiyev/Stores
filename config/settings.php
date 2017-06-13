@@ -12,4 +12,8 @@ return [
    'max_cover_photo_count' => "3",
 
    'max_product_photo_count' => "3",
+   'max_file_size' => "4",
+   'product_base_path' => "/products",
+   'store_base_path' =>"/store",
+   'user_base_path' =>"/user",
    ];

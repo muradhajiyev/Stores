@@ -8,6 +8,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
+
         <div class="container" style="height: 100%;width: 100%;">
             <div class="" >
                 <div class="item  " style="margin-top: 1%; box-shadow: 1px 1px 1px black;">
@@ -120,16 +121,19 @@
 
     <script type="text/javascript">
          // $(document).ready(function(){
-
+console.log(@lang('words.maxFile'));
+console.log({{config('settings.max_cover_photo_count')}});
      $(function() {
          //img_id is used to recieve created cover image ids from server and giving this ids to server
          //in hidden field so that after the creation of store server can fill store_image table
          var img_id = "1";
+         //{{config('settings.max_cover_photo_count')}}
+         console.log("vvvicerde");
        
          Dropzone.options.myAwesomeDropzone = {
 
-         maxFilesize: 4,
-         maxFiles: 3,
+         maxFilesize: {{config('settings.max_file_size')}},
+         maxFiles: {{config('settings.max_cover_photo_count')}},
          dictFileTooBig: "Fayl Olcusu boyukdur. Max 4Mb",
          dictMaxFilesExceeded: "Siz 3 den artiq fayl daxil ede bilmezsiniz",
 
@@ -137,6 +141,7 @@
                 console.log('WE NEVER REACH THIS POINT.');
                 
                 img_id += "," + response;
+                console.log(file);
                 $('#imgs').val(img_id);
             
             }

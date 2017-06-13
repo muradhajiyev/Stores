@@ -53,7 +53,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"/>
 
-    <script src="{{ asset('js/dropdown.js' )}}"></script>
+   
 
 
 </head>
@@ -647,6 +647,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="{{ asset('js/specification.js' )}}"></script>
     <script src="{{asset('js/dropzone.js')}}"></script>
+     <script src="{{ asset('js/dropdown.js' )}}"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>

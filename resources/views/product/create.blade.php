@@ -101,7 +101,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h4>@lang('createProduct.header6')</h4>
-                                    <input type="file" name="files[]" multiple>
+                                    <input type="file" name="files[]">
                                 </div>
                             </div>
                             <hr/>
