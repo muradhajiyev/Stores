@@ -51,9 +51,7 @@ class HomeController extends Controller
 
         return view('store.index', ['store' => $store]);
 
-        // $stores = Store::all(); 
 
-        // return view('store.index', ['stores'=>$stores]);
     }
 
     /**
