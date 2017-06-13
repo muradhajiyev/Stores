@@ -81,10 +81,6 @@
    </div>
 
 
-      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
-                </div>
-            </div>
-
 
             <hr style="border-color: orange;">
         </div>
