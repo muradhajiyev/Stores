@@ -13,7 +13,8 @@ return [
 
    'max_product_photo_count' => "3",
    'max_file_size' => "4",
-   'product_base_path' => "/products",
-   'store_base_path' =>"/store",
-   'user_base_path' =>"/user",
+
+   'product_base_path' => "images/products",
+   'store_base_path' => "images/stores",
+   'user_base_path' => "images/users",
    ];

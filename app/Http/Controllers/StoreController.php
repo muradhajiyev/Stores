@@ -84,15 +84,17 @@ class StoreController extends Controller
                 'email'=>'required|email|:stores',
                 'description'=>'required|max:1000',
                 'avatar' => 'image|mimes:jpeg,bmp,png|max:4000',
+                'imageIds' => 'required'
                 //'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
 
             ]);
             //default image id if user has not chosen any profile picture
             $imgId = 1;
             if($request->hasFile('avatar')){
+            $dir = config('settings.store_base_path') . "/profiles/" . date("Y-m-d");
+            $path = $request->file('avatar')->store($dir);
             $image = new Image();
-            $path = "afterResearch";//$request->file('avatar')->store('public');
-            $image->file_name = substr($path,7);
+            $image->file_name = substr($path,strlen($dir) + 1);
             $image->extension = $request->avatar->extension();
             $image->file_size = filesize($request->avatar);
             $image->path = $path;
@@ -111,33 +113,15 @@ class StoreController extends Controller
             $store->profile_image_id = $imgId;
             $store->save();
 
-            $str = $request->img_ids;
-            $ids = explode(",",$str);
+            $imageIDs = $request->imageIds;
+            foreach ($imageIDs as $imageID) {
+                 Store_Image::create([
+                'store_id' => $store->id,
+                'image_id' => $imageID
+            ]);
+        }
 
-             //for each img_ids (cover image ids) recieved we should populate Store_Image table.
-            foreach ($ids as $i) {
-              if($i == '1'){}
-              else{
-                $storeImg = new Store_Image();
-                $storeImg->store_id = $store->id;
-                $storeImg->image_id = $i;
-                $storeImg->save(); 
-                }   
-            }
-             //return $y;
-            //request will send array of cover photos, then this part can be in foreach;
-            // if($request->hasFile('cover')){
-            //     $cimage = new Image();
-            //     $cimage->file_name = substr($request->file('cover')->store('public'),7);
-            //     $cimage->extension = $request->cover->extension();
-            //     $cimage->file_size = filesize($request->cover);
-            //     $cimage->path = $request->file('cover')->store('public');
-            //     $cimage->save();
-            //     $storeImg = new Store_Image();
-            //     $storeImg->store_id = $store->id;
-            //     $storeImg->image_id = $cimage->id;
-            //     $storeImg->save();  
-            // }    
+           
         }
         else {
             $this->validate($request, [
@@ -218,23 +202,23 @@ class StoreController extends Controller
         return redirect()->action('StoreController@index');
     }
 
-    public function postCover(Request $request) {
+   //  public function postCover(Request $request) {
 
-        $this->validate($request, [
-            'file' => 'image|mimes:jpeg,bmp,png|max:4000',
-        ]);
+   //      $this->validate($request, [
+   //          'file' => 'image|mimes:jpeg,bmp,png|max:4000',
+   //      ]);
 
-            $image = new Image();
-            $path = "afterResearch";//$request->file('file')->store('public');
-            $image->file_name = substr($path,7);
-            $image->extension = $request->file->extension();
-            $image->file_size = filesize($request->file);
-            $image->path = $path;
-            $image->save();
-            $imgId = $image->id;
-         return response()->json($imgId, 200);
-         // return response()->json('error', 400);
-   }
+   //          $image = new Image();
+   //          $path = "afterResearch";//$request->file('file')->store('public');
+   //          $image->file_name = substr($path,7);
+   //          $image->extension = $request->file->extension();
+   //          $image->file_size = filesize($request->file);
+   //          $image->path = $path;
+   //          $image->save();
+   //          $imgId = $image->id;
+   //       return response()->json($imgId, 200);
+   //       // return response()->json('error', 400);
+   // }
 
 }
  
