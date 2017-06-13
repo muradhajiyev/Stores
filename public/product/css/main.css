@@ -30,7 +30,15 @@ text-decoration:none;
   background-color: #EEEEE0;
   border-color: #EEEEE0;
 }
-
+#searchByStoreName{
+  border-radius: 0px;
+  border-color: #edaf5e;
+}
+#searchByStoreName:hover{
+  color: black;
+  background-color: #EEEEE0;
+  border-color: #EEEEE0;
+}
 a:focus {
   outline:none;
   outline-offset: 0;
@@ -256,25 +264,30 @@ a#scrollUp i{
 	padding-bottom: 10px;
 }
 
+
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
 	background:none;
 	color:#fdb45e;
+}
+#categoryPressed.active{
+  background:none;
+  color:#fdb45e;
 }
 
 .search_box input {
   background: #F0F0E9;
   border: medium none;
-  color: #B2B2B2;
+  color: black;
   font-family: 'roboto';
   font-size: 12px;
   font-weight: 300;
   height: 35px;
   outline: medium none;
   padding-left: 10px;
-  width: 155px;
+  width: 370px;
   background-image: url(../images/home/searchicon.png);
   background-repeat: no-repeat;
-  background-position: 130px;
+  background-position: 97%;
 }
 
 
