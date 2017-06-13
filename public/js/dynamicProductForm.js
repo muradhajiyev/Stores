@@ -21,6 +21,7 @@ $(document).ready(function () {
     $('.specification').livequery('change', function (event) {
         clearNextElements(this);
         appendSpecValuesAndUnit(event.target.value, this.parentElement);
+        showOrHideSpecButtons();
     });
     $('#addNewSpec').on('click', function (event) {
         event.preventDefault();
@@ -72,7 +73,7 @@ let appendSpecifications = (specfications) => {
     $('#specificationsArea').append(specfications);
 };
 
-//get specifications of current category
+//gets specifications of current category
 let getSpecificationsByCategoryId = function (id) {
     let div1 = $("<div></div>").attr("class", "row productSpecifications");
     let div2 = $("<div></div>").attr("class", "col-md-2 form-group specification");
@@ -146,7 +147,7 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
     });
 };
 
-//duplicate the same specification select element when new button is pressed
+//duplicates the same specification select element when new button is pressed
 let duplicateSpecifications = () => {
     if (specificationSelectElement) {
         specificationSelectElement = $(specificationSelectElement).clone();
@@ -168,7 +169,7 @@ let duplicateSpecifications = () => {
     }
 };
 
-//append specification value and unit field near selected specifcation
+//appends specification value and unit field near selected specifcation
 let append = function (element, unit, appendArea) {
     if (element) {
         $(appendArea).append(element);
@@ -178,23 +179,23 @@ let append = function (element, unit, appendArea) {
     }
 };
 
-//show add new button
+//shows or hides buttons
 let showOrHideSpecButtons = () => {
-    if ((specLength > 1)&&($('.productSpec').length<specLength)) {
-        $('#newSpec').attr('hidden', false);
-    }else {
+    if ((specLength > 1) && ($('.productSpec').length < specLength)) {
+        if (ifAllElementsHaveValue('productSpec'))
+            $('#newSpec').attr('hidden', false);
+    } else {
         $('#newSpec').attr('hidden', true);
     }
-    if($('.productSpec').length>0) {
+    if ($('.productSpec').length > 0) {
         $('#deleteSpec').attr('hidden', false);
-    }else{
+    } else {
         $('#deleteSpec').attr('hidden', true);
 
     }
 };
 
-
-//initialize dropzone
+//initializes dropzone
 let initializeFileUploader = () => {
     token = $('input[name="_token"]').val();
     Dropzone.autoDiscover = false;
@@ -217,7 +218,7 @@ let initializeFileUploader = () => {
     }
 };
 
-//add hidden field to document for image id
+//adds hidden field to document for image id
 let addImageHiddenField = (id) => {
     let inputElement = '<input type="hidden" name="imageIds[]" value="' + id + '"' + '/>';
     $('#imageIds').append(inputElement);
@@ -239,4 +240,19 @@ let disableOptionValues = (element, data) => {
             option.disabled = true;
         }
     }
+};
+
+//finds if all elements with the same class have value
+let ifAllElementsHaveValue = (elementClass) => {
+    let N = 0;
+    let element = $('.' + elementClass);
+
+    Array.from(element).forEach(function (data) {
+        if (data.value) {
+            N++;
+        }
+    });
+
+
+    return element.length === N;
 };
