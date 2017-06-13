@@ -6,6 +6,7 @@ const InputTypes = {
 
 };
 let specificationSelectElement;
+let specLength;
 $(document).ready(function () {
     initializeFileUploader();
     $('#submitProduct').attr('disabled', 'disabled');
@@ -24,10 +25,12 @@ $(document).ready(function () {
     $('#addNewSpec').on('click', function (event) {
         event.preventDefault();
         duplicateSpecifications();
+        showOrHideSpecButtons()
     });
     $('#deleteLastSpec').on('click', function (event) {
         event.preventDefault();
         $('#specificationsArea').children().last().remove();
+        showOrHideSpecButtons();
     });
 
 });
@@ -85,8 +88,8 @@ let getSpecificationsByCategoryId = function (id) {
                     selectElement.append('<option value="' + spec.id + '">' + spec.name + '</option>');
                 });
                 appendSpecifications(div1.append(div2.append(selectElement)));
-
-                showAddNewSpecButton(data.length);
+                specLength = data.length;
+                showOrHideSpecButtons();
                 specificationSelectElement = selectElement;
             }
 
@@ -152,9 +155,12 @@ let duplicateSpecifications = () => {
         let selectedValues = $('select[name="productSpec[]"]').map(function () {
             return this.value;
         }).get();
+        enableOptionValues(specificationSelectElement[0]);
+
         selectedValues.forEach(function (data) {
 
-            //$(specificationSelectElement+' option[value="'+data+'"]').attr('disabled', true);
+            disableOptionValues(specificationSelectElement[0], data);
+
         });
         appendSpecifications(div1.append(div2.append(specificationSelectElement)));
 
@@ -173,10 +179,20 @@ let append = function (element, unit, appendArea) {
 };
 
 //show add new button
-let showAddNewSpecButton = (specLength) => {
-    $('#newSpec').attr('hidden', false);
-    $('#deleteSpec').attr('hidden', false);
+let showOrHideSpecButtons = () => {
+    if ((specLength > 1)&&($('.productSpec').length<specLength)) {
+        $('#newSpec').attr('hidden', false);
+    }else {
+        $('#newSpec').attr('hidden', true);
+    }
+    if($('.productSpec').length>0) {
+        $('#deleteSpec').attr('hidden', false);
+    }else{
+        $('#deleteSpec').attr('hidden', true);
+
+    }
 };
+
 
 //initialize dropzone
 let initializeFileUploader = () => {
@@ -206,4 +222,21 @@ let addImageHiddenField = (id) => {
     let inputElement = '<input type="hidden" name="imageIds[]" value="' + id + '"' + '/>';
     $('#imageIds').append(inputElement);
     $('#submitProduct').removeAttr('disabled');
+};
+
+let enableOptionValues = (element) => {
+    let optionsLength = element.options.length;
+    for (let i = 1; i < optionsLength; i++) {
+        let option = element.options[i];
+        option.disabled = false;
+    }
+};
+let disableOptionValues = (element, data) => {
+    let optionsLength = element.options.length;
+    for (let i = 1; i < optionsLength; i++) {
+        let option = element.options[i];
+        if (option.value === data) {
+            option.disabled = true;
+        }
+    }
 };
