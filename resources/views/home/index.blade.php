@@ -2,7 +2,7 @@
 @section('title',' Home')
 
 @section('content')
-
+    @include('layouts.headerbottom')
 
     <section>
         <div class="container">

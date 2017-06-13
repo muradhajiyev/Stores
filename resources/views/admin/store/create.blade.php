@@ -73,7 +73,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="decription">@lang('words.description') <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <textarea type="text"  name="description" rows="8" required="required" maxlength="255"  class="form-control col-md-7 col-xs-12"></textarea>
+                                                <textarea type="text"  name="description" rows="8" required="required" minlength="150" maxlength="1000"  class="form-control col-md-7 col-xs-12"></textarea>
                                             </div>
                                         </div>
                                         <div class="item form-group">
