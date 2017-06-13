@@ -39,7 +39,7 @@
 
 
     <!--store css-->
-    <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
+    <!-- <link rel="stylesheet" href="{{ asset("/css/grid.css")}}"> -->
     <link rel="stylesheet" href="{{ asset("/css/dropzone.css")}}">
 
     <!-- Google Font -->
@@ -380,7 +380,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/admin/store') }}">
+                    <a href="{{ url('/admin/stores') }}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
 
                         <span class="pull-right-container">

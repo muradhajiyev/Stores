@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'AdminController@index');
 
-    Route::resource('stores', 'StoreController@getAllStores');
+    Route::resource('stores', 'StoreController');
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'store'], function () {
 
-    Route::get('/', 'HomeController@show');
+    Route::get('/', 'HomeController@show'); 
 
     Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
 
