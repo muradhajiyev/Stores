@@ -1,3 +1,4 @@
+
 <headerbottom id="headerbottom"><!--header-bottom-->
     <div class="header-bottom">
         <div class="container">
@@ -45,7 +46,7 @@
                                 <input hidden id="tags" name="category_name"
                                        value="{{app('request')->input('category_name')}}" placeholder="Search"
                                        type="text">
-                                <input id="tags" name="searchStoreName" placeholder="Search" type="text">
+                                <input id="storeName" name="searchStoreName" placeholder="Search" type="text">
                                 <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
                                     Search
                                 </button>
@@ -56,7 +57,7 @@
                     <form method="get" action="/">
                         <div class="col-sm-6">
                             <div class="search_box pull-right">
-                                <input id="tags" name="searchStoreName" type="text" placeholder="Search"/>
+                                <input id="storeName" name="searchStoreName" type="text" placeholder="Search"/>
                                 <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">Search
                                 </button>
                             </div>
