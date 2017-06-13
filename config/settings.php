@@ -15,10 +15,10 @@ return [
    'max_file_size' => "4",
 
    'base_image_url' =>"http://13.95.154.68/images/",
-   'product_base_path' => "stores/products/",
-   'store_cover_base_path' => "stores/covers/",
-   'store_profile_base_path' => "stores/profiles/",
-   'user_base_path' => "users/",
+   'product_base_path' => "images/stores/products/",
+   'store_cover_base_path' => "images/stores/covers/",
+   'store_profile_base_path' => "images/stores/profiles/",
+   'user_base_path' => "images/users/",
 
   
    ];

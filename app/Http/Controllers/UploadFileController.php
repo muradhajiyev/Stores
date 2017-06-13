@@ -17,7 +17,7 @@ class UploadFileController extends Controller
       //if isCover is set, then the image is Cover photo of store
       if(isset($request->isCover)){
        if($request->isCover =="1"){
-          $dir = config('settings.store_base_path') . date("Y-m-d");
+          $dir = config('settings.store_cover_base_path') . date("Y-m-d");
        }
      }
        $image = new Image();
