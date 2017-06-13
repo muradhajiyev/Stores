@@ -222,9 +222,9 @@ class StoreController extends Controller
             return response()->json($imgId, 200);
             // return response()->json('error', 400);
          }
-         public function getAllStores()
+         public function getAllStores(Request $request)
          {
-            $stores = Store::all();
+            $stores = Store::paginate(8);
             return $stores;
          }
       }
