@@ -39,7 +39,7 @@
 
 
     <!--store css-->
-    <link rel="stylesheet" href="{{ asset("/css/grid.css")}}">
+    <!-- <link rel="stylesheet" href="{{ asset("/css/grid.css")}}"> -->
     <link rel="stylesheet" href="{{ asset("/css/dropzone.css")}}">
 
     <!-- Google Font -->

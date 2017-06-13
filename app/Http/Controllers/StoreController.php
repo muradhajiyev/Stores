@@ -34,7 +34,7 @@ class StoreController extends Controller
 
                 $storelist= DB::table('stores')->where([
                     ['user_id', '=', $userrole->id],
-                    [DB::raw('LOWER(name)'),  'LIKE', "%".$searchtext."%"]])->paginate(6);
+                    [DB::raw('LOWER(name)'),  'LIKE', "%".$searchtext."%"]])->paginate(4);
 
 
             else if($userrole->isAdmin())

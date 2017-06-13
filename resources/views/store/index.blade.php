@@ -68,9 +68,7 @@
 
      </span><span id="show" style="display: none; text-align:justify;"> 
         {{substr($store->description, 150)}}
-            <!-- This part is not connected/ for this length of text should be increased -->
-
-      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></p>
+      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
     </div>
    </div>
 
