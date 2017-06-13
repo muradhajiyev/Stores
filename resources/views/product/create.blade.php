@@ -117,6 +117,8 @@
 
                             <hr/>
                             <div class="row">
+                                <div class="col-md-8">
+
                                 <h4>@lang('createProduct.header6')</h4>
                                 <div class="col-md-6  dropzone" id="fileUpload" >
 
