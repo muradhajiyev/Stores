@@ -34,17 +34,17 @@ class StoreController extends Controller
          $storelist= Store::where([
             ['user_id', '=', $userrole->id],
             [DB::raw('LOWER(name)'),  'LIKE', "%".$searchtext."%"]])->paginate(4);
-            else if($userrole->isAdmin())
-            $storelist= DB::table('stores')->where(DB::raw('LOWER(name)'), 'LIKE', "%".$searchtext."%")->paginate(6);
+         else if($userrole->isAdmin())
+            $storelist= Store::where(DB::raw('LOWER(name)'), 'LIKE', "%".$searchtext."%")->paginate(6);
          } else {
             $userrole = Auth::user();
 
             if ($userrole->isStore())
-            $storelist = DB::table('stores')->where('user_id', $userrole->id)->paginate(6);
+            $storelist = Store::where('user_id', $userrole->id)->paginate(6);
             else if ($userrole->isAdmin())
-            $storelist = DB::table('stores')->paginate(6);
+            $storelist = Store::paginate(6);
          }
-
+            return response($storelist, 200);
          return view('admin.store.index')->with(array('storelist'=>$storelist));
       }
 
