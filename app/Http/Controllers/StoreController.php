@@ -44,7 +44,7 @@ class StoreController extends Controller
             else if ($userrole->isAdmin())
             $storelist = Store::paginate(6);
          }
-            return response($storelist, 200);
+       
          return view('admin.store.index')->with(array('storelist'=>$storelist));
       }
 
