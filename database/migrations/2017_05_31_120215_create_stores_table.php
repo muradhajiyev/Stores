@@ -24,7 +24,6 @@ class CreateStoresTable extends Migration
             $table->String('description')->nullable();
             $table->timestamps();
         });
-        //qwerty
     }
 
     /**
