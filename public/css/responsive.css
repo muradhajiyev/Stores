@@ -1,11 +1,17 @@
 /* lg */ 
+
+
 @media (min-width: 1200px) {
 
 }
 
 /* md */
 @media (min-width: 992px) and (max-width: 1199px) {
- 
+
+
+.fontss{
+	font-size: 10px;
+}
  
 .usa{
 	margin-right: 0;

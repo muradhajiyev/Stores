@@ -12,7 +12,7 @@
                     <label class="form-group">Edit Category Name:</label>
                 </div>
                 <div class="col-md-4 ">
-                    <input type="text" name="categoryName" value="{{$category->name}}" id="categoryName"
+                    <input style="width: 280px" type="text" name="categoryName" value="{{$category->name}}" id="categoryName"
                            class="form-control"
                            placeholder="name..." required>
                 </div>
@@ -36,7 +36,7 @@
                                         @elseif($specification->id < $selected_id->spec_id)
                                             <option value="{{$specification->id}}">{{$specification->name}}</option>
                                             @break
-                                        @elseif($specification->id != $selected_id->spec_id && $selected_id == $selected_ids->last() && $specification == $specifications->last())
+                                        @elseif($specification->id != $selected_id->spec_id && $selected_id == $selected_ids->last())
                                             )
                                             <option value="{{$specification->id}}">{{$specification->name}}</option>
                                         @else
