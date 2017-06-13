@@ -16,9 +16,8 @@ class RedirectIfNotStoreOwner
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->isStoreOwner($request->productStore)) {
+        if (Auth::user()->isStoreOwner($request->store)) {
             return $next($request);
-
         }
 
         return redirect('/403');

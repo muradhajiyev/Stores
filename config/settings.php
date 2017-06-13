@@ -14,7 +14,11 @@ return [
    'max_product_photo_count' => "3",
    'max_file_size' => "4",
 
-   'product_base_path' => "images/products",
-   'store_base_path' => "images/stores",
-   'user_base_path' => "images/users",
+   'base_image_url' =>"http://13.95.154.68/images/",
+   'product_base_path' => "stores/products/",
+   'store_cover_base_path' => "stores/covers/",
+   'store_profile_base_path' => "stores/profiles/",
+   'user_base_path' => "users/",
+
+  
    ];

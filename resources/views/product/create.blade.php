@@ -57,19 +57,7 @@
                                 </div>
 
                             </div>
-                            <hr/>
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <h4>@lang('createProduct.header10')</h4>
-                                    <select name="productStore" required class="form-control">
-                                        <option value="">Choose a store</option>
-                                        @foreach($stores as $store)
-                                            <option value="{{$store->id}}">{{$store->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                           <input type="hidden" name="store" value="{{$store->id}}"/>
                             <hr/>
                             <div class="row">
                                 <div class="col-md-6">

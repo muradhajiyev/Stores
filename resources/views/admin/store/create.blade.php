@@ -32,7 +32,7 @@
                                <!--  <h4>@lang('createProduct.header6')</h4> -->
                                 <div class="dropzone" id="fileUpload1" style="margin:10px;" > </div>
                                 
-                                    <form class="form-horizontal form-label-left" novalidate style="margin-top: 5%; width:90%;margin-left: 5%;" action="{{ URL::to('/admin/store') }}" method="post" enctype="multipart/form-data">
+                                    <form class="form-horizontal form-label-left" novalidate style="margin-top: 5%; width:90%;margin-left: 5%;" action="{{ URL::to('/admin/stores') }}" method="post" enctype="multipart/form-data">
 
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div class="item form-group" >
@@ -68,7 +68,7 @@
                                         </div>
 
                                              <div id="imageIds"></div>
-                                             
+
                                         <div class="item form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="decription">@lang('words.description') <span class="required">*</span>
                                             </label>

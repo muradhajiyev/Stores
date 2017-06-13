@@ -59,6 +59,5 @@ class Kernel extends HttpKernel
 
         'adminOrStore'=> \App\Http\Middleware\RedirectIfNotAdminOrStore::class,
         'storeOwner'=>\App\Http\Middleware\RedirectIfNotStoreOwner::class
-        
     ];
 }
