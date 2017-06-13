@@ -224,7 +224,7 @@ class StoreController extends Controller
          }
          public function getAllStores()
          {
-            $stores = Store::all()->toJson();
+            $stores = Store::all();
             return $stores;
          }
       }

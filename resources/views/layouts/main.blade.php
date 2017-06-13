@@ -13,8 +13,7 @@
     <link href="{{asset("product/css/animate.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
-    <link href="{{asset("css/jquery.fileuploader.css")}}" rel="stylesheet">
-    <link href="{{asset("css/jquery.fileuploader-theme-dragdrop.css")}}" rel="stylesheet">
+    <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
 
     {{--<!--[if lt IE 9]>--}}
@@ -50,7 +49,7 @@
 <script src="{{asset("product/js/jquery.prettyPhoto.js")}}"></script>
 <script src="{{asset("product/js/main.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
-<script src="{{asset("js/fileUploader/jquery.fileuploader.js")}}"></script>
+<script src="{{asset("js/dropzone.js")}}"></script>
 
 
 </body>

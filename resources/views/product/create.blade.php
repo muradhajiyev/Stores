@@ -7,8 +7,18 @@
                 <div class="col-sm-12 col-sm-offset-1">
                     <div class="add-product-form"><!--login form-->
                         <h2> @lang('createProduct.header1') </h2>
+                        {{--<hr/>--}}
+                        {{--<div class="row">--}}
+                        {{--<h4>@lang('createProduct.header6')</h4>--}}
+                        {{--<div class="col-md-8" id="fileUpload">--}}
+                        {{--<form action="/api/uploadFile" class="dropzone">--}}
+
+                        {{--</form>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
                         <form action="/products" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
+
                             <div class="row">
 
                                 @if (count($errors) > 0)
@@ -24,7 +34,8 @@
                                 <h4>@lang('createProduct.header2')</h4>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Name" name="productName" class="form-control" required>
+                                        <input type="text" placeholder="Name" name="productName" class="form-control"
+                                               required>
                                     </div>
 
                                 </div>
@@ -48,11 +59,25 @@
                             </div>
                             <hr/>
                             <div class="row">
+
+                                <div class="col-md-6">
+                                    <h4>@lang('createProduct.header10')</h4>
+                                    <select name="productStore" required class="form-control">
+                                        <option value="">Choose a store</option>
+                                        @foreach($stores as $store)
+                                            <option value="{{$store->id}}">{{$store->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <h4>@lang('createProduct.header3')</h4>
                                     <div id="subCategories">
                                         <div class="form-group parentCategory">
-                                            <select class="form-control parentCategorySelect"  name="productCategory" required>
+                                            <select class="form-control parentCategorySelect" name="productCategory"
+                                                    required>
                                                 <option selected value="" disabled>Select category</option>
                                                 @foreach($parentCategories as $parent)
                                                     <option value="{{$parent->id}}">{{$parent->name}}</option>
@@ -64,8 +89,8 @@
                             </div>
 
 
-                            <div class="row" >
-                                <div class="col-md-12" id="specificationsArea" >
+                            <div class="row">
+                                <div class="col-md-12" id="specificationsArea">
 
 
                                 </div>
@@ -74,10 +99,12 @@
 
                             <div class="row">
                                 <div class="col-md-1 form-group" id="newSpec" hidden>
-                                    <button id="addNewSpec"  class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <button id="addNewSpec" class="btn btn-primary"><span
+                                                class="glyphicon glyphicon-plus"></span></button>
                                 </div>
                                 <div class="col-md-1 form-group" id="deleteSpec" hidden>
-                                <button id="deleteLastSpec"  class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
+                                    <button id="deleteLastSpec" class="btn btn-primary"><span
+                                                class="glyphicon glyphicon-minus"></span></button>
                                 </div>
 
                             </div>
@@ -94,25 +121,31 @@
                                 </div>
                                 <div class="col-md-2">
                                     <h4>@lang('createProduct.header7')</h4>
-                                    <input type="checkbox" name="isNew" />
+                                    <input type="hidden" name="isNew" value="0"/>
+                                    <input type="checkbox" name="isNew" value="1"/>
                                 </div>
                             </div>
+
+
                             <hr/>
                             <div class="row">
-                                <div class="col-md-8">
-                                    <h4>@lang('createProduct.header6')</h4>
-                                    <input type="file" name="files[]" multiple>
+                                <h4>@lang('createProduct.header6')</h4>
+                                <div class="col-md-6  dropzone" id="fileUpload" >
+
+                                </div>
+                                <div id="imageIds">
+
                                 </div>
                             </div>
                             <hr/>
-
 
                             <div class="row">
 
                                 <div class="col-sm-8 col-sm-offset-6">
                                     <div class="form-group">
                                         <button type="submit"
-                                                class="btn btn-primary">@lang('createProduct.submit')</button>
+                                                class="btn btn-primary"
+                                                id="submitProduct">@lang('createProduct.submit')</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,5 +156,4 @@
             </div>
         </div>
     </section><!--/form-->
-
 @endsection

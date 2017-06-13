@@ -51,4 +51,11 @@ class User extends Authenticatable
         }
         return false;
     }
+    public function isStoreOwner($id){
+        $store=Store::find($id);
+        if($store&&($this->id===$store->user_id)){
+            return true;
+        }
+        return false;
+    }
 }

@@ -78,6 +78,7 @@ Route::group(['prefix' => 'api'], function () {
 
     //Arsalan
     Route::get('stores', 'StoreController@getAllStores');
+    Route::post('uploadFile', 'UploadFileController@upload');
 });
 
 Route::get('/403', function () {
