@@ -34,7 +34,8 @@
                 <div class="col-sm-6">
                     <div class="logo pull-left">
                         <a href="#"><img
-                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt="" style="width:70px;height:70px;"/></a>
+                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt=""
+                                    style="width:70px;height:70px;"/></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -66,35 +67,37 @@
                 <div class="col-sm-6">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                           
-                            <!-- <li><a href="{{ url('/store/cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li> -->
-                            @if(!Auth::check()) 
-                           <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login/Sign Up</a></li>
-                           
-                               
+
+                        <!-- <li><a href="{{ url('/store/cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li> -->
+                            @if(!Auth::check())
+                                <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login/Sign Up</a></li>
 
 
-                                @elseif(Auth::check())
+
+
+                            @elseif(Auth::check())
                                 <div class="dropdown">
-                                <button id="toggleButton" class="btn btn-warning dropdown-toggle"  type="button" data-toggle="dropdown">{{Auth::user()->name}}
-                                <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="{{ url('/store/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a>
-                                </li>
-                                <li><a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                    <button id="toggleButton" class="btn btn-warning dropdown-toggle" type="button"
+                                            data-toggle="dropdown">{{Auth::user()->name}}
+                                        <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                                        <li><a href="{{ url('/store/checkout') }}"><i class="fa fa-crosshairs"></i>
+                                                Checkout</a>
+                                        </li>
+                                        <li><a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
-                                </li>
-                                
-                                </ul>
+                                        </li>
+
+                                    </ul>
                                 </div>
-                                @endif
+                        @endif
 
 
 
-                            <!-- <a id="createStore" href="{{ url('/storeregister') }}" type="button"
+                        <!-- <a id="createStore" href="{{ url('/storeregister') }}" type="button"
                                class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> Create Store</a> -->
 
                         </ul>
@@ -107,7 +110,7 @@
     <div class="header-bottom"><!--header-bottom-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-6">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
                                 data-target=".navbar-collapse">
@@ -141,12 +144,32 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
-                    </div>
-                </div>
+                @if(app('request')->input('id'))
+                    <form action="/" method="get">
+                        <div class="col-sm-6">
+                            <div class="search_box pull-right">
+                                <input hidden id="tags" name="id" value="{{app('request')->input('id')}}" placeholder="Search" type="text">
+                                <input hidden id="tags" name="category_name" value="{{app('request')->input('category_name')}}" placeholder="Search" type="text">
+                                <input id="tags" name="searchStoreName" placeholder="Search" type="text">
+                                <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                @else
+                    <form method="get" action="/">
+                        <div class="col-sm-6">
+                            <div class="search_box pull-right">
+                                <input id="tags" name="searchStoreName" type="text" placeholder="Search"/>
+                                <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                @endif
             </div>
         </div>
+    </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
