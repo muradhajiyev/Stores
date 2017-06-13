@@ -29,6 +29,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
           href="{{asset("product/images/ico/apple-touch-icon-72-precomposed.png")}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset("product/images/ico/apple-touch-icon-57-precomposed.png")}}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head><!--/head-->
 
 <body>
@@ -50,6 +52,9 @@
 <script src="{{asset("product/js/main.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/dropzone.js")}}"></script>
+<script src="{{asset("product/js/autocomplete.js")}}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 </body>
