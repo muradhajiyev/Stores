@@ -27,6 +27,6 @@ class AddCurrencyToProduct extends Migration
     public function down()
 
     {
-        
+
     }
 }
