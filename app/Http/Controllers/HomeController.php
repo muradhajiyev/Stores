@@ -49,7 +49,6 @@ class HomeController extends Controller
     public function profile($id)
     {
         $store = Store::find($id);
-
         return view('store.index', ['store' => $store]);
 
 

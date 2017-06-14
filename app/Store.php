@@ -22,9 +22,10 @@ class Store extends Model
 
     public function getProfileUrlAttribute()
     {
-
         return config('settings.base_url').config('settings.store_profile_base_path').$this->profile_image->path;
     }
-
+    public function products(){
+        return $this->hasMany('App\Product')->latest();
+    }
 }
 
