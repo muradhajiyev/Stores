@@ -42,7 +42,7 @@ class StoreController extends Controller
             else if ($userrole->isAdmin())
             $storelist = Store::paginate(6);
          }
-       
+
          return view('admin.store.index')->with(array('storelist'=>$storelist));
       }
 
@@ -191,7 +191,7 @@ class StoreController extends Controller
 
       public function getAllStores()
       {
-         $stores = Store::paginate(8);
+         $stores = Store::orderBy('id', 'desc')->paginate(8);
          return $stores;
       }
    }
