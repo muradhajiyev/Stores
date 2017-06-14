@@ -57,7 +57,7 @@
             </div>
             <div class="row ">
                 <div class="col-sm-2" style="margin-left: 6%;">
-                    <img src="{{asset("images/home/default-logo.png")}}"
+                    <img src="{{ $store->profile_url }}"
                          style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;"/>
                 </div>
 
