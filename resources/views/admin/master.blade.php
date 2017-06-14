@@ -353,14 +353,12 @@
                 </div>
             </form>
 
-
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li>
                     <a href="{{ url('/admin/categories') }}">
                         <i class="fa fa-th"></i> <span>Categories</span>
-                        <span class="pull-right-container">
-               </span>
+                        <span class="pull-right-container"></span>
                     </a>
                 </li>
                 <li>
@@ -590,6 +588,7 @@
                         <!-- /.form-group -->
                     </form>
                 </div>
+            </div>
 
         </aside>
         <!-- /.control-sidebar -->
@@ -601,15 +600,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('/js/adminCustomJS.js')}}"></script>
     <script src="{{ asset('/js/treeview.js') }}"></script>
     <script src="{{ asset("js/grid.js") }}"></script>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
@@ -619,7 +613,6 @@
     <script src="{{ asset('js/dropdown.js' )}}"></script>
     <script src="{{ asset('js/specification.js' )}}"></script>
 
-</div>
 </div>
 </body>
 </html>
