@@ -37,7 +37,7 @@
                                             <div class="productinfo text-center">
                                                 <a href="{{ route('store.index', $store->id)}}"
                                                    style="font-size: 25px; color: gray;"><img
-                                                            src="{{asset("images/home/default-logo.png")}}" alt=""
+                                                            src="{{ $store->profile_url }}" alt=""
                                                             style=""/>
                                                     <hr>
                                                     {{$store->name}} </a>

@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     public function show(Request $request)
@@ -42,6 +42,7 @@ class HomeController extends Controller
                 $stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
             }
         }
+        
         return view('home.index')->with('stores', $stores)->with('categoryName', $name);
     }
 
