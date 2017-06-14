@@ -30,6 +30,8 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $productlist = Product::all();
+        return $productlist;
     }
 
     /**

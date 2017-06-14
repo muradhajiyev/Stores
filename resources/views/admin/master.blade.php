@@ -2,12 +2,13 @@
 <html>
 <head>
 
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Admin | Dashboard</title>
-   <!-- Tell the browser to be responsive to screen width -->
-   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-   <!-- Bootstrap 3.3.7 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Store | Profile</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+
 
    <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
    <!-- Font Awesome -->
@@ -379,7 +380,7 @@
             </a>
          </li>
          <li>
-            <a href="{{ url('/admin/store') }}">
+            <a href="{{ url('/admin/stores') }}">
                <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
 
                <span class="pull-right-container">

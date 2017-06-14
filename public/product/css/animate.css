@@ -14,6 +14,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 	-webkit-backface-visibility: hidden;
 }
+   /* mouse over link */
+.smth_table{
+       box-shadow: 1px 1px 1px 1px gray;
+ }
+.smth_table:hover {
+       box-shadow: 2px 3px 3px 2px gray;
+}
 .animated {
 	-webkit-animation-duration: 1.3s;
 	   -moz-animation-duration: 1.3s;
