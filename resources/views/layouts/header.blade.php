@@ -33,7 +33,7 @@
 
     <div class="header-middle"><!--header-middle-->
         <div class="container">
-            <div class="row">
+            <div class="row" style="border-color:orange;">
                 <div class="col-sm-6">
                     <div class="logo pull-left">
 
