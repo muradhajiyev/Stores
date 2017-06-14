@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @if($store)
-    @section('title', "Store | {$store->name}")
+
+@section('title', "Store | {$store->name}")
 
 @section('content')
 
@@ -57,7 +58,7 @@
             </div>
             <div class="row ">
                 <div class="col-sm-2" style="margin-left: 6%;">
-                    <img src="{{asset("images/home/default-logo.png")}}"
+                    <img src="{{ $store->profile_url }}"
                          style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;"/>
                 </div>
 
@@ -72,23 +73,15 @@
                         <i>{{$store->slogan}}</i>
 
                     </p>
-                    <span style="text-align: justify;">{{substr($store->description, 0, 150)}}</span>
-                    @if(strlen($store->description)>149)
-                        <span id="show" style="display: none; text-align:justify;">{{substr($store->description,150)}}</span>
-                        <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
-                    @endif
-                   </div>
-                </div>
-                <div class="col-sm-4" style="margin-top: 5.5%; margin-left: -3%;">
-                
-                     <!-- <div style="height: 200px;border-right: 6px gray solid; right: 300px;margin-left: 0px; width:60%; height: 150px;"> -->
-                    <p style="margin-top: 1%; ">
 
-                        <ul>
-                            <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i style="color: blue;">{{$store->email}}</i></li><br>
-                            <li><i class="fa fa-map-marker" style="color:orange;"></i>  <b>Location: </b><span style="text-transform: uppercase;">{{$store->address}}</span></li><br>
-                            <li><i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span style="color:blue;">{{$store->phone_number}}</span></li>
-                        </ul>
+                    <span style="text-align: justify;">
+      {{substr($store->description, 0, 150)}}
+
+     </span><span id="show" style="display: none; text-align:justify;"> 
+        {{substr($store->description, 150)}}
+      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
+    </div>
+   </div>
 
                     </p>
                    
@@ -270,15 +263,15 @@
 
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Product List</h2>
+                        @if(\Illuminate\Support\Facades\Auth::user())
+                            @if(\Illuminate\Support\Facades\Auth::user()->isStoreOwner($store->id))
 
-                        @if(\Illuminate\Support\Facades\Auth::user()->isStoreOwner($store->id))
-
-                            <div class="col-sm-12 col-sm-offset-9">
-                                <a href="/products/create?store={{$store->id}}" class="btn btn-primary">Add
-                                    Product</a>
-                            </div>
-                            <br/>
-
+                                <div class="col-sm-12 col-sm-offset-9">
+                                    <a href="/products/create?store={{$store->id}}" class="btn btn-primary">Add
+                                        Product</a>
+                                </div>
+                                <br/>
+                            @endif
                         @endif
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">

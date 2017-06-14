@@ -10,17 +10,16 @@
 |
 */
 
-Route::get('/','HomeController@show');
-Route::get('/{name}/stores/{id}', 'HomeController@showSpecificStores');
-
 Auth::routes();
+
+Route::get('/','HomeController@show');
+
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
- Route::post('/postCover', 'StoreController@postCover');
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -35,7 +34,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'store'], function () {
 
-    Route::get('/', 'HomeController@show'); 
 
     Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
 
@@ -75,7 +73,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('specifications/{id}','CategoryController@getSpecificationsByCategoryId');
     Route::get('specification/{id}/type', 'SpecificationController@getSpecTypeAndUnit');
     Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
-    
     Route::post('uploadFile', 'UploadFileController@upload');
 });
 

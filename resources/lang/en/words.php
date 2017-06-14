@@ -13,5 +13,7 @@ return [
     'create' => 'Create New Store',
     'cover' => 'Choose Cover Photo',
     'profile' => 'Choose Profile Photo',
-    'description' => 'Description'
+    'description' => 'Description',
+    'fileTooBig' => 'Fayl Olcusu boyukdur. Max 4Mb',
+    'maxFile' => 'Siz 3 den artiq fayl daxil ede bilmezsiniz',
 ];
