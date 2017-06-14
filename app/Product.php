@@ -14,6 +14,7 @@ class Product extends Model
         return $this->belongsToMany('App\Image', 'product_image', 'product_id', 'image_id');
     }
 
+
     public function profile_image()
     {
         return $this->hasOne(Image::class, 'id', 'profile_image_id');
@@ -28,7 +29,7 @@ class Product extends Model
     {
 
         foreach ($this->images as $image) {
-            $image->path = config('settings.base_url').config('settings.product_base_path').$image->path;
+            $image->path = config('settings.base_url') . config('settings.product_base_path') . $image->path;
         }
         return $this->images;
     }
@@ -46,5 +47,31 @@ class Product extends Model
     public function currency()
     {
         return $this->belongsTo('App\Currency');
+
+//    protected $appends = ['profile_url', 'img_urls'];
+//
+//
+//    public function profile_image(){
+//    	return $this->hasOne(Image::class, 'id', 'profile_image_id');
+//    }
+//
+//    public function getProfileUrlAttribute()
+//    {
+//
+//        return config('settings.base_url').config('settings.product_base_path').$this->profile_image->path;
+//    }
+//
+//      public function getImgUrlsAttribute()
+//    {
+//
+//       $st = Product_Image::where('product_id', $this->id)->pluck('product_id');
+//       $f = array();
+//       $i = 0;
+//       foreach($st as $im){
+//            $f[$i] = config('settings.base_url').config('settings.product_base_path'). Image::find($im)->path;
+//            $i++;
+//       }
+//       return $f;
+
     }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Image;
 use Illuminate\Database\Eloquent\Model;
+use App\Store_Image;
 
 class Store extends Model
 {
@@ -13,7 +14,7 @@ class Store extends Model
            ];
     protected $table = 'stores';
 
-    protected $appends = ['profile_url'];
+    protected $appends = ['profile_url', 'cover_urls'];
 
 
     public function profile_image(){
@@ -24,8 +25,25 @@ class Store extends Model
     {
         return config('settings.base_url').config('settings.store_profile_base_path').$this->profile_image->path;
     }
+
     public function products(){
         return $this->hasMany('App\Product')->latest();
     }
+
+
+      public function getCoverUrlsAttribute()
+    {
+
+       $st = Store_Image::where('store_id', $this->id)->pluck('image_id');
+       $f = array();
+       $i = 0;
+       foreach($st as $im){
+            $f[$i] = config('settings.base_url').config('settings.store_cover_base_path'). Image::find($im)->path;
+            $i++;
+       }
+       return $f;
+    }
+
+
 }
 
