@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['name', 'price', 'profile_image_id', 'is_new', 'category_id', 'brand_id', 'store_id', 'currency_id'];
+
     protected $appends = ['profile_url', 'image_urls'];
+
 
     public function images()
     {
@@ -46,8 +48,13 @@ class Product extends Model
 
     public function currency()
     {
+
         return $this->belongsTo('App\currency');
+
     }
+
+
+
 
 //    protected $appends = ['profile_url', 'img_urls'];
 //
