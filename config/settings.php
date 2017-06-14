@@ -14,7 +14,7 @@ return [
    'max_product_photo_count' => "3",
    'max_file_size' => "4",
 
-   'base_image_url' =>"http://13.95.154.68/",
+   'base_url' =>"http://13.95.154.68/",
    'product_base_path' => "images/stores/products/",
    'store_cover_base_path' => "images/stores/covers/",
    'store_profile_base_path' => "images/stores/profiles/",
