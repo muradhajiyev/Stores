@@ -590,43 +590,34 @@
                         <!-- /.form-group -->
                     </form>
                 </div>
-                <<<<<<< HEAD
-                <!-- /.tab-pane -->
-            </div>
+
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
-
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button);
-</script>
-<script src="{{ asset('js/bootstrap.min.js')}}"></script>
-<script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
-<script src="{{ asset('dist/js/demo.js')}}"></script>
-<script src="{{ asset('/js/adminCustomJS.js')}}"></script>
-<script src="{{ asset('/js/treeview.js') }}"></script>
-<script src="{{ asset("js/grid.js") }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-<script src="{{asset('js/multiselect.js')}}"></script>
-<script src="{{ asset('js/dropdown.js' )}}"></script>
-<script src="{{ asset('js/specification.js' )}}"></script>
+    <!-- ./wrapper -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('/js/adminCustomJS.js')}}"></script>
+    <script src="{{ asset('/js/treeview.js') }}"></script>
+    <script src="{{ asset("js/grid.js") }}"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <script src="{{asset('js/multiselect.js')}}"></script>
+    <script src="{{ asset('js/dropdown.js' )}}"></script>
+    <script src="{{ asset('js/specification.js' )}}"></script>
 
 </div>
 </div>
