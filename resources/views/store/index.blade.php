@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @if($store)
-
     @section('title', "Store | {$store->name}")
 
 @section('content')
@@ -8,7 +7,6 @@
     <section id="slider"><!--slider-->
 
         <div class="container">
-            <hr style="border-color: orange;">
 
             <div class="row">
                 <div class="col-sm-12">
@@ -72,15 +70,31 @@
 
                             <i>{{$store->slogan}}</i>
 
-                        </p>
 
-                        <span style="text-align: justify;">
-      {{substr($store->description, 0, 150)}}
+                    </p>
+                    <span style="text-align: justify;">{{substr($store->description, 0, 150)}}</span>
+                    @if(strlen($store->description)>149)
+                        <span id="show" style="display: none; text-align:justify;">{{substr($store->description,150)}}</span>
+                        <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
+                    @endif
+                   </div>
+                </div>
+                <div class="col-sm-4" style="margin-top: 5.5%; margin-left: -3%;">
+                
+                     <!-- <div style="height: 200px;border-right: 6px gray solid; right: 300px;margin-left: 0px; width:60%; height: 150px;"> -->
+                    <p style="margin-top: 1%; ">
 
-     </span><span id="show" style="display: none; text-align:justify;"> 
-        {{substr($store->description, 150)}}
-      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
-                    </div>
+                        <ul>
+                            <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i style="color: blue;cursor:pointer;">{{$store->email}}</i></li><br>
+                            <li><i class="fa fa-map-marker" style="color:orange;"></i>  <b>Location: </b><span style="text-transform: uppercase;">{{$store->address}}</span></li><br>
+                            <li><i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span style="color:blue;cursor:pointer;">{{$store->phone_number}}</span></li>
+                        </ul>
+
+
+                    </p>
+                   
+                   <!-- </div> -->
+
                 </div>
 
                 </p>
@@ -91,29 +105,16 @@
         <hr style="border-color: orange;">
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#toggle").click(function () {
-                    $("#show").toggle();
-                });
-            });
-            $(".hideLink").on("click", function () {
-                if ($(this).text() == "see less") {
-                    $(this).text("see more");
-                } else {
-                    $(this).text("see less");
-                }
-                $(".ISProductBody").toggle();
-                return false;
-            });
-        </script>
+        
         </div>
+
+@include('layouts.headerbottom')
+
     </section>
 
 
     <!--cover/slider ended-->
 
-    @include('layouts.headerbottom')
 
     <section>
         <div class="container">
