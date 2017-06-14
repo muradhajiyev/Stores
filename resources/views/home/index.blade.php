@@ -3,11 +3,11 @@
 
 @section('content')
 
-@include('layouts.headerbottom')
+    @include('layouts.headerbottom')
 
     <section>
         <div class="container">
-    
+
             <div class="row">
 
             @include('layouts.left-sidebar')
@@ -24,12 +24,13 @@
                         @endif
                         @if(count($stores)==0)
                             <div class="text-center">
-                            <br><br>
-                                
+                                <br><br>
+
                                 <div class="content-404">
-                                    <img src="" class="img-responsive" alt="" />
+                                    <img src="" class="img-responsive" alt=""/>
                                     <h1><b>OPPS!</b> We Couldn’t Find A Store with this name</h1>
-                                    <p>Uh... So it looks like you brock something. The page you are looking for has up and Vanished.</p>
+                                    <p>Uh... So it looks like you brock something. The page you are looking for has up
+                                        and Vanished.</p>
                                     <h2><a href="{{ url('/') }}">Bring me back Home</a></h2>
                                 </div>
                                 <br><br>
@@ -41,10 +42,13 @@
                                          style="; height: 350px;">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <a href="{{ route('store.index', $store->id)}}" style="font-size: 25px; color: gray;"><img src="{{ $store->profile_url }}" alt="" style="box-shadow: 0px 3px orange;height: 250px;"/>
+                                                <a href="{{ route('store.index', $store->id)}}"
+                                                   style="font-size: 25px; color: gray;"><img
+                                                            src="{{ $store->profile_url }}" alt=""
+                                                            style="box-shadow: 0px 3px orange;height: 250px;"/>
                                                     <br><br>
-                                                   
-                                                   {{$store->name}} </a>
+
+                                                    {{$store->name}} </a>
                                             </div>
                                         </div>
                                     </div>

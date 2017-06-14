@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function profile($id)
     {
         $store = Store::find($id);
-
+        $store->setRelation('products', $store->products()->paginate(10));
         return view('store.index', ['store' => $store]);
 
 

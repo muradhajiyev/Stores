@@ -53,50 +53,59 @@
                     <a href="{{ route('store.index', $store->id)}}"
                        style="color: orange;font-size: 30px;"><span>{{$store->name}}</span></a>
 
-                   <div style="height: 200px;border-right: 4px gray solid; right: 300px;margin-left: 0px;height: 110px;">
-                    <p style="margin-top: 2%; ">
+                    <div style="height: 200px;border-right: 4px gray solid; right: 300px;margin-left: 0px;height: 110px;">
+                        <p style="margin-top: 2%; ">
 
-                        <i>{{$store->slogan}}</i>
+                            <i>{{$store->slogan}}</i>
 
-                    </p>
-                    <span style="text-align: justify;">{{substr($store->description, 0, 150)}}</span>
-                    @if(strlen($store->description)>149)
-                        <span id="show" style="display: none; text-align:justify;">{{substr($store->description,150)}}</span>
-                        <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
-                    @endif
-                   </div>
+
+                        </p>
+                        <span style="text-align: justify;">{{substr($store->description, 0, 150)}}</span>
+                        @if(strlen($store->description)>149)
+                            <span id="show"
+                                  style="display: none; text-align:justify;">{{substr($store->description,150)}}</span>
+                            <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
+                        @endif
+                    </div>
                 </div>
                 <div class="col-sm-4" style="margin-top: 5.5%; margin-left: -3%;">
-                
-                     <!-- <div style="height: 200px;border-right: 6px gray solid; right: 300px;margin-left: 0px; width:60%; height: 150px;"> -->
+
+                    <!-- <div style="height: 200px;border-right: 6px gray solid; right: 300px;margin-left: 0px; width:60%; height: 150px;"> -->
                     <p style="margin-top: 1%; ">
 
-                        <ul>
-                            <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i style="color: blue;cursor:pointer;">{{$store->email}}</i></li><br>
-                            <li><i class="fa fa-map-marker" style="color:orange;"></i>  <b>Location: </b><span style="text-transform: uppercase;">{{$store->address}}</span></li><br>
-                            <li><i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span style="color:blue;cursor:pointer;">{{$store->phone_number}}</span></li>
-                        </ul>
+                    <ul>
+                        <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i
+                                    style="color: blue;cursor:pointer;">{{$store->email}}</i></li>
+                        <br>
+                        <li><i class="fa fa-map-marker" style="color:orange;"></i> <b>Location: </b><span
+                                    style="text-transform: uppercase;">{{$store->address}}</span></li>
+                        <br>
+                        <li><i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span
+                                    style="color:blue;cursor:pointer;">{{$store->phone_number}}</span></li>
+                    </ul>
 
 
                     </p>
-                   
-                   <!-- </div> -->
+
+                    <!-- </div> -->
+
                 </div>
-   </div>
-<hr style="border-color: orange;">
+
+                </p>
+
+                <!-- </div> -->
+            </div>
+        </div>
+        <hr style="border-color: orange;">
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
+
         </div>
 
-@include('layouts.headerbottom')
+        @include('layouts.headerbottom')
 
     </section>
-
-
     <!--cover/slider ended-->
-
-
     <section>
         <div class="container">
             <div class="row">
@@ -255,128 +264,32 @@
                                 <br/>
                             @endif
                         @endif
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
+                        @foreach($store->products as $product)
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{$product->profile_url}}" alt=""/>
+                                            <h2>{{$product->price}} {{$product->currency->iso}}</h2>
+                                            <p>{{$product->name}}</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
 
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
+                                    </div>
+                                    <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
+                        @endforeach
+                        <div class="col-sm-12">
+                            {!! $store->products->render() !!}
 
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                    <img src="{{asset("store")}}" class="new" alt=""/>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
 
