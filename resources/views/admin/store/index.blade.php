@@ -46,7 +46,7 @@
                 </form>
 
             @if(Auth::user()->isStore())
-                <a class="btn btn-success" href="{{URL::to('/admin/store/create')}}" style="height: 40px;font-size: 18px;float: right;"><i class="fa fa-plus fa-fw" style="color:white;"></i>
+                <a class="btn btn-success" href="{{URL::to('/admin/stores/create')}}" style="height: 40px;font-size: 18px;float: right;"><i class="fa fa-plus fa-fw" style="color:white;"></i>
                 </a>
             @endif
                 <!-- <strong>Category Title</strong> -->
@@ -65,7 +65,7 @@
 
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="{{ route('store.index', $store->id)}}" style="font-size: 20px;color: orange;"><img src="{{asset("images/home/default-avatar.png")}}" alt="" style="box-shadow: 0px 2px 4px 0px gray;"/>
+                            <a href="{{ route('store.index', $store->id)}}" style="font-size: 20px;color: orange;"><img src="{{ $store->profile_url}}" alt="" style="box-shadow: 0px 2px 4px 0px gray;"/>
                            <hr>  {{$store->name}}</a><p><i> {{$store->email}}</i></p>
                         </div>
                     </div>

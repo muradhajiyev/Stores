@@ -257,15 +257,15 @@
 
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Product List</h2>
+                        @if(\Illuminate\Support\Facades\Auth::user())
+                            @if(\Illuminate\Support\Facades\Auth::user()->isStoreOwner($store->id))
 
-                        @if(\Illuminate\Support\Facades\Auth::user()->isStoreOwner($store->id))
-
-                            <div class="col-sm-12 col-sm-offset-9">
-                                <a href="/products/create?store={{$store->id}}" class="btn btn-primary">Add
-                                    Product</a>
-                            </div>
-                            <br/>
-
+                                <div class="col-sm-12 col-sm-offset-9">
+                                    <a href="/products/create?store={{$store->id}}" class="btn btn-primary">Add
+                                        Product</a>
+                                </div>
+                                <br/>
+                            @endif
                         @endif
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">

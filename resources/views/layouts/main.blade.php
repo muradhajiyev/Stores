@@ -42,8 +42,9 @@
 
 @include('layouts.footer')
 
-
-<script src="{{asset("product/js/jquery.js")}}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--<script src="{{asset("product/js/jquery.js")}}"></script>-->
 <script src="{{asset("js/jquery.livequery.js")}}"></script>
 <script src="{{asset("product/js/price-range.js")}}"></script>
 <script src="{{asset("product/js/jquery.scrollUp.min.js")}}"></script>
@@ -53,9 +54,6 @@
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/dropzone.js")}}"></script>
 <script src="{{asset("product/js/autocomplete.js")}}"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 
 </body>
 </html>
