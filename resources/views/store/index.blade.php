@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @if($store)
-    @section('title', "Store | {$store->name}")
+
+@section('title', "Store | {$store->name}")
 
 @section('content')
 
@@ -62,15 +63,17 @@
                 </div>
 
 
-                <div class="col-sm-8 descript" style=" margin-top: 2%;">
+                <div class="col-sm-4 descript" style=" margin-top: 2%;">
                     <a href="{{ route('store.index', $store->id)}}"
                        style="color: orange;font-size: 30px;"><span>{{$store->name}}</span></a>
 
+                   <div style="height: 200px;border-right: 4px gray solid; right: 300px;margin-left: 0px;height: 110px;">
                     <p style="margin-top: 2%; ">
 
                         <i>{{$store->slogan}}</i>
 
                     </p>
+
                     <span style="text-align: justify;">
       {{substr($store->description, 0, 150)}}
 
@@ -80,9 +83,12 @@
     </div>
    </div>
 
-
-
-            <hr style="border-color: orange;">
+                    </p>
+                   
+                   <!-- </div> -->
+                </div>
+   </div>
+<hr style="border-color: orange;">
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
