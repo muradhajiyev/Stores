@@ -379,7 +379,7 @@
             </a>
          </li>
          <li>
-            <a href="{{ url('/admin/store') }}">
+            <a href="{{ url('/admin/stores') }}">
                <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
 
                <span class="pull-right-container">
