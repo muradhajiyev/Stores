@@ -32,7 +32,9 @@ $(document).ready(function () {
         enableOptionValues($('#productSpec option[value=' + this.id + ']'));
 
     });
+    $('.dz-remove').livequery('click', function (event) {
 
+    });
     // $('.specification').livequery('change', function (event) {
     //     clearNextElements(this);
     //     appendSpecValuesAndUnit(event.target.value, this.parentElement);
@@ -84,17 +86,14 @@ let clearNextElements = (currentElement, element) => {
     }
 };
 
-let appendSpecifications = (specfications) => {
-    $('#specificationsArea').append(specfications);
-};
-
 //gets specifications of current category
 let getSpecificationsByCategoryId = function (id) {
     let selectElement = $('#productSpec');
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
-            if (data.length > 0) {
+            console.log(data);
 
+            if (data.length > 0) {
                 $('#specSelect').attr('hidden', false);
                 data.forEach(function (spec) {
                     selectElement.append('<option value="' + spec.id + '">' + spec.name + '</option>');
@@ -193,8 +192,19 @@ let initializeFileUploader = () => {
                     formData.append('_token', token);
                 });
                 this.on('removedfile', function (file) {
-
+                    if (myDropzone.files.length === 0) {
+                        disableSubmitButton();
+                    }
                 });
+                this.on('addedfile', function (file) {
+                    disableSubmitButton()
+                });
+                this.on('complete', function () {
+                    if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                        enableSubmitButton();
+                    }
+                })
+
             }
         });
     }
@@ -204,7 +214,7 @@ let initializeFileUploader = () => {
 let addImageHiddenField = (id) => {
     let inputElement = '<input type="hidden" name="imageIds[]" value="' + id + '"' + '/>';
     $('#imageIds').append(inputElement);
-    $('#submitProduct').removeAttr('disabled');
+
 };
 
 let enableOptionValues = (option) => {
@@ -215,3 +225,11 @@ let disableOptionValues = (option) => {
     option.attr('disabled', true);
 };
 
+let disableSubmitButton = () => {
+    $('#submitProduct').attr('disabled', 'disabled');
+
+};
+let enableSubmitButton = () => {
+    $('#submitProduct').removeAttr('disabled');
+
+};
