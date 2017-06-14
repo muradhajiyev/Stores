@@ -732,7 +732,6 @@ $.widget.bridge('uibutton', $.ui.button);
 
 <script src="{{ asset('js/dropdown.js' )}}"></script>
 
->>>>>>> 57bb47318c9c624a60ae01314c82a5c4a2f9b9ea
 </div>
 </div>
 </body>
