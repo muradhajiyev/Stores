@@ -19,27 +19,15 @@
                         </ol>
 
                         <div class="carousel-inner">
-                            <div class="item active" style="width:1350px;margin-left: -10%;">
-                                <div class="col-sm-12" style="height: 380px;">
-                                    <img src="{{asset("images/banner.jpg")}}" class="girl img-responsive" alt=""
-                                         style="width: 100%; height: 100%; "/>
-                                </div>
-                            </div>
-                            <div class="item" style="width:1400px;margin-left: -10%;">
-                                <div class="col-sm-12" style="height: 380px">
-                                    <img src="{{asset("images/banner1.jpg")}}" class="girl img-responsive" alt=""
-                                         style="width: 100%; height: 100%;"/>
-                                </div>
 
-                            </div>
-
-                            <div class="item" style="width:1400px;margin-left: -10%;">
-                                <div class="col-sm-12" style="height: 380px">
-                                    <img src="{{asset("images/banner2.jpg")}}" class="girl img-responsive" alt=""
-                                         style="width: 100%; height: 100%;"/>
+                            @foreach($store->cover_urls as $key=>$img)
+                                <div class="item {{ $key==0 ? 'active' : '' }}" style="width:1350px;margin-left: -10%;">
+                                    <div class="col-sm-12" style="height: 380px;">
+                                        <img src="{{$img}}" class="girl img-responsive" alt=""
+                                             style="width: 100%; height: 100%; "/>
+                                    </div>
                                 </div>
-                            </div>
-
+                            @endforeach
                         </div>
 
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev"

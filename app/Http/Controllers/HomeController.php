@@ -31,15 +31,15 @@ class HomeController extends Controller
             array_push($categories, $id);
             $products = Product::whereIn('category_id', $categories)->pluck('store_id')->toArray();
             if (is_null($storeName)) {
-                $stores = Store::whereIn('id', $products)->paginate(12);
+                $stores = Store::whereIn('id', $products)->orderBy('id','desc')->paginate(12);
             }else{
-                $stores = Store::whereIn('id', $products)->where('name', $storeName)->paginate(12);
+                $stores = Store::whereIn('id', $products)->where('name', $storeName)->orderBy('id','desc')->paginate(12);
             }
         } else {
             if (is_null($storeName)) {
-                $stores = Store::orderBy('created_at', 'desc')->paginate(12);
+                $stores = Store::orderBy('id','desc')->paginate(12);
             }else{
-                $stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
+                $stores = Store::where('name', $storeName)->orderBy('id', 'desc')->paginate(12);
             }
         }
         
