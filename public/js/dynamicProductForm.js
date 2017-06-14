@@ -185,6 +185,7 @@ let initializeFileUploader = () => {
             url: "/api/uploadFile",
             addRemoveLinks: true,
             success: function (file, response) {
+                file.previewElement.id = response;
                 addImageHiddenField(response);
             },
             init: function () {
@@ -192,6 +193,7 @@ let initializeFileUploader = () => {
                     formData.append('_token', token);
                 });
                 this.on('removedfile', function (file) {
+                    removeImageHiddenField(file.previewElement.id);
                     if (myDropzone.files.length === 0) {
                         disableSubmitButton();
                     }
@@ -215,6 +217,9 @@ let addImageHiddenField = (id) => {
     let inputElement = '<input type="hidden" name="imageIds[]" value="' + id + '"' + '/>';
     $('#imageIds').append(inputElement);
 
+};
+let removeImageHiddenField = (id) => {
+    $('#imageIds').find("input[value='" + id + "']").remove();
 };
 
 let enableOptionValues = (option) => {
