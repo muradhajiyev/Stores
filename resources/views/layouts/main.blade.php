@@ -10,7 +10,7 @@
     <link href="{{asset("product/css/font-awesome.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/prettyPhoto.css")}}" rel="stylesheet">
     <link href="{{asset("store")}}" rel="stylesheet">
-    <link href="{{asset("product/css/animate.css")}}" rel="stylesheet">
+    <link href="{{asset("product/css/animate.css")}}" rel="stylesheet"> 
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
     <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
