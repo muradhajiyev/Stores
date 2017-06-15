@@ -3,11 +3,11 @@
 @section('title', "Store | {$store->name}")
 
 @section('content')
+<br>
 
 <section id="slider"><!--slider-->
 
   <div class="container">
-  <hr style="border-color: orange;">
 
    <div class="row">
     <div class="col-sm-12">
@@ -97,12 +97,13 @@
           });
           </script>
   </div>
- </section>
+    @include('layouts.headerbottom')
+
+</section>
 
 
  <!--cover/slider ended-->
 
-@include('layouts.headerbottom')
 
     <section>
         <div class="container">
