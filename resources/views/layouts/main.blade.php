@@ -9,16 +9,15 @@
     <link href="{{asset("product/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/font-awesome.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/prettyPhoto.css")}}" rel="stylesheet">
-    <link href="{{asset("store")}}" rel="stylesheet">
-    <link href="{{asset("product/css/animate.css")}}" rel="stylesheet"> 
+    <link href="{{asset("product/css/animate.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
     <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
 
     {{--<!--[if lt IE 9]>--}}
-    <script src="{{asset("product/js/html5shiv.js")}}"></script>
-    <script src="{{asset("product/js/respond.min.js")}}" ></script>
+    {{--<script src="{{asset("product/js/html5shiv.js")}}"></script>--}}
+    {{--<script src="{{asset("product/js/respond.min.js")}}" ></script>--}}
     {{--<![endif]-->--}}
 
     <link rel="shortcut icon" href="images/ico/favicon.ico">
@@ -44,7 +43,6 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!--<script src="{{asset("product/js/jquery.js")}}"></script>-->
 <script src="{{asset("js/jquery.livequery.js")}}"></script>
 <script src="{{asset("product/js/price-range.js")}}"></script>
 <script src="{{asset("product/js/jquery.scrollUp.min.js")}}"></script>
