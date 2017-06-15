@@ -14,6 +14,9 @@ Auth::routes();
 
 Route::get('/','HomeController@show');
 
+Route::get('productdetails', function(){
+    return view('product.productdetails');
+});
 
 Route::get('/home', 'HomeController@index');
 
