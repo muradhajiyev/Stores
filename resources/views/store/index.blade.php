@@ -91,9 +91,8 @@
             </div>
                     <hr style="border-color: orange;">
         </div>
-               @include('layouts.headerbottom')
+        @include('layouts.headerbottom')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     </section>
     <!--cover/slider ended-->
     <section>
@@ -702,5 +701,27 @@
             </div>
         </div>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="advancedSearchModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Advanced search</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 @endsection
 @endif

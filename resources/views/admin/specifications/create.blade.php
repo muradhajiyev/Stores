@@ -49,6 +49,7 @@
                 <div class="col-md-4 ">
                     <select class="form-control" id="specificationUnit" name="specificationUnit" required>
                         <option value="" selected disabled>Select Unit</option>
+                        <option value="">No unit applicable</option>
                         @foreach($units as $unit)
                             <option value="{{$unit->id}}">{{$unit->name}}</option>
                         @endforeach
