@@ -76,6 +76,7 @@
                             <form action="{{ URL::to('/admin/stores/'.$store->id) }}" method="POST" >
                                 <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                 <input name="_method" type="hidden" value="DELETE" >
+                                <input type="hidden"  name="id" value="{{$store->id}}">
                                 <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" style="margin-left: 15%;background-color: #f48064;border:0;">
                             </form>
                         </div>

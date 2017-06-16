@@ -42,6 +42,7 @@ class StoreController extends Controller
             else if ($userrole->isAdmin())
             $storelist = Store::paginate(6);
          }
+         //return $storelist;
 
          return view('admin.store.index')->with(array('storelist'=>$storelist));
       }
@@ -158,7 +159,8 @@ class StoreController extends Controller
       public function edit($id)
       {
 
-         $store = DB::table('stores')->where('id', $id)->first();
+         //$store = DB::table('stores')->where('id', $id)->first();
+         $store = Store::where('id', $id)->first();
 
          return view('admin.store.edit',array('store'=>$store));
       }
@@ -181,12 +183,17 @@ class StoreController extends Controller
       * @param  int  $id
       * @return Response
       */
-      public function destroy($id)
+      public function destroy($id, Request $request)
       {
+        if(isset($request->id)) {
          $store = Store::find($id);
          $store->delete();
          //files and images of store should be deleted
          return redirect()->action('StoreController@index');
+       }
+       else {
+           return $id;
+       }
       }
 
       public function getAllStores()

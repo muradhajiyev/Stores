@@ -23,7 +23,9 @@ class Store extends Model
 
     public function getProfileUrlAttribute()
     {
-        return config('settings.base_url').config('settings.store_profile_base_path').$this->profile_image->path;
+        //return config('settings.base_url').config('settings.store_profile_base_path').$this->profile_image->path;
+
+        return config('settings.base_url').$this->profile_image->path;
     }
 
     public function products(){
@@ -38,7 +40,9 @@ class Store extends Model
        $f = array();
        $i = 0;
        foreach($st as $im){
-            $f[$i] = config('settings.base_url').config('settings.store_cover_base_path'). Image::find($im)->path;
+            //$f[$i] = config('settings.base_url').config('settings.store_cover_base_path'). Image::find($im)->path;
+
+            $f[$i] = config('settings.base_url'). Image::find($im)->path;
             $i++;
        }
        return $f;
