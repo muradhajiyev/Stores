@@ -60,7 +60,7 @@ class HomeController extends Controller
     public function profile($id)
     {
         $store = Store::find($id);
-
+        $store->setRelation('products', $store->products()->paginate(10));
         return view('store.index', ['store' => $store]);
 
 
@@ -76,9 +76,9 @@ class HomeController extends Controller
         return view('/home');
     }
 
-    public function autocomplete(Request $request)
+    public function autoComplete(Request $request)
     {
-        $term = $request->searchStoreName;
+        $term = $request->term;
 
         $results = array();
 
