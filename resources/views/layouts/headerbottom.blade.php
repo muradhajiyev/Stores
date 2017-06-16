@@ -39,7 +39,7 @@
                     </div>
 
                 </div>
-                @if(app('request')->input('id'))
+
                     <form action="/" method="get">
                         <div class="col-sm-6">
                             <div class="search_box pull-right">
@@ -52,28 +52,15 @@
                                 <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
                                     Search
                                 </button>
-
-                            </div>
-
-                        </div>
-                    </form>
-                @else
-                    <form method="get" action="/">
-                        <div class="col-sm-6">
-                            <div class="search_box pull-right">
-                                <input id="storeName" name="searchStoreName" type="text" placeholder="Search"/>
-                                <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">Search
-                                </button>
                                 <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced search</a>
                             </div>
-                        </div>
 
+                        </div>
                     </form>
-                @endif
+
             </div>
         </div>
     </div>
-
 
 </headerbottom>
 <!--/header-bottom-->

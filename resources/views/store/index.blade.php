@@ -42,10 +42,10 @@
 
                 </div>
             </div>
-<!--             <div class="row " style="height: 300px;">
- -->            
+            <!--             <div class="row " style="height: 300px;">
+             -->
             <div class="row" style="">
-            
+
                 <div class="col-sm-2" style="margin-left: 6%;">
                     <img src="{{ $store->profile_url }}"
                          style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;"/>
@@ -64,7 +64,8 @@
                         </p>
                         <span style="text-align: justify;">{{substr($store->description, 0, 250)}}</span>
                         @if(strlen($store->description)>250)
-                            <span id="show" style="display: none; text-align:justify;">{{substr($store->description,250)}}</span>
+                            <span id="show"
+                                  style="display: none; text-align:justify;">{{substr($store->description,250)}}</span>
                             <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
                         @endif
                     </div>
@@ -72,24 +73,26 @@
                 <div class="col-sm-4" style="margin-top: 5.5%; margin-left: -3%;">
 
                     <ul>
-                        <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i style="color: blue;cursor:pointer;">{{$store->email}}</i></li>
+                        <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i
+                                    style="color: blue;cursor:pointer;">{{$store->email}}</i></li>
                         <br>
                         <li>
-                        <i class="fa fa-map-marker" style="color:orange;"></i> <b>Location: </b><span style="text-transform: uppercase;">{{$store->address}}</span></li>
+                            <i class="fa fa-map-marker" style="color:orange;"></i> <b>Location: </b><span
+                                    style="text-transform: uppercase;">{{$store->address}}</span></li>
                         <br>
                         <li>
-                        <i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span style="color:blue;cursor:pointer;">{{$store->phone_number}}</span></li>
+                            <i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span
+                                    style="color:blue;cursor:pointer;">{{$store->phone_number}}</span></li>
                     </ul>
-
 
 
                     <!-- </div> -->
                 </div>
-               
+
 
                 <!-- </div> -->
             </div>
-                    <hr style="border-color: orange;">
+            <hr style="border-color: orange;">
         </div>
         @include('layouts.headerbottom')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -233,9 +236,15 @@
                             </div>
                         </div><!--/price-range-->
 
-                        <div class="shipping text-center"><!--shipping-->
-                            <img src="images/home/shipping.jpg" alt=""/>
-                        </div><!--/shipping-->
+                        <div class="condition">
+                            <h2>Condition</h2>
+                            <div class="well text-center">
+                                <label for="isNew">New</label>
+                                <input type="hidden" name="isNew" value="0"/>
+                                <input type="checkbox" name="isNew" value="1"/>
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
@@ -701,27 +710,6 @@
             </div>
         </div>
     </section>
-    <!-- Modal -->
-    <div class="modal fade" id="advancedSearchModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Advanced search</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    @include('layouts.advancedSearchModal')
 @endsection
 @endif
