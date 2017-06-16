@@ -1,4 +1,3 @@
-
 <headerbottom id="headerbottom"><!--header-bottom-->
     <div class="header-bottom">
         <div class="container">
@@ -37,35 +36,23 @@
                         </ul>
                     </div>
                 </div>
-                @if(app('request')->input('id'))
-                    <form action="/" method="get">
-                        <div class="col-sm-6">
-                            <div class="search_box pull-right">
-                                <input hidden id="tags" name="id" value="{{app('request')->input('id')}}"
-                                       placeholder="Search" type="text">
-                                <input hidden id="tags" name="category_name"
-                                       value="{{app('request')->input('category_name')}}" placeholder="Search"
-                                       type="text">
-                                <input id="storeName" name="searchStoreName" placeholder="Search" type="text">
-                                <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
-                                    Search
-                                </button>
-                            </div>
+                <form action="/" method="get">
+                    <div class="col-sm-6">
+                        <div class="search_box pull-right">
+                            <input hidden id="tags" name="id" value="{{app('request')->input('id')}}"
+                                   placeholder="Search" type="text">
+                            <input hidden id="tags" name="category_name"
+                                   value="{{app('request')->input('category_name')}}" placeholder="Search"
+                                   type="text">
+                            <input id="storeName" name="searchStoreName" placeholder="Search" type="text">
+                            <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
+                                Search
+                            </button>
                         </div>
-                    </form>
-                @else
-                    <form method="get" action="/">
-                        <div class="col-sm-6">
-                            <div class="search_box pull-right">
-                                <input id="storeName" name="searchStoreName" type="text" placeholder="Search"/>
-                                <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">Search
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                @endif
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
 </headerbottom>
-<!--/header-bottom-->
