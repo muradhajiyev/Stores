@@ -66,8 +66,9 @@
                     <div class="single-products">
                         <div class="productinfo text-center">
 
-                            <a href="{{ route('store.index', $store->id)}}" style="font-size: 20px;color: orange;"><img src="{{ $store->profile_url}}" alt="" style="box-shadow: 0px 2px 4px 0px gray;"/>
-                           <hr>  {{$store->name}}</a><p><i> {{$store->email}}</i></p>
+                            <a href="{{ route('store.index', $store->id)}}" style="font-size: 20px;color: orange;"><img src="{{ $store->profile_url}}" alt="" style="box-shadow: 0px 2px 4px 0px gray; width: 100%; height: 210px;"/>
+                           <br>  <span>{{$store->name}}</a><p><i> {{$store->email}}</i></p></span>
+                           </a>
                         </div>
                     </div>
                     </a>
