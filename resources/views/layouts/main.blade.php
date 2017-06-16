@@ -14,6 +14,8 @@
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
     <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
 
     {{--<!--[if lt IE 9]>--}}
     {{--<script src="{{asset("product/js/html5shiv.js")}}"></script>--}}

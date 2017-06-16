@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Blog;
 use Illuminate\Http\Request;
-
+use App\Store;
 class BlogController extends Controller
 {
     /**
@@ -12,23 +12,39 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if(isset($request->store_id)) {
+           // return view('http://facebook.com');
+            $storelist = null;
 
-        $userrole = Auth::user();
+            $userrole = Auth::user();
+            $bloglist = Blog::where('store_id',$request->store_id)->paginate(6);
 
-       if(Auth::check()) {
-           if ($userrole->isStore())
-               $bloglist = Blog::paginate(6);
+            if (Auth::check() && $userrole->isStore()) {
 
-           else
-               $bloglist = Blog::paginate(6);
-       }
-        else {
+                $storelist = Store::where('user_id', $userrole->id)->paginate(6);
+
+
+            }
+        }
+        else{
+            $storelist = null;
+
+            $userrole = Auth::user();
             $bloglist = Blog::paginate(6);
+
+            if (Auth::check() && $userrole->isStore()) {
+
+                $storelist = Store::where('user_id', $userrole->id)->paginate(6);
+
+
+            }
         }
 
-        return view('store.blog')->with(array('bloglist'=>$bloglist,'store'=>$store));
+
+
+        return view('store.blog')->with(array('bloglist'=>$bloglist,'storelist'=>$storelist,''));
 
     }
 
