@@ -28,3 +28,18 @@ $(document).ready(function(){
 		});
 	});
 });
+
+$(document).ready(function () {
+                $("#toggle").click(function () {
+                    $("#show").toggle();
+                });
+            });
+            $(".hideLink").on("click", function () {
+                if ($(this).text() == "see less") {
+                    $(this).text("see more");
+                } else {
+                    $(this).text("see less");
+                }
+                $(".ISProductBody").toggle();
+                return false;
+            });

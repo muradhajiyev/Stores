@@ -6,9 +6,11 @@ const InputTypes = {
 
 };
 let specificationSelectElement;
+let specLength;
 $(document).ready(function () {
     initializeFileUploader();
-   //console.log( $('#subCategories').children('.parentCategorySelect').last());
+    $('#submitProduct').attr('disabled', 'disabled');
+    //console.log( $('#subCategories').children('.parentCategorySelect').last());
     $('.parentCategory').livequery('change', function (event) {
         clearNextElements(this, '.parentCategory');
         clearNextElements(this, 'label');
@@ -16,18 +18,37 @@ $(document).ready(function () {
         clearSpecificationsArea();
         getSpecificationsByCategoryId(event.target.value);
     });
-    $('.specification').livequery('change', function (event) {
-        clearNextElements(this);
-        appendSpecValuesAndUnit(event.target.value, this.parentElement);
-    });
-    $('#addNewSpec').on('click', function (event) {
+    $('#addSpec').on('click', function (event) {
         event.preventDefault();
-        duplicateSpecifications();
+        let selectValue = $('#productSpec').val();
+        if (selectValue) {
+            appendSpecValuesAndUnit(selectValue, $('#productSpec option[value=' + selectValue + ']').text());
+            disableOptionValues($('#productSpec option[value=' + selectValue + ']'));
+        }
     });
-    $('#deleteLastSpec').on('click', function (event) {
+    $('.deleteSpecValue').livequery('click', function (event) {
         event.preventDefault();
-        $('#specificationsArea').children().last().remove();
+        this.parentElement.parentElement.remove();
+        enableOptionValues($('#productSpec option[value=' + this.id + ']'));
+
     });
+
+    // $('.specification').livequery('change', function (event) {
+    //     clearNextElements(this);
+    //     appendSpecValuesAndUnit(event.target.value, this.parentElement);
+    //     //showOrHideSpecButtons();
+    // });
+    // $('#addNewSpec').on('click', function (event) {
+    //     event.preventDefault();
+    //     duplicateSpecifications();
+    //    // showOrHideSpecButtons()
+    // });
+    // $('#deleteLastSpec').on('click', function (event) {
+    //     event.preventDefault();
+    //     $('#specificationsArea').children().last().remove();
+    //    // showOrHideSpecButtons();
+    // });
+
 });
 
 //get sub category given parent category id
@@ -67,20 +88,17 @@ let appendSpecifications = (specfications) => {
     $('#specificationsArea').append(specfications);
 };
 
-//get specifications of current category
+//gets specifications of current category
 let getSpecificationsByCategoryId = function (id) {
-    let selectElement = '<div class="row productSpecifications"> <div class="col-md-2 form-group specification"> <select class="form-control productSpec" name="productSpec" required> ';
+    let selectElement = $('#productSpec');
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
             if (data.length > 0) {
-                selectElement += '<option selected disabled>Select Specifications</option>';
+
+                $('#specSelect').attr('hidden', false);
                 data.forEach(function (spec) {
-                    selectElement += '<option value="' + spec.id + '">' + spec.name + '</option>';
+                    selectElement.append('<option value="' + spec.id + '">' + spec.name + '</option>');
                 });
-                selectElement += '</select> </div> </div>';
-                appendSpecifications(selectElement);
-                showAddNewSpecButton(data.length);
-                specificationSelectElement = selectElement;
             }
 
 
@@ -90,45 +108,48 @@ let getSpecificationsByCategoryId = function (id) {
 
 //hide and remove specification fields
 let clearSpecificationsArea = () => {
-    $('#specificationsArea').empty();
-    $('#newSpec').attr('hidden', true);
-    $('#deleteSpec').attr('hidden', true);
+    $('#specValues').empty();
+    $('#specSelect').attr('hidden', true);
+
 };
 
 //appends value of current specification and its unit if applicable
-let appendSpecValuesAndUnit = function (id, appendArea) {
+let appendSpecValuesAndUnit = function (id, text) {
     $.get('/api/specification/' + id + '/type', function (data) {
         if (data) {
             let element;
+            let productSpec = id;
+            let header = '<div class="col-md-12"><h5>' + text + '</h5></div>';
             let unit = data[1];
             if (data[0] === InputTypes.number) {
-                element = '<div class="col-md-2 form-group"> <input type="number" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
-                append(element, unit, appendArea);
+                element = '<div class="col-md-2 form-group"> <input type="number" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
+                append(header, productSpec, element, unit);
+
             } else if (data[0] === InputTypes.text) {
-                element = '<div class="col-md-2 form-group"> <input type="text" name="specValue" required placeholder="Specification value" class="form-control specValue"/> </div>';
-                append(element, unit, appendArea);
+                element = '<div class="col-md-2 form-group"> <input type="text" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
+                append(header, productSpec, element, unit, appendArea);
+
             } else if (data[0] === InputTypes.dropdown) {
 
                 $.get('/api/dropdownValues/' + id, function (data) {
                     let dropdownArray = JSON.parse(data);
                     if (dropdownArray) {
 
-                        element = '<div class="col-md-2 form-group"> <select name="specValue" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
+                        element = '<div class="col-md-2 form-group"> <select name="specValue[]" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
                         for (x in dropdownArray) {
 
-                            element += '<option value="' + dropdownArray[x].id + '"> ' + dropdownArray[x].dropdown_value + '</option>';
+                            element += '<option> ' + dropdownArray[x].dropdown_value + '</option>';
                         }
                         element += '</select> </div>';
+                        append(header, productSpec, element, unit);
 
-
-                        append(element, unit, appendArea);
                     }
                 });
 
 
             } else if (data[0] === InputTypes.radio) {
-                element = '<div class="col-md-2 form-group"> <input type="checkbox" name="specValue" class="form-control specValue"/> </div>';
-                append(element, unit, appendArea);
+                element = '<div class="col-md-2 form-group"> <input type="checkbox" name="specValue[]" class="form-control specValue"/> </div>';
+                append(header, productSpec, element, unit);
             }
         }
 
@@ -136,138 +157,61 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
     });
 };
 
-//duplicate the same specification select element when new button is pressed
-let duplicateSpecifications = () => {
-    if (specificationSelectElement) {
-        appendSpecifications(specificationSelectElement);
-    }
-};
 
-//append specification value and unit field near selected specifcation
-let append = function (element, unit, appendArea) {
-    if (element) {
-        $(appendArea).append(element);
+//appends specification value and unit field near selected specifcation
+let append = function (header, productSpec, element, unit) {
+    let appendArea = $('#specValues');
+    if (element && productSpec) {
+
+        let div = $('<div></div>').attr('class', 'row specificationValue');
+        let deleteButton = '<div class="col-md-2"><button id="' + productSpec + '" class="btn btn-danger deleteSpecValue"><span class="glyphicon glyphicon-minus"></span></button></div>';
+        let spec = '<input type="hidden" name="productSpec[]" value="' + productSpec + '"/>';
+        div.append(header, spec, element);
         if (unit) {
-            $(appendArea).append('<div class="col-md-2 form-group"> <input type="text" class="form-control specUnit" readonly value="' + unit + '"/> </div>');
+            $(div).append('<div class="col-md-2 form-group"> <input type="text" class="form-control specUnit" readonly value="' + unit + '"/> </div>');
         }
+        div.append(deleteButton);
+        appendArea.append(div);
+
     }
 };
 
-//show add new button
-let showAddNewSpecButton = (specLength) => {
-    $('#newSpec').attr('hidden', false);
-    $('#deleteSpec').attr('hidden', false);
-};
 
+//initializes dropzone
 let initializeFileUploader = () => {
-    $(document).ready(function () {
-
-        // enable fileuploader plugin
-        $('input[name="file"]').fileuploader({
-            // limit of files {null, Number}
-            // also with the appended files
-            // if null - has no limits
-            // example: 3
-            limit: 10,
-
-            // file's maximal size in MB {null, Number}
-            // also with the appended files
-            // if null - has no limits
-            // example: 2
-            maxSize: 100,
-
-            // each file's maximal size in MB {null, Number}
-            // if null - has no limits
-            // example: 2
-            fileMaxSize: 10,
-
-            // allowed extensions or file types {null, Array}
-            // if null - has no limits
-            // example: ['jpg', 'jpeg', 'png', 'audio/mp3', 'text/plain']
-            extensions: ['jpg', 'jpeg', 'png'],
-
-            // new input {Boolean, String, Function, jQuery Object}
-            // example: true
-            // example: ' ' - no input
-            // example: '<div>Click me</div>'
-            // example: function(options) { return '<div>Click me</div>'; }
-            // example: $('.selector')
-            changeInput: '<div class="fileuploader-input">' +
-            '<div class="fileuploader-input-inner">' +
-            '<img src="/images/fileuploader-dragdrop-icon.png">' +
-            '<h3 class="fileuploader-input-caption"><span>Drag and drop files here</span></h3>' +
-            '<p>or</p>' +
-            '<div class="fileuploader-input-button"><span>Browse Files</span></div>' +
-            '</div>' +
-            '</div>',
-            theme: 'dragdrop',
-            upload: {
-            //     url: 'php/ajax_upload_file.php',
-            //     data: null,
-            //     type: 'POST',
-            //     enctype: 'multipart/form-data',
-            //     start: true,
-            //     synchron: true,
-            //     beforeSend: null,
-            //     onSuccess: function (result, item) {
-            //         var data = JSON.parse(result);
-            //
-            //         // if success
-            //         if (data.isSuccess && data.files[0]) {
-            //             item.name = data.files[0].name;
-            //         }
-            //
-            //         // if warnings
-            //         if (data.hasWarnings) {
-            //             for (var warning in data.warnings) {
-            //                 alert(data.warnings);
-            //             }
-            //
-            //             item.html.removeClass('upload-successful').addClass('upload-failed');
-            //             // go out from success function by calling onError function
-            //             // in this case we have a animation there
-            //             // you can also response in PHP with 404
-            //             return this.onError ? this.onError(item) : null;
-            //         }
-            //
-            //         item.html.find('.column-actions').append('<a class="fileuploader-action fileuploader-action-remove fileuploader-action-success" title="Remove"><i></i></a>');
-            //         setTimeout(function () {
-            //             item.html.find('.progress-bar2').fadeOut(400);
-            //         }, 400);
-            //     },
-            //     onError: function (item) {
-            //         var progressBar = item.html.find('.progress-bar2');
-            //
-            //         if (progressBar.length > 0) {
-            //             progressBar.find('span').html(0 + "%");
-            //             progressBar.find('.fileuploader-progressbar .bar').width(0 + "%");
-            //             item.html.find('.progress-bar2').fadeOut(400);
-            //         }
-            //
-            //         item.upload.status != 'cancelled' && item.html.find('.fileuploader-action-retry').length == 0 ? item.html.find('.column-actions').prepend(
-            //             '<a class="fileuploader-action fileuploader-action-retry" title="Retry"><i></i></a>'
-            //         ) : null;
-            //     },
-            //     onProgress: function (data, item) {
-            //         var progressBar = item.html.find('.progress-bar2');
-            //
-            //         if (progressBar.length > 0) {
-            //             progressBar.show();
-            //             progressBar.find('span').html(data.percentage + "%");
-            //             progressBar.find('.fileuploader-progressbar .bar').width(data.percentage + "%");
-            //         }
-            //     },
-            //     onComplete: null,
-             },
-            onRemove: function (item) {
-
+    token = $('input[name="_token"]').val();
+    Dropzone.autoDiscover = false;
+    if ($('#fileUpload').length > 0) {
+        let myDropzone = new Dropzone("#fileUpload", {
+            url: "/api/uploadFile",
+            addRemoveLinks: true,
+            success: function (file, response) {
+                addImageHiddenField(response);
             },
-            captions: {
-                feedback: 'Drag and drop files here',
-                feedback2: 'Drag and drop files here',
-                drop: 'Drag and drop files here'
-            },
+            init: function () {
+                this.on('sending', function (file, xhr, formData) {
+                    formData.append('_token', token);
+                });
+                this.on('removedfile', function (file) {
+
+                });
+            }
         });
-
-    });
+    }
 };
+
+//adds hidden field to document for image id
+let addImageHiddenField = (id) => {
+    let inputElement = '<input type="hidden" name="imageIds[]" value="' + id + '"' + '/>';
+    $('#imageIds').append(inputElement);
+    $('#submitProduct').removeAttr('disabled');
+};
+
+let enableOptionValues = (option) => {
+    option.attr('disabled', false);
+
+};
+let disableOptionValues = (option) => {
+    option.attr('disabled', true);
+};
+
