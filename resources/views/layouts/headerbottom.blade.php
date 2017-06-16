@@ -3,6 +3,7 @@
     <div class="header-bottom">
         <div class="container">
             <div class="row">
+
                 <div class="col-sm-6">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -36,6 +37,7 @@
                             <li><a href="{{ url('/store/contactus') }}">Contact</a></li>
                         </ul>
                     </div>
+
                 </div>
                 @if(app('request')->input('id'))
                     <form action="/" method="get">
@@ -50,7 +52,9 @@
                                 <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
                                     Search
                                 </button>
+
                             </div>
+
                         </div>
                     </form>
                 @else
@@ -60,12 +64,16 @@
                                 <input id="storeName" name="searchStoreName" type="text" placeholder="Search"/>
                                 <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">Search
                                 </button>
+                                <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced search</a>
                             </div>
                         </div>
+
                     </form>
                 @endif
             </div>
         </div>
     </div>
+
+
 </headerbottom>
 <!--/header-bottom-->
