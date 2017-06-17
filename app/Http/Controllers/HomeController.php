@@ -23,27 +23,38 @@ class HomeController extends Controller
 
     public function show(Request $request)
     {
+        $subCategories = '';
         $id = $request->input('id');
         $name = $request->input('category_name');
         $storeName = $request->input('searchStoreName');
         if (!is_null($id)) {
+            $subCategories = $this->getChildCategories($id);
             $categories = Category::where('parent_id', $id)->pluck('id')->toArray();
             array_push($categories, $id);
             $products = Product::whereIn('category_id', $categories)->pluck('store_id')->toArray();
             if (is_null($storeName)) {
-                $stores = Store::whereIn('id', $products)->orderBy('id','desc')->paginate(12);
+                $stores = Store::whereIn('id', $products)->paginate(12);
             }else{
-                $stores = Store::whereIn('id', $products)->where('name', $storeName)->orderBy('id','desc')->paginate(12);
+                $stores = Store::whereIn('id', $products)->where('name', $storeName)->paginate(12);
             }
         } else {
             if (is_null($storeName)) {
-                $stores = Store::orderBy('id','desc')->paginate(12);
+                $stores = Store::orderBy('created_at', 'desc')->paginate(12);
             }else{
-                $stores = Store::where('name', $storeName)->orderBy('id', 'desc')->paginate(12);
+                $stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
             }
         }
-        
-        return view('home.index')->with('stores', $stores)->with('categoryName', $name);
+        return view('home.index')->with('stores', $stores)->with('categoryName', $name)->with('subCategories',$subCategories);
+    }
+    public function getChildCategories($id){
+        $parent_id = Category::find($id);
+        if (!is_null($parent_id->parent_id)) {
+            $childCategories = Category::where('parent_id', $parent_id->parent_id)->get();
+        }else{
+            $childCategories = null;
+
+        }
+        return $childCategories;
     }
 
     public function profile($id)
