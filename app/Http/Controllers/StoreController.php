@@ -64,7 +64,7 @@ class StoreController extends Controller
       * @return Response
       */
       public function store(Request $request) {
-
+         //create new store
          if(!isset($request->id)) {
             $this->validate($request, [
                'name' => 'required|unique:stores',
@@ -113,17 +113,18 @@ class StoreController extends Controller
 
 
          }
-
+         //edit existing store
          else {
             $this->validate($request, [
                'name' => 'required',
                'email'=>'required|email',
                'description'=>'required|max:255',
-               'profile' => 'image|mimes:jpeg,bmp,png|max:4000',
-               'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
+               'avatar' => 'image|mimes:jpeg,bmp,png|max:4000',
+               //'cover' => 'image|mimes:jpeg,bmp,png|max:4000',
 
             ]);
             $store = Store::find($request->id);
+
 
             $store->name = $request->name;
             $store->address = $request->address;
@@ -131,7 +132,38 @@ class StoreController extends Controller
             $store->email = $request->email;
             $store->description=$request->description;
             $store->slogan=$request->slogan;
+            //if user has chosen avatar replace it
+            if($request->hasFile('avatar')) { 
+             $dir = config('settings.store_profile_base_path') . date("Y-m-d");
+             $path = $request->file('avatar')->store($dir);
+             $filename = substr($path,strlen($dir) + 1);  
+
+             $img = $store->profile_image_id;
+      
+             $image = new Image();     
+             $image->file_name = $filename;
+             $image->extension = $request->avatar->extension();
+             $image->file_size = filesize($request->avatar);
+             $image->path = date("Y-m-d").'/'.$filename;
+             $image->save();
+             $store->profile_image_id = $image->id;
+             //if image is in Store_Image table delete it.
+             $store_img = Store_Image::where('image_id', $img)->first();
+              if(!is_null($store_img)){
+                $store_img->delete();
+              }
+            }
             $store->save();
+            //if user has added new cover photos add them
+            if($request->has('imageIds')){
+            $imageIDs = $request->imageIds;
+            foreach ($imageIDs as $imageID) {
+               Store_Image::create([
+                  'store_id' => $store->id,
+                  'image_id' => $imageID
+               ]);
+            }
+          }
          }
 
          return redirect()->action('StoreController@index');
@@ -161,8 +193,9 @@ class StoreController extends Controller
 
          //$store = DB::table('stores')->where('id', $id)->first();
          $store = Store::where('id', $id)->first();
+         //return $store;
 
-         return view('admin.store.edit',array('store'=>$store));
+         return view('admin.store.edit',['store'=>$store]);
       }
 
 
@@ -185,15 +218,20 @@ class StoreController extends Controller
       */
       public function destroy($id, Request $request)
       {
-        if(isset($request->id)) {
+        //deleting stores
+         DB::table('store_image')->where('store_id', '=', $id)->delete();
          $store = Store::find($id);
          $store->delete();
          //files and images of store should be deleted
          return redirect()->action('StoreController@index');
-       }
-       else {
-           return $id;
-       }
+      }
+
+      public function deleteCover($id){
+         $store_img = Store_Image::where('image_id', $id)->first();
+         $store_img->delete();
+         $img = Image::find($id);
+         $img->delete();
+         return $id;
       }
 
       public function getAllStores()

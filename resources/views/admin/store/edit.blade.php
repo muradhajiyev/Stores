@@ -8,38 +8,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
-
-
 <div class="container" style="height: 100%;width: 100%;">
     <div class="" >
         <div class="item" style="margin-top: 1%; box-shadow: 1px 1px 1px black;">
             <div class="thumbnail" style="margin-top: 1%">
                 <h1 style="margin-left: 5%">EDIT STORE</h1>
                 <hr>
-
                 <center>
                     Edit your cover photos
                 </center>
+                <br>
+
             <div class="row">
-
-             @foreach($store->cover_urls as $key=>$img)
-                    <div class="col-sm-4" style="height: 380px;">
-                        <img src="{{$img}}" class="girl img-responsive" alt=""
-                             style="width: 100%; height: 100%; "/>
-
-                        <form action="{{ URL::to('/admin/stores/'.$key) }}" method="POST" >
-                                <input name="_token" type="hidden" value="{{csrf_token()}} " >
-                                <input name="_method" type="hidden" value="DELETE" >
-                                <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" style="margin-left: 15%;background-color: #f48064;border:0;">
-                            </form>
-                     </div>
-
-            
+              @foreach($store->image_urls as $key=>$img)
+                
+                        <div class="col-sm-4" ">
+                            <div class="thumbnail" style= "height: 340px; ">
+                            <img src="{{$img->path}}" class="girl img-responsive" alt=""
+                                 style="width: 100%; height: 85%; "/>
+                             <br>
+                             <button type="button" class="btn btn-danger deleteCover" id="deleteCover" value="{{$img->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i> @lang('words.delete')</button>
+                         </div>
+                         </div>
+                  
             @endforeach
             </div>
+        
+
+
             <div class="row">
                <br>
             </div>
+
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
                         <ul>
@@ -50,7 +50,16 @@
                     </div>
 
                 @endif
-                <form class="form-horizontal form-label-left" novalidate style="margin-top: 5%; width:90%;margin-left: 5%;" action="{{ URL::to('/admin/store') }}" method="post" enctype="multipart/form-data">
+               <br>
+               <br>
+               <br>       
+                <center>
+                  <!-- <p >Cover sekillerinizi asagidaki saheye click ederek artira bilersiniz</p> -->
+                   <p>@lang('words.addcover')</p>
+                </center>
+                <div class="dropzone" id="fileUpload1" style="margin:10px;" > </div>
+
+                <form class="form-horizontal form-label-left" novalidate style="margin-top: 5%; width:90%;margin-left: 5%;" action="{{ URL::to('/admin/stores') }}" method="post" enctype="multipart/form-data">
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="item form-group" >
@@ -60,6 +69,8 @@
                             <input id="name" class="form-control col-md-7 col-xs-12"  name="name" value="{{$store->name}}" required="required" type="text">
                         </div>
                     </div>
+
+                    <div id="imageIds"></div>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address"> @lang('words.saddress')
                         </label>
@@ -97,29 +108,22 @@
                         </div>
                     </div>
                     <input type="hidden"  name="id" value="{{$store->id}}"><br>
+                    <input type="hidden" name="settings" value="{{config('settings.max_cover_photo_count')}},{{config('settings.max_file_size')}},{{count($store->image_urls )}}" id="settings">
 
 
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">@lang('words.cover')
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">@lang('words.replaceprofile')
                             </label>
                             <input type="file" name="avatar" class="btn btn-file">
                             <br>
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">@lang('words.profile')
-                            </label>
-                            <input type="file" name="cover"  class="btn btn-file">
-
                             <br>
-
                             <button type="button" class="btn btn-primary"  onclick="redirect()">Cancel</button>
-                            <input type="submit" class="btn btn-success" value="@lang('words.save')" >
-
+                            <input type="submit" class="btn btn-success" id="submitStore" value="@lang('words.save')" >
                         </div>
                     </div>
                 </form>
-
-
 
                 <!-- /page content -->
             </div>
@@ -130,11 +134,14 @@
 
     <script>
    function redirect(){
-        window.location="{{URL::to('/admin/store')}}";
+        window.location="{{URL::to('/admin/stores')}}";
     }
 </script>
+ <script src="{{asset('js/createStore.js')}}"></script>
+ <script src="{{asset('js/dropzone.js')}}"></script>
 
-                                    </section>
+
+</section>
 @stop
 
 

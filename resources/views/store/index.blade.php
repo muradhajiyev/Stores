@@ -20,10 +20,11 @@
 
                         <div class="carousel-inner">
 
-                            @foreach($store->cover_urls as $key=>$img)
+                            
+                        @foreach($store->image_urls as $key=>$img)
                                 <div class="item {{ $key==0 ? 'active' : '' }}" style="width:1350px;margin-left: -10%;">
                                     <div class="col-sm-12" style="height: 380px;">
-                                        <img src="{{$img}}" class="girl img-responsive" alt=""
+                                        <img src="{{$img->path}}" class="girl img-responsive" alt=""
                                              style="width: 100%; height: 100%; "/>
                                     </div>
                                 </div>
@@ -725,3 +726,4 @@
     </div>
 @endsection
 @endif
+
