@@ -42,7 +42,7 @@
                                          style="; height: 350px;">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <a href="{{ route('store.index', $store->id)}}"
+                                                <a href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'store_name' => $store->name]) }}"
                                                    style="font-size: 25px; color: gray;"><img
                                                             src="{{ $store->profile_url }}" alt=""
                                                             style="box-shadow: 0px 3px orange;height: 250px;"/>

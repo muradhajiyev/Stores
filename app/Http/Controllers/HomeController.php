@@ -57,8 +57,9 @@ class HomeController extends Controller
         return $childCategories;
     }
 
-    public function profile($id)
+    public function profile(Request $request)
     {
+        $id = $request->input('store_id');
         $store = Store::find($id);
         $store->setRelation('products', $store->products()->paginate(10));
         return view('store.index', ['store' => $store]);

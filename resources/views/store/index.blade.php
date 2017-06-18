@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="col-sm-4 descript" style=" margin-top: 2%;">
-                    <a href="{{ route('store.index', $store->id)}}"
+                    <a href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'store_name' => $store->name]) }}"
                        style="color: orange;font-size: 30px;"><span>{{$store->name}}</span></a>
 
                     <div style="height: 200px;border-right: 4px gray solid; right: 300px;margin-left: 0px;height: 110px; background-color: white; ">
