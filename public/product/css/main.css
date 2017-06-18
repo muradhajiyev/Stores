@@ -34,6 +34,14 @@ text-decoration:none;
   border-radius: 0px;
   border-color: #edaf5e;
 }
+.focus {
+  border-left: solid orange 6px;
+  border-right: solid orange 6px ;
+  border-bottom: ActiveBorder 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: bolder;
+}
 #searchByStoreName:hover{
   color: black;
   background-color: #EEEEE0;

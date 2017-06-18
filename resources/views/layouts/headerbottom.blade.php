@@ -1,9 +1,7 @@
-
 <headerbottom id="headerbottom"><!--header-bottom-->
     <div class="header-bottom">
         <div class="container">
             <div class="row">
-
                 <div class="col-sm-6">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -37,7 +35,6 @@
                             <li><a href="{{ url('/store/contactus') }}">Contact</a></li>
                         </ul>
                     </div>
-
                 </div>
 
                     <form action="/" method="get">
@@ -61,6 +58,4 @@
             </div>
         </div>
     </div>
-
 </headerbottom>
-<!--/header-bottom-->
