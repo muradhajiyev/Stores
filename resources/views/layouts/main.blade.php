@@ -52,6 +52,7 @@
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/dropzone.js")}}"></script>
 <script src="{{asset("product/js/autocomplete.js")}}"></script>
+<script src="{{asset("js/advancedSearchModal.js")}}"></script>
 {{--<script src="{{asset("js/categorySidebar.js")}}"></script> Not Found!--}}
 
 
