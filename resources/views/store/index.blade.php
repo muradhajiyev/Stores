@@ -92,7 +92,6 @@
             <hr style="border-color: orange;">
         </div>
         @include('layouts.headerbottom')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </section>
     <!--cover/slider ended-->
     <section>
@@ -100,7 +99,6 @@
             <div class="row">
 
                 @include('layouts.left-sidebar')
-
                 <div class="col-sm-9 padding-right">
 
                     <div class="features_items"><!--features_items-->
