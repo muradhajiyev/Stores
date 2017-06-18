@@ -61,6 +61,8 @@ class HomeController extends Controller
     {
         $store = Store::find($id);
         $store->setRelation('products', $store->products()->paginate(10));
+
+        //return $store;
         return view('store.index', ['store' => $store]);
 
 
