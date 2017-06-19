@@ -103,7 +103,7 @@
                 <div class="col-sm-9 padding-right">
 
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Product List</h2>
+                        <h2 class="title text-center">{{$store->name}} Products</h2>
                         @if(Auth::user())
                             @if(Auth::user()->isStoreOwner($store->id))
 

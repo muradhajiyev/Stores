@@ -57,12 +57,29 @@ class HomeController extends Controller
         return $childCategories;
     }
 
-    public function profile(Request $request)
-    {
+    public function profile(Request $request){
+        $subCategories = '';
         $id = $request->input('store_id');
+        $searchProduct = $request->input('searchStoreName');
+        $category_id = $request->input('id');
         $store = Store::find($id);
-        $store->setRelation('products', $store->products()->paginate(10));
-        return view('store.index', ['store' => $store]);
+
+        if (!is_null($category_id)) {
+            $subCategories = $this->getChildCategories($category_id);
+            if (is_null($searchProduct)) {
+                $store->setRelation('products', $store->products()->where('category_id', $category_id)->paginate(10));
+            }else{
+                $store->setRelation('products', $store->products()->where('category_id', $category_id)->where('name', 'like', '%' . $searchProduct . '%')->paginate(10));
+            }
+        }else {
+            if (is_null($searchProduct)) {
+                $store->setRelation('products', $store->products()->paginate(10));
+
+            } else {
+                $store->setRelation('products', $store->products()->where('name', 'like', '%' . $searchProduct . '%')->paginate(10));
+            }
+        }
+        return view('store.index', ['store' => $store])->with('subCategories',$subCategories);;
 
 
     }

@@ -34,6 +34,15 @@ text-decoration:none;
   border-radius: 0px;
   border-color: #edaf5e;
 }
+#backCategory{
+  color: orange;
+}
+#backCategory:hover{
+  color: orangered;
+}
+#backCategory:focus{
+  text-decoration: none;
+}
 .focus {
   border-left: solid orange 6px;
   border-right: solid orange 6px ;
