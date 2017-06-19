@@ -23,10 +23,12 @@
                                     <div id="collapseFour" class="panel-collapse collapse in">
                                         <div class="list-group">
                                             <div class="list-group">
-                                                <a href="#" class="list-group-item tabLinks">Categories</a>
-                                                <a href="#" class="list-group-item tabLinks">Brands</a>
-                                                <a href="#" class="list-group-item tabLinks">Price</a>
-                                                <a href="#" class="list-group-item tabLinks">Condition</a>
+                                                <a href="#" class="list-group-item tabLink"
+                                                   id="category">Categories</a>
+                                                <a href="#" class="list-group-item tabLink" id="brand">Brands</a>
+                                                <a href="#" class="list-group-item tabLink" id="price">Price</a>
+                                                <a href="#" class="list-group-item tabLink"
+                                                   id="condition">Condition</a>
 
                                             </div>
                                         </div>
@@ -35,15 +37,71 @@
                             </div>
                         </div>
                         <div class="col-sm-8 col-md-8">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default advancedSearchPanel" id="categoryPanel">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Categories</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <p>Content</p>
+                                    <div id="subCategories">
+                                        <div class="form-group parentCategory">
+                                            <select class="form-control parentCategorySelect" name="productCategory"
+                                                    required>
+                                                <option selected value="" disabled>Select category</option>
+                                                @foreach($categories as $parent)
+                                                    <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default advancedSearchPanel" id="brandPanel" hidden>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Brands</h3>
+                                </div>
+                                <div class="panel-body">
+
+
+                                    @foreach($brands as $brand)
+                                        <input name="brand" type="checkbox" value="{{$brand->id}}">
+                                        <label for="brand">{{$brand->name}}</label>
+                                    @endforeach
 
                                 </div>
                             </div>
+                            <div class="panel panel-default advancedSearchPanel" id="pricePanel" hidden>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Price Range</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="price-range"><!--price-range-->
+                                        <div class="well text-center">
+                                            <input type="text" class="span2" value="" data-slider-min="0"
+                                                   data-slider-max="1000" data-slider-step="5"
+                                                   data-slider-value="[250,450]" id="sl2"><br/>
+                                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 1000</b>
+                                        </div>
+                                    </div><!--/price-range-->
+                                </div>
+                            </div>
+                            <div class="panel panel-default advancedSearchPanel" id="conditionPanel" hidden>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Condition</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="checkbox" name="used">
+                                        <label for="used">Used</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="checkbox" name="new">
+                                        <label for="new">New</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-sm-offset-10">
+                            <button class="btn btn-primary">Apply</button>
                         </div>
                     </div>
                     {{--<div class="col-sm-6">--}}
