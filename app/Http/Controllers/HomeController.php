@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
@@ -66,14 +67,20 @@ class HomeController extends Controller
     public function profile($id)
     {
         $store = Store::find($id);
-        $store->setRelation('products', $store->products()->paginate(10));
-        $st = Store::find($id);
-        $product = Product::where('store_id', $id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
+
+        if($store) {
+            $store->setRelation('products', $store->products()->paginate(10));
+            $parentCategories = Category::all()->where('parent_id', null);
+            $brands = Brand::all();
+            $st = Store::find($id);
+            $product = Product::where('store_id', $id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
+            return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product]);
+        }
+        // $st = Store::find($id);
+        // $product = Product::where('store_id', $id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
         //return response()->json($product);
         //return $store;
-        return view('store.index', ['store' => $store, 'mostviewed' => $product]);
-
-
+        //return view('store.index', ['store' => $store, 'mostviewed' => $product]);
     }
 
     /**

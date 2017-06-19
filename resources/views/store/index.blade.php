@@ -501,7 +501,7 @@
             </div>
         </div>
     </section>
-    @include('layouts.advancedSearchModal')
+    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands])
 @endsection
 @endif
 
