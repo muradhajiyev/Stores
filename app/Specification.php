@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Specification extends Model
 {
     public $timestamps = false;
+    protected $appends = ['spec_values'];
 
     public function type(){
        return $this->belongsTo('App\Type');
@@ -16,5 +17,12 @@ class Specification extends Model
     }
     public function dropdown(){
         return $this->belongsTo('App\Dropdown');
+    }
+    public function values(){
+        return $this->hasMany('App\Specification_Value');
+    }
+
+    public function getSpecValuesAttribute(){
+        return $this->values()->distinct('value')->get();
     }
 }

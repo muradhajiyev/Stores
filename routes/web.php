@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
     Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
+
 });
 
 Route::group(['prefix' => 'store'], function () {
@@ -78,6 +79,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
     Route::post('uploadFile', 'UploadFileController@upload');
     Route::get('deleteCover/{id}', 'StoreController@deleteCover');
+    Route::get('specificationValues/{id}', 'SpecificationController@getSpecificationValues');
 });
 
 Route::get('/403', function () {
