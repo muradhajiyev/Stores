@@ -44,7 +44,8 @@
                                 <div class="panel-body">
                                     <div id="subCategories">
                                         <div class="form-group parentCategory">
-                                            <select class="form-control parentCategorySelect" name="productCategory" required>
+                                            <select class="form-control parentCategorySelect" name="productCategory"
+                                                    required>
                                                 <option selected value="" disabled>Select category</option>
                                                 @foreach($categories as $parent)
                                                     <option value="{{$parent->id}}">{{$parent->name}}</option>

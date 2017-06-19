@@ -2,7 +2,7 @@
  * Created by saria on 6/18/17.
  */
 $(document).ready(function () {
-    $('.tabLink').on('click', function () {
+    $('.tabLink').livequery('click', function () {
         $('.advancedSearchPanel').attr('hidden', true);
         let panel = this.id + 'Panel';
         $('#' + panel).attr('hidden', false);
@@ -16,9 +16,11 @@ $(document).ready(function () {
 let specificationValues = (categoryId) => {
     $.get('/api/specificationValues/' + categoryId, function (data) {
         if (data) {
+            console.log(data);
             data.forEach(function (specification) {
                 if (specification.dropdown_id) {
-                    console.log(specification.name)
+                   // console.log(specification.name)
+                    appendSpecification(specification.name);
                 } else {
 
                 }
@@ -30,9 +32,12 @@ let specificationValues = (categoryId) => {
 
 let appendSpecification = (specName) => {
     let tabLink = '<a href="#" class="list-group-item tabLink"id="' + specName + '">' + specName + '</a>';
-    let tabArea = ' <div class="panel panel-default advancedSearchPanel" id="' + specName + 'Panel"> ' +
+    let tabArea = ' <div class="panel panel-default advancedSearchPanel" hidden id="' + specName + 'Panel"> ' +
         '<div class="panel-heading"> <h3 class="panel-title">' + specName + '</h3> </div> ' +
         '<div class="panel-body">' +
         '</div> ' +
-        '</div>'
+        '</div>';
+   // $('#tabLinks').append(tabLink);
+   // $('#advancedSearchPanels').append(tabArea);
+
 };
