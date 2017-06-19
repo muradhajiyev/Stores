@@ -3,6 +3,7 @@
     @section('title', "Store | {$store->name}")
 
 @section('content')
+<br>
 
     <section id="slider"><!--slider-->
 

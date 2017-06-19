@@ -5,6 +5,7 @@
 
     <section>
         <div class="container">
+            @include('layouts.headerbottom')
             <div class="row">
 
                 @include('layouts.left-sidebar')

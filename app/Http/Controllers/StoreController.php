@@ -25,9 +25,8 @@ class StoreController extends Controller
    public function index(Request $request)
    {
       $userrole=Auth::user();
-      $searchtext=strtolower($request->searchtext);
-
-      if(isset($searchtext)) {
+      if(isset($request->searchtext)) {
+          $searchtext=strtolower($request->searchtext);
          if( $userrole->isStore())
          $storelist= Store::where([
             ['user_id', '=', $userrole->id],

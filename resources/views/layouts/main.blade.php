@@ -14,7 +14,9 @@
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
     <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
+
     <script src="{{asset("product/js/jquery.js")}}"></script>
+
 
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"

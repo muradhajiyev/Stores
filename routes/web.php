@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
 
     Route::resource('stores', 'StoreController');
+
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
@@ -37,17 +38,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'store'], function () {
 
-
+    Route::resource('blog', 'BlogController');
     Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
 
-    Route::get('/blog', function () {
-        return view('temp.blog');
-    });
 
-
-    Route::get('/blog-single', function () {
-        return view('temp.blog-single');
-    });
     Route::get('/cart', function () {
         return view('temp.cart');
     });

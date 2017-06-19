@@ -98,6 +98,7 @@
         {{$storelist->appends(request()->only('searchtext'))->render()}}
         </div>
 </div>
+            </div>
     </section>
 
 
