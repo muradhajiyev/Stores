@@ -6,55 +6,105 @@
 @include('layouts.headerbottom')
 	<section>
 		<div class="container">
-			<div class="row">
 
-			<script src='js/jquery-1.8.3.min.js'></script>
-			<script src='js/jquery.elevatezoom.js'></script>
+		<style type="text/css">
+			.shaddoww{
+				box-shadow: 1px 1px 1px 1px gray;
+			}
+		</style>
+			<div class="row">
 			
 				<div class="col-sm-12 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-4">
 								<!-- image part -->
-								<img id="zoom_01" src='images/small/image1.png' data-zoom-image="images/large/image1.jpg" width="100%;height:100%;" />
+														
+						       <div class="view-product shaddoww">
+						       <a href="#" data-toggle="modal" data-target=".pop-up-1">
+						        <img src="{{asset("images/home/default-logo.png")}}" alt="" />
+						        </a>
+						       </div>
+						       <div id="similar-product" class="carousel slide" data-ride="carousel">
+						          <!-- Wrapper for slides -->
+						            <div class="carousel-inner">
+						          <div class="item active">
+						            <a href="#" data-toggle="modal" data-target=".pop-up-1">
+										<img src="{{asset("images/home/default-logo.png")}}" class="img-responsive img-rounded center-block" alt="" style="width: 100px; height: 80px;">
+									</a>
+									<a href="#" data-toggle="modal" data-target=".pop-up-2">
+										<img src="{{asset("images/home/default-avatar.png")}}" class="img-responsive img-rounded center-block" alt="" style="width: 100px; height: 80px;">
+									</a>
+									<a href="" data-toggle="modal" data-target=".pop-up-1"><img src="{{asset("images/home/default-logo.png")}}" alt="" style="width: 100px; height: 80px;"></a>
+						          </div>
+						         </div>
+						          <!-- Controls -->
+						          <a class="left item-control" href="#similar-product" data-slide="prev">
+						         <i class="fa fa-angle-left"></i>
+						          </a>
+						          <a class="right item-control" href="#similar-product" data-slide="next">
+						         <i class="fa fa-angle-right"></i>
+						          </a>
+						       </div>
 
-								<br />
-								
 
-							<div id="similar-product" class="carousel slide" data-ride="carousel">
-								
-								  <!-- Wrapper for slides -->
-								    <div class="carousel-inner">
-										<div class="item active">
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										</div>
-										<div class="item">
-										 <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										  <a href=""><img src="images/small/image1.png" alt="" style="width: 100px; height: 80px;"></a>
-										</div>
-										
-									</div>
+						  <div class="modal fade pop-up-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+							    <div class="modal-dialog modal-lg" style="margin-top: 7%;">
+							      <div class="">
+							       <div id="similar-popup" class="carousel slide" data-ride="carousel">
+						          <!-- Wrapper for slides -->
+						            <div class="carousel-inner">
+								      <!-- <div class="modal-header" style="color: black;background-color: white;">Header Part</div>
+ -->
+						          <div class="item active">
+							        <div class="modal-body" style="width: 80%;height: 80%;">
 
-								  <!-- Controls -->
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
-							</div>
+							        <img src="{{asset("images/home/default-logo.png")}}" class="img-responsive center-block" alt="">
 
+							         
+
+							        </div></div>
+							        <div class="item">
+							        	<div class="modal-body" style="width: 80%;height: 80%;">
+
+							        <img src="{{asset("images/home/default-avatar.png")}}" class="img-responsive center-block" alt="">
+							        </div>
+							        </div>
+
+							        </div>
+							        <a class="left item-control" href="#similar-popup" data-slide="prev" style="margin-top: 10%;">
+						         		<i class="fa fa-angle-left" style="border-radius: 50%;width: 50px;height: 60px;font-size: 50px;"></i>
+						          	</a>
+						          	<a class="right item-control" href="#similar-popup" data-slide="next" style="margin-top: 10%;margin-right: 3%;">
+						         		<i class="fa fa-angle-right" style="border-radius: 50%;width: 50px;height: 60px;font-size: 50px;"></i>
+						          	</a>
+
+						          	</div>
+							        
+							      </div>
+							    </div>
+							  </div>
+
+							  <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
+							    <div class="modal-dialog modal-lg">
+							      <div class="">
+							        <div class="modal-body" style="width: 80%;height: 80%;">
+							        <div class="modal-header" style="color: black;background-color: white;">Header Part</div>
+
+							        <img src="{{asset("images/home/default-avatar.png")}}" class="img-responsive center-block" alt="">
+							        </div>
+							      </div>
+							    </div>
+							  </div>
 
 						</div>
+
+						<!-- end of image part -->
+
+
+
+
 						<div class="col-sm-8">
-							<div class="product-information"><!--/product-information-->
+							<div class="product-information shaddoww"><!--/product-information-->
 								
 								<!-- <img src="product/images/product-details/new.jpg" class="newarrival" alt="" /> -->
 								<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
@@ -361,14 +411,6 @@
 				</div>
 			</div>
 		</div>
-		<script>
-			$('#zoom_01').elevateZoom({
-				zoomType: "inner",
-				cursor: "crosshair",
-				zoomWindowFadeIn: 500,
-				zoomWindowFadeOut: 750
-				}); 
-		</script>
 	</section>
 	
 	
