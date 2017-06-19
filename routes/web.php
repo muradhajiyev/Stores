@@ -9,12 +9,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Product;
 
 Auth::routes();
 
 Route::get('/','HomeController@show');
 
-Route::get('productdetails', function(){
+Route::get('productdetails/{id}', function($id){
+    $product = Product::find($id);
+    $product->views = $product->views + 1;
+    $product->save();
     return view('product.productdetails');
 });
 

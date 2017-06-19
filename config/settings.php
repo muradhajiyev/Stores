@@ -10,6 +10,7 @@ return [
    */
 
    'max_cover_photo_count' => "3",
+   'max_most_viewed_product_count' => "9", //recommended to be divisible by 3
 
    'max_product_photo_count' => "3",
    'max_file_size' => "4", //mb
