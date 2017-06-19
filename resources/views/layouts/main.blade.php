@@ -39,7 +39,8 @@
 @yield('content')
 
 @include('layouts.footer')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{asset("js/jquery.min.js")}}"></script>
 
 <script src="{{asset("product/js/jquery.js")}}"></script>
 <script src="{{asset("js/jquery.livequery.js")}}"></script>
@@ -50,6 +51,7 @@
 <script src="{{asset("product/js/main.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/dropzone.js")}}"></script>
+<script src="{{asset("js/addwish.js")}}"></script>
 
 
 </body>
