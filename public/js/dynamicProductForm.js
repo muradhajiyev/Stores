@@ -91,8 +91,6 @@ let getSpecificationsByCategoryId = function (id) {
     let selectElement = $('#productSpec');
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
-            console.log(data);
-
             if (data.length > 0) {
                 $('#specSelect').attr('hidden', false);
                 data.forEach(function (spec) {
@@ -126,14 +124,13 @@ let appendSpecValuesAndUnit = function (id, text) {
 
             } else if (data[0] === InputTypes.text) {
                 element = '<div class="col-md-2 form-group"> <input type="text" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
-                append(header, productSpec, element, unit, appendArea);
+                append(header, productSpec, element, unit);
 
             } else if (data[0] === InputTypes.dropdown) {
 
                 $.get('/api/dropdownValues/' + id, function (data) {
                     let dropdownArray = JSON.parse(data);
                     if (dropdownArray) {
-
                         element = '<div class="col-md-2 form-group"> <select name="specValue[]" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
                         for (x in dropdownArray) {
 

@@ -93,7 +93,7 @@
                                                 <br>                                     
                                                 <br>
                                                 <button type="button" class="btn btn-primary" onclick="redirect()">Cancel</button>
-                                                <input type="submit" class="btn btn-success" value="@lang('words.create')" >
+                                                <input type="submit" class="btn btn-success" id="submitStore" value="@lang('words.create')" >
                                             </div>
                                         </div>
                                     </form>
