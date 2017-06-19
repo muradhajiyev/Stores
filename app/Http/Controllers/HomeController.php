@@ -67,9 +67,11 @@ class HomeController extends Controller
     {
         $store = Store::find($id);
         $store->setRelation('products', $store->products()->paginate(10));
-
+        $st = Store::find($id);
+        $product = Product::where('store_id', $id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
+        //return response()->json($product);
         //return $store;
-        return view('store.index', ['store' => $store]);
+        return view('store.index', ['store' => $store, 'mostviewed' => $product]);
 
 
     }
