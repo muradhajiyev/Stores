@@ -46,14 +46,40 @@
 						          </a>
 						       </div>
 
-						  <div class="modal fade pop-up-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
-							    <div class="modal-dialog modal-lg">
-							      <div class="">
-							        <div class="modal-body" style="">
-								      <div class="modal-header" style="color: black;background-color: white;">Header Part</div>
 
-							        <img src="{{asset("images/home/default-logo.png")}}" class="img-responsive img-rounded center-block" alt="">
+						  <div class="modal fade pop-up-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+							    <div class="modal-dialog modal-lg" style="margin-top: 7%;">
+							      <div class="">
+							       <div id="similar-popup" class="carousel slide" data-ride="carousel">
+						          <!-- Wrapper for slides -->
+						            <div class="carousel-inner">
+								      <!-- <div class="modal-header" style="color: black;background-color: white;">Header Part</div>
+ -->
+						          <div class="item active">
+							        <div class="modal-body" style="width: 80%;height: 80%;">
+
+							        <img src="{{asset("images/home/default-logo.png")}}" class="img-responsive center-block" alt="">
+
+							         
+
+							        </div></div>
+							        <div class="item">
+							        	<div class="modal-body" style="width: 80%;height: 80%;">
+
+							        <img src="{{asset("images/home/default-avatar.png")}}" class="img-responsive center-block" alt="">
 							        </div>
+							        </div>
+
+							        </div>
+							        <a class="left item-control" href="#similar-popup" data-slide="prev" style="margin-top: 10%;">
+						         		<i class="fa fa-angle-left" style="border-radius: 50%;width: 50px;height: 60px;font-size: 50px;"></i>
+						          	</a>
+						          	<a class="right item-control" href="#similar-popup" data-slide="next" style="margin-top: 10%;margin-right: 3%;">
+						         		<i class="fa fa-angle-right" style="border-radius: 50%;width: 50px;height: 60px;font-size: 50px;"></i>
+						          	</a>
+
+						          	</div>
+							        
 							      </div>
 							    </div>
 							  </div>
@@ -61,10 +87,10 @@
 							  <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
 							    <div class="modal-dialog modal-lg">
 							      <div class="">
-							        <div class="modal-body">
+							        <div class="modal-body" style="width: 80%;height: 80%;">
 							        <div class="modal-header" style="color: black;background-color: white;">Header Part</div>
 
-							        <img src="{{asset("images/home/default-avatar.png")}}" class="img-responsive img-rounded center-block" alt="">
+							        <img src="{{asset("images/home/default-avatar.png")}}" class="img-responsive center-block" alt="">
 							        </div>
 							      </div>
 							    </div>
