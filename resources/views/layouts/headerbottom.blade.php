@@ -55,9 +55,11 @@
                                         <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
                                             Search
                                         </button>
+                                            <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced search</a>
                                     </div>
                                 </div>
                             </form>
+
 
             </div>
         </div>

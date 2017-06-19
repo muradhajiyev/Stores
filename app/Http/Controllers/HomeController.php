@@ -63,7 +63,6 @@ class HomeController extends Controller
         $searchProduct = $request->input('searchStoreName');
         $category_id = $request->input('id');
         $store = Store::find($id);
-
         if (!is_null($category_id)) {
             $subCategories = $this->getChildCategories($category_id);
             if (is_null($searchProduct)) {
@@ -79,9 +78,7 @@ class HomeController extends Controller
                 $store->setRelation('products', $store->products()->where('name', 'like', '%' . $searchProduct . '%')->paginate(10));
             }
         }
-        return view('store.index', ['store' => $store])->with('subCategories',$subCategories);;
-
-
+        return view('store.index', ['store' => $store])->with('subCategories',$subCategories);
     }
 
     /**

@@ -39,13 +39,13 @@
                             @foreach($stores as $store)
                                 <div class="col-sm-4 ">
                                     <div class="product-image-wrapper smth_table"
-                                         style="; height: 350px;">
+                                         style="; height: 320px;">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
                                                 <a href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'store_name' => $store->name]) }}"
                                                    style="font-size: 25px; color: gray;"><img
                                                             src="{{ $store->profile_url }}" alt=""
-                                                            style="box-shadow: 0px 3px orange;height: 250px;"/>
+                                                            style="box-shadow: 0px 1px gray;height: 220px;"/>
                                                     <br><br>
 
                                                     {{$store->name}} </a>
