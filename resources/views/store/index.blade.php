@@ -16,11 +16,10 @@
                         </ol>
 
                         <div class="carousel-inner">
-                           @foreach($store->cover_urls as $key=>$img)
-
+                        @foreach($store->image_urls as $key=>$img)
                                 <div class="item {{ $key==0 ? 'active' : '' }}" style="width:1350px;margin-left: -10%;">
                                     <div class="col-sm-12" style="height: 380px;">
-                                        <img src="{{$img}}" class="girl img-responsive" alt=""
+                                        <img src="{{$img->path}}" class="girl img-responsive" alt=""
                                              style="width: 100%; height: 100%; "/>
                                     </div>
                                 </div>
@@ -37,12 +36,11 @@
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </div>
-
                 </div>
             </div>
-            
+
             <div class="row" style="">
-            
+
                 <div class="col-sm-2" style="margin-left: 6%;">
                     <img src="{{ $store->profile_url }}"
                          style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;"/>
@@ -64,6 +62,7 @@
                             }
                         </style>
                             <span id="show" style="display: none; text-align:justify;">{{substr($store->description,250)}}</span>
+
                             <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
                         @else
                         <style type="text/css">
@@ -79,20 +78,23 @@
                 <div class="col-sm-3" style="margin-top: 7%; margin-left: -3%;">
 
                     <ul>
-                        <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i style="color: blue;cursor:pointer;">{{$store->email}}</i></li>
+                        <li type="circle"><i class="fa fa-phone" style="color:orange;"></i> <b>Email: </b><i
+                                    style="color: blue;cursor:pointer;">{{$store->email}}</i></li>
                         <br>
                         <li>
-                        <i class="fa fa-map-marker" style="color:orange;"></i> <b>Location: </b><span style="text-transform: uppercase;">{{$store->address}}</span></li>
+                            <i class="fa fa-map-marker" style="color:orange;"></i> <b>Location: </b><span
+                                    style="text-transform: uppercase;">{{$store->address}}</span></li>
                         <br>
                         <li>
-                        <i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span style="color:blue;cursor:pointer;">{{$store->phone_number}}</span></li>
+                            <i class="fa fa-envelope" style="color:orange;"></i> <b>Phone: </b><span
+                                    style="color:blue;cursor:pointer;">{{$store->phone_number}}</span></li>
                     </ul>
                 </div>
+
             </div>
             <hr style="border-color: orange;">
         </div>
         @include('layouts.headerbottom')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </section>
     <!--cover/slider ended-->
     <section>
@@ -561,27 +563,7 @@
             </div>
         </div>
     </section>
-    <!-- Modal -->
-    <div class="modal fade" id="advancedSearchModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Advanced search</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    @include('layouts.advancedSearchModal')
 @endsection
 @endif
+
