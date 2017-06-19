@@ -36,13 +36,19 @@ class HomeController extends Controller
             if (is_null($storeName)) {
                 $stores = Store::whereIn('id', $products)->paginate(12);
             }else{
-                $stores = Store::whereIn('id', $products)->where('name', $storeName)->paginate(12);
+            $storeName=strtolower($storeName);
+            $stores = Store::whereIn('id', $products)->where(DB::raw('LOWER(name)'), 'LIKE', "%".$storeName."%")
+                ->orderBy('created_at', 'desc')->paginate(12);
+            //$stores = Store::whereIn('id', $products)->where('name', $storeName)->paginate(12);
             }
         } else {
             if (is_null($storeName)) {
                 $stores = Store::orderBy('created_at', 'desc')->paginate(12);
+                //return response()->json($stores;
             }else{
-                $stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
+                $storeName=strtolower($storeName);
+                $stores = Store::where(DB::raw('LOWER(name)'), 'LIKE', "%".$storeName."%")->orderBy('created_at', 'desc')->paginate(12);
+                //$stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
             }
         }
         return view('home.index')->with('stores', $stores)->with('categoryName', $name)->with('subCategories',$subCategories);
