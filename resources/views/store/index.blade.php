@@ -109,7 +109,8 @@
 
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                             @for($i = 0; $i < count($mostviewed)/3; $i++)
+                          
+                             @for($i = 0; $i < intdiv(count($mostviewed),3); $i++)
                                 <div class="item {{ $i==0 ? 'active' : '' }}">
                                    <div class="col-sm-2"> </div>
                                  @for($j = 0; $j < 3; $j++)
@@ -119,7 +120,8 @@
 
                                                 <div class="productinfo text-center">
                                                     <a href="/productdetails/{{$mostviewed[$j + $i*3]->id}}" style="cursor: pointer;">
-                                                    <img src="{{$mostviewed[$j + $i * 3]->profile_url}}" alt="" style="height: 260px;box-shadow: 0px 1px gray;" />
+                                                    <img src="{{$mostviewed[$j + $i * 3]->profile_url}}" alt="" style="height: 200px;box-shadow: 0px 1px gray;" />
+                                                    <p style = "margin-left: 0px; text-align: left; font-size: 12px"> <i class="fa fa-eye" aria-hidden="true"></i> {{$mostviewed[$j + $i*3]->views}}</p>
                                                     <h2>{{$mostviewed[$j + $i*3]->price}} {{$mostviewed[$j + $i*3]->currency->iso}}</h2>
                                                     <p>{{$mostviewed[$j + $i*3]->name}}</p></a>
                                                     <a href="#" class="btn btn-default add-to-cart"><i
@@ -166,6 +168,7 @@
                                         <div class="productinfo text-center">
                                             <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
                                             <img src="{{$product->profile_url}}" alt="" style="height: 260px;box-shadow: 0px 1px gray;" />
+                                             <p style = "margin-left: 0px; text-align: left; font-size: 12px"> <i class="fa fa-eye" aria-hidden="true"></i> {{$product->views}}</p>
                                             <h2>{{$product->price}} {{$product->currency->iso}}</h2>
                                             <p>{{$product->name}}</p></a>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -501,7 +504,7 @@
             </div>
         </div>
     </section>
-    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands])
+    @include('layouts.advancedSearchModal')
 @endsection
 @endif
 
