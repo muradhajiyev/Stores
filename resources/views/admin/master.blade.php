@@ -627,6 +627,7 @@
     <script src="{{asset('js/multiselect.js')}}"></script>
     <script src="{{ asset('js/dropdown.js' )}}"></script>
     <script src="{{ asset('js/specification.js' )}}"></script>
+    <script src="{{asset('js/bootbox.min.js')}}"></script>
 
 </div>
 </body>

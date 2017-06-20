@@ -31,7 +31,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
         <link rel="stylesheet" href="{{ asset('css/style-large.css')}}">
 
-
         <div class="container" style="width: 1050px;">                       
          <div class="thumbnail" style="width: 100%;box-shadow: 1px 1px 1px black; margin-right: 10%;">
           <div class="row">
@@ -74,10 +73,10 @@
                     </a>
                      <div class="row">
                         <div class="col-xs-12 col-md-6">
-                            <form action="{{ URL::to('/admin/stores/'.$store->id) }}" method="POST" >
+                            <form action="{{ URL::to('/admin/stores/'.$store->id) }}" method="POST" id = "deleteStore">
                                 <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                 <input name="_method" type="hidden" value="DELETE" >
-                                <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" style="margin-left: 15%;background-color: #f48064;border:0;">
+                                <button type = "button" onclick="ensure(this)" class="deleteStore btn btn-danger" value="@lang('words.delete')" style="margin-left: 15%;background-color: #f48064;border:0;">@lang('words.delete')</button>
                             </form>
                         </div>
                         <div class="col-xs-12 col-md-6">
@@ -89,7 +88,6 @@
                 </div>
             </div>
         @endforeach
-
             </div>
         </div>
 
@@ -100,6 +98,8 @@
         </div>
 </div>
     </section>
+
+     <script src="{{asset('js/deleteStore.js')}}"></script>
 
 
 @stop
