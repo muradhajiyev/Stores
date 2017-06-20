@@ -102,17 +102,19 @@ class DropdownController extends Controller
             $dropdownName = $request->dropdownName;
             $dropdown->name = $dropdownName;
             $dropdown->save();
-            foreach ($request->dropdown_value as $value) {
-                if ($value) {
-                    $dropdownValue = new DropdownValue;
-                    $dropdownValue->dropdown_id = $dropdown->id;
-                    $dropdownValue->dropdown_value = $value;
-                    $dropdownValue->save();
+            if ($request->dropdown_value) {
+                foreach ($request->dropdown_value as $value) {
+                    if ($value) {
+                        $dropdownValue = new DropdownValue;
+                        $dropdownValue->dropdown_id = $dropdown->id;
+                        $dropdownValue->dropdown_value = $value;
+                        $dropdownValue->save();
+                    }
                 }
             }
         }
 
-        return redirect('/admin/dropdowns');
+       return redirect('/admin/dropdowns');
 
     }
 
