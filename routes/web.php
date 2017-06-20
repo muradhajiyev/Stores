@@ -9,14 +9,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Product;
 
 Auth::routes();
 
 Route::get('/','HomeController@show');
 
-Route::get('productdetails', function(){
-    return view('product.productdetails');
-});
+Route::get('productdetails/{id}', 'ProductController@index');
 
 Route::get('/home', 'HomeController@index');
 
@@ -37,16 +36,15 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('autocomplete-search',array('as'=>'autocomplete.search','uses'=>'AutoCompleteController@index'));
 
 Route::get('autocomplete-ajax',array('as'=>'autocomplete.ajax','uses'=>'AutoCompleteController@ajaxData'));
-Route::group(['prefix' => 'store'], function () {
 
+
+Route::group(['prefix' => 'store'], function () {
 
     Route::get('/','HomeController@profile');
 
     Route::get('/blog', function () {
         return view('temp.blog');
     });
-
-
     Route::get('/blog-single', function () {
         return view('temp.blog-single');
     });
@@ -62,12 +60,9 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/login', function () {
         return view('auth.login');
     });
-    Route::get('/product-details', function () {
-        return view('temp.product-details');
-    });
     Route::get('/shop', function () {
         return view('temp.shop');
-    });
+});
 });
 
 Route::resource("products", 'ProductController');

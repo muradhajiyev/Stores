@@ -35,49 +35,52 @@ class HomeController extends Controller
             $products = Product::whereIn('category_id', $categories)->pluck('store_id')->toArray();
             if (is_null($storeName)) {
                 $stores = Store::whereIn('id', $products)->paginate(12);
-            }else{
-            $storeName=strtolower($storeName);
-            $stores = Store::whereIn('id', $products)->where(DB::raw('LOWER(name)'), 'LIKE', "%".$storeName."%")
-                ->orderBy('created_at', 'desc')->paginate(12);
-            //$stores = Store::whereIn('id', $products)->where('name', $storeName)->paginate(12);
+            } else {
+                $storeName = strtolower($storeName);
+                $stores = Store::whereIn('id', $products)->where(DB::raw('LOWER(name)'), 'LIKE', "%" . $storeName . "%")
+                    ->orderBy('created_at', 'desc')->paginate(12);
             }
         } else {
             if (is_null($storeName)) {
                 $stores = Store::orderBy('created_at', 'desc')->paginate(12);
-                //return response()->json($stores;
-            }else{
-                $storeName=strtolower($storeName);
-                $stores = Store::where(DB::raw('LOWER(name)'), 'LIKE', "%".$storeName."%")->orderBy('created_at', 'desc')->paginate(12);
-                //$stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
+            } else {
+                $storeName = strtolower($storeName);
+                $stores = Store::where(DB::raw('LOWER(name)'), 'LIKE', "%" . $storeName . "%")->orderBy('created_at', 'desc')->paginate(12);
             }
         }
-        return view('home.index')->with('stores', $stores)->with('categoryName', $name)->with('subCategories',$subCategories);
+        return view('home.index')->with('stores', $stores)->with('categoryName', $name)->with('subCategories', $subCategories);
     }
-    public function getChildCategories($id){
+
+    public function getChildCategories($id)
+    {
         $parent_id = Category::find($id);
         if (!is_null($parent_id->parent_id)) {
             $childCategories = Category::where('parent_id', $parent_id->parent_id)->get();
-        }else{
+        } else {
             $childCategories = null;
 
         }
         return $childCategories;
     }
 
-    public function profile(Request $request){
+    public function profile(Request $request)
+    {
         $subCategories = '';
         $id = $request->input('store_id');
         $searchProduct = $request->input('searchStoreName');
         $category_id = $request->input('id');
         $store = Store::find($id);
+        $parentCategories = Category::all()->where('parent_id', null);
+        $brands = Brand::all();
+        $product = Product::where('store_id', $id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
         if (!is_null($category_id)) {
             $subCategories = $this->getChildCategories($category_id);
             if (is_null($searchProduct)) {
                 $store->setRelation('products', $store->products()->where('category_id', $category_id)->paginate(10));
-            }else{
+            } else {
                 $store->setRelation('products', $store->products()->where('category_id', $category_id)->where('name', 'like', '%' . $searchProduct . '%')->paginate(10));
             }
-        }else {
+        } else {
             if (is_null($searchProduct)) {
                 $store->setRelation('products', $store->products()->paginate(10));
 
@@ -85,8 +88,7 @@ class HomeController extends Controller
                 $store->setRelation('products', $store->products()->where('name', 'like', '%' . $searchProduct . '%')->paginate(10));
             }
         }
-        return view('store.index', ['store' => $store])->with('subCategories',$subCategories);
-
+        return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories]);
     }
 
     /**
@@ -98,9 +100,10 @@ class HomeController extends Controller
     {
         return view('/home');
     }
+
     public function autocomplete($query)
     {
-        $flyers = Category::select('name')->where('name', 'LIKE', '%' .$query. '%')->get();
-        return \GuzzleHttp\json_encode($flyers );
+        $flyers = Category::select('name')->where('name', 'LIKE', '%' . $query . '%')->get();
+        return \GuzzleHttp\json_encode($flyers);
     }
 }

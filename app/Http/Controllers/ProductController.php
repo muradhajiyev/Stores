@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use App\currency;
+use App\Image;
 use App\Product;
 use App\Product_Image;
 use App\Specification_Value;
 use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -27,11 +29,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-        $productlist = Product::all();
-        return $productlist;
+        $product = Product::find($id);
+        $product->views = $product->views + 1;
+        $product->save();
+        $imagesArray = Product_Image::where('product_id', $id)->pluck('image_id')->toArray();
+        $images = Image::whereIn('id',$imagesArray)->get();
+        return view('product.productdetails', ['product' => $product, 'images' => $images]);
     }
 
     /**

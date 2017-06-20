@@ -104,7 +104,6 @@
                 <h2><a id="backCategory" href="{{ url('/store') . '?' . http_build_query(['id' => $categoriess->id,'category_name' => $categoriess->name,  ]) }}">{$categoriess->name}}</a></h2>
             @else
                 <h2>All Categories</h2>
-                <h2>{{app('request')->input('id')}}</h2>
             @endif
             <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                 {{--@if(app('request')->input('id'))--}}

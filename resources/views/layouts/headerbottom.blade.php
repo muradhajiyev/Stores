@@ -42,6 +42,7 @@
                             <form action="/" method="get">
                                 @endif
                                 <div class="col-sm-6">
+                                    <div class="search_box pull-right">
                                     @if(!empty($store))
                                         <input hidden name="store_id" value="{{$store->id}}">
                                     @endif
@@ -50,7 +51,7 @@
                                     <input hidden id="tags" name="category_name"
                                            value="{{app('request')->input('category_name')}}" placeholder="Search"
                                            type="text">
-                                    <input class="form-control" id="search_text" name="searchStoreName"
+                                    <input  id="storeName" name="searchStoreName"
                                            placeholder="Search" type="text">
 
                                     <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
