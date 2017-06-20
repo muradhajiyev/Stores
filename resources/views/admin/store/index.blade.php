@@ -40,7 +40,7 @@
 
         <div id="stores" class="panel-heading" style="margin-right: 2%; margin-left: 0%;">
             <div class="well well-sm" style="height: 70px; width:100%; margin-left: 0%;">
-                <form action="{{URL::to('/admin/store/')}}"  class="col-xs-4 col-lg-4" method="GET" class="" style="width: 70%;">
+                <form action="{{URL::to('/admin/stores/')}}"  class="col-xs-4 col-lg-4" method="GET" class="" style="width: 70%;">
                    <input type="submit" class="btn btn-success" value="SEARCH" style="height: 48px;">
                    <input type="searchtext" placeholder="Search..." name="searchtext" >
                 </form>

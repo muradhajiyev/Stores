@@ -34,7 +34,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('categories', 'CategoryController');
     Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
 });
+Route::get('autocomplete-search',array('as'=>'autocomplete.search','uses'=>'AutoCompleteController@index'));
 
+Route::get('autocomplete-ajax',array('as'=>'autocomplete.ajax','uses'=>'AutoCompleteController@ajaxData'));
 Route::group(['prefix' => 'store'], function () {
 
 

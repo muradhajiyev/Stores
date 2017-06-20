@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
@@ -35,13 +36,19 @@ class HomeController extends Controller
             if (is_null($storeName)) {
                 $stores = Store::whereIn('id', $products)->paginate(12);
             }else{
-                $stores = Store::whereIn('id', $products)->where('name', $storeName)->paginate(12);
+            $storeName=strtolower($storeName);
+            $stores = Store::whereIn('id', $products)->where(DB::raw('LOWER(name)'), 'LIKE', "%".$storeName."%")
+                ->orderBy('created_at', 'desc')->paginate(12);
+            //$stores = Store::whereIn('id', $products)->where('name', $storeName)->paginate(12);
             }
         } else {
             if (is_null($storeName)) {
                 $stores = Store::orderBy('created_at', 'desc')->paginate(12);
+                //return response()->json($stores;
             }else{
-                $stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
+                $storeName=strtolower($storeName);
+                $stores = Store::where(DB::raw('LOWER(name)'), 'LIKE', "%".$storeName."%")->orderBy('created_at', 'desc')->paginate(12);
+                //$stores = Store::where('name', $storeName)->orderBy('created_at', 'desc')->paginate(12);
             }
         }
         return view('home.index')->with('stores', $stores)->with('categoryName', $name)->with('subCategories',$subCategories);
@@ -79,6 +86,7 @@ class HomeController extends Controller
             }
         }
         return view('store.index', ['store' => $store])->with('subCategories',$subCategories);
+
     }
 
     /**
@@ -90,20 +98,9 @@ class HomeController extends Controller
     {
         return view('/home');
     }
-
-    public function autoComplete(Request $request)
+    public function autocomplete($query)
     {
-        $term = $request->term;
-
-        $results = array();
-
-        $queries = DB::table('brands')
-            ->where('name', 'LIKE', '%' . $term . '%')
-            ->take(6)->get();
-
-        foreach ($queries as $query) {
-            $results[] = ['id' => $query->id, 'value' => $query->name];
-        }
-        return response()->json($results);
+        $flyers = Category::select('name')->where('name', 'LIKE', '%' .$query. '%')->get();
+        return \GuzzleHttp\json_encode($flyers );
     }
 }
