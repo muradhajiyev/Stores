@@ -14,6 +14,8 @@
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
     <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
+
+
     <script src="{{asset("product/js/jquery.js")}}"></script>
 
     <link rel="shortcut icon" href="images/ico/favicon.ico">
@@ -42,7 +44,6 @@
 {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
 {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> Creates problems!--}}
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <script src="{{asset("js/jquery.livequery.js")}}"></script>
 <script src="{{asset("product/js/price-range.js")}}"></script>
 <script src="{{asset("product/js/jquery.scrollUp.min.js")}}"></script>
