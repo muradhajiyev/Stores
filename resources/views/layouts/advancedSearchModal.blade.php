@@ -22,7 +22,7 @@
                                     </div>
                                     <div id="collapseFour" class="panel-collapse collapse in">
                                         <div class="list-group">
-                                            <div class="list-group">
+                                            <div class="list-group" id="tabLinks">
                                                 <a href="#" class="list-group-item tabLink"
                                                    id="category">Categories</a>
                                                 <a href="#" class="list-group-item tabLink" id="brand">Brands</a>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-8 col-md-8">
+                        <div class="col-sm-8 col-md-8" id="advancedSearchPanels">
                             <div class="panel panel-default advancedSearchPanel" id="categoryPanel">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Categories</h3>
@@ -60,13 +60,10 @@
                                     <h3 class="panel-title">Brands</h3>
                                 </div>
                                 <div class="panel-body">
-
-
                                     @foreach($brands as $brand)
                                         <input name="brand" type="checkbox" value="{{$brand->id}}">
                                         <label for="brand">{{$brand->name}}</label>
                                     @endforeach
-
                                 </div>
                             </div>
                             <div class="panel panel-default advancedSearchPanel" id="pricePanel" hidden>
