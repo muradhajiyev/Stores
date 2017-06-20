@@ -43,28 +43,32 @@
                                 @endif
                                 <div class="col-sm-6">
                                     <div class="search_box pull-right">
-                                    @if(!empty($store))
-                                        <input hidden name="store_id" value="{{$store->id}}">
-                                    @endif
-                                    <input hidden id="tags" name="id" value="{{app('request')->input('id')}}"
-                                           placeholder="Search" type="text">
-                                    <input hidden id="tags" name="category_name"
-                                           value="{{app('request')->input('category_name')}}" placeholder="Search"
-                                           type="text">
-                                    <input  id="storeName" name="searchStoreName"
-                                           placeholder="Search" type="text">
+                                        @if(!empty($store))
+                                            <input hidden name="store_id" value="{{$store->id}}">
+                                        @endif
+                                        <input hidden id="tags" name="id" value="{{app('request')->input('id')}}"
+                                               placeholder="Search" type="text">
+                                        <input hidden id="tags" name="category_name"
+                                               value="{{app('request')->input('category_name')}}" placeholder="Search"
+                                               type="text">
+                                        @if(!empty($store))
+                                            <input id="search_text_product" name="searchStoreName"
+                                                   placeholder="Search" type="text">
+                                        @else
+                                            <input id="search_text_store" name="searchStoreName"
+                                                   placeholder="Search" type="text">
+                                        @endif
+                                        <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
+                                            Search
+                                        </button>
 
-                                    <button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">
-                                        Search
-                                    </button>
-
-                                    <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
-                                        search</a>
+                                        <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
+                                            search</a>
+                                    </div>
                                 </div>
-            </div>
-            </form>
+                            </form>
 
+            </div>
         </div>
-    </div>
     </div>
 </headerbottom>

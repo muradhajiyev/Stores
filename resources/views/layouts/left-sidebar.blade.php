@@ -101,7 +101,7 @@
                     $categoriess = App\Category::find($parent_id)
                     }}
                 </div>
-                <h2><a id="backCategory" href="{{ url('/store') . '?' . http_build_query(['id' => $categoriess->id,'category_name' => $categoriess->name,  ]) }}">{$categoriess->name}}</a></h2>
+                <h2><a id="backCategory" href="{{ url('/store') . '?' . http_build_query(['id' => $categoriess->id,'category_name' => $categoriess->name,  ]) }}">{{$categoriess->name}}</a></h2>
             @else
                 <h2>All Categories</h2>
             @endif

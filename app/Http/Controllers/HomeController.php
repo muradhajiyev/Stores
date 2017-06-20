@@ -9,14 +9,12 @@ use Illuminate\Http\Request;
 
 use App\Store;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
+
     public function __construct()
     {
         //$this->middleware('auth');
@@ -26,6 +24,7 @@ class HomeController extends Controller
     {
         $subCategories = '';
         $id = $request->input('id');
+        Session::put('category_id_store', $id);
         $name = $request->input('category_name');
         $storeName = $request->input('searchStoreName');
         if (!is_null($id)) {
@@ -66,13 +65,15 @@ class HomeController extends Controller
     public function profile(Request $request)
     {
         $subCategories = '';
-        $id = $request->input('store_id');
+        $store_id = $request->input('store_id');
         $searchProduct = $request->input('searchStoreName');
         $category_id = $request->input('id');
-        $store = Store::find($id);
+        Session::put('store_id1', $store_id);
+        Session::put('category_id_product', $category_id);
+        $store = Store::find($store_id);
         $parentCategories = Category::all()->where('parent_id', null);
         $brands = Brand::all();
-        $product = Product::where('store_id', $id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
+        $product = Product::where('store_id', $store_id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
         if (!is_null($category_id)) {
             $subCategories = $this->getChildCategories($category_id);
             if (is_null($searchProduct)) {
@@ -101,9 +102,28 @@ class HomeController extends Controller
         return view('/home');
     }
 
-    public function autocomplete($query)
+    public function autocompleteStore(Request $request)
     {
-        $flyers = Category::select('name')->where('name', 'LIKE', '%' . $query . '%')->get();
-        return \GuzzleHttp\json_encode($flyers);
+        $query = $request->get('query','');
+        $category_id = Session::get('category_id_store');
+        if (!is_null($category_id)){
+            $store_ids = Product::where('category_id',$category_id)->pluck('store_id')->toArray();
+            $result = Store::whereIn('id',$store_ids)->where('name','LIKE','%'.$query.'%')->get();
+        }else {
+            $result = Store::where('name', 'LIKE', '%' . $query . '%')->get();
+        }
+        return response()->json($result);
+    }
+    public function autocompleteProduct(Request $request)
+    {
+        $query = $request->get('query1','');
+        $category_id = Session::get('category_id_product');
+        $store_id = Session::get('store_id1');
+        if (!is_null($category_id)){
+            $result = Product::where('store_id',$store_id)->where('category_id',$category_id)->where('name','LIKE','%'.$query.'%')->get();
+        }else {
+            $result = Product::where('store_id',$store_id)->where('name','LIKE','%'.$query.'%')->get();
+        }
+        return response()->json($result);
     }
 }
