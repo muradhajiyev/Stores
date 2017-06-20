@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Specification extends Model
 {
     public $timestamps = false;
-    protected $appends = ['spec_values'];
+    protected $appends = ['spec_values', 'spec_unit'];
 
     public function type(){
        return $this->belongsTo('App\Type');
@@ -24,5 +24,8 @@ class Specification extends Model
 
     public function getSpecValuesAttribute(){
         return $this->values()->distinct('value')->get();
+    }
+    public function getSpecUnitAttribute(){
+        return $this->unit;
     }
 }
