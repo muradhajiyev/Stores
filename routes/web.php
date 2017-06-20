@@ -22,6 +22,32 @@ Route::get('/storeregister', function () {
 });
  Route::post('/postCover', 'StoreController@postCover');
 
+// Route::get('/addwishlist','WishlistController@addwish');
+ Route::get('sig/edit/{pro}', 'WishlistController@addwish');
+
+//  Route::get('addwishlist/{pro}/{user}',
+//         ['as'=> 'test', 'uses'=>'WishlistController@addwish']
+// );
+
+Route::get('/wishlisttable/{id}', ['as'=> 'userid', 'uses'=>'WishlistController@showwish']);
+
+Route::get('/wishlisttt/{pro}/{user}', ['as'=> 'remove', 'uses'=>'WishlistController@removewish'],function(){
+
+     return view('product.wishlist');
+});
+
+ Route::get('addwishlist/{pro}/{user}',
+        ['as'=> 'test', 'uses'=>'WishlistController@addwish'], function () {
+        return view('store.index');
+    });
+
+
+
+// Route::get('/wishlisttable','WishlistController@showwish', function () {
+//    // $tasks=DB::table('wishlists')->get();
+//     return view('product.wishlist');
+// });
+
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
     Route::resource('store', 'StoreController');

@@ -16,6 +16,7 @@ class HomeController extends Controller
      */
     public function show(){
         $stores = Store::orderBy('created_at', 'desc')->paginate(12); 
+       
         return view('home.index', ['stores'=>$stores]);
     }
     public function showSpecificStores($name,$id)
@@ -31,7 +32,9 @@ class HomeController extends Controller
     public function profile($id){
        $store = Store::find($id);
 
-        return view('store.index', ['store' => $store]);
+       $prod=\DB::table('products')->get();
+
+        return view('store.index',compact('prod') ,['store' => $store]);
 
         // $stores = Store::all(); 
 
