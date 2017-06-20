@@ -35,20 +35,23 @@
 @yield('content')
 
 {{--@include('layouts.footer')--}}
-<script src="{{asset("product/js/html5shiv.js")}}"></script>
 {{--<script src="{{asset("product/js/respond.min.js")}}"></script>--}} {{--Not Found!--}}
 {{--<script src="{{asset("product/js/jquery.js")}}"></script>--}}
 {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
 {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
 
+@include('layouts.footer')
+
+
 <script src="{{asset("js/jquery.livequery.js")}}"></script>
+<script src="{{asset("product/js/bootstrap.min.js")}}"></script>
+<script src="{{asset("product/js/html5shiv.js")}}"></script>
 <script src="{{asset("product/js/price-range.js")}}"></script>
 <script src="{{asset("product/js/jquery.scrollUp.min.js")}}"></script>
-<script src="{{asset("product/js/bootstrap.min.js")}}"></script>
 <script src="{{asset("product/js/jquery.prettyPhoto.js")}}"></script>
 <script src="{{asset("product/js/main.js")}}"></script>
-<script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/dropzone.js")}}"></script>
+<script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/advancedSearchModal.js")}}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>

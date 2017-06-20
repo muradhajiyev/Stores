@@ -216,14 +216,14 @@ class StoreController extends Controller
       * @param  int  $id
       * @return Response
       */
-      public function destroy($id, Request $request)
+      public function destroy($id)//, Request $request)
       {
         //deleting stores
          DB::table('store_image')->where('store_id', '=', $id)->delete();
          $store = Store::find($id);
          $store->delete();
          //files and images of store should be deleted
-         return redirect()->action('StoreController@index');
+        return redirect()->action('StoreController@index');
       }
 
       public function deleteCover($id){

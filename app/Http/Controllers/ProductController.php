@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth', 'adminOrStore'])->except('index');
+        $this->middleware(['auth', 'adminOrStore'])->except('index', 'getAllProducts');
         $this->middleware(['storeOwner'])->only('create','store', 'update', 'edit', 'destroy');
     }
 
@@ -158,5 +158,18 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAllProducts(Request $request)
+    {
+      $store_id = $request->store_id;
+
+      if($store_id == NULL) {
+        $products = Product::orderBy('id', 'desc')->paginate(8);
+      } else {
+        $products = Product::where('store_id', $store_id)->orderBy('id', 'desc')->paginate(8);
+      }
+
+      return $products;
     }
 }
