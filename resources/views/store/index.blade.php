@@ -4,114 +4,8 @@
 
 @section('content')
 
-<section id="slider"><!--slider-->
 
-  <div class="container">
-  <hr style="border-color: orange;">
-
-   <div class="row">
-    <div class="col-sm-12">
-     <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="background: url('/images/home/default-cover.png');">
-      <ol class="carousel-indicators">
-       <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-       <li data-target="#slider-carousel" data-slide-to="1"></li>
-       <li data-target="#slider-carousel" data-slide-to="2"></li>
-      </ol>
-      
-      <div class="carousel-inner" >
-       <div class="item active" style="width:1350px;margin-left: -10%;">
-        <div class="col-sm-12" style="height: 380px;">
-         <img src="{{asset("images/banner.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%; "/>
-     </div>
-       </div>
-       <div class="item" style="width:1400px;margin-left: -10%;">
-        <div class="col-sm-12" style="height: 380px">
-         <img src="{{asset("images/banner1.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%;"/>
-        </div>
-
-       </div>
-       
-       <div class="item" style="width:1400px;margin-left: -10%;">
-        <div class="col-sm-12" style="height: 380px">
-         <img src="{{asset("images/banner2.jpg")}}" class="girl img-responsive" alt="" style = "width: 100%; height: 100%;"/>
-        </div>
-       </div>
-       
-      </div>
-      
-      <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev" style="margin-left: 1%;">
-       <i class="fa fa-angle-left"></i>
-      </a>
-      <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next" style="margin-right: 2%;">
-       <i class="fa fa-angle-right"></i>
-      </a>
-     </div>
-     
-    </div>
-   </div>
-   <div class="row ">
-    <div class="col-sm-2" style="margin-left: 6%;">
-    	<img src="{{asset("images/home/default-logo.png")}}"  style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;" />
-    </div>
-
-   
-    <div class="col-sm-8 descript" style=" margin-top: 2%;">
-    	 <a href="{{ route('stores.index', $store->id)}}" style="color: orange;font-size: 30px;"><span >{{$store->name}}</span></a>
-
-    	 <p style="margin-top: 2%; ">
-      
-        <i>{{$store->slogan}}</i>   
-      
-       </p>  
-    	<span style="text-align: justify;">
-      {{substr($store->description, 0, 150)}}
-
-     </span><span id="show" style="display: none; text-align:justify;"> 
-        {{substr($store->description, 150)}}
-            <!-- This part is not connected/ for this length of text should be increased -->
-
-      </span> <span id="toggle" style="color: blue" class="hideLink"><u>see more</u></span>
-    </div>
-   </div>
-
-
-
-<hr style="border-color: orange;">
-    </div>
-          {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
-          <script>
-          $(document).ready(function(){
-              $("#toggle").click(function(){
-                  $("#show").toggle();
-              });
-          });
-          $(".hideLink").on("click", function(){
-          if($(this).text()=="see less")
-          {
-              $(this).text("see more");
-          } else {
-              $(this).text("see less");
-          }
-          $(".ISProductBody").toggle();
-              return false;
-          });
-          </script>
-
-          <script type="text/javascript">
-
-    $(document).ready(function(){
-        $('#preven').click(function(){
-            
-        })
-    })
-          </script>
-  </div>
- </section>
-
-
- <!--cover/slider ended-->
-
-@include('layouts.headerbottom')
+    @include('layouts.headerbottom')
 
     <section id="slider"><!--slider-->
 
@@ -296,13 +190,15 @@
                                                         class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                     </div>
-                                      <div class="choose">
-                                         <ul class="nav nav-pills nav-justified">
-                                             <li><a id="preven"  target="Iframe" href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                    <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a id="preven" target="Iframe"
+                                                   href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
+                                                            class="fa fa-plus-square"></i>Add to wishlist</a></li>
                                             <iframe name="Iframe" style="display:none"></iframe>
-                                             <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                         </ul>
-                                     </div> 
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -418,7 +314,7 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="{{asset("store")}}" alt=""/>
+                                                <img src="#" alt=""/>
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <a href="#" class="btn btn-default add-to-cart"><i
