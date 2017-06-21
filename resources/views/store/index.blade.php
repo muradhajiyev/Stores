@@ -202,7 +202,7 @@
 
                     <!--features_items-->
 
-                    <div class="category-tab"><!--category-tab  store profile categories-->
+                    <div class="category-tab"><!--category-tab  store profile cate-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>

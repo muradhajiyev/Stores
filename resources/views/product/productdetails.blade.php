@@ -24,6 +24,7 @@
 						        <img src="{{asset("images/home/default-logo.png")}}" alt="" />
 						        </a>
 						       </div>
+
 						       <div id="similar-product" class="carousel slide" data-ride="carousel">
 						          <!-- Wrapper for slides -->
 						            <div class="carousel-inner">
@@ -127,13 +128,17 @@
 						</div>
 					</div><!--/product-details-->
 					
-					<div class="category-tab shop-details-tab"><!--category-tab-->
+					<div class="category-tab shop-details-tab"><!--category-tab similar products needed-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li><a href="#details" data-toggle="tab">Details</a></li>
+							<!-- 	<li><a href="#details" data-toggle="tab">Details</a></li>
 								<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
 								<li><a href="#tag" data-toggle="tab">Tag</a></li>
-								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li> -->
+								<li><a href="#details" data-toggle="tab">Oxsar Mehsullar</a></li>
+								<li><a href="#companyprofile" data-toggle="tab">Suallar</a></li>
+								<!-- <li><a href="#tag" data-toggle="tab">Serhler</a></li> -->
+								<li class="active"><a href="#reviews" data-toggle="tab">Serhler</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
@@ -291,7 +296,8 @@
 							</div>
 							
 							<div class="tab-pane fade active in" id="reviews" >
-								<div class="col-sm-12">
+
+								<!-- <div class="col-sm-12">
 									<ul>
 										<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
 										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
@@ -311,7 +317,10 @@
 											Submit
 										</button>
 									</form>
-								</div>
+								</div> -->
+								<!-- <div class="container"> -->
+								
+							<!-- 	</div> -->
 							</div>
 							
 						</div>
@@ -411,6 +420,9 @@
 				</div>
 			</div>
 		</div>
+<div id="comments-container">
+	<input id="settings" type="hidden" value="3">
+</div>
 	</section>
 	
 	
