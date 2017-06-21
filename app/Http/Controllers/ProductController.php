@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
 
         $this->middleware(['auth', 'adminOrStore'])->except('index');
-        $this->middleware(['storeOwner'])->only('store', 'update', 'edit', 'destroy');
+        $this->middleware(['storeOwner'])->only('create','store', 'update', 'edit', 'destroy');
     }
 
     /**
@@ -30,6 +30,8 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $productlist = Product::all();
+        return $productlist;
     }
 
     /**
@@ -37,14 +39,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
 
         $brands = Brand::all();
         $parentCategories = Category::all()->where('parent_id', null);
         $currencies = currency::all();
-        $stores = Store::all()->where('user_id', Auth::user()->id);
-        return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies)->with('stores', $stores);
+        $store= Store::find($request->store);
+        return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies)->with('store', $store);
 
 
     }
@@ -70,7 +72,7 @@ class ProductController extends Controller
         $productPrice = $request->productPrice;
         $productCurrency = $request->productCurrency;
         $productCategory = $request->productCategory;
-        $productStore = $request->productStore;
+        $productStore = $request->store;
         $isNew = $request->isNew;
         $productBrand = $request->productBrand;
         $imageIDs = $request->imageIds;

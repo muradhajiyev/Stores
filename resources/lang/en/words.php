@@ -12,6 +12,10 @@ return [
     'save' => 'Save Changes',
     'create' => 'Create New Store',
     'cover' => 'Choose Cover Photo',
+    'addcover' => 'Cover sekillerinizi asagidaki saheye click ederek artira bilersiniz',
     'profile' => 'Choose Profile Photo',
-    'description' => 'Description'
+    'description' => 'Description',
+    'fileTooBig' => 'Fayl Olcusu boyukdur. Max 4Mb',
+    'maxFile' => 'Siz 3 den artiq fayl daxil ede bilmezsiniz',
+    'replaceprofile' => 'Replace your profile',
 ];

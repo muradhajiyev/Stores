@@ -5,7 +5,7 @@ const InputTypes = {
     radio: "radio"
 
 };
-let specificationSelectElement;
+
 $(document).ready(function () {
     initializeFileUploader();
     $('#submitProduct').attr('disabled', 'disabled');
@@ -17,17 +17,19 @@ $(document).ready(function () {
         clearSpecificationsArea();
         getSpecificationsByCategoryId(event.target.value);
     });
-    $('.specification').livequery('change', function (event) {
-        clearNextElements(this);
-        appendSpecValuesAndUnit(event.target.value, this.parentElement);
-    });
-    $('#addNewSpec').on('click', function (event) {
+    $('#addSpec').on('click', function (event) {
         event.preventDefault();
-        duplicateSpecifications();
+        let selectValue = $('#productSpec').val();
+        if (selectValue) {
+            appendSpecValuesAndUnit(selectValue, $('#productSpec option[value=' + selectValue + ']').text());
+            disableOptionValues($('#productSpec option[value=' + selectValue + ']'));
+        }
     });
-    $('#deleteLastSpec').on('click', function (event) {
+    $('.deleteSpecValue').livequery('click', function (event) {
         event.preventDefault();
-        $('#specificationsArea').children().last().remove();
+        this.parentElement.parentElement.remove();
+        enableOptionValues($('#productSpec option[value=' + this.id + ']'));
+
     });
 
 });
@@ -42,7 +44,7 @@ let getSubCategories = function (id) {
             if (categoryArray && (categoryArray.length !== 0)) {
 
                 selectElement = '<div class="form-group parentCategory">' +
-                    '<select class="form-control parentCategorySelect" name="productCategory" required> ' +
+                    '<select class="form-control parentCategorySelect" name="productCategory"> ' +
                     '<option value="" selected="selected" disabled>-- Sub Category --</option> ';
                 for (x in categoryArray) {
                     optionElement += '<option value="' + categoryArray[x].id + '">' + categoryArray[x].name + '</option> '
@@ -65,29 +67,17 @@ let clearNextElements = (currentElement, element) => {
     }
 };
 
-let appendSpecifications = (specfications) => {
-    $('#specificationsArea').append(specfications);
-};
-
-//get specifications of current category
+//gets specifications of current category
 let getSpecificationsByCategoryId = function (id) {
-    let div1 = $("<div></div>").attr("class", "row productSpecifications");
-    let div2 = $("<div></div>").attr("class", "col-md-2 form-group specification");
-
-    let selectElement = $("<select></select>").attr("class", "form-control productSpec").attr("name", "productSpec[]").attr('required', true);
-
-
+    let selectElement = $('#productSpec');
+    selectElement.empty();
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
-            if (data.length > 0) {
-                selectElement.append('<option selected value="" disabled>Select Specifications</option>');
+             if (data.length > 0) {
+                $('#specSelect').attr('hidden', false);
                 data.forEach(function (spec) {
                     selectElement.append('<option value="' + spec.id + '">' + spec.name + '</option>');
                 });
-                appendSpecifications(div1.append(div2.append(selectElement)));
-
-                showAddNewSpecButton(data.length);
-                specificationSelectElement = selectElement;
             }
 
 
@@ -97,45 +87,49 @@ let getSpecificationsByCategoryId = function (id) {
 
 //hide and remove specification fields
 let clearSpecificationsArea = () => {
-    $('#specificationsArea').empty();
-    $('#newSpec').attr('hidden', true);
-    $('#deleteSpec').attr('hidden', true);
+    $('#specValues').empty();
+    $('#specSelect').attr('hidden', true);
+
 };
 
 //appends value of current specification and its unit if applicable
-let appendSpecValuesAndUnit = function (id, appendArea) {
+let appendSpecValuesAndUnit = function (id, text) {
     $.get('/api/specification/' + id + '/type', function (data) {
         if (data) {
+
             let element;
+            let productSpec = id;
+            let header = '<div class="col-md-12"><h5>' + text + '</h5></div>';
+
             let unit = data[1];
             if (data[0] === InputTypes.number) {
                 element = '<div class="col-md-2 form-group"> <input type="number" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
-                append(element, unit, appendArea);
+                append(header, productSpec, element, unit);
+
             } else if (data[0] === InputTypes.text) {
                 element = '<div class="col-md-2 form-group"> <input type="text" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
-                append(element, unit, appendArea);
+                append(header, productSpec, element, unit);
+
             } else if (data[0] === InputTypes.dropdown) {
 
                 $.get('/api/dropdownValues/' + id, function (data) {
                     let dropdownArray = JSON.parse(data);
                     if (dropdownArray) {
-
                         element = '<div class="col-md-2 form-group"> <select name="specValue[]" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
                         for (x in dropdownArray) {
 
                             element += '<option> ' + dropdownArray[x].dropdown_value + '</option>';
                         }
                         element += '</select> </div>';
+                        append(header, productSpec, element, unit);
 
-
-                        append(element, unit, appendArea);
                     }
                 });
 
 
             } else if (data[0] === InputTypes.radio) {
                 element = '<div class="col-md-2 form-group"> <input type="checkbox" name="specValue[]" class="form-control specValue"/> </div>';
-                append(element, unit, appendArea);
+                append(header, productSpec, element, unit);
             }
         }
 
@@ -143,42 +137,27 @@ let appendSpecValuesAndUnit = function (id, appendArea) {
     });
 };
 
-//duplicate the same specification select element when new button is pressed
-let duplicateSpecifications = () => {
-    if (specificationSelectElement) {
-        specificationSelectElement = $(specificationSelectElement).clone();
-        let div1 = $("<div></div>").attr("class", "row productSpecifications");
-        let div2 = $("<div></div>").attr("class", "col-md-2 form-group specification");
-        let selectedValues = $('select[name="productSpec[]"]').map(function () {
-            return this.value;
-        }).get();
-        selectedValues.forEach(function (data) {
 
-            //$(specificationSelectElement+' option[value="'+data+'"]').attr('disabled', true);
-        });
-        appendSpecifications(div1.append(div2.append(specificationSelectElement)));
+//appends specification value and unit field near selected specifcation
+let append = function (header, productSpec, element, unit) {
+    let appendArea = $('#specValues');
+    if (element && productSpec) {
 
-
-    }
-};
-
-//append specification value and unit field near selected specifcation
-let append = function (element, unit, appendArea) {
-    if (element) {
-        $(appendArea).append(element);
+        let div = $('<div></div>').attr('class', 'row specificationValue');
+        let deleteButton = '<div class="col-md-2"><button id="' + productSpec + '" class="btn btn-danger deleteSpecValue"><span class="glyphicon glyphicon-minus"></span></button></div>';
+        let spec = '<input type="hidden" name="productSpec[]" value="' + productSpec + '"/>';
+        div.append(header, spec, element);
         if (unit) {
-            $(appendArea).append('<div class="col-md-2 form-group"> <input type="text" class="form-control specUnit" readonly value="' + unit + '"/> </div>');
+            $(div).append('<div class="col-md-2 form-group"> <input type="text" class="form-control specUnit" readonly value="' + unit + '"/> </div>');
         }
+        div.append(deleteButton);
+        appendArea.append(div);
+
     }
 };
 
-//show add new button
-let showAddNewSpecButton = (specLength) => {
-    $('#newSpec').attr('hidden', false);
-    $('#deleteSpec').attr('hidden', false);
-};
 
-//initialize dropzone
+//initializes dropzone
 let initializeFileUploader = () => {
     token = $('input[name="_token"]').val();
     Dropzone.autoDiscover = false;
@@ -187,6 +166,7 @@ let initializeFileUploader = () => {
             url: "/api/uploadFile",
             addRemoveLinks: true,
             success: function (file, response) {
+                file.previewElement.id = response;
                 addImageHiddenField(response);
             },
             init: function () {
@@ -194,16 +174,48 @@ let initializeFileUploader = () => {
                     formData.append('_token', token);
                 });
                 this.on('removedfile', function (file) {
-
+                    removeImageHiddenField(file.previewElement.id);
+                    if (myDropzone.files.length === 0) {
+                        disableSubmitButton();
+                    }
                 });
+                this.on('addedfile', function (file) {
+                    disableSubmitButton()
+                });
+                this.on('complete', function () {
+                    if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                        enableSubmitButton();
+                    }
+                })
+
             }
         });
     }
 };
 
-//add hidden field to document for image id
+//adds hidden field to document for image id
 let addImageHiddenField = (id) => {
     let inputElement = '<input type="hidden" name="imageIds[]" value="' + id + '"' + '/>';
     $('#imageIds').append(inputElement);
+
+};
+let removeImageHiddenField = (id) => {
+    $('#imageIds').find("input[value='" + id + "']").remove();
+};
+
+let enableOptionValues = (option) => {
+    option.attr('disabled', false);
+
+};
+let disableOptionValues = (option) => {
+    option.attr('disabled', true);
+};
+
+let disableSubmitButton = () => {
+    $('#submitProduct').attr('disabled', 'disabled');
+
+};
+let enableSubmitButton = () => {
     $('#submitProduct').removeAttr('disabled');
+
 };

@@ -57,19 +57,7 @@
                                 </div>
 
                             </div>
-                            <hr/>
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <h4>@lang('createProduct.header10')</h4>
-                                    <select name="productStore" required class="form-control">
-                                        <option value="">Choose a store</option>
-                                        @foreach($stores as $store)
-                                            <option value="{{$store->id}}">{{$store->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                           <input type="hidden" name="store" value="{{$store->id}}"/>
                             <hr/>
                             <div class="row">
                                 <div class="col-md-6">
@@ -91,7 +79,22 @@
 
                             <div class="row">
                                 <div class="col-md-12" id="specificationsArea">
+                                    <div class="row" id="specSelect" hidden>
 
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="productSpec">
+                                            <option selected value="" disabled>Select Specification</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-primary" id="addSpec"><span class="glyphicon glyphicon-plus"></span></button>
+                                    </div>
+                                    </div>
+                                    <div class="row" >
+                                        <div class="col-md-12" id="specValues">
+
+                                        </div>
+                                    </div>
 
                                 </div>
 
@@ -129,13 +132,16 @@
 
                             <hr/>
                             <div class="row">
+                                <div class="col-md-12">
+
                                 <h4>@lang('createProduct.header6')</h4>
-                                <div class="col-md-6  dropzone" id="fileUpload" >
+                                <div class="col-md-8  dropzone" id="fileUpload" >
 
                                 </div>
                                 <div id="imageIds">
 
                                 </div>
+                            </div>
                             </div>
                             <hr/>
 

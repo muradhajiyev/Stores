@@ -167,6 +167,8 @@ return [
       */
       Laravel\Tinker\TinkerServiceProvider::class,
 
+      //Arsalan added
+      Laravel\Passport\PassportServiceProvider::class,
       /*
       * Application Service Providers...
       */

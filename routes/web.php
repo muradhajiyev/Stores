@@ -9,18 +9,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/','HomeController@show');
-Route::get('/{name}/stores/{id}', 'HomeController@showSpecificStores');
+use App\Product;
 
 Auth::routes();
+
+Route::get('/','HomeController@show');
+
+Route::get('productdetails/{id}', function($id){
+    $product = Product::find($id);
+    $product->views = $product->views + 1;
+    $product->save();
+    return view('product.productdetails');
+});
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
- Route::post('/postCover', 'StoreController@postCover');
 
 // Route::get('/addwishlist','WishlistController@addwish');
  Route::get('sig/edit/{pro}', 'WishlistController@addwish');
@@ -49,17 +55,19 @@ Route::get('/wishlisttt/{pro}/{user}', ['as'=> 'remove', 'uses'=>'WishlistContro
 // });
 
 Route::group(['prefix' => 'admin'], function () {
+
     Route::get('/', 'AdminController@index');
-    Route::resource('store', 'StoreController');
+
+    Route::resource('stores', 'StoreController');
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
     Route::post('/dropdownValues/update', 'DropdownController@updateDropdownValue');
+
 });
 
 Route::group(['prefix' => 'store'], function () {
 
-    Route::get('/', 'HomeController@show');
 
     Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
 
@@ -90,14 +98,20 @@ Route::group(['prefix' => 'store'], function () {
         return view('temp.shop');
     });
 });
+
 Route::resource("products", 'ProductController');
+
 Route::group(['prefix' => 'api'], function () {
+
     Route::get('subCategory/{id}', 'CategoryController@getSubCategories');
     Route::get('specifications/{id}','CategoryController@getSpecificationsByCategoryId');
     Route::get('specification/{id}/type', 'SpecificationController@getSpecTypeAndUnit');
     Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
     Route::post('uploadFile', 'UploadFileController@upload');
-    });
+    Route::get('deleteCover/{id}', 'StoreController@deleteCover');
+    Route::get('specificationValues/{id}', 'SpecificationController@getSpecificationValues');
+});
+
 Route::get('/403', function () {
     return view('403.403');
 });
