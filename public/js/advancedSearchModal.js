@@ -41,7 +41,7 @@ let appendDropdownSpecification = (specification) => {
     if (specification.spec_dropdown&&specification.spec_dropdown.dropdown_value) {
         let dropdownValue=specification.spec_dropdown.dropdown_value;
         dropdownValue.forEach(function (data) {
-        let inputElement=' <input name="brand" type="checkbox" value="'+data.dropdown_id+'"> +<label for="brand">'+data.dropdown_value+'</label>'
+        let inputElement=' <input name="brand" type="checkbox" value="'+data.dropdown_id+'"> <label for="brand">'+data.dropdown_value+'</label> <br/>';
         tabArea+=inputElement;
         });
     }

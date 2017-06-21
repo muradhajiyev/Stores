@@ -12,7 +12,7 @@
                 <form method="get">
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
-                            <div class="panel-group" id="accordion">
+                            <div class="panel-group advancedSearchPanelGroup" id="accordion">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
@@ -62,10 +62,15 @@
                                     <h3 class="panel-title">Brands</h3>
                                 </div>
                                 <div class="panel-body">
+
                                     @foreach($brands as $brand)
+
                                         <input name="brand" type="checkbox" value="{{$brand->id}}">
-                                        <label for="brand">{{$brand->name}}</label>
+                                            <label for="brand">{{$brand->name}}</label>
+                                        <br/>
+
                                     @endforeach
+
                                 </div>
                             </div>
                             <div class="panel panel-default advancedSearchPanel" id="pricePanel" hidden>
