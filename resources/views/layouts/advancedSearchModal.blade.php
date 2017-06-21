@@ -29,7 +29,9 @@
                                                 <a href="#" class="list-group-item tabLink" id="price">Price</a>
                                                 <a href="#" class="list-group-item tabLink"
                                                    id="condition">Condition</a>
+                                                <div id="dynamicTabLink">
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -95,6 +97,9 @@
                                         <label for="new">New</label>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="dynamicSpecificationPanel">
+
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 col-sm-offset-10">

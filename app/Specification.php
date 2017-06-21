@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Specification extends Model
 {
     public $timestamps = false;
-    protected $appends = ['spec_values', 'spec_unit'];
+    protected $appends = ['spec_values', 'spec_unit', 'spec_dropdown'];
 
     public function type(){
        return $this->belongsTo('App\Type');
@@ -27,5 +27,8 @@ class Specification extends Model
     }
     public function getSpecUnitAttribute(){
         return $this->unit;
+    }
+    public function getSpecDropdownAttribute(){
+        return $this->dropdown;
     }
 }

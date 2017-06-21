@@ -15,12 +15,7 @@ Auth::routes();
 
 Route::get('/','HomeController@show');
 
-Route::get('productdetails/{id}', function($id){
-    $product = Product::find($id);
-    $product->views = $product->views + 1;
-    $product->save();
-    return view('product.productdetails');
-});
+Route::get('productdetails/{id}', 'ProductController@index');
 
 Route::get('/home', 'HomeController@index');
 
@@ -66,16 +61,17 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
+Route::get('autocomplete-ajax/store',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteStore'));
+Route::get('autocomplete-ajax/product',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteProduct'));
+
+
 Route::group(['prefix' => 'store'], function () {
 
-
-    Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
+    Route::get('/','HomeController@profile');
 
     Route::get('/blog', function () {
         return view('temp.blog');
     });
-
-
     Route::get('/blog-single', function () {
         return view('temp.blog-single');
     });
@@ -91,12 +87,9 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/login', function () {
         return view('auth.login');
     });
-    Route::get('/product-details', function () {
-        return view('temp.product-details');
-    });
     Route::get('/shop', function () {
         return view('temp.shop');
-    });
+});
 });
 
 Route::resource("products", 'ProductController');
