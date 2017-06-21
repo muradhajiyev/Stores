@@ -67,6 +67,9 @@ text-decoration:none;
   padding-right: 5px;
   font-weight: bolder;
 }
+a:active{
+  text-decoration: none;
+}
 #searchByStoreName:hover{
   color: black;
   background-color: #EEEEE0;
