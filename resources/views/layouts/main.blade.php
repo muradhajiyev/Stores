@@ -13,6 +13,7 @@
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
     <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
+    <link href="{{asset("css/advancedSearchpanel.css")}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset("product/css/price-range.css")}}">
     <script src="{{asset("product/js/jquery.js")}}"></script>
 

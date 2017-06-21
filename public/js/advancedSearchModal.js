@@ -9,6 +9,7 @@ $(document).ready(function () {
     });
 
     $('.panel-body .parentCategory').livequery('change', function (event) {
+        cleanDynamicSpecArea();
         specificationValues(event.target.value);
     });
 });
@@ -16,11 +17,12 @@ $(document).ready(function () {
 let specificationValues = (categoryId) => {
     $.get('/api/specificationValues/' + categoryId, function (data) {
         if (data) {
-            console.log(data);
+            // console.log(data);
+
             data.forEach(function (specification) {
                 if (specification.dropdown_id) {
-                   // console.log(specification.name)
-                    appendSpecification(specification.name);
+                    // console.log(specification)
+                    appendDropdownSpecification(specification);
                 } else {
 
                 }
@@ -30,14 +32,25 @@ let specificationValues = (categoryId) => {
 
 };
 
-let appendSpecification = (specName) => {
-    let tabLink = '<a href="#" class="list-group-item tabLink"id="' + specName + '">' + specName + '</a>';
-    let tabArea = ' <div class="panel panel-default advancedSearchPanel" hidden id="' + specName + 'Panel"> ' +
-        '<div class="panel-heading"> <h3 class="panel-title">' + specName + '</h3> </div> ' +
-        '<div class="panel-body">' +
-        '</div> ' +
-        '</div>';
-   // $('#tabLinks').append(tabLink);
-   // $('#advancedSearchPanels').append(tabArea);
+let appendDropdownSpecification = (specification) => {
+    let specNameId = specification.name.replace(/ +/g, "");
+    let tabLink = '<a href="#" class="list-group-item tabLink"id="' + specNameId + '">' + specification.name + '</a>';
+    let tabArea = ' <div class="panel panel-default advancedSearchPanel" id="' + specNameId + 'Panel" hidden> ' +
+        '<div class="panel-heading"> <h3 class="panel-title">' + specification.name + '</h3> </div> ' +
+        '<div class="panel-body">';
+    if (specification.spec_dropdown&&specification.spec_dropdown.dropdown_value) {
+        let dropdownValue=specification.spec_dropdown.dropdown_value;
+        dropdownValue.forEach(function (data) {
+        let inputElement=' <input name="brand" type="checkbox" value="'+data.dropdown_id+'"> +<label for="brand">'+data.dropdown_value+'</label>'
+        tabArea+=inputElement;
+        });
+    }
+    tabArea+='</div></div>';
+    $('#dynamicTabLink').append(tabLink);
+    $('#dynamicSpecificationPanel').append(tabArea);
 
+};
+let cleanDynamicSpecArea = () => {
+    $('#dynamicTabLink').empty();
+    $('#dynamicSpecificationPanel').empty();
 };
