@@ -78,7 +78,7 @@
 
 <hr style="border-color: orange;">
     </div>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
           <script>
           $(document).ready(function(){
               $("#toggle").click(function(){
@@ -92,13 +92,13 @@
           } else {
               $(this).text("see less");
           }
-          $(".ISProductBody").toggle(); 
+          $(".ISProductBody").toggle();
               return false;
           });
           </script>
 
           <script type="text/javascript">
-            
+
     $(document).ready(function(){
         $('#preven').click(function(){
             
