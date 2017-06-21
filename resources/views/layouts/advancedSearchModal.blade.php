@@ -10,6 +10,7 @@
             <div class="modal-body">
 
                 <form method="get">
+                    <input type="hidden" value="{{$store->id}}" id="storeId"/>
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
                             <div class="panel-group advancedSearchPanelGroup" id="accordion">

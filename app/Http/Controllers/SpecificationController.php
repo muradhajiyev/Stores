@@ -10,6 +10,7 @@ use \App\Specification;
 use \App\Type;
 use \App\Unit;
 use \App\Dropdown;
+use Illuminate\Support\Facades\DB;
 
 class SpecificationController extends Controller
 {
@@ -154,10 +155,9 @@ class SpecificationController extends Controller
         }
     }
 
-    public function getSpecificationValues($id)
+    public function getSpecificationValues($id, $storeId)
     {
-        $category = Category::find($id);
-        $specifications = $category->specifications()->whereIn('type_id', array(2, 3))->distinct('name')->get();
+        $specifications = DB::select('select json_agg(data.*) from getSpecificationValues(?,?) as data', array($id, $storeId));
         return $specifications;
     }
 

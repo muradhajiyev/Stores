@@ -111,7 +111,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect('/store/' . $productStore);
+        return redirect('/store?store_id='. $productStore);
 
     }
 

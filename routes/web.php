@@ -102,7 +102,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
     Route::post('uploadFile', 'UploadFileController@upload');
     Route::get('deleteCover/{id}', 'StoreController@deleteCover');
-    Route::get('specificationValues/{id}', 'SpecificationController@getSpecificationValues');
+    Route::get('specificationValues/{id}/{storeId}', 'SpecificationController@getSpecificationValues');
 });
 
 Route::get('/403', function () {
