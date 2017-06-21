@@ -12,7 +12,7 @@
                 <form method="get">
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
-                            <div class="panel-group" id="accordion">
+                            <div class="panel-group advancedSearchPanelGroup" id="accordion">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
@@ -29,7 +29,9 @@
                                                 <a href="#" class="list-group-item tabLink" id="price">Price</a>
                                                 <a href="#" class="list-group-item tabLink"
                                                    id="condition">Condition</a>
+                                                <div id="dynamicTabLink">
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -60,10 +62,15 @@
                                     <h3 class="panel-title">Brands</h3>
                                 </div>
                                 <div class="panel-body">
+
                                     @foreach($brands as $brand)
+
                                         <input name="brand" type="checkbox" value="{{$brand->id}}">
-                                        <label for="brand">{{$brand->name}}</label>
+                                            <label for="brand">{{$brand->name}}</label>
+                                        <br/>
+
                                     @endforeach
+
                                 </div>
                             </div>
                             <div class="panel panel-default advancedSearchPanel" id="pricePanel" hidden>
@@ -95,6 +102,9 @@
                                         <label for="new">New</label>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="dynamicSpecificationPanel">
+
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 col-sm-offset-10">

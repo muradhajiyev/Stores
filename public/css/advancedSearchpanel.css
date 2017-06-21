@@ -1,0 +1,13 @@
+.advancedSearchPanelGroup{
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+    height: 400px;
+
+}
+#advancedSearchPanels{
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+    height: 400px;
+}

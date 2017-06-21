@@ -81,18 +81,16 @@
 
                             @elseif(Auth::check())
                                 <div class="dropdown">
-                                    <button id="toggleButton" class="btn btn-warning dropdown-toggle" type="button"
-                                            data-toggle="dropdown">{{Auth::user()->name}}
-                                        <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                                        <li><a href="{{ url('/store/checkout') }}"><i class="fa fa-crosshairs"></i>
-                                                Checkout</a>
-                                        </li>
-                                        <li><a href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Logout</a>
+                                <button id="toggleButton" class="btn btn-warning dropdown-toggle"  type="button" data-toggle="dropdown">{{Auth::user()->name}}
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                                <li><a href="{{route('userid', ['id'=>Auth::user()->id])}}"><i class="fa fa-star"></i> Wishlist</a></li>
+                                <li><a href="{{ url('/store/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a>
+                                </li>
+                                <li><a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">Logout</a>
                                         </li>
 
                                     </ul>
