@@ -31,7 +31,7 @@
 <body>
 
 
-{{--@include('layouts.header')--}}
+@include('layouts.header')
 
 @yield('content')
 
