@@ -142,6 +142,14 @@
                                                         </div>
 
                                                     </div>
+                                                      <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a id="preven" target="Iframe" href="{{route('test', ['pro' => $mostviewed[$j + $i*3]->id, 'user'=>Auth::user()->id])}}"><i
+                                                            class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                            <iframe name="Iframe" style="display:none"></iframe>
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                        </ul>
+                                    </div>
                                                 </div>
                                             </div>
                                         @endfor

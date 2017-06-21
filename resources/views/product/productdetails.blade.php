@@ -140,6 +140,11 @@
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
+                                    <button type="button" class="btn btn-fefault cart">
+                                       <a id="preven"  target="Iframe" href="{{route('remove', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i> Add to wishlist</a>
+                                    </button>
+
+                                                <!-- <iframe name="Iframe" style="display:none"></iframe> -->
 								</span>
                                 @if($product->is_new==1)
                                     <p><b>Condition:</b> New</p>
@@ -178,6 +183,7 @@
                                                 <button type="button" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-shopping-cart"></i>Add to cart
                                                 </button>
+                                               
                                             </div>
                                         </div>
                                     </div>

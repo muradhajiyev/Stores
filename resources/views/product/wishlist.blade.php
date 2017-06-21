@@ -31,6 +31,10 @@
           href="{{asset("product/images/ico/apple-touch-icon-72-precomposed.png")}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset("product/images/ico/apple-touch-icon-57-precomposed.png")}}">
 <style>
+
+#hh{
+    margin-right: auto; margin-left: auto; width: 800px;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -39,7 +43,7 @@ table {
 
 td, th {
     border: 3px solid #dddddd;
-    text-align: left;
+    text-align: center;
     padding: 5px;
 }
 
@@ -60,30 +64,28 @@ tr:nth-child(even) {
           });
         
           </script>
-<center>
-
- 
+<div>
 
     @foreach($prod as $product)
-                            <div class="col-sm-4">
-                                <div class="product-image-wrapper smth_table">
-                                    <div class="single-products" style="height: 390px;">
+                            <div id="hh" class="col-sm-4" style="height: 260px; width: 270px;" style="text-align: right;">
+                                <div class="product-image-wrapper smth_table" >
+                                    <div class="single-products" >
                                         <div class="productinfo text-center">
                                             <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
                                                 <img src="{{$product->profile_url}}" alt=""
-                                                     style="height: 260px;box-shadow: 0px 1px gray;"/>
-                                                <p style="margin-left: 0px; text-align: left; font-size: 12px"><i
+                                                     style="height: 260px; box-shadow: 0px 1px gray;"/>
+                                                <p style="margin-left: 0px; text-align: center; font-size: 12px"><i
                                                             class="fa fa-eye"
                                                             aria-hidden="true"></i> {{$product->views}}</p>
                                                 <h2>{{$product->price}} {{$product->currency->iso}}</h2>
                                                 <p>{{$product->name}}</p></a>
                                             <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                        class="fa fa-shopp ing-cart"></i>Add to cart</a>
                                         </div>
                                     </div>
                                       <div class="choose">
                                          <ul class="nav nav-pills nav-justified">
-                                           <li><a id="preven"  target="Iframe" href="{{route('remove', ['pro' => $cat->product_id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i>remove from wishlist</a></li>
+                                                 <li><a id="preven"  target="Iframe" href="{{route('remove', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i>remove from wishlist</a></li>
                                             <iframe name="Iframe" style="display:none"></iframe>
                                              <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                                          </ul>
@@ -91,38 +93,9 @@ tr:nth-child(even) {
                                 </div>
                             </div>
                         @endforeach
+                        <dic>
+</center>
 
- <!--  <table id='tablee' class="tablee">
-  <tr>
-    <th>Number</th>
-    <th>Product_ID</th>
-    <th>User_ID</th>
-  </tr>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-     $(document).ready(function(){
-                      $.ajax({
-                type:'get',
-                url:'{!!URL::to('wishlisttable')!!}',
-                dataType:'json',//return data will be json
-                success:function(data){
-                    //console.log("price");
-                    console.log(data);
-                      for(var i=0;i<data.length;i++){
-                    
-                    $('<tr>').html("<td>" + data[i].id + "</td><td>" + data[i].product_id + "</td><td>" + data[i].user_id + "</td><td>" + "</td>").appendTo('#tablee');
-                      }
-                },
-                error:function(){
-
-                }
-            });
-
-
-
-        });
-</script> -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="{{asset("js/jquery.min.js")}}"></script>
@@ -138,7 +111,6 @@ tr:nth-child(even) {
 <script src="{{asset("js/dropzone.js")}}"></script>
 <script src="{{asset("js/addwish.js")}}"></script>
 </table>
-</center>
 </body>
 </html>
 

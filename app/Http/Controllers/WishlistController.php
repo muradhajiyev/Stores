@@ -52,8 +52,9 @@ class WishlistController extends Controller
 
     public function showwish(Request $request){
           $id=$request->id;
-        $prod = \DB::Table('products')->join('wishlists', 'products.id', '=', 'wishlists.product_id')->where('wishlists.user_id', '=', $id)->get();
-
+        // $prod = \DB::Table('products')->join('wishlists', 'products.id', '=', 'wishlists.product_id')->where('wishlists.user_id', '=', $id)->get();
+          $prod_id = wishlist::where('user_id',$id)->pluck('product_id')->toArraY();
+          $prod = Product::whereIn('id',$prod_id)->get();
       $data=\DB::table('wishlists')->get();
          if($request->ajax()){
         return response()->json($data);
