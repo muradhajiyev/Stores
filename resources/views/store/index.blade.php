@@ -46,8 +46,9 @@
                          style="height: 180px;width: 160px; border-radius: 35%; box-shadow: 2px 2px 2px 2px black; margin-top: 7%;"/>
                 </div>
 
-                <div class="col-sm-6 descript forheight" style=" margin-top: 2%;">
-                    <a href="{{ route('store.index', $store->id)}}"
+                <div class="col-sm-4 descript" style=" margin-top: 2%;">
+                    <a href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'store_name' => $store->name]) }}"
+
                        style="color: orange;font-size: 30px;"><span>{{$store->name}}</span></a>
 
                     <div style="height: 200px;border-right: 4px gray solid; right: 300px;margin-left: 0px;height: 110px; background-color: white; ">
@@ -155,7 +156,7 @@
                     </div><!--/recommended_items-->
 
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Product List</h2>
+                        <h2 class="title text-center">{{$store->name}} Products</h2>
                         @if(Auth::user())
                             @if(Auth::user()->isStoreOwner($store->id))
                                 <div class="col-sm-12 col-sm-offset-9">
