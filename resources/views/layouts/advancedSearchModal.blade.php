@@ -40,6 +40,8 @@
                             </div>
                         </div>
                         <div class="col-sm-8 col-md-8" id="advancedSearchPanels">
+
+
                             <div class="panel panel-default advancedSearchPanel" id="categoryPanel">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Categories</h3>
@@ -67,7 +69,7 @@
                                     @foreach($brands as $brand)
 
                                         <input name="brand" type="checkbox" value="{{$brand->id}}">
-                                            <label for="brand">{{$brand->name}}</label>
+                                        <label for="brand">{{$brand->name}}</label>
                                         <br/>
 
                                     @endforeach
