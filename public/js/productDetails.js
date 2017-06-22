@@ -45,13 +45,15 @@ $(document).ready(function () {
 
 
                ];
+
                success(commentsArray);
             } ,
 
             postComment: function(commentJSON, success, error) {
                 console.log("geldik");
+                console.log(commentJSON);
                 success(commentJSON);
-            }
+            },
 
         });
 });
