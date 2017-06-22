@@ -59,7 +59,7 @@
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/advancedSearchModal.js")}}"></script>
 <script src="{{asset("js/jquery-comments.js")}}")></script>
-<script src="{{asset("js/productDetails.js")}}")></script>
+
 {{--<script src="{{asset("js/categorySidebar.js")}}"></script> Not Found!--}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>

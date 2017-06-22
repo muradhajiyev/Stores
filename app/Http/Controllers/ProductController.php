@@ -10,6 +10,7 @@ use App\Product;
 use App\Product_Image;
 use App\Specification_Value;
 use App\Store;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class ProductController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth', 'adminOrStore'])->except('index', 'getAllProducts');
+        $this->middleware(['auth', 'adminOrStore'])->except('index', 'getAllProducts', 'getComments', 'storeComments');
         $this->middleware(['storeOwner'])->only('create','store', 'update', 'edit', 'destroy');
     }
 
@@ -176,5 +177,27 @@ class ProductController extends Controller
       }
 
       return $products;
+    }
+
+
+    public function storeComments($id, Request $request){
+     
+        //$stores = Store::all();
+        $review = new Review();
+        $review->parent = $request->parent;
+        $review->content = $request->content;
+        $review->fullname = $request->name;
+        $review->product_id = $id;
+        $review->save();
+        return $request->content;
+
+
+       // return  "vfjnvdjf";
+    }
+
+    public function getComments($id, Request $request){
+
+        $review = Review::where('product_id', $id)->get();
+        return $review->toArray();
     }
 }

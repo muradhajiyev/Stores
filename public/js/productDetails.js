@@ -1,57 +1,48 @@
 $(document).ready(function () {
      var config = $('#settings').val();
+     var res = config.split(",");
+     var productId = parseInt(res[0]);
+     var user_name= res[1];
+
      console.log(config);
         $('#comments-container').comments({
              enableEditing: false,
              enableUpvoting: false,
-             maxRepliesVisible: 2,
+             maxRepliesVisible: 2,  
+             fieldMappings: {
+               created: 'created_at',
+            },
 
-              
             getComments: function(success, error) {
-              
-               var commentsArray = [{
-               id: 1,
-               created: '2015-10-01',
-               content: 'Lorem ipsum dolort sit amet',
-               fullname: 'Simon Powell',
-               user_has_upvoted: false
-               },
-               {
-               id: 2,
-               parent: 1,
-               created: '2015-10-01',
-               content: 'Lcommnettttet',
-               fullname: 'Basqasi',
-               user_has_upvoted: false
-               },
-               {
-               id: 3,
-               parent: 1,
-               created: '2015-10-01',
-               content: 'BCUDHCBUHBUHBUV',
-               fullname: 'MEN',
-               user_has_upvoted: false
-               },
-               {
-               id: 4,
-               parent: 1,
-               created: '2015-10-01',
-               content: 'vbfuhbvufhbvuhfbvh',
-               fullname: 'Teze',
-               user_has_upvoted: false
-               },
-
-
-
-
-               ];
-
-               success(commentsArray);
-            } ,
+                console.log("1");
+                $.ajax({
+                    type: 'get',
+                    url: '/api/comments/' + productId,
+                    success: function(commentsArray) {
+                        console.log(commentsArray);
+                        success(commentsArray);
+                    },
+                    error: error
+                });
+            },
 
             postComment: function(commentJSON, success, error) {
                 console.log("geldik");
                 console.log(commentJSON);
+                console.log(productId);
+                console.log(user_name);
+                console.log(commentJSON.content);
+                $.ajax({
+                    type:'get',
+                    url:'/api/storeComments/' + productId,
+                    data:{ 'content': commentJSON.content, 'parent': commentJSON.parent, 'name': user_name},
+                    success:function(data){
+                        console.log('success');
+                        console.log(data);
+                    },
+                    error:function(){
+                    }
+                });
                 success(commentJSON);
             },
 
