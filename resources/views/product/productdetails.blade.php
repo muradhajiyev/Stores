@@ -447,11 +447,11 @@
             </div>
         </div>
         <div id="comments-container">
-	<input id="settings" type="hidden" value="3">
+	<input id="settings" type="hidden" value="{{$product->id}},{{ Auth::user()->name}}">
 </div>
     </section>
 
-
+<script src="{{asset("js/productDetails.js")}}")></script>
 
 
 @endsection

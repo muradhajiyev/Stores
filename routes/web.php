@@ -104,6 +104,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('deleteCover/{id}', 'StoreController@deleteCover');
     Route::get('specifications/', 'SpecificationController@getSpecifications');
     Route::get('specificationValues/', 'SpecificationController@getSpecificationValues');
+    Route::get('comments/{id}', 'ProductController@getComments');
+    Route::get('storeComments/{id}', 'ProductController@storeComments' );
+
 });
 
 Route::get('/403', function () {
