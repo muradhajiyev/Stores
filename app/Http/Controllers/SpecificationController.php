@@ -22,7 +22,7 @@ class SpecificationController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth', 'adminOrStore'])->except(['getSpecificationValues']);
+        $this->middleware(['auth', 'adminOrStore'])->except(['getSpecifications']);
     }
 
     public function index()
@@ -155,9 +155,9 @@ class SpecificationController extends Controller
         }
     }
 
-    public function getSpecificationValues($id, $storeId)
+    public function getSpecifications($categoryId, $storeId)
     {
-        $specifications = DB::select('select json_agg(data.*) from getSpecificationValues(?,?) as data', array($id, $storeId));
+        $specifications = DB::select('select json_agg(data.*) from getSpecificationIds(?,?) as data', array($categoryId, $storeId));
         return $specifications;
     }
 
