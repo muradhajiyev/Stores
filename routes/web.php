@@ -102,9 +102,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('dropdownValues/{id}', 'DropdownController@getDropdownValues');
     Route::post('uploadFile', 'UploadFileController@upload');
     Route::get('deleteCover/{id}', 'StoreController@deleteCover');
-    Route::get('specificationValues/{categoryId}/{storeId}', 'SpecificationController@getSpecifications');
+    Route::get('specifications/', 'SpecificationController@getSpecifications');
+    Route::get('specificationValues/', 'SpecificationController@getSpecificationValues');
     Route::get('comments/{id}', 'ProductController@getComments');
     Route::get('storeComments/{id}', 'ProductController@storeComments' );
+
 });
 
 Route::get('/403', function () {

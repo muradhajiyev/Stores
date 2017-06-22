@@ -131,12 +131,13 @@
 
                                 <!-- <img src="product/images/product-details/new.jpg" class="newarrival" alt="" /> -->
                                 <h2>{{$product->name}}</h2>
+                                <h3>{{$product->description}}</h3>
                                 {{--<p>Web ID: 1089772</p>--}}
                                 {{--<img src="product/images/product-details/rating.png" alt=""/>--}}
                                 <span>
 									<span> {{$product->price}} {{$product->currency->iso}}</span>
-									<label>Quantity:</label>
-									<input type="text" value="3"/>
+									{{--<label>Quantity:</label>--}}
+									{{--<input type="text" value="3"/>--}}
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
