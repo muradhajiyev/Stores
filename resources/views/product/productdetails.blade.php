@@ -3,6 +3,7 @@
 @section('title', "Product")
 
 @section('content')
+
     @include('layouts.headerbottom')
     <section>
         <div class="container">
@@ -133,19 +134,18 @@
                                 {{--<p>Web ID: 1089772</p>--}}
                                 {{--<img src="product/images/product-details/rating.png" alt=""/>--}}
                                 <span>
-									<span> {{$product->price}} {{$product->currency->iso}}</span>
-									<label>Quantity:</label>
-									<input type="text" value="3"/>
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
+                                    <span> {{$product->price}} {{$product->currency->iso}}</span>
+                                    <label>Quantity:</label>
+                                    <input type="text" value="3"/>
                                     <button type="button" class="btn btn-fefault cart">
-                                       <a id="preven"  target="Iframe" href="{{route('remove', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i> Add to wishlist</a>
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Add to cart
                                     </button>
+                                     <button type="button" class="btn btn-fefault cart" >
+                                       <a id="preven"  style="color:white;" target="Iframe" href="{{route('remove', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i> Add to wishlist</a>
+                                    </button>
+                                </span>
 
-                                                <!-- <iframe name="Iframe" style="display:none"></iframe> -->
-								</span>
                                 @if($product->is_new==1)
                                     <p><b>Condition:</b> New</p>
                                 @elseif($product->is_new==0)
@@ -158,14 +158,14 @@
                                 @endif
                                 {{--<a href=""><img src="product/images/product-details/share.png"--}}
                                 {{--class="share img-responsive" alt=""/></a>--}}
-                            </div><!--/product-information-->
+                            </div><!-- /product-information -->
                         </div>
-                    </div><!--/product-details-->
+                    </div><!-- </product-details -->
 
                     <div class="category-tab shop-details-tab"><!--category-tab-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
-                                <li><a href="#details" data-toggle="tab">Details</a></li>
+                                <li><a href="#details" data-toggle="tab">Related Products</a></li>
                                 <li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
                                 <li><a href="#tag" data-toggle="tab">Tag</a></li>
                                 <li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
@@ -173,28 +173,14 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade" id="details">
+                                @foreach($relatedProducts as $relatedProduct)
                                 <div class="col-sm-3">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="product/images/home/gallery1.jpg" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart
-                                                </button>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="product/images/home/gallery2.jpg" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <img src="{{$relatedProduct->profile_url}}" alt=""/>
+                                                <h2>{{$relatedProduct->price}} {{$relatedProduct->currency->iso}}</h2>
+                                                <p>{{$relatedProduct->name}}</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-shopping-cart"></i>Add to cart
                                                 </button>
@@ -202,34 +188,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="product/images/home/gallery3.jpg" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="product/images/home/gallery4.jpg" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
 
                             <div class="tab-pane fade" id="companyprofile">
@@ -365,10 +324,10 @@
                                     <p><b>Write Your Review</b></p>
 
                                     <form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
+                                        <span>
+                                            <input type="text" placeholder="Your Name"/>
+                                            <input type="email" placeholder="Email Address"/>
+                                        </span>
                                         <textarea name=""></textarea>
                                         <b>Rating: </b> <img src="product/images/product-details/rating.png" alt=""/>
                                         <button type="button" class="btn btn-default pull-right">
@@ -489,6 +448,9 @@
                 </div>
             </div>
         </div>
+        <div id="comments-container">
+    <input id="settings" type="hidden" value="3">
+</div>
     </section>
 
 

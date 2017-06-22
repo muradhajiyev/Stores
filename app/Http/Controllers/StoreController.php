@@ -43,8 +43,9 @@ class StoreController extends Controller
             $storelist = Store::paginate(6);
          }
          //return $storelist;
+         //return view('admin.store.edit',['store'=>$store]);
 
-         return view('admin.store.index')->with(array('storelist'=>$storelist));
+         return view('admin.store.index', ['storelist' => $storelist,] );//->with(array('storelist'=>$storelist));
       }
 
 
