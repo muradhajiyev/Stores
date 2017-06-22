@@ -3,6 +3,7 @@
 @section('title', "Product")
 
 @section('content')
+
     @include('layouts.headerbottom')
     <section>
         <div class="container">
@@ -141,6 +142,7 @@
 										Add to cart
 									</button>
 								</span>
+
                                 @if($product->is_new==1)
                                     <p><b>Condition:</b> New</p>
                                 @elseif($product->is_new==0)
@@ -153,9 +155,9 @@
                                 @endif
                                 {{--<a href=""><img src="product/images/product-details/share.png"--}}
                                 {{--class="share img-responsive" alt=""/></a>--}}
-                            </div><!--/product-information-->
+                            </div><!-- /product-information -->
                         </div>
-                    </div><!--/product-details-->
+                    </div><!-- </product-details -->
 
                     <div class="category-tab shop-details-tab"><!--category-tab-->
                         <div class="col-sm-12">
@@ -443,6 +445,9 @@
                 </div>
             </div>
         </div>
+        <div id="comments-container">
+	<input id="settings" type="hidden" value="3">
+</div>
     </section>
 
 

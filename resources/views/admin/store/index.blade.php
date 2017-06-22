@@ -1,8 +1,6 @@
-
 @extends('admin.master')
 
 @section('main_content')
-
     <section class="content-header">
         <style> 
         input[type=searchtext] {
@@ -60,11 +58,11 @@
 
              <div class="col-sm-3">
                 <div class="product-image-wrapper smth" style="box-shadow: 1px 2px 2px gray; height: 340px; width: 200px; margin-left: 10%;">
-                <a href="{{ route('store.index', $store->id)}}">
+                <a href="{{ route('stores.index', $store->id)}}">
 
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="{{ route('store.index', $store->id)}}" style="font-size: 20px;color: orange;">
+                            <a href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'store_name' => $store->name]) }}" style="font-size: 20px;color: orange;">
                             <img src="{{ $store->profile_url}}" alt="" style="box-shadow: 0px 2px 4px 0px gray; width: 100%; height: 200px;"/>
                            <br>  <span>{{$store->name}}</a><p><i> {{$store->email}}</i></p></span>
                            </a>
@@ -103,4 +101,3 @@
 
 
 @stop
-
