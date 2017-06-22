@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -31,103 +32,52 @@
           href="{{asset("product/images/ico/apple-touch-icon-72-precomposed.png")}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset("product/images/ico/apple-touch-icon-57-precomposed.png")}}">
 <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width:73%;
-}
-
-td, th {
-    border: 3px solid #dddddd;
-    text-align: left;
-    padding: 5px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
+.col-sm-4 {text-align: center;}
+.center {margin: auto 0px;}
+.float_left {float: left;}
 </style>
 	<title></title>
 </head>
 <body>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-          <script>
-          $(document).ready(function(){
-              $("#toggle").click(function(){
-                 
-              });
-          });
-        
-          </script>
-<center>
-
-  @foreach($prod as $cat)
-                        <div class="col-sm-4" style="height: 380px;width: 300px;">
-                            <div class="product-image-wrapper">
-                                <div class="single-products" >
-                                    <div class="productinfo text-center">
-
-                                        <a href="#"><img src="{{asset("product/images/home/product5.jpg")}}" alt="" />
-                                        <h2 id="h2color">{{$cat->price}}</h2>
-                                        <p>{{$cat->name}}</p></a>
-                                        <script type="text/javascript">
-                                            console.log($cat->price);
-                                        </script>
-                                        <input type="hidden" id="idd" value="{{$cat->id}}">
-                                        <input type="hidden" id="iss" value="{{Auth::user()->id}}">
-                                         
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+ <center>
+    @foreach($prod as $product)
+                            <div id="hh" class="col-sm-4" style="height: 260px; width: 270px;" style="text-align: center;">
+                                <div class="product-image-wrapper smth_table" >
+                                    <div class="single-products" >
+                                        <div class="productinfo text-center">
+                                            <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
+                                                <img src="{{$product->profile_url}}" alt=""
+                                                     style="height: 260px; box-shadow: 0px 1px gray;"/>
+                                                <p style="margin-right: 0px; text-align: center; font-size: 12px"><i
+                                                            class="fa fa-eye"
+                                                            aria-hidden="true"></i> {{$product->views}}</p>
+                                                <h2>{{$product->price}} {{$product->currency->iso}}</h2>
+                                                <p>{{$product->name}}</p></a>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopp ing-cart"></i>Add to cart</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
+                                      <div class="choose">
+                                         <ul class="nav nav-pills nav-justified">
 
-                                        <li><a id="preven"  target="Iframe" href="{{route('remove', ['pro' => $cat->product_id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i>remove from wishlist</a></li>
+                                         <form method="post" action="{{ action('WishlistController@removewish') }}">
+                                          <input type="hidden" name="product_id" value="{{ $product->id }}">{!! csrf_field() !!}
+                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                
+                                                 <li><a id="preven"  target="Iframe" ><i class="fa fa-minus-square"></i><input type="submit" value="remove from wishlist"></a></li>
+                                             
+                                            </form>
                                             <iframe name="Iframe" style="display:none"></iframe>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
+                                             <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                         </ul>
+                                     </div> 
                                 </div>
                             </div>
-                        </div>
-                      @endforeach
+                        @endforeach
+                        <center>
 
-
- <!--  <table id='tablee' class="tablee">
-  <tr>
-    <th>Number</th>
-    <th>Product_ID</th>
-    <th>User_ID</th>
-  </tr>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-     $(document).ready(function(){
-                      $.ajax({
-                type:'get',
-                url:'{!!URL::to('wishlisttable')!!}',
-                dataType:'json',//return data will be json
-                success:function(data){
-                    //console.log("price");
-                    console.log(data);
-                      for(var i=0;i<data.length;i++){
-                    
-                    $('<tr>').html("<td>" + data[i].id + "</td><td>" + data[i].product_id + "</td><td>" + data[i].user_id + "</td><td>" + "</td>").appendTo('#tablee');
-                      }
-                },
-                error:function(){
-
-                }
-            });
-
-
-
-        });
-</script> -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="{{asset("js/jquery.min.js")}}"></script>
-
 <script src="{{asset("product/js/jquery.js")}}"></script>
 <script src="{{asset("js/jquery.livequery.js")}}"></script>
 <script src="{{asset("product/js/price-range.js")}}"></script>
@@ -137,9 +87,7 @@ tr:nth-child(even) {
 <script src="{{asset("product/js/main.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/dropzone.js")}}"></script>
-<script src="{{asset("js/addwish.js")}}"></script>
 </table>
-</center>
 </body>
 </html>
 

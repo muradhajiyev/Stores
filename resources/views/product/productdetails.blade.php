@@ -134,14 +134,17 @@
                                 {{--<p>Web ID: 1089772</p>--}}
                                 {{--<img src="product/images/product-details/rating.png" alt=""/>--}}
                                 <span>
-									<span> {{$product->price}} {{$product->currency->iso}}</span>
-									<label>Quantity:</label>
-									<input type="text" value="3"/>
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
-								</span>
+                                    <span> {{$product->price}} {{$product->currency->iso}}</span>
+                                    <label>Quantity:</label>
+                                    <input type="text" value="3"/>
+                                    <button type="button" class="btn btn-fefault cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Add to cart
+                                    </button>
+                                     <button type="button" class="btn btn-fefault cart" >
+                                       <a id="pre"  style="color:white;" target="Iframe" href="{{route('wish', ['product_id' => $product->id)}}"><i class="fa fa-plus-square"></i> Add to wishlist</a>
+                                    </button>
+                                </span>
 
                                 @if($product->is_new==1)
                                     <p><b>Condition:</b> New</p>
@@ -321,10 +324,10 @@
                                     <p><b>Write Your Review</b></p>
 
                                     <form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
+                                        <span>
+                                            <input type="text" placeholder="Your Name"/>
+                                            <input type="email" placeholder="Email Address"/>
+                                        </span>
                                         <textarea name=""></textarea>
                                         <b>Rating: </b> <img src="product/images/product-details/rating.png" alt=""/>
                                         <button type="button" class="btn btn-default pull-right">
@@ -446,7 +449,7 @@
             </div>
         </div>
         <div id="comments-container">
-	<input id="settings" type="hidden" value="3">
+    <input id="settings" type="hidden" value="3">
 </div>
     </section>
 

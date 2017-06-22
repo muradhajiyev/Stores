@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Brand;
 use \App\wishlist;
 use App\Product;
 
 
+
 class WishlistController extends Controller
 {
         public function addwish(Request $request){
-        $data1=$request->pro;
-        $data2=$request->user;
+        $data1=$request->product_id;
+        $data2=Auth::user()->id;
 
 
         $product=\DB::table('wishlists')->select('product_id')->where('product_id',$data1)->get();
@@ -51,9 +52,10 @@ class WishlistController extends Controller
 
 
     public function showwish(Request $request){
-          $id=$request->id;
-        $prod = \DB::Table('products')->join('wishlists', 'products.id', '=', 'wishlists.product_id')->where('wishlists.user_id', '=', $id)->get();
-
+          $id=Auth::user()->id;
+        // $prod = \DB::Table('products')->join('wishlists', 'products.id', '=', 'wishlists.product_id')->where('wishlists.user_id', '=', $id)->get();
+          $prod_id = wishlist::where('user_id',$id)->pluck('product_id')->toArraY();
+          $prod = Product::whereIn('id',$prod_id)->get();
       $data=\DB::table('wishlists')->get();
          if($request->ajax()){
         return response()->json($data);
@@ -63,17 +65,12 @@ class WishlistController extends Controller
         }
 
     public function removewish(Request $request){
-        $data1=$request->pro;
-        $data2=$request->user;
-         $id=$request->id;
-        \DB::table('wishlists')->where('product_id', '=', $data1)->delete();
-       // $prod = \DB::Table('products')->join('wishlists', 'products.id', '=', 'wishlists.product_id')->where('wishlists.user_id', '=', $id)->get();
-
-     // $data=\DB::table('wishlists')->get();
-      //   if($request->ajax()){
-       // return response()->json($data);
-       //  }
+         $id=Auth::user()->id;
+         $product_id = request()->input('product_id');
+        \DB::table('wishlists')->where([['product_id', '=', $product_id], ['user_id', '=', $id],])->delete();
                   
-            return view('product.wishlist');
+          $prod_id = wishlist::where('user_id',$id)->pluck('product_id')->toArraY();
+          $prod = Product::whereIn('id',$prod_id)->get();
+            return view('product.wishlist' ,compact('prod'));
         }
 }

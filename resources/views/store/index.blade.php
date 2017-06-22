@@ -142,6 +142,14 @@
                                                         </div>
 
                                                     </div>
+                                                      <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a id="preven" target="Iframe" href="{{route('wish', ['product_id' => $mostviewed[$j + $i*3]->id])}}"><i
+                                                            class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                            <iframe name="Iframe" style="display:none"></iframe>
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                        </ul>
+                                    </div>
                                                 </div>
                                             </div>
                                         @endfor
@@ -193,10 +201,13 @@
                                     @if(Auth::user())
                                     <div class="choose">
                                         <ul class="nav nav-pills nav-justified">
-                                            <li><a id="preven" target="Iframe"
-                                                   href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
+
+                                            <li><a id="preven" target="Iframe" href="{{route('wish', ['product_id' => $product->id])}}"><i
                                                             class="fa fa-plus-square"></i>Add to wishlist</a></li>
                                             <iframe name="Iframe" style="display:none"></iframe>
+                                            
+                            
+
                                             <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                                         </ul>
                                     </div>
@@ -323,4 +334,3 @@
     @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands, 'store'=>$store])
 @endsection
 @endif
-
