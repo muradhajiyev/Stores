@@ -110,8 +110,8 @@
                 @include('layouts.left-sidebar')
                 <div class="col-sm-9 padding-right">
 
+                    <div class="recommended_items"><!--recommended_items most viewed products-->
 
-                    <div class="recommended_items"><!--recommended_items-->
                         <h2 class="title text-center">Most Viewed Products</h2>
 
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -213,7 +213,7 @@
 
                     <!--features_items-->
 
-                    <div class="category-tab"><!--category-tab-->
+                    <div class="category-tab"><!--category-tab  store profile cate-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>

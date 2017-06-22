@@ -10,6 +10,7 @@
     <link href="{{asset("product/css/font-awesome.min.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/prettyPhoto.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/animate.css")}}" rel="stylesheet">
+
     <link href="{{asset("product/css/main.css")}}" rel="stylesheet">
     <link href="{{asset("product/css/responsive.css")}}" rel="stylesheet">
     <link href="{{asset("css/dropzone.css")}}" rel="stylesheet">
@@ -25,6 +26,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
           href="{{asset("product/images/ico/apple-touch-icon-72-precomposed.png")}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset("product/images/ico/apple-touch-icon-57-precomposed.png")}}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="{{asset("css/jquery-comments.css")}}" rel="stylesheet" >
+
 
 </head><!--/head-->
 
@@ -54,6 +58,10 @@
 <script src="{{asset("js/dropzone.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/advancedSearchModal.js")}}"></script>
+<script src="{{asset("js/jquery-comments.js")}}")></script>
+<script src="{{asset("js/productDetails.js")}}")></script>
+{{--<script src="{{asset("js/categorySidebar.js")}}"></script> Not Found!--}}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <script src="{{asset("product/js/autocomplete.js")}}"></script>
 
