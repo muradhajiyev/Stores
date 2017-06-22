@@ -105,7 +105,7 @@
 
         <script>
             function redirect(){
-                window.location="{{URL::to('/admin/store')}}";
+                window.location="{{URL::to('/admin/stores')}}";
             }
         </script>
         <script src="{{asset('js/createStore.js')}}"></script>

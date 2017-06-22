@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Product;
+use App\Product_Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -221,6 +223,10 @@ class StoreController extends Controller
       {
         //deleting stores
          DB::table('store_image')->where('store_id', '=', $id)->delete();
+         DB::table('store_image')->where('store_id', '=', $id)->delete();
+         $product_id_array = Product::where('store_id',$id)->pluck('id')->toArray();
+         Product_Image::whereIn('product_id',$product_id_array)->forceDelete();
+         Product::whereIn('id',$product_id_array)->forceDelete();
          $store = Store::find($id);
          $store->delete();
          //files and images of store should be deleted
