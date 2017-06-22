@@ -142,7 +142,7 @@
                                         Add to cart
                                     </button>
                                      <button type="button" class="btn btn-fefault cart" >
-                                       <a id="preven"  style="color:white;" target="Iframe" href="{{route('remove', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i> Add to wishlist</a>
+                                       <a id="pre"  style="color:white;" target="Iframe" href="{{route('remove', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i> Add to wishlist</a>
                                     </button>
                                 </span>
 
