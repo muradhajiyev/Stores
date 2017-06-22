@@ -19,14 +19,15 @@ let specificationValues = (categoryId) => {
     if (categoryId && storeId) {
         $.get('/api/specificationValues/' + categoryId + '/' + storeId, function (data) {
             if (data[0]) {
-               // console.log(data);
+                // console.log(data);
                 let specifications = data[0];
 
                 if (specifications.json_agg) {
                     let specArray = JSON.parse(specifications.json_agg)
                     specArray.forEach(function (spec) {
-                      //  console.log(spec);
-                        appendDropdownSpecifications(spec);
+                        console.log(spec);
+
+                        appendSpecifications(spec);
                     })
 
                 }
@@ -37,12 +38,18 @@ let specificationValues = (categoryId) => {
 
 };
 
-let appendDropdownSpecifications = (specification) => {
+let appendSpecifications = (specification) => {
     let specNameId = specification.specification_name.replace(/ +/g, "");
     let tabLink = '<a href="#" class="list-group-item tabLink"id="' + specNameId + '">' + specification.specification_name + '</a>';
     let tabArea = ' <div class="panel panel-default advancedSearchPanel" id="' + specNameId + 'Panel" hidden> ' +
         '<div class="panel-heading"> <h3 class="panel-title">' + specification.specification_name + '</h3> </div> ' +
         '<div class="panel-body">';
+
+    $('#dynamicTabLink').append(tabLink);
+    $('#dynamicSpecificationPanel').append(tabArea);
+};
+let appendSpecValues = (specification) => {
+
     // if (specification.spec_dropdown && specification.spec_dropdown.dropdown_value) {
     //     let dropdownValue = specification.spec_dropdown.dropdown_value;
     //     dropdownValue.forEach(function (data) {
@@ -51,8 +58,7 @@ let appendDropdownSpecifications = (specification) => {
     //     });
     // }
     //tabArea += '</div></div>';
-    $('#dynamicTabLink').append(tabLink);
-   $('#dynamicSpecificationPanel').append(tabArea);
+
 
 };
 let cleanDynamicSpecArea = () => {
