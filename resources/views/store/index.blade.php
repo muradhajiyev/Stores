@@ -248,7 +248,7 @@
                             @if(Auth::user()->isStoreOwner($store->id))
 
                                 <div class="col-sm-12 col-sm-offset-9">
-                                    <a href="/products/create?store={{$store->id}}" class="btn btn-primary">Add
+                                    <a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add
                                         Product</a>
                                 </div>
                                 <br/>
