@@ -71,7 +71,7 @@ class ProductController extends Controller
     {
         //
         $this->validate($request, [
-            'productName' => 'required|max:100',
+            'productName' => 'required|max:30',
             'productPrice' => 'required|numeric|min:0',
             'productCurrency' => 'required',
             'productCategory' => 'required',
@@ -81,6 +81,7 @@ class ProductController extends Controller
         $productName = $request->productName;
         $productPrice = $request->productPrice;
         $productCurrency = $request->productCurrency;
+        $productDescription = $request->productDescription;
         $productCategory = $request->productCategory;
         $productStore = $request->store;
         $isNew = $request->isNew;
@@ -98,7 +99,8 @@ class ProductController extends Controller
             'store_id' => $productStore,
             'is_new' => $isNew,
             'brand_id' => $productBrand,
-            'profile_image_id' => $profileImageId
+            'profile_image_id' => $profileImageId,
+            'description' => $productDescription
         ]);
         foreach ($imageIDs as $imageID) {
             Product_Image::create([
