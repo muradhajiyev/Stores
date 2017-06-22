@@ -31,50 +31,24 @@
           href="{{asset("product/images/ico/apple-touch-icon-72-precomposed.png")}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset("product/images/ico/apple-touch-icon-57-precomposed.png")}}">
 <style>
-
-#hh{
-    margin-right: auto; margin-left: auto; width: 800px;
-}
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width:73%;
-}
-
-td, th {
-    border: 3px solid #dddddd;
-    text-align: center;
-    padding: 5px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
+.col-sm-4 {text-align: center;}
+.center {margin: auto 0px;}
+.float_left {float: left;}
 </style>
 	<title></title>
 </head>
 <body>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-          <script>
-          $(document).ready(function(){
-              $("#toggle").click(function(){
-                 
-              });
-          });
-        
-          </script>
-<div>
-
+ <center>
     @foreach($prod as $product)
-                            <div id="hh" class="col-sm-4" style="height: 260px; width: 270px;" style="text-align: right;">
+                            <div id="hh" class="col-sm-4" style="height: 260px; width: 270px;" style="text-align: center;">
                                 <div class="product-image-wrapper smth_table" >
                                     <div class="single-products" >
                                         <div class="productinfo text-center">
                                             <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
                                                 <img src="{{$product->profile_url}}" alt=""
                                                      style="height: 260px; box-shadow: 0px 1px gray;"/>
-                                                <p style="margin-left: 0px; text-align: center; font-size: 12px"><i
+                                                <p style="margin-right: 0px; text-align: center; font-size: 12px"><i
                                                             class="fa fa-eye"
                                                             aria-hidden="true"></i> {{$product->views}}</p>
                                                 <h2>{{$product->price}} {{$product->currency->iso}}</h2>
@@ -93,13 +67,9 @@ tr:nth-child(even) {
                                 </div>
                             </div>
                         @endforeach
-                        <dic>
-</center>
+                        <center>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="{{asset("js/jquery.min.js")}}"></script>
-
 <script src="{{asset("product/js/jquery.js")}}"></script>
 <script src="{{asset("js/jquery.livequery.js")}}"></script>
 <script src="{{asset("product/js/price-range.js")}}"></script>
@@ -109,7 +79,6 @@ tr:nth-child(even) {
 <script src="{{asset("product/js/main.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/dropzone.js")}}"></script>
-<script src="{{asset("js/addwish.js")}}"></script>
 </table>
 </body>
 </html>
