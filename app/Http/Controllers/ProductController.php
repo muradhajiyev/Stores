@@ -34,9 +34,14 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->views = $product->views + 1;
         $product->save();
-        $imagesArray = Product_Image::where('product_id', $id)->pluck('image_id')->toArray();
-        $images = Image::whereIn('id',$imagesArray)->get();
-        return view('product.productdetails', ['product' => $product, 'images' => $images]);
+        $relatedProducts = Product::where('store_id',$product->store_id)->where('category_id',$product->category_id)->where('id','!=',$product->id)->get();
+        if(count($relatedProducts)>3) {
+            $random = $relatedProducts->random(4);
+            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $random]);
+        }else{
+            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $relatedProducts]);
+
+        }
     }
 
     /**

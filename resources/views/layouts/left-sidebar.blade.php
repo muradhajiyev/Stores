@@ -24,6 +24,15 @@
                         {{$categories = App\Category::where('parent_id', $categoriess->id)->get()}}
                     </div>
                 @endif
+                @if(app('request')->input('id'))
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                            <h4 class="panel-title"><a class="link0" id="categoryPressed"
+                                                       href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id ]) }}">All Categories</a>
+                            </h4>
+                    </div>
+                </div>
+                @endif
                 @foreach($categories as $category)
                     <div hidden>
                         {{$childCategory = App\Category::where('parent_id', $category->id)->get()}}
@@ -114,6 +123,15 @@
                 @else
                     <div hidden>
                         {{$categories = App\Category::where('parent_id', $categoriess->id)->get()}}
+                    </div>
+                @endif
+                @if(app('request')->input('id'))
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><a class="link0" id="categoryPressed"
+                                                       href="{{ url('/')}}">All Categories</a>
+                            </h4>
+                        </div>
                     </div>
                 @endif
                 @foreach($categories as $category)
