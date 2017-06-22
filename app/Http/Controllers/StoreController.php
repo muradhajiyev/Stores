@@ -225,10 +225,8 @@ class StoreController extends Controller
          DB::table('store_image')->where('store_id', '=', $id)->delete();
          DB::table('store_image')->where('store_id', '=', $id)->delete();
          $product_id_array = Product::where('store_id',$id)->pluck('id')->toArray();
-         $product_images = Product_Image::whereIn('product_id',$product_id_array)->get();
-         $product_images->delete();
-         $products = Product::whereIn('id',$product_id_array)->get();
-         $products->delete();
+         Product_Image::whereIn('product_id',$product_id_array)->forceDelete();
+         Product::whereIn('id',$product_id_array)->forceDelete();
          $store = Store::find($id);
          $store->delete();
          //files and images of store should be deleted

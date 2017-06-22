@@ -87,7 +87,7 @@ class HomeController extends Controller
                 $store->setRelation('products', $store->products()->where('name', 'like', '%' . $searchProduct . '%')->paginate(10));
             }
         }
-        Session::put('store_id1', 131);
+        Session::put('store_id1', $store_id);
         Session::put('category_id_product', $category_id);
         return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories]);
     }
