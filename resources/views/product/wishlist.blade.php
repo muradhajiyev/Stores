@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -59,7 +60,14 @@
                                     </div>
                                       <div class="choose">
                                          <ul class="nav nav-pills nav-justified">
-                                                 <li><a id="preven"  target="Iframe" href="{{route('remove', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i class="fa fa-plus-square"></i>remove from wishlist</a></li>
+
+                                         <form method="post" action="{{ action('WishlistController@removewish') }}">
+                                          <input type="hidden" name="product_id" value="{{ $product->id }}">{!! csrf_field() !!}
+                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                
+                                                 <li><a id="preven"  target="Iframe" ><i class="fa fa-minus-square"></i><input type="submit" value="remove from wishlist"></a></li>
+                                             
+                                            </form>
                                             <iframe name="Iframe" style="display:none"></iframe>
                                              <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                                          </ul>

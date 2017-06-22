@@ -23,24 +23,16 @@ Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
 
-// Route::get('/addwishlist','WishlistController@addwish');
- Route::get('sig/edit/{pro}', 'WishlistController@addwish');
+ //Route::get('sig/edit/{pro}', 'WishlistController@addwish');
 
-//  Route::get('addwishlist/{pro}/{user}',
-//         ['as'=> 'test', 'uses'=>'WishlistController@addwish']
-// );
 
-Route::get('/wishlisttable/{id}', ['as'=> 'userid', 'uses'=>'WishlistController@showwish']);
+Route::get('addwishlist/{product_id}', ['as'=> 'wish', 'uses'=>'WishlistController@addwish']);
 
-Route::get('/wishlisttt/{pro}/{user}', ['as'=> 'remove', 'uses'=>'WishlistController@removewish'],function(){
+Route::get('/showwish', ['as'=> 'show', 'uses'=>'WishlistController@showwish']);
 
-     return view('product.wishlist');
-});
+Route::post('/removewish', ['as'=> 'remove', 'uses'=>'WishlistController@removewish']);
 
- Route::get('addwishlist/{pro}/{user}',
-        ['as'=> 'test', 'uses'=>'WishlistController@addwish'], function () {
-        return view('store.index');
-    });
+
 
 
 
