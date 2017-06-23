@@ -105,7 +105,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('specifications/', 'SpecificationController@getSpecifications');
     Route::get('specificationValues/', 'SpecificationController@getSpecificationValues');
     Route::get('comments/{id}', 'ProductController@getComments');
-    Route::get('storeComments/{id}', 'ProductController@storeComments' );
+    Route::post('storeComments', 'ProductController@storeComments' );
 
 });
 

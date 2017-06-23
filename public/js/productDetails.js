@@ -3,23 +3,23 @@ $(document).ready(function () {
      var res = config.split(",");
      var productId = parseInt(res[0]);
      var user_name= res[1];
-
-     console.log(config);
+     
         $('#comments-container').comments({
              enableEditing: false,
              enableUpvoting: false,
-             maxRepliesVisible: 2,  
+             maxRepliesVisible: 3, 
+             replyText: 'Cavabla', 
+             sendText: 'Göndər',
+             textareaPlaceholderText: 'Şərh yaz',
              fieldMappings: {
                created: 'created_at',
             },
 
             getComments: function(success, error) {
-                console.log("1");
                 $.ajax({
                     type: 'get',
                     url: '/api/comments/' + productId,
                     success: function(commentsArray) {
-                        console.log(commentsArray);
                         success(commentsArray);
                     },
                     error: error
@@ -27,27 +27,30 @@ $(document).ready(function () {
             },
 
             postComment: function(commentJSON, success, error) {
-                console.log("geldik");
-                console.log(commentJSON);
-                console.log(productId);
-                console.log(user_name);
-                console.log(commentJSON.content);
                 if(user_name == '0'){
-                    console.log("cannot comment");
                     bootbox.alert("Comment yaza bilmek ucun login olmalisiz.");
                 }
+         
                 else {
+                    var par = commentJSON.parent;
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    if(commentJSON.parent != null){
+                        if(commentJSON.parent.charAt(0) == 'c'){
+                            //as others commenting is not real time, replies to current user's newly created reply (before refresh)
+                            //will be considered as parentless replies.
+                            par = null;
+                        }
+                    }
+
                     $.ajax({
-                        type:'get',
-                        url:'/api/storeComments/' + productId,
-                        data:{ 'content': commentJSON.content, 'parent': commentJSON.parent, 'name': user_name},
+                        type:'POST',
+                        url:'/api/storeComments',
+                        data:{ 'content': commentJSON.content, 'parent': par, 'name': user_name, 'productId' : productId, _token: CSRF_TOKEN},
                         success:function(data){
-                            console.log('success');
-                            console.log(data);
+                            success(commentJSON);
                         },
                         error: error
                     });
-                    success(commentJSON);
                 }
             },
 
