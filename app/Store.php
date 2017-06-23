@@ -48,6 +48,8 @@ class Store extends Model
     public function products(){
         return $this->hasMany('App\Product')->latest();
     }
-
+ public function  blogs(){
+     return $this->hasMany('App\Blog');
+ }
 }
 
