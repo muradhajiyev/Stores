@@ -1,65 +1,129 @@
 /**
  * Created by saria on 6/18/17.
  */
+let loading = "<div id='loading' style='display: table; margin: 0 auto'> <svg width='56px' height='56px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-default\"><rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(0 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-1s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(30 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.9166666666666666s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(60 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.8333333333333334s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(90 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.75s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(120 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.6666666666666666s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(150 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.5833333333333334s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(180 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.5s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(210 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.4166666666666667s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(240 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.3333333333333333s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(270 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.25s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(300 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.16666666666666666s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(330 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='-0.08333333333333333s' repeatCount='indefinite'/></rect></svg></div>";
 $(document).ready(function () {
     $('.tabLink').livequery('click', function () {
         $('.advancedSearchPanel').attr('hidden', true);
         let panel = this.id + 'Panel';
         $('#' + panel).attr('hidden', false);
+        if ($(this).parent().get(0) === $('#dynamicTabLink').get(0)) {
+            appendSpecValues(this.id);
+        }
     });
-
     $('.panel-body .parentCategory').livequery('change', function (event) {
         cleanDynamicSpecArea();
-        specificationValues(event.target.value);
+        specifications(event.target.value);
     });
 });
 
-let specificationValues = (categoryId) => {
+let specifications = (categoryId) => {
     let storeId = $('#storeId').val();
     if (categoryId && storeId) {
-        $.get('/api/specificationValues/' + categoryId + '/' + storeId, function (data) {
-            if (data[0]) {
-                // console.log(data);
-                let specifications = data[0];
+        $.ajax({
+            url: '/api/specifications/',
+            data: {
+                categoryId: categoryId,
+                storeId: storeId
+            },
+            cache: false,
+            type: "GET",
+            beforeSend: function () {
 
-                if (specifications.json_agg) {
-                    let specArray = JSON.parse(specifications.json_agg)
-                    specArray.forEach(function (spec) {
-                        console.log(spec);
+                $('#dynamicTabLink').append(loading);
+            },
+            success: function (data) {
+                $('#loading').remove();
+                if (data[0]) {
 
-                        appendSpecifications(spec);
-                    })
+                    let specifications = data[0];
+
+                    if (specifications.json_agg) {
+                        let specArray = JSON.parse(specifications.json_agg);
+                        specArray.forEach(function (spec) {
+                            appendSpecifications(spec);
+                        })
+
+                    }
 
                 }
-
+            },
+            error: function (xhr) {
+                console.log(xhr);
             }
         });
+
     }
 
 };
-
 let appendSpecifications = (specification) => {
     let specNameId = specification.specification_name.replace(/ +/g, "");
     let tabLink = '<a href="#" class="list-group-item tabLink"id="' + specNameId + '">' + specification.specification_name + '</a>';
     let tabArea = ' <div class="panel panel-default advancedSearchPanel" id="' + specNameId + 'Panel" hidden> ' +
         '<div class="panel-heading"> <h3 class="panel-title">' + specification.specification_name + '</h3> </div> ' +
-        '<div class="panel-body">';
+        '<div class="panel-body"></div></div>';
 
     $('#dynamicTabLink').append(tabLink);
     $('#dynamicSpecificationPanel').append(tabArea);
 };
-let appendSpecValues = (specification) => {
+let appendSpecValues = (specificationName) => {
+    let storeId = $('#storeId').val();
+    let categories = $('.parentCategorySelect');
+    let categoryId = getCategoryId(categories);
+    let appendArea = $('#' + specificationName + 'Panel' + ' .panel-body');
+    if (appendArea.is(':empty')) {
+        if (specificationName && storeId && categoryId) {
+            $.ajax({
+                url: "/api/specificationValues",
+                data: {
+                    specName: specificationName,
+                    storeId: storeId,
+                    categoryId: categoryId
+                },
+                cache: false,
+                type: "GET",
+                beforeSend: function () {
+                    appendArea.append(loading);
+                },
+                success: function (spec) {
+                    $('#loading').remove();
+                    if (spec[0]) {
 
-    // if (specification.spec_dropdown && specification.spec_dropdown.dropdown_value) {
-    //     let dropdownValue = specification.spec_dropdown.dropdown_value;
-    //     dropdownValue.forEach(function (data) {
-    //         let inputElement = ' <input name="brand" type="checkbox" value="' + data.dropdown_id + '"> <label for="brand">' + data.dropdown_value + '</label> <br/>';
-    //         tabArea += inputElement;
-    //     });
-    // }
-    //tabArea += '</div></div>';
+                        if (spec[0].json_agg) {
+                            let specValues = JSON.parse(spec[0].json_agg);
+                            specValues.forEach(function (value) {
+                                let inputElement;
+                                if (value.specification_type === 'dropdown') {
+                                    inputElement = ' <input name="spec" type="checkbox" value="' + value.dropdown_id + '"> <label for="spec">' + value.specification_value + '</label> <br/>';
+                                } else if (value.specification_type === 'number') {
 
+                                }
+                                if (inputElement) {
+                                    appendArea.append(inputElement);
+                                }
+                            });
+                        }
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
 
+        }
+    }
+};
+let getCategoryId = (categories) => {
+    let categoryId;
+    if (categories) {
+        for (let i = categories.length - 1; i >= 0; i--) {
+            if (categories[i].value) {
+                categoryId = categories[i].value;
+                return categoryId;
+            }
+        }
+
+    }
 };
 let cleanDynamicSpecArea = () => {
     $('#dynamicTabLink').empty();

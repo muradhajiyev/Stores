@@ -44,7 +44,7 @@ let getSubCategories = function (id) {
             if (categoryArray && (categoryArray.length !== 0)) {
 
                 selectElement = '<div class="form-group parentCategory">' +
-                    '<select class="form-control parentCategorySelect" name="productCategory"> ' +
+                    '<select class="form-control parentCategorySelect" name="productCategory" required> ' +
                     '<option value="" selected="selected" disabled>-- Sub Category --</option> ';
                 for (x in categoryArray) {
                     optionElement += '<option value="' + categoryArray[x].id + '">' + categoryArray[x].name + '</option> '

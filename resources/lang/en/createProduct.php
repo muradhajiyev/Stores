@@ -11,5 +11,6 @@ return [
     'header8'=>'Value',
     'header9'=>'Unit',
     'header10'=>'Store',
+    'header11'=>'Description',
     'submit'=>'Add Product'
 ];

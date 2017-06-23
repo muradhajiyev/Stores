@@ -16,7 +16,7 @@
                         {{--</form>--}}
                         {{--</div>--}}
                         {{--</div>--}}
-                        <form action="/products" method="post" enctype="multipart/form-data">
+                        <form    action="/products" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
 
                             <div class="row">
@@ -59,6 +59,15 @@
                             </div>
                            <input type="hidden" name="store" value="{{$store->id}}"/>
                             <hr/>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h4>@lang('createProduct.header11')</h4>
+                                        <div class="form-group ">
+                                            <textarea class="form-control" name="productDescription" rows="3" id="comment" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        <hr/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4>@lang('createProduct.header3')</h4>

@@ -26,7 +26,10 @@
                                             <div class="list-group" id="tabLinks">
                                                 <a href="#" class="list-group-item tabLink"
                                                    id="category">Categories</a>
-                                                <a href="#" class="list-group-item tabLink" id="brand">Brands</a>
+                                                @if(count($brands)>0)
+                                                    <a href="#" class="list-group-item tabLink" id="brand">Brands</a>
+                                                @endif
+
                                                 <a href="#" class="list-group-item tabLink" id="price">Price</a>
                                                 <a href="#" class="list-group-item tabLink"
                                                    id="condition">Condition</a>
@@ -40,6 +43,8 @@
                             </div>
                         </div>
                         <div class="col-sm-8 col-md-8" id="advancedSearchPanels">
+
+
                             <div class="panel panel-default advancedSearchPanel" id="categoryPanel">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Categories</h3>
@@ -58,22 +63,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default advancedSearchPanel" id="brandPanel" hidden>
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Brands</h3>
+                            @if(count($brands)>0)
+                                <div class="panel panel-default advancedSearchPanel" id="brandPanel" hidden>
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Brands</h3>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        @foreach($brands as $brand)
+
+                                            <input name="brand" type="checkbox" value="{{$brand->brand_id}}">
+                                            <label for="brand">{{$brand->brand_name}}</label>
+                                            <br/>
+
+                                        @endforeach
+
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-
-                                    @foreach($brands as $brand)
-
-                                        <input name="brand" type="checkbox" value="{{$brand->id}}">
-                                            <label for="brand">{{$brand->name}}</label>
-                                        <br/>
-
-                                    @endforeach
-
-                                </div>
-                            </div>
+                            @endif
                             <div class="panel panel-default advancedSearchPanel" id="pricePanel" hidden>
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Price Range</h3>

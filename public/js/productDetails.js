@@ -1,57 +1,58 @@
 $(document).ready(function () {
      var config = $('#settings').val();
-     console.log(config);
+     var res = config.split(",");
+     var productId = parseInt(res[0]);
+     var user_name= res[1];
+     
         $('#comments-container').comments({
              enableEditing: false,
              enableUpvoting: false,
-             maxRepliesVisible: 2,
+             maxRepliesVisible: 3, 
+             replyText: 'Cavabla', 
+             sendText: 'Göndər',
+             textareaPlaceholderText: 'Şərh yaz',
+             fieldMappings: {
+               created: 'created_at',
+            },
 
-              
             getComments: function(success, error) {
-              
-               var commentsArray = [{
-               id: 1,
-               created: '2015-10-01',
-               content: 'Lorem ipsum dolort sit amet',
-               fullname: 'Simon Powell',
-               user_has_upvoted: false
-               },
-               {
-               id: 2,
-               parent: 1,
-               created: '2015-10-01',
-               content: 'Lcommnettttet',
-               fullname: 'Basqasi',
-               user_has_upvoted: false
-               },
-               {
-               id: 3,
-               parent: 1,
-               created: '2015-10-01',
-               content: 'BCUDHCBUHBUHBUV',
-               fullname: 'MEN',
-               user_has_upvoted: false
-               },
-               {
-               id: 4,
-               parent: 1,
-               created: '2015-10-01',
-               content: 'vbfuhbvufhbvuhfbvh',
-               fullname: 'Teze',
-               user_has_upvoted: false
-               },
-
-
-
-
-               ];
-               success(commentsArray);
-            } ,
+                $.ajax({
+                    type: 'get',
+                    url: '/api/comments/' + productId,
+                    success: function(commentsArray) {
+                        success(commentsArray);
+                    },
+                    error: error
+                });
+            },
 
             postComment: function(commentJSON, success, error) {
-                console.log("geldik");
-                success(commentJSON);
-            }
+                if(user_name == '0'){
+                    bootbox.alert("Comment yaza bilmek ucun login olmalisiz.");
+                }
+         
+                else {
+                    var par = commentJSON.parent;
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    if(commentJSON.parent != null){
+                        if(commentJSON.parent.charAt(0) == 'c'){
+                            //as others commenting is not real time, replies to current user's newly created reply (before refresh)
+                            //will be considered as parentless replies.
+                            par = null;
+                        }
+                    }
+
+                    $.ajax({
+                        type:'POST',
+                        url:'/api/storeComments',
+                        data:{ 'content': commentJSON.content, 'parent': par, 'name': user_name, 'productId' : productId, _token: CSRF_TOKEN},
+                        success:function(data){
+                            success(commentJSON);
+                        },
+                        error: error
+                    });
+                }
+            },
 
         });
 });

@@ -10,6 +10,7 @@ use App\Product;
 use App\Product_Image;
 use App\Specification_Value;
 use App\Store;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class ProductController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth', 'adminOrStore'])->except('index', 'getAllProducts');
+        $this->middleware(['auth', 'adminOrStore'])->except('index', 'getAllProducts', 'getComments', 'storeComments');
         $this->middleware(['storeOwner'])->only('create','store', 'update', 'edit', 'destroy');
     }
 
@@ -71,7 +72,7 @@ class ProductController extends Controller
     {
         //
         $this->validate($request, [
-            'productName' => 'required|max:100',
+            'productName' => 'required|max:30',
             'productPrice' => 'required|numeric|min:0',
             'productCurrency' => 'required',
             'productCategory' => 'required',
@@ -81,6 +82,7 @@ class ProductController extends Controller
         $productName = $request->productName;
         $productPrice = $request->productPrice;
         $productCurrency = $request->productCurrency;
+        $productDescription = $request->productDescription;
         $productCategory = $request->productCategory;
         $productStore = $request->store;
         $isNew = $request->isNew;
@@ -98,7 +100,8 @@ class ProductController extends Controller
             'store_id' => $productStore,
             'is_new' => $isNew,
             'brand_id' => $productBrand,
-            'profile_image_id' => $profileImageId
+            'profile_image_id' => $profileImageId,
+            'description' => $productDescription
         ]);
         foreach ($imageIDs as $imageID) {
             Product_Image::create([
@@ -176,5 +179,27 @@ class ProductController extends Controller
       }
 
       return $products;
+    }
+
+
+    public function storeComments(Request $request){
+     
+       
+        $review = new Review();
+        $review->parent = $request->parent;
+        $review->content = $request->content;
+        $review->fullname = $request->name;
+        $review->product_id = $request->productId;
+        $review->save();
+        return $request->content;
+
+
+       // return  "vfjnvdjf";
+    }
+
+    public function getComments($id, Request $request){
+
+        $review = Review::where('product_id', $id)->get();
+        return $review->toArray();
     }
 }
