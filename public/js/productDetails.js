@@ -32,18 +32,23 @@ $(document).ready(function () {
                 console.log(productId);
                 console.log(user_name);
                 console.log(commentJSON.content);
-                $.ajax({
-                    type:'get',
-                    url:'/api/storeComments/' + productId,
-                    data:{ 'content': commentJSON.content, 'parent': commentJSON.parent, 'name': user_name},
-                    success:function(data){
-                        console.log('success');
-                        console.log(data);
-                    },
-                    error:function(){
-                    }
-                });
-                success(commentJSON);
+                if(user_name == '0'){
+                    console.log("cannot comment");
+                    bootbox.alert("Comment yaza bilmek ucun login olmalisiz.");
+                }
+                else {
+                    $.ajax({
+                        type:'get',
+                        url:'/api/storeComments/' + productId,
+                        data:{ 'content': commentJSON.content, 'parent': commentJSON.parent, 'name': user_name},
+                        success:function(data){
+                            console.log('success');
+                            console.log(data);
+                        },
+                        error: error
+                    });
+                    success(commentJSON);
+                }
             },
 
         });

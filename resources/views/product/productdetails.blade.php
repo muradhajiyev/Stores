@@ -447,11 +447,13 @@
             </div>
         </div>
         <div id="comments-container">
-	<input id="settings" type="hidden" value="{{$product->id}},{{ Auth::user()->name}}">
+	<input id="settings" type="hidden" value="{{$product->id}},{{ Auth::check() ? Auth::user()->name : '0' }}"> 
 </div>
     </section>
 
 <script src="{{asset("js/productDetails.js")}}")></script>
+<script src="{{asset('js/bootbox.min.js')}}"></script>
+
 
 
 @endsection
