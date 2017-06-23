@@ -1,13 +1,19 @@
 <?php
-
 namespace App\Http\Controllers;
-use App\Comment;
+/**
+ * Created by PhpStorm.
+ * User: GUNEL
+ * Date: 22.06.2017
+ * Time: 17:24
+ */
 use Illuminate\Support\Facades\Auth;
 use App\Blog;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
-{
+
+
+class BlogSingleController {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-            $bloglist=Blog::paginate(6);
+        $bloglist=Blog::paginate(6);
 
         return view('store.blog')->withbloglist($bloglist);
 
@@ -39,16 +45,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::check()){
-            $comment=new Comment();
-            $comment->comment=$request->message;
-            $comment->blog_id=$request->blogid;
-            $comment->created_by=$request->userid;
-            $comment->save();
-
-            return response()->json(array('comment' => $comment), 200);
-        }
-
+        //
     }
 
     /**
@@ -59,17 +56,11 @@ class BlogController extends Controller
      */
     public function show($id)
     {
+
         $bloglist = Blog::where('store_id', '=', "$id")->paginate(6);
         return view('store.blog')->withbloglist($bloglist);
     }
 
-
-    public function showBlogSingle(Request $request)
-    {
-        $blogsingle = Blog::where('id',$request->blogsingleid)->first();
-        $comments= Comment::where('blog_id',$blogsingle->id)->get();
-        return view('store.blogsingle')->withblogsingle($blogsingle)->with(array('comments'=>$comments));
-    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,4 +94,7 @@ class BlogController extends Controller
     {
         //
     }
+
+
+
 }

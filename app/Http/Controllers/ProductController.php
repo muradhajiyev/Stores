@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use App\currency;
+use App\Image;
 use App\Product;
 use App\Product_Image;
 use App\Specification_Value;
 use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -18,7 +20,7 @@ class ProductController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth', 'adminOrStore'])->except('index');
+        $this->middleware(['auth', 'adminOrStore'])->except('index', 'getAllProducts');
         $this->middleware(['storeOwner'])->only('create','store', 'update', 'edit', 'destroy');
     }
 
@@ -27,11 +29,19 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-        $productlist = Product::all();
-        return $productlist;
+        $product = Product::find($id);
+        $product->views = $product->views + 1;
+        $product->save();
+        $relatedProducts = Product::where('store_id',$product->store_id)->where('category_id',$product->category_id)->where('id','!=',$product->id)->get();
+        if(count($relatedProducts)>3) {
+            $random = $relatedProducts->random(4);
+            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $random]);
+        }else{
+            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $relatedProducts]);
+
+        }
     }
 
     /**
@@ -106,7 +116,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect('/store/' . $productStore);
+        return redirect('/store?store_id='. $productStore);
 
     }
 
@@ -153,5 +163,18 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAllProducts(Request $request)
+    {
+      $store_id = $request->store_id;
+
+      if($store_id == NULL) {
+        $products = Product::orderBy('id', 'desc')->paginate(8);
+      } else {
+        $products = Product::where('store_id', $store_id)->orderBy('id', 'desc')->paginate(8);
+      }
+
+      return $products;
     }
 }

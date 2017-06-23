@@ -1,8 +1,6 @@
-
 @extends('admin.master')
 
 @section('main_content')
-
     <section class="content-header">
         <style> 
         input[type=searchtext] {
@@ -31,8 +29,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
         <link rel="stylesheet" href="{{ asset('css/style-large.css')}}">
 
-
-        <div class="container" style="width: 100%;">                       
+        <div class="container" style="width: 1050px;">                       
          <div class="thumbnail" style="width: 100%;box-shadow: 1px 1px 1px black; margin-right: 10%;">
           <div class="row">
   
@@ -40,7 +37,7 @@
 
         <div id="stores" class="panel-heading" style="margin-right: 2%; margin-left: 0%;">
             <div class="well well-sm" style="height: 70px; width:100%; margin-left: 0%;">
-                <form action="{{URL::to('/admin/store/')}}"  class="col-xs-4 col-lg-4" method="GET" class="" style="width: 70%;">
+                <form action="{{URL::to('/admin/stores/')}}"  class="col-xs-4 col-lg-4" method="GET" class="" style="width: 70%;">
                    <input type="submit" class="btn btn-success" value="SEARCH" style="height: 48px;">
                    <input type="searchtext" placeholder="Search..." name="searchtext" >
                 </form>
@@ -61,22 +58,23 @@
 
              <div class="col-sm-3">
                 <div class="product-image-wrapper smth" style="box-shadow: 1px 2px 2px gray; height: 340px; width: 200px; margin-left: 10%;">
-                <a href="{{ route('store.index', $store->id)}}">
+                <a href="{{ route('stores.index', $store->id)}}"></a>
 
                     <div class="single-products">
                         <div class="productinfo text-center">
+                            <a href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'store_name' => $store->name]) }}" style="font-size: 20px;color: orange;">
+                            <img src="{{ $store->profile_url}}" alt="" style="box-shadow: 0px 2px 4px 0px gray; width: 100%; height: 200px;"/>
+                           <br>  <span>{{$store->name}}</span></a><p><i> {{$store->email}}</i></p>
+                          </div>
 
-                            <a href="{{ route('store.index', $store->id)}}" style="font-size: 20px;color: orange;"><img src="{{ $store->profile_url}}" alt="" style="box-shadow: 0px 2px 4px 0px gray;"/>
-                           <hr>  {{$store->name}}</a><p><i> {{$store->email}}</i></p>
-                        </div>
                     </div>
                     </a>
                      <div class="row">
                         <div class="col-xs-12 col-md-6">
-                            <form action="{{ URL::to('/admin/stores/'.$store->id) }}" method="POST" >
+                            <form action="{{ URL::to('/admin/stores/'.$store->id) }}" method="POST" id = "deleteStore">
                                 <input name="_token" type="hidden" value="{{csrf_token()}} " >
                                 <input name="_method" type="hidden" value="DELETE" >
-                                <input type="submit" class=" btn btn-danger" value="@lang('words.delete')" style="margin-left: 15%;background-color: #f48064;border:0;">
+                                <button type = "button" onclick="ensure(this)" class="deleteStore btn btn-danger" value="@lang('words.delete')" style="margin-left: 15%;background-color: #f48064;border:0;">@lang('words.delete')</button>
                             </form>
                         </div>
                         <div class="col-xs-12 col-md-6">
@@ -86,9 +84,10 @@
 
                     </div>
                 </div>
-            </div>
-        @endforeach
 
+            </div>
+
+        @endforeach
             </div>
         </div>
 
@@ -101,6 +100,7 @@
             </div>
     </section>
 
+     <script src="{{asset('js/deleteStore.js')}}"></script>
+
 
 @stop
-

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use \App\Specification;
 
 use \App\Type;
 use \App\Unit;
 use \App\Dropdown;
+use Illuminate\Support\Facades\DB;
+
 class SpecificationController extends Controller
 {
     /**
@@ -18,7 +22,7 @@ class SpecificationController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth','adminOrStore']);
+        $this->middleware(['auth', 'adminOrStore'])->except(['getSpecifications']);
     }
 
     public function index()
@@ -91,11 +95,11 @@ class SpecificationController extends Controller
     {
         //
 
-        $specification=Specification::find($id);
+        $specification = Specification::find($id);
         $types = Type::all()->except($specification->type_id);
         $units = Unit::all()->except($specification->unit_id);
         $dropdowns = Dropdown::all()->except($specification->dropdown_id);
-        return view('admin.specifications.edit')->with('specification',$specification)->
+        return view('admin.specifications.edit')->with('specification', $specification)->
         with('types', $types)->with('units', $units)->with('dropdowns', $dropdowns);
     }
 
@@ -108,23 +112,23 @@ class SpecificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $specification=Specification::find($id);
+        $specification = Specification::find($id);
         $name = $request->specificationName;
         $type = $request->specificationType;
         $unit = $request->specificationUnit;
         $dropdown = $request->specificationDropdown;
-        if($specification){
+        if ($specification) {
             $specification->name = $name;
             $specification->type_id = $type;
             $specification->unit_id = $unit;
             $specification->dropdown_id = $dropdown;
-            if(Type::find($type)->name!=='dropdown'){
+            if (Type::find($type)->name !== 'dropdown') {
                 $specification->dropdown_id = null;
 
             }
             $specification->save();
         }
-      return redirect('/admin/specifications');
+        return redirect('/admin/specifications');
     }
 
     /**
@@ -141,13 +145,20 @@ class SpecificationController extends Controller
         return redirect('/admin/specifications');
     }
 
-    public function getSpecTypeAndUnit($specId){
-        $specification=Specification::find($specId);
-        if($specification && $specification->unit){
-            return [$specification->type->name,$specification->unit->name];
-        }else{
+    public function getSpecTypeAndUnit($specId)
+    {
+        $specification = Specification::find($specId);
+        if ($specification && $specification->unit) {
+            return [$specification->type->name, $specification->unit->name];
+        } else {
             return [$specification->type->name];
         }
+    }
+
+    public function getSpecifications($categoryId, $storeId)
+    {
+        $specifications = DB::select('select json_agg(data.*) from getSpecificationIds(?,?) as data', array($categoryId, $storeId));
+        return $specifications;
     }
 
 }

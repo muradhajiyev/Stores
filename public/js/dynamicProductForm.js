@@ -5,8 +5,7 @@ const InputTypes = {
     radio: "radio"
 
 };
-let specificationSelectElement;
-let specLength;
+
 $(document).ready(function () {
     initializeFileUploader();
     $('#submitProduct').attr('disabled', 'disabled');
@@ -32,24 +31,6 @@ $(document).ready(function () {
         enableOptionValues($('#productSpec option[value=' + this.id + ']'));
 
     });
-    $('.dz-remove').livequery('click', function (event) {
-
-    });
-    // $('.specification').livequery('change', function (event) {
-    //     clearNextElements(this);
-    //     appendSpecValuesAndUnit(event.target.value, this.parentElement);
-    //     //showOrHideSpecButtons();
-    // });
-    // $('#addNewSpec').on('click', function (event) {
-    //     event.preventDefault();
-    //     duplicateSpecifications();
-    //    // showOrHideSpecButtons()
-    // });
-    // $('#deleteLastSpec').on('click', function (event) {
-    //     event.preventDefault();
-    //     $('#specificationsArea').children().last().remove();
-    //    // showOrHideSpecButtons();
-    // });
 
 });
 
@@ -63,7 +44,7 @@ let getSubCategories = function (id) {
             if (categoryArray && (categoryArray.length !== 0)) {
 
                 selectElement = '<div class="form-group parentCategory">' +
-                    '<select class="form-control parentCategorySelect" name="productCategory" required> ' +
+                    '<select class="form-control parentCategorySelect" name="productCategory"> ' +
                     '<option value="" selected="selected" disabled>-- Sub Category --</option> ';
                 for (x in categoryArray) {
                     optionElement += '<option value="' + categoryArray[x].id + '">' + categoryArray[x].name + '</option> '
@@ -89,11 +70,10 @@ let clearNextElements = (currentElement, element) => {
 //gets specifications of current category
 let getSpecificationsByCategoryId = function (id) {
     let selectElement = $('#productSpec');
+    selectElement.empty();
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
-            console.log(data);
-
-            if (data.length > 0) {
+             if (data.length > 0) {
                 $('#specSelect').attr('hidden', false);
                 data.forEach(function (spec) {
                     selectElement.append('<option value="' + spec.id + '">' + spec.name + '</option>');
@@ -116,9 +96,11 @@ let clearSpecificationsArea = () => {
 let appendSpecValuesAndUnit = function (id, text) {
     $.get('/api/specification/' + id + '/type', function (data) {
         if (data) {
+
             let element;
             let productSpec = id;
             let header = '<div class="col-md-12"><h5>' + text + '</h5></div>';
+
             let unit = data[1];
             if (data[0] === InputTypes.number) {
                 element = '<div class="col-md-2 form-group"> <input type="number" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
@@ -126,14 +108,13 @@ let appendSpecValuesAndUnit = function (id, text) {
 
             } else if (data[0] === InputTypes.text) {
                 element = '<div class="col-md-2 form-group"> <input type="text" name="specValue[]" required placeholder="Specification value" class="form-control specValue"/> </div>';
-                append(header, productSpec, element, unit, appendArea);
+                append(header, productSpec, element, unit);
 
             } else if (data[0] === InputTypes.dropdown) {
 
                 $.get('/api/dropdownValues/' + id, function (data) {
                     let dropdownArray = JSON.parse(data);
                     if (dropdownArray) {
-
                         element = '<div class="col-md-2 form-group"> <select name="specValue[]" required  class="form-control specValue"> <option value="" selected disabled>Specification value</option>';
                         for (x in dropdownArray) {
 
