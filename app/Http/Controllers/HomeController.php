@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use App\Product;
+use App\StoredProcedure;
 use Illuminate\Http\Request;
 
 use App\Store;
@@ -72,8 +73,8 @@ class HomeController extends Controller
         if ($store) {
             $parentCategories = Category::all()->where('parent_id', null);
             $brands = DB::select('select data.* from getBrands(?) as data', array($store_id));
-
             $product = Product::where('store_id', $store_id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
+
             if (!is_null($category_id)) {
                 $subCategories = $this->getChildCategories($category_id);
                 if (is_null($searchProduct)) {
@@ -95,6 +96,45 @@ class HomeController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $storeId = $request->store_id; //required
+        $categoryId = $request->category_id; //required
+        $priceRange = $request->price;
+        $used = $request->used;
+        $new = $request->new;
+        $brandId = $request->brand_id;
+        if (isset($storeId) && isset($categoryId)) {
+            $category = Category::find($categoryId);
+            $store = Store::find($storeId);
+            $minPrice = null;
+            $maxPrice = null;
+            $isNew = null;
+            if (isset($priceRange)) {
+                $prices = explode(",", $priceRange);
+                $minPrice = trim($prices[0]);
+                $maxPrice = trim($prices[1]);
+            }
+
+            if ($used === 1 && $new != 1) {
+                $isNew = 0;
+            } elseif ($new === 1 && $used != 1) {
+                $isNew = 1;
+            }
+            $specificationArray = array();
+            if ($category && $store) {
+                $specificationValues = StoredProcedure::getSpecifications($categoryId, $storeId);
+                foreach ($specificationValues as $specification) {
+                    $specName = $this->removeSpaces($specification->specification_name);
+                    if (isset($request->$specName)) {
+                        $specificationArray[$specName] = $request->$specName;
+                    }
+                }
+
+            }
+        }
+        //  return $request->all();
+    }
 
     /**
      * Show the application dashboard.
@@ -131,4 +171,11 @@ class HomeController extends Controller
         }
         return response()->json($result);
     }
+
+    public function removeSpaces($name)
+    {
+        $name = preg_replace('/\s+/', '', $name);
+        return $name;
+    }
+
 }
