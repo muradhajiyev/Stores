@@ -94,12 +94,15 @@ class HomeController extends Controller
             Session::put('category_id_product', $category_id);
             return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories]);
         }
+        else{
+           return redirect('/404');
+        }
     }
 
     public function search(Request $request)
     {
         $storeId = $request->store_id; //required
-        $categoryId = $request->category_id; //required
+        $categoryId = $request->productCategory; //required
         $priceRange = $request->price;
         $used = $request->used;
         $new = $request->new;
@@ -132,8 +135,9 @@ class HomeController extends Controller
                 }
 
             }
+
         }
-        //  return $request->all();
+          return $request->all();
     }
 
     /**

@@ -52,7 +52,7 @@
                                 <div class="panel-body">
                                     <div id="subCategories">
                                         <div class="form-group parentCategory">
-                                            <select class="form-control parentCategorySelect" name="category_id">
+                                            <select class="form-control parentCategorySelect" name="productCategory">
                                                 <option selected value="" disabled>Select category</option>
                                                 @foreach($categories as $parent)
                                                     <option value="{{$parent->id}}">{{$parent->name}}</option>
