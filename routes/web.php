@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
 
     Route::resource('stores', 'StoreController');
+
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
@@ -64,16 +65,14 @@ Route::get('autocomplete-ajax/store', array('as' => 'autocomplete.ajax', 'uses' 
 Route::get('autocomplete-ajax/product', array('as' => 'autocomplete.ajax', 'uses' => 'HomeController@autocompleteProduct'));
 
 
+
+    Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
+
 Route::group(['prefix' => 'store'], function () {
 
-    Route::get('/', 'HomeController@profile');
-
-    Route::get('/blog', function () {
-        return view('temp.blog');
-    });
-    Route::get('/blog-single', function () {
-        return view('temp.blog-single');
-    });
+    Route::get('/','HomeController@profile');
+    Route::resource('blog', 'BlogController');
+    Route::get('blogsingle', 'BlogController@showBlogSingle');
     Route::get('/cart', function () {
         return view('temp.cart');
     });
@@ -105,7 +104,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('specifications/', 'SpecificationController@getSpecifications');
     Route::get('specificationValues/', 'SpecificationController@getSpecificationValues');
     Route::get('comments/{id}', 'ProductController@getComments');
-    Route::get('storeComments/{id}', 'ProductController@storeComments');
+
+    Route::post('storeComments', 'ProductController@storeComments' );
+
 
 });
 
