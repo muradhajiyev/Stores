@@ -28,7 +28,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{asset("product/images/ico/apple-touch-icon-57-precomposed.png")}}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="{{asset("css/jquery-comments.css")}}" rel="stylesheet" >
-
+    <link type="text/css" rel="stylesheet" href="{{asset("css/gallery.css")}}" />
 
 </head><!--/head-->
 
@@ -58,7 +58,8 @@
 <script src="{{asset("js/dropzone.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/advancedSearchModal.js")}}"></script>
-<script src="{{asset("js/jquery-comments.js")}}")></script>
+<script src="{{asset("js/jquery-comments.js")}})"></script>
+<script src="{{asset("js/gallery.js")}}"></script>
 
 {{--<script src="{{asset("js/categorySidebar.js")}}"></script> Not Found!--}}
 

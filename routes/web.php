@@ -64,7 +64,12 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('autocomplete-ajax/store',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteStore'));
 Route::get('autocomplete-ajax/product',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteProduct'));
 
-
+Route::get('/gallery', function () {
+    return view('gallery');
+});
+Route::get('/gallery1', function () {
+    return view('gallery1');
+});
 Route::group(['prefix' => 'store'], function () {
 
     Route::get('/','HomeController@profile');
