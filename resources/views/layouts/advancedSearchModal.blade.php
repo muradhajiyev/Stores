@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="get" action="/store/search">
+                <form method="get" action="/store">
                     <input type="hidden" name="store_id" value="{{$store->id}}" id="storeId"/>
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
@@ -18,7 +18,7 @@
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion"
-                                               href="#collapseFour"><span class="glyphicon glyphicon-file"></span>Content</a>
+                                               href="#collapseFour"><span class="glyphicon glyphicon-file"></span>Details</a>
                                         </h4>
                                     </div>
                                     <div id="collapseFour" class="panel-collapse collapse in">
@@ -52,12 +52,27 @@
                                 <div class="panel-body">
                                     <div id="subCategories">
                                         <div class="form-group parentCategory">
-                                            <select class="form-control parentCategorySelect" name="productCategory">
-                                                <option selected value="" disabled>Select category</option>
-                                                @foreach($categories as $parent)
-                                                    <option value="{{$parent->id}}">{{$parent->name}}</option>
-                                                @endforeach
-                                            </select>
+                                            @if($category)
+                                                <h4>{{$category->name}}</h4>
+                                                <input name="productCategory" value="{{$category->id}}" type="hidden"/>
+                                                @if(count($category->childs)>0)
+                                                    <select class="form-control parentCategorySelect"
+                                                            name="productCategory">
+                                                        <option selected value="" disabled>Select category</option>
+                                                        @foreach($category->childs as $parent)
+                                                            <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                @endif
+                                            @else
+                                                <select class="form-control parentCategorySelect"
+                                                        name="productCategory">
+                                                    <option selected value="" disabled>Select category</option>
+                                                    @foreach($categories as $parent)
+                                                        <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -85,15 +100,16 @@
                                     <h3 class="panel-title">Price Range</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="price-range"><!--price-range-->
-                                        <div class="well text-center">
-                                            <input type="text" class="span2" name="price"
-                                                   data-slider-min="0"
-                                                   data-slider-max="1000" data-slider-step="5"
-                                                   data-slider-value="[250,450]" id="sl2"><br/>
-                                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 1000</b>
-                                        </div>
-                                    </div><!--/price-range-->
+                                    <div class="col-sm-5 col-md-5">
+                                        <label for="minPrice"> Min Price :</label> <input type="number"
+                                                                                          name="minPrice"
+                                                                                          class="form-control"/>
+                                    </div>
+                                    <div class="col-sm-5 col-md-5">
+                                        <label for="maxPrice">Max Price : </label><input type="number"
+                                                                                         name="maxPrice"
+                                                                                         class="form-control"/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel panel-default advancedSearchPanel" id="conditionPanel" hidden>

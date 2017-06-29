@@ -400,6 +400,6 @@
             </div>
         </div>
     </section>
-    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands, 'store'=>$store])
+    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands, 'store'=>$store, 'category'=>$category])
 @endsection
 

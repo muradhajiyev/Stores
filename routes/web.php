@@ -88,7 +88,7 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/shop', function () {
         return view('temp.shop');
     });
-    Route::get('/search', 'HomeController@search');
+
 });
 
 Route::resource("products", 'ProductController');

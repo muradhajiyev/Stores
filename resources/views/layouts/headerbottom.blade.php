@@ -59,9 +59,6 @@
                                     Search
                                 </button>
 
-
-                                <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
-                                    search</a>
                             </div>
                         </div>
                     </form>

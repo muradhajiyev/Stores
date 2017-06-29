@@ -169,6 +169,9 @@ let initializeFileUploader = () => {
                 file.previewElement.id = response;
                 addImageHiddenField(response);
             },
+            error:function (error) {
+                console.log(error);
+            },
             init: function () {
                 this.on('sending', function (file, xhr, formData) {
                     formData.append('_token', token);

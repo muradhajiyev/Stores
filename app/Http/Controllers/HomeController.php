@@ -66,9 +66,11 @@ class HomeController extends Controller
     public function profile(Request $request)
     {
         $subCategories = '';
+        $children = null;
         $store_id = $request->input('store_id');
         $searchProduct = $request->input('searchStoreName');
         $category_id = $request->input('id');
+        $category = null;
         $store = Store::find($store_id);
         if ($store) {
             $parentCategories = Category::all()->where('parent_id', null);
@@ -77,6 +79,7 @@ class HomeController extends Controller
 
             if (!is_null($category_id)) {
                 $subCategories = $this->getChildCategories($category_id);
+                $category = Category::find($category_id);
                 if (is_null($searchProduct)) {
                     $store->setRelation('products', $store->products()->where('category_id', $category_id)->paginate(10));
                 } else {
@@ -84,7 +87,12 @@ class HomeController extends Controller
                 }
             } else {
                 if (is_null($searchProduct)) {
-                    $store->setRelation('products', $store->products()->paginate(10));
+                    $products = $this->search($request);
+                    if ($products) {
+                        $store->setRelation('products', $products->paginate(3));
+                    } else {
+                        $store->setRelation('products', $store->products()->paginate(10));
+                    }
 
                 } else {
                     $store->setRelation('products', $store->products()->where('name', 'like', '%' . $searchProduct . '%')->paginate(10));
@@ -92,42 +100,46 @@ class HomeController extends Controller
             }
             Session::put('store_id1', $store_id);
             Session::put('category_id_product', $category_id);
-            return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories]);
+            return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories, 'category' => $category]);
         } else {
-            return redirect('/404');
+            return view('404.404');
         }
     }
 
-    public function search(Request $request)
+    public function search($request)
     {
         $storeId = $request->store_id; //required
         $categoryId = $request->productCategory; //required
-        $priceRange = $request->price;
+        $mPrice = $request->minPrice;
+        $mxPrice = $request->maxPrice;
         $used = $request->used;
         $new = $request->new;
         $brandId = $request->brand_id;
         $specificationFilter = '';
         $specificationJoin = '';
-        if (isset($storeId) && isset($categoryId)) {
+        if (isset($storeId)) {
             $category = Category::find($categoryId);
             $store = Store::find($storeId);
             $minPrice = null;
             $maxPrice = null;
             $isNew = null;
-            if (isset($priceRange)) {
-                $prices = explode(",", $priceRange);
-                $minPrice = trim($prices[0]);
-                $maxPrice = trim($prices[1]);
+            if (isset($mPrice)) {
+                $minPrice = $mPrice;
+            }
+            if (isset($mxPrice)) {
+                $maxPrice = $mxPrice;
             }
 
-            if ($used === 1 && $new != 1) {
+
+            if ($used == 1 && $new != 1) {
                 $isNew = false;
-            } elseif ($new === 1 && $used != 1) {
+            } elseif ($new == 1 && $used != 1) {
                 $isNew = true;
             }
+
             // $specificationArray = array();
             $index = 1;
-            if ($category && $store) {
+            if ($store && $category) {
                 $specificationValues = StoredProcedure::getSpecifications($categoryId, $storeId);
                 foreach ($specificationValues as $specification) {
                     $specName = $this->removeSpaces($specification->specification_name);
@@ -147,13 +159,14 @@ class HomeController extends Controller
 
 
             }
-            $productIds = StoredProcedure::getProducts($categoryId, $storeId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin);
+            $productIds = StoredProcedure::getProducts($storeId, $categoryId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin);
             $idArray = array();
             foreach ($productIds as $productId) {
                 array_push($idArray, $productId->productid);
             }
-            $products = Product::whereIn('id', $idArray)->get();
+            $products = Product::whereIn('id', $idArray);
             return $products;
+
         }
 
     }

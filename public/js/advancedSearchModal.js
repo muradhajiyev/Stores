@@ -8,6 +8,7 @@ $(document).ready(function () {
     //console.log(categoryId);
     specifications(categoryId);
     $('.tabLink').livequery('click', function () {
+
         $('.advancedSearchPanel').attr('hidden', true);
         let panel = this.id + 'Panel';
         $('#' + panel).attr('hidden', false);
@@ -16,6 +17,7 @@ $(document).ready(function () {
         }
     });
     $('.panel-body .parentCategory').livequery('change', function (event) {
+
         cleanDynamicSpecArea();
         specifications(event.target.value);
     });
@@ -71,11 +73,13 @@ let appendSpecifications = (specification) => {
     $('#dynamicSpecificationPanel').append(tabArea);
 };
 let appendSpecValues = (specificationName) => {
+
     let storeId = $('#storeId').val();
-    let categories = $('.parentCategorySelect');
+    let categories = $("[name='productCategory']");
     let categoryId = getCategoryId(categories);
     let appendArea = $('#' + specificationName + 'Panel' + ' .panel-body');
     if (appendArea.is(':empty')) {
+
         if (specificationName && storeId && categoryId) {
             $.ajax({
                 url: "/api/specificationValues",

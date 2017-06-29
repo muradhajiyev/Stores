@@ -37,8 +37,8 @@ class StoredProcedure
         return $specificationValues;
     }
 
-    public static function getProducts($categoryId, $storeId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin){
-        $products= DB::select('select productId.* from getProducts(?,?,?,?,?,?,?,?) as productId', array($categoryId, $storeId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin));
+    public static function getProducts($storeId, $categoryId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin){
+        $products= DB::select('select productId.* from getProducts(?,?,?,?,?,?,?,?) as productId', array($storeId,$categoryId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin));
         return $products;
     }
 }
