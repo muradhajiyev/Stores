@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="{{asset("css/jquery-comments.css")}}" rel="stylesheet" >
     <link type="text/css" rel="stylesheet" href="{{asset("css/gallery.css")}}" />
-
+    <script src="{{asset('js/jquery.elevatezoom.js')}}" type="text/javascript"></script>
 </head><!--/head-->
 
 <body>
@@ -59,12 +59,9 @@
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/advancedSearchModal.js")}}"></script>
 <script src="{{asset("js/jquery-comments.js")}})"></script>
-<script src="{{asset("js/gallery.js")}}"></script>
-
-{{--<script src="{{asset("js/categorySidebar.js")}}"></script> Not Found!--}}
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <script src="{{asset("product/js/autocomplete.js")}}"></script>
+
 
 </body>
 </html>

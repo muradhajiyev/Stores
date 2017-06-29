@@ -25,14 +25,12 @@
 
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="#" class="active">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="{{ url('/store/blog') }}" class="active">Blog List</a></li>
-                                    <li><a href="{{ url('/store/blog-single') }}">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">404</a></li>
-                            <li><a href="{{ url('/store/contactus') }}">Contact</a></li>
+
+
+                            <li><a href=" {{ URL::to('/store/blog') }}">Blog</a></li>
+                            <li><a href=" {{ URL::to('/store') }}">Store</a></li>
+                            <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -67,8 +65,9 @@
                                     </div>
                                 </div>
                             </form>
-
+</form>
             </div>
+
         </div>
     </div>
 </headerbottom>

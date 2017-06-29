@@ -23,12 +23,8 @@ Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
 
-// Route::get('/addwishlist','WishlistController@addwish');
  Route::get('sig/edit/{pro}', 'WishlistController@addwish');
 
-//  Route::get('addwishlist/{pro}/{user}',
-//         ['as'=> 'test', 'uses'=>'WishlistController@addwish']
-// );
 
 Route::get('/wishlisttable/{id}', ['as'=> 'userid', 'uses'=>'WishlistController@showwish']);
 
@@ -43,17 +39,12 @@ Route::get('/wishlisttt/{pro}/{user}', ['as'=> 'remove', 'uses'=>'WishlistContro
     });
 
 
-
-// Route::get('/wishlisttable','WishlistController@showwish', function () {
-//    // $tasks=DB::table('wishlists')->get();
-//     return view('product.wishlist');
-// });
-
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'AdminController@index');
 
     Route::resource('stores', 'StoreController');
+
     Route::resource('dropdowns', 'DropdownController');
     Route::resource('specifications', 'SpecificationController');
     Route::resource('categories', 'CategoryController');
@@ -64,16 +55,12 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('autocomplete-ajax/store',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteStore'));
 Route::get('autocomplete-ajax/product',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteProduct'));
 
+
 Route::group(['prefix' => 'store'], function () {
 
     Route::get('/','HomeController@profile');
-
-    Route::get('/blog', function () {
-        return view('temp.blog');
-    });
-    Route::get('/blog-single', function () {
-        return view('temp.blog-single');
-    });
+    Route::resource('blog', 'BlogController');
+    Route::get('blogsingle', 'BlogController@showBlogSingle');
     Route::get('/cart', function () {
         return view('temp.cart');
     });
@@ -91,6 +78,11 @@ Route::group(['prefix' => 'store'], function () {
 });
 });
 
+Route::get('/gallery', function () {
+    return view('gallery');
+});
+
+
 Route::resource("products", 'ProductController');
 
 Route::group(['prefix' => 'api'], function () {
@@ -104,7 +96,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('specifications/', 'SpecificationController@getSpecifications');
     Route::get('specificationValues/', 'SpecificationController@getSpecificationValues');
     Route::get('comments/{id}', 'ProductController@getComments');
-    Route::get('storeComments/{id}', 'ProductController@storeComments' );
+    Route::post('storeComments', 'ProductController@storeComments' );
 
 });
 

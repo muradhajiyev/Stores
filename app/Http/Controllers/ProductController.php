@@ -182,14 +182,14 @@ class ProductController extends Controller
     }
 
 
-    public function storeComments($id, Request $request){
+    public function storeComments(Request $request){
      
-        //$stores = Store::all();
+       
         $review = new Review();
         $review->parent = $request->parent;
         $review->content = $request->content;
         $review->fullname = $request->name;
-        $review->product_id = $id;
+        $review->product_id = $request->productId;
         $review->save();
         return $request->content;
 

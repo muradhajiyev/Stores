@@ -67,6 +67,10 @@ text-decoration:none;
   padding-right: 5px;
   font-weight: bolder;
 }
+.imageFocus {
+  border: solid orange 5px;
+  border-radius: 3px;
+}
 a:active{
   text-decoration: none;
 }
@@ -1443,7 +1447,7 @@ font-size: 16px;
 }
 
 #reviews  ul  li {
-	display:inline-block;
+/*	display:inline-block;*/
 }
 
 #reviews ul li a {
@@ -1503,7 +1507,7 @@ font-size: 16px;
 #reviews button {
   background: #FE980F;
   border: 0 none;
-  border-radius: 0;
+  border-radius: 35%;
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
