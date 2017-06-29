@@ -93,9 +93,8 @@ class HomeController extends Controller
             Session::put('store_id1', $store_id);
             Session::put('category_id_product', $category_id);
             return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories]);
-        }
-        else{
-           return redirect('/404');
+        } else {
+            return redirect('/404');
         }
     }
 
@@ -107,6 +106,8 @@ class HomeController extends Controller
         $used = $request->used;
         $new = $request->new;
         $brandId = $request->brand_id;
+        $specificationFilter = '';
+        $specificationJoin = '';
         if (isset($storeId) && isset($categoryId)) {
             $category = Category::find($categoryId);
             $store = Store::find($storeId);
@@ -120,24 +121,41 @@ class HomeController extends Controller
             }
 
             if ($used === 1 && $new != 1) {
-                $isNew = 0;
+                $isNew = false;
             } elseif ($new === 1 && $used != 1) {
-                $isNew = 1;
+                $isNew = true;
             }
-            $specificationArray = array();
+            // $specificationArray = array();
+            $index = 1;
             if ($category && $store) {
                 $specificationValues = StoredProcedure::getSpecifications($categoryId, $storeId);
                 foreach ($specificationValues as $specification) {
                     $specName = $this->removeSpaces($specification->specification_name);
                     if (isset($request->$specName)) {
-                        $specificationArray[$specName] = $request->$specName;
+                        $specificationJoin .= " INNER JOIN specification_values spec$index ON spec$index.product_id = p.id AND spec$index.specification_id=$specification->specification_id";
+
+                        $specificationFilter .= " and spec$index.value in (";
+                        foreach ($request->$specName as $value) {
+                            $specificationFilter .= "'" . $value . "', ";
+                        }
+                        $specificationFilter = substr($specificationFilter, 0, -2);
+                        $specificationFilter .= ')';
+                        $index++;
+                        // $specificationArray[$specification->specification_id] = $request->$specName;
                     }
                 }
 
-            }
 
+            }
+            $productIds = StoredProcedure::getProducts($categoryId, $storeId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin);
+            $idArray = array();
+            foreach ($productIds as $productId) {
+                array_push($idArray, $productId->productid);
+            }
+            $products = Product::whereIn('id', $idArray)->get();
+            return $products;
         }
-          return $request->all();
+
     }
 
     /**

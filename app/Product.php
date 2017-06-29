@@ -52,9 +52,14 @@ class Product extends Model
         return $this->belongsTo('App\currency');
 
     }
+    public function specificationValues(){
+        return $this->hasMany('App\Specification_Value');
+    }
 
 
-
+    public function specifications(){
+        return $this->belongsToMany('App\Specification', 'specification_values', 'product_id', 'specification_id');
+    }
 
 //    protected $appends = ['profile_url', 'img_urls'];
 //
