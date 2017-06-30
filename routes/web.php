@@ -23,12 +23,8 @@ Route::get('/storeregister', function () {
     return view('auth/storeregister');
 });
 
-// Route::get('/addwishlist','WishlistController@addwish');
  Route::get('sig/edit/{pro}', 'WishlistController@addwish');
 
-//  Route::get('addwishlist/{pro}/{user}',
-//         ['as'=> 'test', 'uses'=>'WishlistController@addwish']
-// );
 
 Route::get('/wishlisttable/{id}', ['as'=> 'userid', 'uses'=>'WishlistController@showwish']);
 
@@ -42,12 +38,6 @@ Route::get('/wishlisttt/{pro}/{user}', ['as'=> 'remove', 'uses'=>'WishlistContro
         return view('store.index');
     });
 
-
-
-// Route::get('/wishlisttable','WishlistController@showwish', function () {
-//    // $tasks=DB::table('wishlists')->get();
-//     return view('product.wishlist');
-// });
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -65,9 +55,6 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('autocomplete-ajax/store',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteStore'));
 Route::get('autocomplete-ajax/product',array('as'=>'autocomplete.ajax','uses'=>'HomeController@autocompleteProduct'));
 
-
-
-    Route::get('/{id}', ['as' => 'store.index', 'uses' => 'HomeController@profile']);
 
 Route::group(['prefix' => 'store'], function () {
 
@@ -90,6 +77,11 @@ Route::group(['prefix' => 'store'], function () {
         return view('temp.shop');
 });
 });
+
+Route::get('/gallery', function () {
+    return view('gallery');
+});
+
 
 Route::resource("products", 'ProductController');
 

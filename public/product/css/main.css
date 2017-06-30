@@ -67,6 +67,10 @@ text-decoration:none;
   padding-right: 5px;
   font-weight: bolder;
 }
+.imageFocus {
+  border: solid orange 5px;
+  border-radius: 3px;
+}
 a:active{
   text-decoration: none;
 }
