@@ -1,0 +1,9 @@
+.gallery img{
+    width: 446px;
+    height: 370px;
+}
+.thumbnails img{
+    width: 105px;
+    height: 80px;
+    margin: 10px 5px 3px 0px;
+}

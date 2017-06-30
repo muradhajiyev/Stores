@@ -173,9 +173,9 @@ class ProductController extends Controller
       $store_id = $request->store_id;
 
       if($store_id == NULL) {
-        $products = Product::orderBy('id', 'desc')->paginate(8);
+        $products = Product::orderBy('id', 'desc')->paginate(12);
       } else {
-        $products = Product::where('store_id', $store_id)->orderBy('id', 'desc')->paginate(8);
+        $products = Product::where('store_id', $store_id)->orderBy('id', 'desc')->paginate(12);
       }
 
       return $products;
