@@ -67,8 +67,23 @@ class BlogController extends Controller
     public function showBlogSingle(Request $request)
     {
         $blogsingle = Blog::where('id',$request->blogsingleid)->first();
-        $comments= Comment::where('blog_id',$blogsingle->id)->get();
-        return view('store.blogsingle')->withblogsingle($blogsingle)->with(array('comments'=>$comments));
+
+        return view('store.blogsingle')->withblogsingle($blogsingle);
+    }
+    public function  getComments($id){
+
+        $comments= Comment::where('blog_id',$id)->get();
+
+       return  $comments->toArray();
+    }
+    public function  storeComments(Request $request){
+        $comment = new Comment();
+        $comment->parent_id = $request->parentId;
+        $comment->comment = $request->message;
+        $comment->created_by = $request->user_id;
+        $comment->blog_id = $request->blogId;
+        $comment->save();
+        return $request->message;
     }
     /**
      * Show the form for editing the specified resource.
