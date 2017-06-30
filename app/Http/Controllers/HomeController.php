@@ -77,14 +77,11 @@ class HomeController extends Controller
             if (!is_null($category_id)) {
                 $subCategories = $this->getChildCategories($category_id);
                 $category = Category::find($category_id);
-            }else{
+            } else {
                 $category = Category::find($request->productCategory);
             }
             $products = $this->search($request);
-            if ($products) {
-                $store->setRelation('products', $products->paginate(10)->withPath($request->fullUrl()));
-
-            }
+            $store->setRelation('products', $products->paginate(10)->withPath($request->fullUrl()));
 
             Session::put('store_id1', $store_id);
             Session::put('category_id_product', $category_id);
@@ -99,8 +96,8 @@ class HomeController extends Controller
     function search($request)
     {
         $storeId = $request->store_id; //required
-        $categoryId = $request->productCategory;
-        $categoryId1 = $request->id;
+        $categoryIdRequest = $request->productCategory;
+        $categoryId1Request = $request->id;
         $mPrice = $request->minPrice;
         $mxPrice = $request->maxPrice;
         $used = $request->used;
@@ -109,10 +106,13 @@ class HomeController extends Controller
         $searchProduct = $request->searchStoreName;
         $specificationFilter = '';
         $specificationJoin = '';
-        if (isset($categoryId)) {
-            $category = Category::find($categoryId);
+        $categoryId = null;
+        if (isset($categoryIdRequest)) {
+            $category = Category::find($categoryIdRequest);
+            $categoryId = $categoryIdRequest;
         } else {
-            $category = Category::find($categoryId1);
+            $category = Category::find($categoryId1Request);
+            $categoryId = $categoryId1Request;
         }
         $store = Store::find($storeId);
         $minPrice = null;
