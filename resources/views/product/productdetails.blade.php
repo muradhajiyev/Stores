@@ -6,9 +6,9 @@
 
     @include('layouts.headerbottom')
     <section>
-    @if(Auth::check())
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    @endif
+        @if(Auth::check())
+            <meta name="csrf-token" content="{{ csrf_token() }}"/>
+        @endif
         <div class="container">
 
             <div class="row">
@@ -18,60 +18,70 @@
                         <div class="col-sm-5">
                             <!-- image part -->
                             <div class="gallery">
-                                <img name="MyImage" id="img_01" src="{{$product->profile_url}}" data-zoom-image="{{$product->profile_url}}" alt="Trolltunga Norway" width="300" height="200">
+                                <img name="MyImage" id="img_01" src="{{$product->profile_url}}"
+                                     data-zoom-image="{{$product->profile_url}}" alt="Trolltunga Norway" width="300"
+                                     height="200">
                             </div>
                             <div class="thumbnails">
                                 @foreach($product->image_urls as $image)
-                                <a href="" id="{{$image->id}}func" >
-                                    <img id="img{{$image->id}}"  src="{{$image->path}}" />
-                                </a>
+                                    <a href="" id="{{$image->id}}func">
+                                        <img id="img{{$image->id}}" src="{{$image->path}}"/>
+
+                                    </a>
                                     <script>
-                                        var id = '{{$image->id}}'+'func';
-                                        document.getElementById(id).onmouseover = function() {
+                                        var id = '{{$image->id}}' + 'func';
+                                        document.getElementById(id).onmouseover = function () {
                                             $('img').removeClass('imageFocus');
                                             $('#img{{$image->id}}').addClass('imageFocus');
                                             $('.zoomContainer').remove();
                                             $('#img_01').removeData('elevateZoom')
-                                            $('#img_01').attr('src','{{$image->path}}');
-                                            $("#img_01").data('zoom-image','{{$image->path}}').elevateZoom({tint:true,tintColour:'#F90', tintOpacity:0.5});
+                                            $('#img_01').attr('src', '{{$image->path}}');
+                                            $("#img_01").data('zoom-image', '{{$image->path}}').elevateZoom({
+                                                tint: true,
+                                                tintColour: '#F90',
+                                                tintOpacity: 0.5
+                                            });
                                             $("#img_01").elevateZoom({
-                                                scrollZoom : true,
-                                                easing:true,
-                                                borderSize:3,
+                                                scrollZoom: true,
+                                                easing: true,
+                                                borderSize: 3,
                                                 borderColour: 'orange',
                                                 zoomType: "window",
-                                                zoomWindowWidth:"500",
-                                                zoomWindowHeight:"500",
+                                                zoomWindowWidth: "500",
+                                                zoomWindowHeight: "500",
                                                 zoomWindowFadeIn: 250,
                                                 zoomWindowFadeOut: 250,
                                                 zoomLevel: 1,
                                                 responsive: true,
-                                                tintColour:'#F90',
-                                                tintOpacity:0.5});};
+                                                tintColour: '#F90',
+                                                tintOpacity: 0.5
+                                            });
+                                        };
 
                                     </script>
                                 @endforeach
                                 <script>
-                                    $("#img_01").elevateZoom({tint:true,
-                                        scrollZoom : true,
-                                        easing:true,
-                                        borderSize:3,
+                                    $("#img_01").elevateZoom({
+                                        tint: true,
+                                        scrollZoom: true,
+                                        easing: true,
+                                        borderSize: 3,
                                         borderColour: 'orange',
                                         zoomType: "window",
-                                        zoomWindowWidth:"500",
-                                        zoomWindowHeight:"500",
+                                        zoomWindowWidth: "500",
+                                        zoomWindowHeight: "500",
                                         zoomWindowFadeIn: 250,
                                         zoomWindowFadeOut: 250,
                                         zoomLevel: 1,
                                         responsive: true,
-                                        tintColour:'#F90',
-                                        tintOpacity:0.5});
+                                        tintColour: '#F90',
+                                        tintOpacity: 0.5
+                                    });
                                 </script>
                             </div>
 
 
-
-                        <!-- end of image part -->
+                            <!-- end of image part -->
 
                         </div>
                         <div class="col-sm-7">
@@ -84,9 +94,9 @@
                                 {{--<img src="product/images/product-details/rating.png" alt=""/>--}}
                                 <span>
 									<span> {{$product->price}} {{$product->currency->iso}}</span>
-									{{--<label>Quantity:</label>--}}
-									{{--<input type="text" value="3"/>--}}
-									<button type="button" class="btn btn-fefault cart">
+                                    {{--<label>Quantity:</label>--}}
+                                    {{--<input type="text" value="3"/>--}}
+                                    <button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
@@ -117,24 +127,24 @@
                                 <li class="active"><a href="#reviews" data-toggle="tab">Reviews</a></li>
                             </ul>
                         </div>
-                       <!-- details profile  -->
+                        <!-- details profile  -->
                         <div class="tab-content">
                             <div class="tab-pane fade" id="details">
                                 @foreach($relatedProducts as $relatedProduct)
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{$relatedProduct->profile_url}}" alt=""/>
-                                                <h2>{{$relatedProduct->price}} {{$relatedProduct->currency->iso}}</h2>
-                                                <p>{{$relatedProduct->name}}</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart
-                                                </button>
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="{{$relatedProduct->profile_url}}" alt=""/>
+                                                    <h2>{{$relatedProduct->price}} {{$relatedProduct->currency->iso}}</h2>
+                                                    <p>{{$relatedProduct->name}}</p>
+                                                    <button type="button" class="btn btn-default add-to-cart"><i
+                                                                class="fa fa-shopping-cart"></i>Add to cart
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
 
@@ -259,7 +269,8 @@
                             <div class="tab-pane fade active in" id="reviews">
                                 <div class="col-sm-12">
                                     <div id="comments-container">
-                                       <input id="settings" type="hidden" value="{{$product->id}},{{ Auth::check() ? Auth::user()->name : '0' }}"> 
+                                        <input id="settings" type="hidden"
+                                               value="{{$product->id}},{{ Auth::check() ? Auth::user()->name : '0' }}">
                                     </div>
                                 </div>
                             </div>
@@ -375,12 +386,12 @@
                 </div>
             </div>
         </div>
-       
+
 
     </section>
 
-<script src="{{asset("js/productDetails.js")}}")></script>
-<script src="{{asset('js/bootbox.min.js')}}"></script>
+    <script src="{{asset("js/productDetails.js")}}" )></script>
+    <script src="{{asset('js/bootbox.min.js')}}"></script>
 
 
 
