@@ -146,15 +146,21 @@
                                                 @if(!empty($store))
                                                     <input hidden name="store_id" value="{{$store->id}}">
                                                 @endif
-                                                <input hidden id="tags" name="id"
-                                                       value="{{app('request')->input('id')}}"
-                                                       placeholder="Search" type="text">
+                                                @if($category)
+                                                    <input hidden id="tags" name="id"
+                                                           value="{{$category->id}}"
+                                                           placeholder="Search" type="text">
+                                                @else
+                                                    <input hidden id="tags" name="id"
+                                                           value="{{app('request')->input('id')}}"
+                                                           placeholder="Search" type="text">
+                                                @endif
                                                 <input hidden id="tags" name="category_name"
                                                        value="{{app('request')->input('category_name')}}"
                                                        placeholder="Search"
                                                        type="text">
                                                 @if(!empty($store))
-                                                    <input id="search_text_product" name="searchStoreName"
+                                                    <input id="search_text_product" name="searchProductName"
                                                            placeholder="Search" type="text">
                                                 @else
                                                     <input id="search_text_store" name="searchStoreName"

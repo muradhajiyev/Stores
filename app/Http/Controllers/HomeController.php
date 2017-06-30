@@ -78,7 +78,12 @@ class HomeController extends Controller
                 $subCategories = $this->getChildCategories($category_id);
                 $category = Category::find($category_id);
             } else {
-                $category = Category::find($request->productCategory);
+                $category_id = $request->productCategory;
+                if (!is_null($category_id)) {
+                    $subCategories = $this->getChildCategories($category_id);
+                    $category = Category::find($category_id);
+                }
+
             }
             $products = $this->search($request);
             $store->setRelation('products', $products->paginate(10)->withPath($request->fullUrl()));
@@ -103,7 +108,7 @@ class HomeController extends Controller
         $used = $request->used;
         $new = $request->new;
         $brandId = $request->brand_id;
-        $searchProduct = $request->searchStoreName;
+        $searchProduct = $request->searchProductName;
         $specificationFilter = '';
         $specificationJoin = '';
         $categoryId = null;
@@ -134,7 +139,7 @@ class HomeController extends Controller
             $isNew = true;
         }
 
-        // $specificationArray = array();
+
         $index = 1;
         if ($store && $category) {
             $specificationValues = StoredProcedure::getSpecifications($categoryId, $storeId);
@@ -150,7 +155,7 @@ class HomeController extends Controller
                     $specificationFilter = substr($specificationFilter, 0, -2);
                     $specificationFilter .= ')';
                     $index++;
-                    // $specificationArray[$specification->specification_id] = $request->$specName;
+
                 }
             }
 
