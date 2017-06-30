@@ -58,7 +58,7 @@
 <script src="{{asset("js/dropzone.js")}}"></script>
 <script src="{{asset("js/dynamicProductForm.js")}}"></script>
 <script src="{{asset("js/advancedSearchModal.js")}}"></script>
-<script src="{{asset("js/jquery-comments.js")}})"></script>
+<script src="{{asset("js/jquery-comments.js")}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <script src="{{asset("product/js/autocomplete.js")}}"></script>
 
