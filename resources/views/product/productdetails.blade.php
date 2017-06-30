@@ -22,28 +22,50 @@
                             </div>
                             <div class="thumbnails">
                                 @foreach($product->image_urls as $image)
-                                <a href="" onMouseOver="{{$image}}b()" >
-                                    <img id="img1"  src="{{$image}}" />
+                                <a href="" id="{{$image->id}}func" >
+                                    <img id="img{{$image->id}}"  src="{{$image->path}}" />
                                 </a>
-                                    {{--<script>--}}
-                                        {{--function {{$image}}b() {--}}
-                                            {{--$('.zoomContainer').remove();--}}
-                                            {{--$('#img_01').removeData('elevateZoom')--}}
-                                            {{--$('#img_01').attr('src','{{$image}}');--}}
-                                            {{--$("#img_01").data('zoom-image','{{$image}}').elevateZoom({tint:true, tintColour:'#F90', tintOpacity:0.5});--}}
-                                            {{--$("#img_01").elevateZoom({tint:true, tintColour:'#F90', tintOpacity:0.5});--}}
-                                        {{--}--}}
-                                    {{--</script>--}}
+                                    <script>
+                                        var id = '{{$image->id}}'+'func';
+                                        document.getElementById(id).onmouseover = function() {
+                                            $('img').removeClass('imageFocus');
+                                            $('#img{{$image->id}}').addClass('imageFocus');
+                                            $('.zoomContainer').remove();
+                                            $('#img_01').removeData('elevateZoom')
+                                            $('#img_01').attr('src','{{$image->path}}');
+                                            $("#img_01").data('zoom-image','{{$image->path}}').elevateZoom({tint:true,tintColour:'#F90', tintOpacity:0.5});
+                                            $("#img_01").elevateZoom({
+                                                scrollZoom : true,
+                                                easing:true,
+                                                borderSize:3,
+                                                borderColour: 'orange',
+                                                zoomType: "window",
+                                                zoomWindowWidth:"500",
+                                                zoomWindowHeight:"500",
+                                                zoomWindowFadeIn: 250,
+                                                zoomWindowFadeOut: 250,
+                                                zoomLevel: 1,
+                                                responsive: true,
+                                                tintColour:'#F90',
+                                                tintOpacity:0.5});};
+
+                                    </script>
                                 @endforeach
-                                {{--<a href="" onMouseOver="c()" >--}}
-                                    {{--<img id="img2" src="https://static.pexels.com/photos/6548/cold-snow-winter-mountain.jpeg" />--}}
-                                {{--</a>--}}
-                                {{--<a href="" onMouseOver="d()" >--}}
-                                    {{--<img id="img3" src="https://img.grouponcdn.com/deal/5EXVDNMDEe1mtyEK6Pgp/ZC-1057x634/v1/c700x420.jpg" />--}}
-                                {{--</a>--}}
                                 <script>
-                                    $("#img_01").elevateZoom({tint:true,scrollZoom : true, easing:true, zoomLevel: 0.5,responsive: true,
-                                        tintColour:'#F90', tintOpacity:0.5});
+                                    $("#img_01").elevateZoom({tint:true,
+                                        scrollZoom : true,
+                                        easing:true,
+                                        borderSize:3,
+                                        borderColour: 'orange',
+                                        zoomType: "window",
+                                        zoomWindowWidth:"500",
+                                        zoomWindowHeight:"500",
+                                        zoomWindowFadeIn: 250,
+                                        zoomWindowFadeOut: 250,
+                                        zoomLevel: 1,
+                                        responsive: true,
+                                        tintColour:'#F90',
+                                        tintOpacity:0.5});
                                 </script>
                             </div>
 
