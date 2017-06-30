@@ -22,8 +22,8 @@
                             </div>
                             <div class="thumbnails">
                                 @foreach($product->image_urls as $image)
-                                <a href="" onMouseOver="{{$image}}b()" >
-                                    <img id="img1"  src="{{$image}}" />
+                                <a href="" onMouseOver="{{$image->path}}b()" >
+                                    <img id="img1"  src="{{$image->path}}" />
                                 </a>
                                     {{--<script>--}}
                                         {{--function {{$image}}b() {--}}
