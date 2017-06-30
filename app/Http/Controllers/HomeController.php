@@ -87,10 +87,12 @@ class HomeController extends Controller
                 }
             } else {
                 if (is_null($searchProduct)) {
-
                     $products = $this->search($request);
                     if ($products) {
-                        $store->setRelation('products', $products->paginate(3));
+
+
+                        $store->setRelation('products', $products->paginate(1)->withPath($request->fullUrl()));
+                      //  $products->withPath($request->fullUrl());
                     } else {
                         $store->setRelation('products', $store->products()->paginate(12));
                     }

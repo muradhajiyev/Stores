@@ -281,7 +281,7 @@
                             </div>
                         @endforeach
                         <div class="col-sm-12">
-                            {!! $store->products->appends(['store_id' => $store->id])->render() !!}
+                            {!! $store->products->render() !!}
 
                         </div>
                     </div>
