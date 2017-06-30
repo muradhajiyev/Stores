@@ -66,9 +66,7 @@ class HomeController extends Controller
     public function profile(Request $request)
     {
         $subCategories = '';
-        $children = null;
         $store_id = $request->input('store_id');
-        $searchProduct = $request->input('searchStoreName');
         $category_id = $request->input('id');
         $category = null;
         $store = Store::find($store_id);
@@ -76,101 +74,96 @@ class HomeController extends Controller
             $parentCategories = Category::all()->where('parent_id', null);
             $brands = DB::select('select data.* from getBrands(?) as data', array($store_id));
             $product = Product::where('store_id', $store_id)->orderBy('views', 'desc')->take(config('settings.max_most_viewed_product_count'))->get();
-
             if (!is_null($category_id)) {
                 $subCategories = $this->getChildCategories($category_id);
                 $category = Category::find($category_id);
-                if (is_null($searchProduct)) {
-                    $store->setRelation('products', $store->products()->where('category_id', $category_id)->paginate(12));
-                } else {
-                    $store->setRelation('products', $store->products()->where('category_id', $category_id)->where('name', 'like', '%' . $searchProduct . '%')->paginate(12));
-                }
-            } else {
-                if (is_null($searchProduct)) {
-                    $products = $this->search($request);
-                    if ($products) {
-
-
-                        $store->setRelation('products', $products->paginate(1)->withPath($request->fullUrl()));
-                      //  $products->withPath($request->fullUrl());
-                    } else {
-                        $store->setRelation('products', $store->products()->paginate(12));
-                    }
-
-                } else {
-                    $store->setRelation('products', $store->products()->where('name', 'like', '%' . $searchProduct . '%')->paginate(12));
-                }
+            }else{
+                $category = Category::find($request->productCategory);
             }
+            $products = $this->search($request);
+            if ($products) {
+                $store->setRelation('products', $products->paginate(10)->withPath($request->fullUrl()));
+
+            }
+
             Session::put('store_id1', $store_id);
             Session::put('category_id_product', $category_id);
             return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories, 'category' => $category]);
         } else {
+
             return view('404.404');
         }
     }
 
-    public function search($request)
+    public
+    function search($request)
     {
         $storeId = $request->store_id; //required
-        $categoryId = $request->productCategory; //required
+        $categoryId = $request->productCategory;
+        $categoryId1 = $request->id;
         $mPrice = $request->minPrice;
         $mxPrice = $request->maxPrice;
         $used = $request->used;
         $new = $request->new;
         $brandId = $request->brand_id;
+        $searchProduct = $request->searchStoreName;
         $specificationFilter = '';
         $specificationJoin = '';
-        if (isset($storeId)) {
+        if (isset($categoryId)) {
             $category = Category::find($categoryId);
-            $store = Store::find($storeId);
-            $minPrice = null;
-            $maxPrice = null;
-            $isNew = null;
-            if (isset($mPrice)) {
-                $minPrice = $mPrice;
-            }
-            if (isset($mxPrice)) {
-                $maxPrice = $mxPrice;
-            }
+        } else {
+            $category = Category::find($categoryId1);
+        }
+        $store = Store::find($storeId);
+        $minPrice = null;
+        $maxPrice = null;
+        $isNew = null;
+        if (isset($mPrice)) {
+            $minPrice = $mPrice;
+        }
+        if (isset($mxPrice)) {
+            $maxPrice = $mxPrice;
+        }
+        if (isset($searchProduct)) {
+            $searchProduct = "'%$searchProduct%'";
+        }
 
+        if ($used == 1 && $new != 1) {
+            $isNew = false;
+        } elseif ($new == 1 && $used != 1) {
+            $isNew = true;
+        }
 
-            if ($used == 1 && $new != 1) {
-                $isNew = false;
-            } elseif ($new == 1 && $used != 1) {
-                $isNew = true;
-            }
+        // $specificationArray = array();
+        $index = 1;
+        if ($store && $category) {
+            $specificationValues = StoredProcedure::getSpecifications($categoryId, $storeId);
+            foreach ($specificationValues as $specification) {
+                $specName = $this->removeSpaces($specification->specification_name);
+                if (isset($request->$specName)) {
+                    $specificationJoin .= " INNER JOIN specification_values spec$index ON spec$index.product_id = p.id AND spec$index.specification_id=$specification->specification_id";
 
-            // $specificationArray = array();
-            $index = 1;
-            if ($store && $category) {
-                $specificationValues = StoredProcedure::getSpecifications($categoryId, $storeId);
-                foreach ($specificationValues as $specification) {
-                    $specName = $this->removeSpaces($specification->specification_name);
-                    if (isset($request->$specName)) {
-                        $specificationJoin .= " INNER JOIN specification_values spec$index ON spec$index.product_id = p.id AND spec$index.specification_id=$specification->specification_id";
-
-                        $specificationFilter .= " and spec$index.value in (";
-                        foreach ($request->$specName as $value) {
-                            $specificationFilter .= "'" . $value . "', ";
-                        }
-                        $specificationFilter = substr($specificationFilter, 0, -2);
-                        $specificationFilter .= ')';
-                        $index++;
-                        // $specificationArray[$specification->specification_id] = $request->$specName;
+                    $specificationFilter .= " and spec$index.value in (";
+                    foreach ($request->$specName as $value) {
+                        $specificationFilter .= "'" . $value . "', ";
                     }
+                    $specificationFilter = substr($specificationFilter, 0, -2);
+                    $specificationFilter .= ')';
+                    $index++;
+                    // $specificationArray[$specification->specification_id] = $request->$specName;
                 }
-
-
             }
-            $productIds = StoredProcedure::getProducts($storeId, $categoryId, $brandId, $isNew, $minPrice, $maxPrice, $specificationFilter, $specificationJoin);
-            $idArray = array();
-            foreach ($productIds as $productId) {
-                array_push($idArray, $productId->productid);
-            }
-            $products = Product::whereIn('id', $idArray);
-            return $products;
+
 
         }
+        $productIds = StoredProcedure::getProducts($storeId, $categoryId, $brandId, $isNew, $minPrice, $maxPrice, $searchProduct, $specificationFilter, $specificationJoin);
+        $idArray = array();
+        foreach ($productIds as $productId) {
+            array_push($idArray, $productId->productid);
+        }
+        $products = Product::whereIn('id', $idArray);
+        return $products;
+
 
     }
 
@@ -179,12 +172,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public
+    function index()
     {
         return view('/home');
     }
 
-    public function autocompleteStore(Request $request)
+    public
+    function autocompleteStore(Request $request)
     {
         $query = $request->get('query', '');
         $category_id = Session::get('category_id_store');
@@ -197,7 +192,8 @@ class HomeController extends Controller
         return response()->json($result);
     }
 
-    public function autocompleteProduct(Request $request)
+    public
+    function autocompleteProduct(Request $request)
     {
         $query = $request->get('query', '');
         $category_id = Session::get('category_id_product');
@@ -210,7 +206,8 @@ class HomeController extends Controller
         return response()->json($result);
     }
 
-    public function removeSpaces($name)
+    public
+    function removeSpaces($name)
     {
         $name = preg_replace('/\s+/', '', $name);
         return $name;
