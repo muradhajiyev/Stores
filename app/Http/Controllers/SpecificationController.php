@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\StoredProcedure;
 use Illuminate\Http\Request;
 use \App\Specification;
 
@@ -157,21 +158,26 @@ class SpecificationController extends Controller
 
     public function getSpecifications(Request $request)
     {
-        $categoryId=$request->categoryId;
-        $storeId=$request->storeId;
-        if($categoryId&&$storeId) {
-            $specifications = DB::select('select json_agg(data.*) from getSpecifications(?,?) as data', array($categoryId, $storeId));
+        $categoryId = $request->categoryId;
+        $storeId = $request->storeId;
+        if ($categoryId && $storeId) {
+            $specifications = StoredProcedure::getSpecificationsJson($categoryId, $storeId);
             return $specifications;
         }
     }
-    public function getSpecificationValues(Request $request){
-        $specificationName=$request->specName;
-        $categoryId=$request->categoryId;
-        $storeId=$request->storeId;
-        if($categoryId&&$storeId&&$specificationName) {
-            $specifications = DB::select('select json_agg(data.*) from getSpecificationvalues(?,?,?) as data', array($specificationName, $categoryId, $storeId));
+
+    public function getSpecificationValues(Request $request)
+    {
+        $specificationName = $request->specName;
+        $categoryId = $request->categoryId;
+        $storeId = $request->storeId;
+        if ($categoryId && $storeId && $specificationName) {
+            $specifications = StoredProcedure::getSpecificationValuesJson($specificationName, $categoryId, $storeId);
             return $specifications;
+
+
         }
     }
+
 
 }

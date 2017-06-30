@@ -31,4 +31,5 @@ class Specification extends Model
     public function getSpecDropdownAttribute(){
         return $this->dropdown;
     }
+
 }
