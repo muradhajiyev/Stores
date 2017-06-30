@@ -1,9 +1,9 @@
 @extends('layouts.main')
-@if($store)
-    @section('title', "Store | {$store->name}")
+
+@section('title', "Store | {$store->name}")
 
 @section('content')
-<br>
+    <br>
 
 
     <section id="slider"><!--slider-->
@@ -99,80 +99,85 @@
             </div>
             <hr style="border-color: orange;">
         </div>
-        @include('layouts.headerbottom')
-        {{--<headerbottom id="headerbottom"><!--header-bottom-->--}}
-            {{--<div class="header-bottom">--}}
-                {{--<div class="container">--}}
-                    {{--<div class="row">--}}
-                        {{--<div class="col-sm-6">--}}
-                            {{--<div class="navbar-header">--}}
-                                {{--<button type="button" class="navbar-toggle" data-toggle="collapse"--}}
-                                        {{--data-target=".navbar-collapse">--}}
-                                    {{--<span class="sr-only">Toggle navigation</span>--}}
-                                    {{--<span class="icon-bar"></span>--}}
-                                    {{--<span class="icon-bar"></span>--}}
-                                    {{--<span class="icon-bar"></span>--}}
-                                {{--</button>--}}
-                            {{--</div>--}}
-                            {{--<div class="mainmenu pull-left">--}}
-                                {{--<ul class="nav navbar-nav collapse navbar-collapse">--}}
-                                    {{--<li><a href="{{ url('/') }}">Home</a></li>--}}
-                                    {{--<li class="dropdown"><a href="{{ url('/store/shop') }}">Shop<i class="fa fa-angle-down"></i></a>--}}
-                                        {{--<ul role="menu" class="sub-menu">--}}
-                                            {{--<li><a href="{{ url('/store/shop') }}">Products</a></li>--}}
-                                            {{--<li><a href="{{ url('/store/product-details') }}">Product Details</a></li>--}}
-                                            {{--<li><a href="{{ url('/store/checkout') }}">Checkout</a></li>--}}
-                                            {{--<li><a href="{{ url('/store/cart') }}">Cart</a></li>--}}
-                                            {{--<li><a href="{{ url('/store/login') }}">Login</a></li>--}}
 
-                                        {{--</ul>--}}
-                                    {{--</li>--}}
+        <header id="headerbottom"><!--header-bottom-->
+            <div class="header-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="mainmenu pull-left">
+                                <ul class="nav navbar-nav collapse navbar-collapse">
+                                    <li><a href="{{ url('/') }}">Home</a></li>
+                                    <li class="dropdown"><a href="{{ url('/store/shop') }}">Shop<i
+                                                    class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="{{ url('/store/shop') }}">Products</a></li>
+                                            <li><a href="{{ url('/store/product-details') }}">Product Details</a></li>
+                                            <li><a href="{{ url('/store/checkout') }}">Checkout</a></li>
+                                            <li><a href="{{ url('/store/cart') }}">Cart</a></li>
+                                            <li><a href="{{ url('/store/login') }}">Login</a></li>
+
+                                        </ul>
+                                    </li>
 
 
-                                    {{--<li><a href=" {{ URL::to('/store/blog/'.$store->id) }}">Blog</a></li>--}}
-                                    {{--<li><a href=" {{ URL::to('/store') }}">Store</a></li>--}}
-                                    {{--<li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>--}}
+                                    <li><a href=" {{ URL::to('/store/blog/'.$store->id) }}">Blog</a></li>
+                                    <li><a href=" {{ URL::to('/store') }}">Store</a></li>
+                                    <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
 
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--@if(!empty($store))--}}
-                            {{--<form action="/store" method="get">--}}
-                                {{--@else--}}
-                                    {{--<form action="/" method="get">--}}
-                                        {{--@endif--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<div class="search_box pull-right">--}}
-                                                {{--@if(!empty($store))--}}
-                                                    {{--<input hidden name="store_id" value="{{$store->id}}">--}}
-                                                {{--@endif--}}
-                                                {{--<input hidden id="tags" name="id" value="{{app('request')->input('id')}}"--}}
-                                                       {{--placeholder="Search" type="text">--}}
-                                                {{--<input hidden id="tags" name="category_name"--}}
-                                                       {{--value="{{app('request')->input('category_name')}}" placeholder="Search"--}}
-                                                       {{--type="text">--}}
-                                                {{--@if(!empty($store))--}}
-                                                    {{--<input id="search_text_product" name="searchStoreName"--}}
-                                                           {{--placeholder="Search" type="text">--}}
-                                                {{--@else--}}
-                                                    {{--<input id="search_text_store" name="searchStoreName"--}}
-                                                           {{--placeholder="Search" type="text">--}}
-                                                {{--@endif--}}
-                                                {{--<button id="searchByStoreName" type="submit" class="btn btn-md btn-warning">--}}
-                                                    {{--Search--}}
-                                                {{--</button>--}}
+                                </ul>
+                            </div>
+                        </div>
+                        @if(!empty($store))
+                            <form action="/store" method="get">
+                                @else
+                                    <form action="/" method="get">
+                                        @endif
+                                        <div class="col-sm-6">
+                                            <div class="search_box pull-right">
+                                                @if(!empty($store))
+                                                    <input hidden name="store_id" value="{{$store->id}}">
+                                                @endif
+                                                <input hidden id="tags" name="id"
+                                                       value="{{app('request')->input('id')}}"
+                                                       placeholder="Search" type="text">
+                                                <input hidden id="tags" name="category_name"
+                                                       value="{{app('request')->input('category_name')}}"
+                                                       placeholder="Search"
+                                                       type="text">
+                                                @if(!empty($store))
+                                                    <input id="search_text_product" name="searchStoreName"
+                                                           placeholder="Search" type="text">
+                                                @else
+                                                    <input id="search_text_store" name="searchStoreName"
+                                                           placeholder="Search" type="text">
+                                                @endif
+                                                <button id="searchByStoreName" type="submit"
+                                                        class="btn btn-md btn-warning">
+                                                    Search
+                                                </button>
 
-                                                {{--<a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced--}}
-                                                    {{--search</a>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</form>--}}
-                            {{--</form>--}}
-                    {{--</div>--}}
+                                                <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
+                                                    search</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                            </form>
+                    </div>
 
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</headerbottom>--}}
+                </div>
+            </div>
+        </header>
+
 
     </section>
     <!--cover/slider ended-->
@@ -248,21 +253,23 @@
 
                         @foreach($store->products as $product)
                             <div class="col-sm-3" id="singleProduct">
-                                    <div class="product-image-wrapper smth_table">
-                                        @if($product->is_new)
+                                <div class="product-image-wrapper smth_table">
+                                    @if($product->is_new)
                                         <div class="ribbon red"><span>New</span></div>
-                                        @endif
-                                        <div class="single-products" style="height: 250px;">
-                                            <div class="productinfo text-center">
-                                                <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
-                                                    <img src="{{$product->profile_url}}" alt=""
-                                                         style="height: 185px;box-shadow: 0px 1px gray;"/>
 
-                                                    <p>{{$product->name}}</p></a>
-                                                    <h3>{{$product->price}} {{$product->currency->iso}}</h3>
+                                    @endif
+                                    <div class="single-products" style="height: 250px;">
+                                        <div class="productinfo text-center">
+                                            <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
+                                                <img src="{{$product->profile_url}}" alt=""
+                                                     style="height: 185px;box-shadow: 0px 1px gray;"/>
 
-                                            </div>
+                                                <p>{{$product->name}}</p></a>
+                                            <h3>{{$product->price}} {{$product->currency->iso}}</h3>
+
+
                                         </div>
+
                                         @if(Auth::user())
                                             <div class="choose">
                                                 <ul class="nav nav-pills nav-justified">
@@ -273,126 +280,132 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        </div>
                                     </div>
-                        @endforeach
-                        <div class="col-sm-12">
-                            {!! $store->products->appends(['store_id' => $store->id])->render() !!}
+                                </div>
 
-                        </div>
+                                @endforeach
+                                <div class="col-sm-12">
+                                    {!! $store->products->appends(['store_id' => $store->id])->render() !!}
+
+                                </div>
+                            </div>
+
+
+                            <!--features_items-->
+
+                            <div class="category-tab"><!--category-tab  store profile cate-->
+                                <div class="col-sm-12">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
+                                        <li><a href="#blazers" data-toggle="tab">Blazers</a></li>
+                                        <li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
+                                        <li><a href="#kids" data-toggle="tab">Kids</a></li>
+                                        <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active in" id="tshirt">
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="{{asset("product/images/home/gallery1.jpg")}}"
+                                                             alt=""/>
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i
+                                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="blazers">
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="{{asset("product/images/home/gallery4.jpg")}}"
+                                                             alt=""/>
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i
+                                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="sunglass">
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="{{asset("product/images/home/product3.jpg")}}"
+                                                             alt=""/>
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i
+                                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="kids">
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="{{asset("product/images/home/product5.jpg")}}"
+                                                             alt=""/>
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i
+                                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="poloshirt">
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="{{asset("product/images/home/product5.jpg")}}"
+                                                             alt=""/>
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i
+                                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div><!--/category-tab-->
+
                     </div>
-
-
-                    <!--features_items-->
-
-                    <div class="category-tab"><!--category-tab  store profile cate-->
-                        <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Blazers</a></li>
-                                <li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-                                <li><a href="#kids" data-toggle="tab">Kids</a></li>
-                                <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="tshirt">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/gallery1.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="blazers">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/gallery4.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="sunglass">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/product3.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="kids">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="poloshirt">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div><!--/category-tab-->
-
                 </div>
             </div>
         </div>
     </section>
-    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands, 'store'=>$store])
+    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands, 'store'=>$store, 'category'=>$category])
 @endsection
-@endif
 

@@ -202,4 +202,5 @@ class ProductController extends Controller
         $review = Review::where('product_id', $id)->get();
         return $review->toArray();
     }
+
 }

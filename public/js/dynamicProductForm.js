@@ -44,7 +44,7 @@ let getSubCategories = function (id) {
             if (categoryArray && (categoryArray.length !== 0)) {
 
                 selectElement = '<div class="form-group parentCategory">' +
-                    '<select class="form-control parentCategorySelect" name="productCategory" required> ' +
+                    '<select class="form-control parentCategorySelect" name="productCategory"> ' +
                     '<option value="" selected="selected" disabled>-- Sub Category --</option> ';
                 for (x in categoryArray) {
                     optionElement += '<option value="' + categoryArray[x].id + '">' + categoryArray[x].name + '</option> '
@@ -73,7 +73,7 @@ let getSpecificationsByCategoryId = function (id) {
     selectElement.empty();
     if (id) {
         $.get('/api/specifications/' + id, function (data) {
-             if (data.length > 0) {
+            if (data.length > 0) {
                 $('#specSelect').attr('hidden', false);
                 data.forEach(function (spec) {
                     selectElement.append('<option value="' + spec.id + '">' + spec.name + '</option>');
@@ -168,6 +168,9 @@ let initializeFileUploader = () => {
             success: function (file, response) {
                 file.previewElement.id = response;
                 addImageHiddenField(response);
+            },
+            error:function (error) {
+                console.log(error);
             },
             init: function () {
                 this.on('sending', function (file, xhr, formData) {
