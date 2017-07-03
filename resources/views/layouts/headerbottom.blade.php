@@ -27,7 +27,6 @@
                             </li>
 
 
-                            <li><a href=" {{ URL::to('/store/blog') }}">Blog</a></li>
                             <li><a href=" {{ URL::to('/store') }}">Store</a></li>
                             <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
 

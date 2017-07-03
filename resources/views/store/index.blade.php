@@ -318,7 +318,7 @@
             </div>
         </div>
     </section>
-    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands, 'store'=>$store, 'jsonRequest'=>$jsonRequest])
+    @include('layouts.advancedSearchModal')
 @endsection
 @endif
 
