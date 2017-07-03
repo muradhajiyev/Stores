@@ -40,6 +40,7 @@ let getSubCategories = function (id) {
         $.get('/api/subCategory/' + id, function (data) {
             let categoryArray = JSON.parse(data);
             let selectElement = '<label style="padding:7px;float:left; font-size:12px;">No more sub category !</label>';
+            let elementName
             let optionElement = '';
             if (categoryArray && (categoryArray.length !== 0)) {
 
@@ -169,7 +170,7 @@ let initializeFileUploader = () => {
                 file.previewElement.id = response;
                 addImageHiddenField(response);
             },
-            error:function (error) {
+            error: function (error) {
                 console.log(error);
             },
             init: function () {
