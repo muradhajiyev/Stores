@@ -8,10 +8,11 @@
                     $categoriess = App\Category::find($parent_id)
                     }}
                 </div>
-                <h2><a id="backCategory" href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'id' => $categoriess->id,'category_name' => $categoriess->name,  ]) }}">{{$categoriess->name}}</a></h2>
+                <h2><a id="backCategory"
+                       href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id, 'id' => $categoriess->id,'category_name' => $categoriess->name,  ]) }}">{{$categoriess->name}}</a>
+                </h2>
             @else
                 <h2>All Categories</h2>
-
             @endif
             <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                 {{--@if(app('request')->input('id'))--}}
@@ -25,13 +26,14 @@
                     </div>
                 @endif
                 @if(app('request')->input('id'))
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
                             <h4 class="panel-title"><a class="link0" id="categoryPressed"
-                                                       href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id ]) }}">All Categories</a>
+                                                       href="{{ url('/store') . '?' . http_build_query(['store_id' => $store->id ]) }}">All
+                                    Categories</a>
                             </h4>
+                        </div>
                     </div>
-                </div>
                 @endif
                 @foreach($categories as $category)
                     <div hidden>
@@ -97,7 +99,13 @@
                 @endforeach
                 <script>
                     $(document).ready(function () {
-                        var target = '{{app('request')->input('id')}}';
+                        var target = '';
+                        @if(app('request')->input('id'))
+                            target = '{{app('request')->input('id')}}';
+
+                        @else
+                            target = '{{app('request')->input('productCategory')}}';
+                        @endif
                         $('.link' + target + '').addClass('focus');
                     });
                 </script>
@@ -110,7 +118,9 @@
                     $categoriess = App\Category::find($parent_id)
                     }}
                 </div>
-                <h2><a id="backCategory" href="{{ url('/store') . '?' . http_build_query(['id' => $categoriess->id,'category_name' => $categoriess->name,  ]) }}">{{$categoriess->name}}</a></h2>
+                <h2><a id="backCategory"
+                       href="{{ url('/store') . '?' . http_build_query(['id' => $categoriess->id,'category_name' => $categoriess->name,  ]) }}">{{$categoriess->name}}</a>
+                </h2>
             @else
                 <h2>All Categories</h2>
             @endif
