@@ -22,7 +22,7 @@ class ProductController extends Controller
     {
 
         $this->middleware(['auth', 'adminOrStore'])->except('index', 'getAllProducts', 'getComments', 'storeComments');
-        $this->middleware(['storeOwner'])->only('create','store', 'update', 'edit', 'destroy');
+        $this->middleware(['storeOwner'])->only('create', 'store', 'update', 'edit', 'destroy');
     }
 
     /**
@@ -35,11 +35,11 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->views = $product->views + 1;
         $product->save();
-        $relatedProducts = Product::where('store_id',$product->store_id)->where('category_id',$product->category_id)->where('id','!=',$product->id)->get();
-        if(count($relatedProducts)>3) {
+        $relatedProducts = Product::where('store_id', $product->store_id)->where('category_id', $product->category_id)->where('id', '!=', $product->id)->get();
+        if (count($relatedProducts) > 3) {
             $random = $relatedProducts->random(4);
             return view('product.productdetails', ['product' => $product, 'relatedProducts' => $random]);
-        }else{
+        } else {
             return view('product.productdetails', ['product' => $product, 'relatedProducts' => $relatedProducts]);
 
         }
@@ -56,7 +56,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $parentCategories = Category::all()->where('parent_id', null);
         $currencies = currency::all();
-        $store= Store::find($request->store);
+        $store = Store::find($request->store);
         return view('product.create')->with('brands', $brands)->with('parentCategories', $parentCategories)->with('currencies', $currencies)->with('store', $store);
 
 
@@ -70,7 +70,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $this->validate($request, [
             'productName' => 'required|max:30',
             'productPrice' => 'required|numeric|min:0',
@@ -119,7 +119,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect('/store?store_id='. $productStore);
+        return redirect('/store?store_id=' . $productStore);
 
     }
 
@@ -170,21 +170,22 @@ class ProductController extends Controller
 
     public function getAllProducts(Request $request)
     {
-      $store_id = $request->store_id;
+        $store_id = $request->store_id;
 
-      if($store_id == NULL) {
-        $products = Product::orderBy('id', 'desc')->paginate(12);
-      } else {
-        $products = Product::where('store_id', $store_id)->orderBy('id', 'desc')->paginate(12);
-      }
+        if ($store_id == NULL) {
+            $products = Product::orderBy('id', 'desc')->paginate(12);
+        } else {
+            $products = Product::where('store_id', $store_id)->orderBy('id', 'desc')->paginate(12);
+        }
 
-      return $products;
+        return $products;
     }
 
 
-    public function storeComments(Request $request){
-     
-       
+    public function storeComments(Request $request)
+    {
+
+
         $review = new Review();
         $review->parent = $request->parent;
         $review->content = $request->content;
@@ -194,10 +195,11 @@ class ProductController extends Controller
         return $request->content;
 
 
-       // return  "vfjnvdjf";
+        // return  "vfjnvdjf";
     }
 
-    public function getComments($id, Request $request){
+    public function getComments($id, Request $request)
+    {
 
         $review = Review::where('product_id', $id)->get();
         return $review->toArray();
