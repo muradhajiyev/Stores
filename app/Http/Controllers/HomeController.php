@@ -65,6 +65,7 @@ class HomeController extends Controller
 
     public function profile(Request $request)
     {
+
         $subCategories = '';
         $store_id = $request->input('store_id');
         $category_id = $request->input('id');
@@ -78,22 +79,26 @@ class HomeController extends Controller
                 $subCategories = $this->getChildCategories($category_id);
                 $category = Category::find($category_id);
             } else {
-                $category = Category::find($request->productCategory);
+                $category_id = $request->productCategory;
+                if (!is_null($category_id)) {
+                    $subCategories = $this->getChildCategories($category_id);
+                    $category = Category::find($category_id);
+                }
+
             }
             $products = $this->search($request);
             $store->setRelation('products', $products->paginate(10)->withPath($request->fullUrl()));
 
             Session::put('store_id1', $store_id);
             Session::put('category_id_product', $category_id);
-            return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories, 'category' => $category]);
+            return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories, 'category' => $category, 'jsonRequest' =>json_encode($request->all())]);
         } else {
 
             return view('404.404');
         }
     }
 
-    public
-    function search($request)
+    public function search($request)
     {
         $storeId = $request->store_id; //required
         $categoryIdRequest = $request->productCategory;
@@ -103,7 +108,7 @@ class HomeController extends Controller
         $used = $request->used;
         $new = $request->new;
         $brandId = $request->brand_id;
-        $searchProduct = $request->searchStoreName;
+        $searchProduct = $request->searchProductName;
         $specificationFilter = '';
         $specificationJoin = '';
         $categoryId = null;
@@ -134,7 +139,7 @@ class HomeController extends Controller
             $isNew = true;
         }
 
-        // $specificationArray = array();
+
         $index = 1;
         if ($store && $category) {
             $specificationValues = StoredProcedure::getSpecifications($categoryId, $storeId);
@@ -150,7 +155,7 @@ class HomeController extends Controller
                     $specificationFilter = substr($specificationFilter, 0, -2);
                     $specificationFilter .= ')';
                     $index++;
-                    // $specificationArray[$specification->specification_id] = $request->$specName;
+
                 }
             }
 
