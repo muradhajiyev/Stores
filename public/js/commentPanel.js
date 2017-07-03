@@ -2,7 +2,7 @@ $(document).ready(function () {
     var config = $('#settings').val();
     var res = config.split(",");
     var blogId = parseInt(res[0]);
-    var user_id= res[1];
+    var user_name= res[1];
 
     $('#comments-container').comments({
         enableEditing: false,
@@ -10,7 +10,7 @@ $(document).ready(function () {
         maxRepliesVisible: 3,
         replyText: 'Cavabla',
         sendText: 'Göndər',
-        textareaPlaceholderText: 'Comment',
+        textareaPlaceholderText: 'Şərh yaz',
         fieldMappings: {
             created: 'created_at'
         },
@@ -18,7 +18,7 @@ $(document).ready(function () {
         getComments: function(success, error) {
             $.ajax({
                 type: 'get',
-                url: '/store/getcomments/'+blogId,
+                url: 'http://localhost/stores/public/store/getcomments/' + blogId,
                 success: function(commentsArray) {
                     success(commentsArray);
                 },
@@ -44,8 +44,8 @@ $(document).ready(function () {
 
                 $.ajax({
                     type:'POST',
-                    url:'/store/storeComments',
-                    data:{ 'message': commentJSON.content, 'parentId': par, 'user_id': user_id, 'blogId' : blogId, _token: CSRF_TOKEN},
+                    url:'http://localhost/stores/public/store/storecomments',
+                    data:{ 'content': commentJSON.content, 'parent': par, 'name': user_name, 'blogId' : blogId, _token: CSRF_TOKEN},
                     success:function(data){
                         success(commentJSON);
                     },

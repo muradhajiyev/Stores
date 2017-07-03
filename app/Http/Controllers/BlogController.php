@@ -15,9 +15,6 @@ class BlogController extends Controller
      */
     public function index()
     {
-            $bloglist=Blog::paginate(6);
-
-        return view('store.blog')->withbloglist($bloglist);
 
     }
 
@@ -40,16 +37,19 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         if(Auth::check()){
-            $comment=new Comment();
-            $comment->comment=$request->message;
-            $comment->blog_id=$request->blogid;
-            $comment->created_by=$request->userid;
-            $comment->save();
+            $blog=new Blog();
+            $blog->title=$request->title;
+            $blog->text=$request->text;
+            $blog->image_id=1;
+            $blog->store_id=$request->store_id;
+            $blog->save();
 
-            return response()->json(array('comment' => $comment), 200);
+            return redirect(URL::to('/store/blog/'.$request->id));
         }
 
     }
+
+
 
     /**
      * Display the specified resource.
@@ -70,19 +70,26 @@ class BlogController extends Controller
 
         return view('store.blogsingle')->withblogsingle($blogsingle);
     }
+
+
+
     public function  getComments($id){
 
         $comments= Comment::where('blog_id',$id)->get();
 
        return  $comments->toArray();
     }
+
+
+
     public function  storeComments(Request $request){
         $comment = new Comment();
-        $comment->parent_id = $request->parentId;
-        $comment->comment = $request->message;
-        $comment->created_by = $request->user_id;
+        $comment->parent = $request->parent;
+        $comment->content = $request->content;
+        $comment->fullname = $request->name;
         $comment->blog_id = $request->blogId;
         $comment->save();
+        return $request->content;
         return $request->message;
     }
     /**

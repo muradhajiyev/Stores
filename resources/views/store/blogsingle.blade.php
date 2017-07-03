@@ -89,15 +89,13 @@
                     <!--Comments-->
                     <div class="response-area">
 
-                        <ul class="media-list" id="commentarea">
 
                             <div class="tab-pane fade active in" id="reviews">
                                 <div class="col-sm-12">
                                     <div id="comments-container">
-                                        <input id="settings" type="hidden" value="{{$blogsingle->id}},{{ Auth::check() ? Auth::user()->id : '0' }}">
+                                        <input id="settings" type="hidden" value="{{$blogsingle->id}},{{ Auth::check() ? Auth::user()->name : '0' }}">
                                     </div>
                                 </div>
-                            </div>
 
                         </ul>
                     </div>
@@ -117,11 +115,9 @@
            </section>
 
 
+
     <script src="{{asset("js/commentPanel.js")}}")></script>
-    <!-- ./wrapper -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{asset('js/bootbox.min.js')}}"></script>
 
 
 @endsection

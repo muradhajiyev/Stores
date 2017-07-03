@@ -14,6 +14,7 @@
                     <div class="blog-post-area">
 
                         <h2 class="title text-center">Latest From our Blog</h2>
+                        <a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add Blog</a>
                @foreach($bloglist as $blog)
 
                             <form action="{{URL::to('/store/blogsingle')}}" method="get">
