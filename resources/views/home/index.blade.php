@@ -36,7 +36,7 @@
                                 <br><br>
                             </div>
                         @else
-                               @foreach($stores as $store)
+                            @foreach($stores as $store)
                                 <div class="col-sm-4 ">
                                     <div class="product-image-wrapper smth_table"
                                          style="; height: 320px;">

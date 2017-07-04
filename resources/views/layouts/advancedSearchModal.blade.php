@@ -115,30 +115,39 @@
                                 </div>
                             </div>
                             <div class=" panel panel-default advancedSearchPanel" id="conditionPanel" hidden>
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">Condition</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <div class="col-sm-12 col-md-12">
-                                                <input type="hidden" name="used" value="0">
-                                                <input type="checkbox" name="used" value="1">
-                                                <label for="used">Used</label>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <input type="hidden" name="new" value="0">
-                                                <input type="checkbox" name="new" value="1">
-                                                <label for="new">New</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="dynamicSpecificationPanel">
-
-                                    </div>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Condition</h3>
                                 </div>
-                                <div class="col-sm-12 col-md-12 col-sm-offset-10">
-                                    <button class="btn btn-primary">Apply</button>
+                                <div class="panel-body">
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="hidden" name="used" value="0">
+                                        @if(app('request')->input('used')==1)
+                                            <input type="checkbox" name="used" checked value="1">
+                                        @else
+                                            <input type="checkbox" name="used" value="1">
+                                        @endif
+
+                                        <label for="used">Used</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="hidden" name="new" value="0">
+                                        @if(app('request')->input('new')==1)
+                                            <input type="checkbox" checked name="new" value="1">
+                                        @else
+                                            <input type="checkbox" name="new" value="1">
+                                        @endif
+                                        <label for="new">New</label>
+                                    </div>
                                 </div>
                             </div>
+                            <div id="dynamicSpecificationPanel">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-sm-offset-10">
+                            <button class="btn btn-primary">Apply</button>
+                        </div>
+                    </div>
                 </form>
 
                 <div id="chosenSpecs" hidden>
