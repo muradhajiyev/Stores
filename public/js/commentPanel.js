@@ -18,7 +18,7 @@ $(document).ready(function () {
         getComments: function(success, error) {
             $.ajax({
                 type: 'get',
-                url: 'http://localhost/stores/public/store/getcomments/' + blogId,
+                url: 'store/getcomments/' + blogId,
                 success: function(commentsArray) {
                     success(commentsArray);
                 },
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type:'POST',
-                    url:'http://localhost/stores/public/store/storecomments',
+                    url:'/store/storecomments',
                     data:{ 'content': commentJSON.content, 'parent': par, 'name': user_name, 'blogId' : blogId, _token: CSRF_TOKEN},
                     success:function(data){
                         success(commentJSON);

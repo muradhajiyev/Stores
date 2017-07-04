@@ -22,6 +22,7 @@ return [
    'product_base_path' => "images/stores/products/",
    'store_cover_base_path' => "images/stores/covers/",
    'store_profile_base_path' => "images/stores/profiles/",
+   'blog_base_path'=>"images/stores/blogs/",
    'user_base_path' => "images/users/",
 
    //'store_cover_base_path' => "public/", addition for local testing

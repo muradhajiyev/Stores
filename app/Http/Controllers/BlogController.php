@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Comment;
+use App\Image;
+use App\Store;
 use Illuminate\Support\Facades\Auth;
 use App\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class BlogController extends Controller
 {
@@ -23,9 +26,10 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $store=Store::find($request->store);
+        return view('store.create',["store"=>$store]);
     }
 
     /**
@@ -36,15 +40,32 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:30',
+            'text' => 'required',
+            'image' => 'required|image|mimes:jpeg,jpg,bmp,png|max:4000'
+
+        ]);
+
         if(Auth::check()){
+            $dir = config('settings.blog_base_path') . date("Y-m-d");
+            $image = new Image();
+            $path = $request->file('image')->store($dir);
+            $filename = substr($path,strlen($dir) + 1);
+            $image->file_name = $filename;
+            $image->extension = $request->image->extension();
+            $image->file_size = filesize($request->image);
+            $image->path = date("Y-m-d").'/'.$filename;
+            $image->save();
+
             $blog=new Blog();
             $blog->title=$request->title;
             $blog->text=$request->text;
-            $blog->image_id=1;
+            $blog->image_id=$image->id;
             $blog->store_id=$request->store_id;
             $blog->save();
 
-            return redirect(URL::to('/store/blog/'.$request->id));
+            return redirect(URL::to("/store/blog/$request->store_id"));
         }
 
     }
@@ -60,15 +81,16 @@ class BlogController extends Controller
     public function show($id)
     {
         $bloglist = Blog::where('store_id', '=', "$id")->paginate(6);
-        return view('store.blog')->withbloglist($bloglist);
+        $store=Store::find($id);
+        return view('store.blog',["store"=>$store])->withbloglist($bloglist);
     }
 
 
     public function showBlogSingle(Request $request)
     {
         $blogsingle = Blog::where('id',$request->blogsingleid)->first();
-
-        return view('store.blogsingle')->withblogsingle($blogsingle);
+        $store=Store::find($request->storeId);
+        return view('store.blogsingle',["store"=>$store])->withblogsingle($blogsingle);
     }
 
 

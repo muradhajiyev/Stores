@@ -10,7 +10,7 @@
         <div class="container">
 
 
-            @include('layouts.headerbottom')
+            @include('layouts.storeheaderbottom')
 
             <div class="row">
 
@@ -56,7 +56,7 @@
                                     <li><a href="#">Next</a></li>
                                 </ul>
                             </div>
-                        </div>
+                                </div>
                     </div>
                     <!--/blog-post-area-->
 
