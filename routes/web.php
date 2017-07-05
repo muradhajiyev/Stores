@@ -62,6 +62,8 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/', 'HomeController@profile');
     Route::resource('blog', 'BlogController');
     Route::get('blogsingle', 'BlogController@showBlogSingle');
+    Route::get('getcomments/{id}', 'BlogController@getComments');
+    Route::post('storecomments', 'BlogController@storeComments');
     Route::get('/cart', function () {
         return view('temp.cart');
     });

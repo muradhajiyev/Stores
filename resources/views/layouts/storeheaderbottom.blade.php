@@ -26,14 +26,17 @@
 
                                 </ul>
                             </li>
+
                             @if(!empty($store))
 
                                 <li><a href=" {{ URL::to('/store/blog/'.$store->id) }}">Blog</a></li>
                             @endif
+
                             <li><a href=" {{ URL::to('/store') }}">Store</a></li>
                             <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
 
                         </ul>
+
                     </div>
                 </div>
 
@@ -44,7 +47,7 @@
                             @if(!empty($store))
                                 <input hidden name="store_id" value="{{$store->id}}"/>
                             @endif
-                            @if($category)
+                            @if(!empty($category))
                                 <input hidden id="tags" name="id"
                                        value="{{$category->id}}"
                                        placeholder="Search" type="text">
@@ -57,14 +60,15 @@
                             @if(!empty($store))
                                 <input id="search_text_product" name="searchProductName"
                                        placeholder="Search" type="text">
+                                <button id="searchByStoreName" type="submit"
+                                        class="btn btn-md btn-warning">
+                                    Search
+                                </button>
+                                <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
+                                    search</a>
                             @endif
-                            <button id="searchByStoreName" type="submit"
-                                    class="btn btn-md btn-warning">
-                                Search
-                            </button>
 
-                            <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
-                                search</a>
+
                         </div>
                     </div>
                 </form>
