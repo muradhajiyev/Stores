@@ -42,9 +42,9 @@
 									<i class="fa fa-star-half-o"></i>
 								</span>
                             </div>
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
+                       
+                                <img src="{{$blogsingle->getImageUrlAttribute()}}" alt="">
+                         
 
                             <p>
                                 {{ $blogsingle->text}}
