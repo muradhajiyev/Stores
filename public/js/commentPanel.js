@@ -18,7 +18,7 @@ $(document).ready(function () {
         getComments: function(success, error) {
             $.ajax({
                 type: 'get',
-                url: 'store/getcomments/' + blogId,
+                url: '/store/getcomments/' + blogId,
                 success: function(commentsArray) {
                     success(commentsArray);
                 },
