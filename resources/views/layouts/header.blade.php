@@ -37,9 +37,9 @@
                 <div class="col-sm-6">
                     <div class="logo pull-left">
 
-                        <a href="{{ url('/') }}"><img
-                                    src="{{asset("/images/shopin1.png")}}" alt=""
-                                    style="width:260px;height:80px;"/></a>
+                        <1a href="{{ url('/') }}"><img
+                                    src="{{asset("/product/images/shop/shopin1.png")}}" alt=""
+                                    style="width:260px;height:80px;"/></1a>
                     </div>
 
                 </div>
