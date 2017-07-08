@@ -38,14 +38,14 @@
                         <h2>Policies</h2>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="">Terms of Use</a></li>
-                            <li><a href="">Privecy Policy</a></li>
+                            <li><a href="">Privacy Policy</a></li>
 
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>About Shopper</h2>
+                        <h2>About ShopIN1</h2>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="">Company Information</a></li>
                             <li><a href="">Careers</a></li>
