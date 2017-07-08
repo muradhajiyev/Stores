@@ -5,11 +5,8 @@
     <div class="container text-center">
 
         <div class="content-500">
-            <h1><b>OPPS!</b>
-                    Server error occured. Please try again later
-
-            </h1>
-
+            <h1><b>OPPS!</b> </h1>
+            <p>Uh... So it looks like you server error occurred. Please try again later</p>
             <h2><a href="/">Bring me back Home</a></h2>
         </div>
     </div>
