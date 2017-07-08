@@ -5,7 +5,6 @@ let loading = "<div id='loading' style='display: table; margin: 0 auto'> <svg wi
 $(document).ready(function () {
     cleanDynamicSpecArea();
     let categoryId = $("[name='productCategory']").val();
-    //console.log(categoryId);
     specifications(categoryId);
     $('.tabLink').livequery('click', function () {
 
@@ -48,7 +47,15 @@ let specifications = (categoryId) => {
                         let specArray = JSON.parse(specifications.json_agg);
                         specArray.forEach(function (spec) {
                             appendSpecifications(spec);
-                        })
+                        });
+                        let chosenSpecifications = JSON.parse($('#chosenSpecs').html());
+                        for (let property in chosenSpecifications) {
+                            if (chosenSpecifications.hasOwnProperty(property)) {
+                                if (chosenSpecifications[property] instanceof Array) {
+                                    appendSpecValues(property);
+                                }
+                            }
+                        }
 
                     }
 
@@ -73,14 +80,17 @@ let appendSpecifications = (specification) => {
     $('#dynamicSpecificationPanel').append(tabArea);
 };
 let appendSpecValues = (specificationName) => {
-
+    let chosenSpecifications = JSON.parse($('#chosenSpecs').html());
     let storeId = $('#storeId').val();
     let categories = $("[name='productCategory']");
     let categoryId = getCategoryId(categories);
-    let appendArea = $('#' + specificationName + 'Panel' + ' .panel-body');
-    if (appendArea.is(':empty')) {
 
+    let appendArea = $('#' + specificationName + 'Panel' + ' .panel-body');
+
+    if (appendArea.is(':empty')) {
         if (specificationName && storeId && categoryId) {
+
+
             $.ajax({
                 url: "/api/specificationValues",
                 data: {
@@ -103,8 +113,14 @@ let appendSpecValues = (specificationName) => {
                                 if (!value.specification_unit) value.specification_unit = '';
                                 let inputElement;
                                 if (value.specification_type === 'dropdown') {
+                                    let specValuesArray = chosenSpecifications[specificationName];
+                                    if (specValuesArray && specValuesArray.indexOf(value.specification_value) > -1) {
 
-                                    inputElement = ' <input name="' + specificationName + '[]" type="checkbox" value="' + value.specification_value + '"> <label for="spec">' + value.specification_value + ' ' + value.specification_unit + '</label> <br/>';
+                                        inputElement = ' <input name="' + specificationName + '[]" type="checkbox" checked  value="' + value.specification_value + '"> <label for="spec">' + value.specification_value + ' ' + value.specification_unit + '</label> <br/>';
+                                    } else {
+                                        inputElement = ' <input name="' + specificationName + '[]" type="checkbox"  value="' + value.specification_value + '"> <label for="spec">' + value.specification_value + ' ' + value.specification_unit + '</label> <br/>';
+
+                                    }
                                 } else if (value.specification_type === 'number') {
 
                                 }
@@ -116,7 +132,7 @@ let appendSpecValues = (specificationName) => {
                     }
                 },
                 error: function (xhr) {
-                   // console.log(xhr);
+                    // console.log(xhr);
                 }
             });
 

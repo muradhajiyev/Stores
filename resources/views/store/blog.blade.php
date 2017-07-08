@@ -5,7 +5,7 @@
 
     <section>
         <div class="container">
-            @include('layouts.headerbottom')
+            @include('layouts.storeheaderbottom')
             <div class="row">
 
                 @include('layouts.left-sidebar')
@@ -14,8 +14,18 @@
                     <div class="blog-post-area">
 
                         <h2 class="title text-center">Latest From our Blog</h2>
-               @foreach($bloglist as $blog)
+                        @if(Auth::check())
+                            @if(Auth::user()->isStoreOwner($store->id))
+                                <div class="col-sm-12 col-sm-offset-9">
+                                    <a href="{{URL::to("/store/blog/create?store=$store->id")}}" class="btn btn-primary">Add New Blog</a>
 
+                                </div>
+                            @endif
+                        @endif
+                                <br/>
+
+
+               @foreach($bloglist as $blog)
                             <form action="{{URL::to('/store/blogsingle')}}" method="get">
                <?php
                   $datetime = new DateTime($blog->created_at);
@@ -24,6 +34,7 @@
                 ?>
 
             <input type="hidden" name="blogsingleid" value="{{$blog->id}}">
+                   <input type="hidden" name="storeId" value="{{$blog->store_id}}">
 
              <div class="single-blog-post">
                  <h3>{{$blog->title}}</h3>
@@ -41,14 +52,15 @@
                              <i class="fa fa-star-half-o"></i>
                      </span>
                  </div>
-                 <a href="">
-                     <img src="images/blog/blog-one.jpg" alt="">
+                 <a href="{{URL::to('/store/blogsingle')}}">
+                     <img src="{{$blog->getImageUrlAttribute()}}" alt="">
                  </a>
                  <p>{{$blog->text}}</p>
                  <input type="submit" class="btn btn-primary" value="Read More">
 
              </div>
                             </form>
+
              @endforeach
              <div class="pagination-area">
                  <ul class="pagination">

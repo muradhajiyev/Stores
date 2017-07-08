@@ -14,4 +14,13 @@ class Blog extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    public function image()
+    {
+        return $this->hasOne('App\Image', 'id', 'image_id');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return config('settings.base_url') . config('settings.blog_base_path') . $this->image->path;
+    }
 }

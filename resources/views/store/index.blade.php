@@ -99,85 +99,7 @@
             </div>
             <hr style="border-color: orange;">
         </div>
-        <header id="headerbottom"><!--header-bottom-->
-            <div class="header-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                        data-target=".navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="mainmenu pull-left">
-                                <ul class="nav navbar-nav collapse navbar-collapse">
-                                    <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li class="dropdown"><a href="{{ url('/store/shop') }}">Shop<i
-                                                    class="fa fa-angle-down"></i></a>
-                                        <ul role="menu" class="sub-menu">
-                                            <li><a href="{{ url('/store/shop') }}">Products</a></li>
-                                            <li><a href="{{ url('/store/product-details') }}">Product Details</a></li>
-                                            <li><a href="{{ url('/store/checkout') }}">Checkout</a></li>
-                                            <li><a href="{{ url('/store/cart') }}">Cart</a></li>
-                                            <li><a href="{{ url('/store/login') }}">Login</a></li>
-
-                                        </ul>
-                                    </li>
-
-
-                                    <li><a href=" {{ URL::to('/store/blog/'.$store->id) }}">Blog</a></li>
-                                    <li><a href=" {{ URL::to('/store') }}">Store</a></li>
-                                    <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
-
-                                </ul>
-                            </div>
-                        </div>
-                        @if(!empty($store))
-                            <form action="/store" method="get">
-                                @else
-                                    <form action="/" method="get">
-                                        @endif
-                                        <div class="col-sm-6">
-                                            <div class="search_box pull-right">
-                                                @if(!empty($store))
-                                                    <input hidden name="store_id" value="{{$store->id}}">
-                                                @endif
-                                                <input hidden id="tags" name="id"
-                                                       value="{{app('request')->input('id')}}"
-                                                       placeholder="Search" type="text">
-                                                <input hidden id="tags" name="category_name"
-                                                       value="{{app('request')->input('category_name')}}"
-                                                       placeholder="Search"
-                                                       type="text">
-                                                @if(!empty($store))
-                                                    <input id="search_text_product" name="searchStoreName"
-                                                           placeholder="Search" type="text">
-                                                @else
-                                                    <input id="search_text_store" name="searchStoreName"
-                                                           placeholder="Search" type="text">
-                                                @endif
-                                                <button id="searchByStoreName" type="submit"
-                                                        class="btn btn-md btn-warning">
-                                                    Search
-                                                </button>
-
-                                                <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
-                                                    search</a>
-                                            </div>
-                                        </div>
-                                    </form>
-                            </form>
-                    </div>
-
-                </div>
-            </div>
-        </header>
-
-
+        @include('layouts.storeheaderbottom')
     </section>
     <!--cover/slider ended-->
     <section>
@@ -186,106 +108,123 @@
 
                 @include('layouts.left-sidebar')
                 <div class="col-sm-9 padding-right">
+                    @if(count($mostviewed)>0)
+                        <div class="recommended_items"><!--recommended_items most viewed products-->
 
-                    <div class="recommended_items"><!--recommended_items most viewed products-->
-
-
-                        @if(count($mostviewed)>0)
                             <h2 class="title text-center">Most Viewed Products</h2>
-                        @endif
-                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
 
-                                @for($i = 0; $i < intdiv(count($mostviewed),3); $i++)
-                                    <div class="item {{ $i==0 ? 'active' : '' }}">
-                                        <div class="col-sm-2"></div>
-                                        @for($j = 0; $j < 3; $j++)
-                                            <div class="col-sm-3">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
+                            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
 
-                                                        <div class="productinfo text-center">
-                                                            <a href="/productdetails/{{$mostviewed[$j + $i*3]->id}}"
-                                                               style="cursor: pointer;">
-                                                                <img src="{{$mostviewed[$j + $i * 3]->profile_url}}"
-                                                                     alt=""
-                                                                     style="height: 200px;box-shadow: 0px 1px gray;"/>
-                                                                <p style="margin-left: 0px; text-align: left; font-size: 12px">
-                                                                    <i class="fa fa-eye"
-                                                                       aria-hidden="true"></i> {{$mostviewed[$j + $i*3]->views}}
-                                                                </p>
-                                                                <h2>{{$mostviewed[$j + $i*3]->price}} {{$mostviewed[$j + $i*3]->currency->iso}}</h2>
-                                                                <p>{{$mostviewed[$j + $i*3]->name}}</p></a>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i
-                                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    @for($i = 0; $i < intdiv(count($mostviewed),3); $i++)
+                                        <div class="item {{ $i==0 ? 'active' : '' }}">
+                                            <div class="col-sm-2"></div>
+                                            @for($j = 0; $j < 3; $j++)
+                                                <div class="col-sm-3">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
+
+                                                            <div class="productinfo text-center">
+                                                                <a href="/productdetails/{{$mostviewed[$j + $i*3]->id}}"
+                                                                   style="cursor: pointer;">
+                                                                    <img src="{{$mostviewed[$j + $i * 3]->profile_url}}"
+                                                                         alt=""
+                                                                         style="height: 200px;box-shadow: 0px 1px gray;"/>
+                                                                    <p style="margin-left: 0px; text-align: left; font-size: 12px">
+                                                                        <i class="fa fa-eye"
+                                                                           aria-hidden="true"></i> {{$mostviewed[$j + $i*3]->views}}
+                                                                    </p>
+                                                                    <h2>{{$mostviewed[$j + $i*3]->price}} {{$mostviewed[$j + $i*3]->currency->iso}}</h2>
+                                                                    <p>{{$mostviewed[$j + $i*3]->name}}</p></a>
+                                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endfor
-                                    </div>
-                                @endfor
+                                            @endfor
+                                        </div>
+                                    @endfor
+                                </div>
+
+                                <a class="left recommended-item-control" href="#recommended-item-carousel"
+                                   data-slide="prev">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                                <a class="right recommended-item-control" href="#recommended-item-carousel"
+                                   data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
                             </div>
-
-                            <a class="left recommended-item-control" href="#recommended-item-carousel"
-                               data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right recommended-item-control" href="#recommended-item-carousel"
-                               data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div><!--/recommended_items-->
-
+                        </div><!--/recommended_items-->
+                    @endif
                     <div class="features_items"><!--features_items-->
+                        @if(count($store->products)>0)
                         <h2 class="title text-center">{{$store->name}} Products</h2>
+                        @endif
                         @if(Auth::user())
                             @if(Auth::user()->isStoreOwner($store->id))
-                                <div class="col-sm-12 col-sm-offset-9">
-                                    <a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add
-                                        Product</a>
+                                {{--<a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add--}}
+                                {{--Product</a>--}}
+                                <div class="col-sm-3" id="singleProduct">
+                                    <div class="product-image-wrapper smth_table">
+                                        <div class="single-products" style="height: 250px;">
+                                            <div class="productinfo text-center">
+                                                <a href="{{URL::to("/products/create?store=$store->id")}}"
+                                                   style="cursor: pointer;">
+                                                    <img src="{{asset('/images/plus-xxl.png')}}" alt=""
+                                                         style="height: 185px;box-shadow: 0px 1px gray;"/>
+
+                                                </a>
+                                                <p></p>
+                                                <h3>Add product</h3>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <br/>
+
                             @endif
                         @endif
+                        @if(count($store->products)>0)
 
+                            @foreach($store->products as $product)
+                                <div class="col-sm-3" id="singleProduct">
+                                    <div class="product-image-wrapper smth_table">
+                                        @if($product->is_new)
+                                            <div class="ribbon red"><span>New</span></div>
+                                        @endif
+                                        <div class="single-products" style="height: 250px;">
+                                            <div class="productinfo text-center">
+                                                <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
+                                                    <img src="{{$product->profile_url}}" alt=""
+                                                         style="height: 185px;box-shadow: 0px 1px gray;"/>
 
-                        @foreach($store->products as $product)
-                            <div class="col-sm-3" id="singleProduct">
-                                <div class="product-image-wrapper smth_table">
-                                    @if($product->is_new)
-                                        <div class="ribbon red"><span>New</span></div>
-                                    @endif
-                                    <div class="single-products" style="height: 250px;">
-                                        <div class="productinfo text-center">
-                                            <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
-                                                <img src="{{$product->profile_url}}" alt=""
-                                                     style="height: 185px;box-shadow: 0px 1px gray;"/>
+                                                    <p>{{$product->name}}</p></a>
+                                                <h3>{{$product->price}} {{$product->currency->iso}}</h3>
 
-                                                <p>{{$product->name}}</p></a>
-                                            <h3>{{$product->price}} {{$product->currency->iso}}</h3>
-
+                                            </div>
                                         </div>
+                                        @if(Auth::user())
+                                            <div class="choose">
+                                                <ul class="nav nav-pills nav-justified">
+                                                    <li><a id="preven" target="Iframe"
+                                                           href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
+                                                                    class="fa fa-plus-square"></i>Add to wishlist</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @endif
                                     </div>
-                                    @if(Auth::user())
-                                        <div class="choose">
-                                            <ul class="nav nav-pills nav-justified">
-                                                <li><a id="preven" target="Iframe"
-                                                       href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
-                                                                class="fa fa-plus-square"></i>Add to wishlist</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    @endif
                                 </div>
-                            </div>
-                        @endforeach
-                        <div class="col-sm-12">
-                            {!! $store->products->render() !!}
+                            @endforeach
+                            <div class="col-sm-12">
+                                {!! $store->products->render() !!}
 
-                        </div>
+                            </div>
+                        @else
+                            <h2 class="title text-center">No Products Added</h2>
+                        @endif
                     </div>
 
 
@@ -296,7 +235,7 @@
             </div>
         </div>
     </section>
-    @include('layouts.advancedSearchModal',['categories'=>$categories, 'brands'=>$brands, 'store'=>$store])
+    @include('layouts.advancedSearchModal')
 @endsection
 @endif
 

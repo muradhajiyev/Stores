@@ -1,6 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="advancedSearchModal" role="dialog">
     <div class="modal-dialog">
+
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +9,6 @@
                 <h4 class="modal-title">Advanced search</h4>
             </div>
             <div class="modal-body">
-
                 <form method="get" action="/store">
                     <input type="hidden" name="store_id" value="{{$store->id}}" id="storeId"/>
                     <div class="row">
@@ -103,28 +103,39 @@
                                     <div class="col-sm-5 col-md-5">
                                         <label for="minPrice"> Min Price :</label> <input type="number"
                                                                                           name="minPrice"
-                                                                                          class="form-control"/>
+                                                                                          class="form-control"
+                                                                                          value="{{app('request')->input('minPrice')}}"/>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <label for="maxPrice">Max Price : </label><input type="number"
                                                                                          name="maxPrice"
-                                                                                         class="form-control"/>
+                                                                                         class="form-control"
+                                                                                         value="{{app('request')->input('maxPrice')}}"/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default advancedSearchPanel" id="conditionPanel" hidden>
+                            <div class=" panel panel-default advancedSearchPanel" id="conditionPanel" hidden>
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Condition</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-sm-12 col-md-12">
                                         <input type="hidden" name="used" value="0">
-                                        <input type="checkbox" name="used" value="1">
+                                        @if(app('request')->input('used')==1)
+                                            <input type="checkbox" name="used" checked value="1">
+                                        @else
+                                            <input type="checkbox" name="used" value="1">
+                                        @endif
+
                                         <label for="used">Used</label>
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <input type="hidden" name="new" value="0">
-                                        <input type="checkbox" name="new" value="1">
+                                        @if(app('request')->input('new')==1)
+                                            <input type="checkbox" checked name="new" value="1">
+                                        @else
+                                            <input type="checkbox" name="new" value="1">
+                                        @endif
                                         <label for="new">New</label>
                                     </div>
                                 </div>
@@ -138,6 +149,10 @@
                         </div>
                     </div>
                 </form>
+
+                <div id="chosenSpecs" hidden>
+                    {{$jsonRequest}}
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

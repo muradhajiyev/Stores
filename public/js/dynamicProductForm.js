@@ -128,7 +128,7 @@ let appendSpecValuesAndUnit = function (id, text) {
 
 
             } else if (data[0] === InputTypes.radio) {
-                element = '<div class="col-md-2 form-group"> <input type="checkbox" name="specValue[]" class="form-control specValue"/> </div>';
+                element = '<div class="col-md-2 form-group"> <input type="hidden" name="specValue[]" value="0" /> <input type="checkbox" name="specValue[]" value="1" class="specValue"/> </div>';
                 append(header, productSpec, element, unit);
             }
         }
@@ -169,7 +169,7 @@ let initializeFileUploader = () => {
                 file.previewElement.id = response;
                 addImageHiddenField(response);
             },
-            error:function (error) {
+            error: function (error) {
                 console.log(error);
             },
             init: function () {
