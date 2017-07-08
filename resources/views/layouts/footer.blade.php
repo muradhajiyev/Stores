@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="address">
-                        <img src="{{asset("product/images/home/map.png")}}" alt="" />
+                        <img src="{{asset("product/images/home/map.png")}}" alt=""/>
                         <p>153 Ahmad Rajabli Baku, Azerbaijan</p>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="">Terms of Use</a></li>
                             <li><a href="">Privecy Policy</a></li>
-                            <li><a href="">Ticket System</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -58,9 +58,10 @@
                     <div class="single-widget">
                         <h2>About Shopper</h2>
                         <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
-                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                            <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                            <input type="text" placeholder="Your email address"/>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i>
+                            </button>
+                            <p>Get the most recent updates from <br/>our site and be updated your self...</p>
                         </form>
                     </div>
                 </div>
