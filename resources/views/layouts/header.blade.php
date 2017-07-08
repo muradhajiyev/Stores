@@ -43,7 +43,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-6" >
+                <div class="col-sm-6">
 
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
@@ -53,14 +53,17 @@
 
                             @elseif(Auth::check())
                                 <div class="dropdown">
-                                <button id="toggleButton" class="btn btn-warning dropdown-toggle"  type="button" data-toggle="dropdown">{{Auth::user()->name}}
-                                <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="{{route('userid', ['id'=>Auth::user()->id])}}"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a>
+                                    <button id="toggleButton" class="btn btn-warning dropdown-toggle" type="button"
+                                            data-toggle="dropdown">{{Auth::user()->name}}
+                                        <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                                        <li><a href="{{route('userid', ['id'=>Auth::user()->id])}}"><i
+                                                        class="fa fa-star"></i> Wishlist</a></li>
+                                        <li><a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();"><i
+                                                        class="fa fa-sign-out"></i>Logout</a>
                                         </li>
 
                                     </ul>
@@ -74,10 +77,12 @@
 
                         </ul>
                     </div>
-                    <div class="btn-group pull-right">
-                        <a id="createStore" href="{{ url('/storeregister') }}" type="button"
-                           class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> Create Store</a>
-                    </div>
+                    @if(!Auth::check())
+                        <div class="btn-group pull-right">
+                            <a id="createStore" href="{{ url('/storeregister') }}" type="button"
+                               class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> Create Store</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
