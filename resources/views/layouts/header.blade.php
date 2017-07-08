@@ -58,8 +58,6 @@
                                 <ul class="dropdown-menu">
                                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="{{route('userid', ['id'=>Auth::user()->id])}}"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="{{ url('/store/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a>
-                                </li>
                                 <li><a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a>
