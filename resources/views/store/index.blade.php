@@ -163,49 +163,68 @@
                         <h2 class="title text-center">{{$store->name}} Products</h2>
                         @if(Auth::user())
                             @if(Auth::user()->isStoreOwner($store->id))
-                                <div class="col-sm-12 col-sm-offset-9">
-                                    <a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add
-                                        Product</a>
+                                {{--<a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add--}}
+                                {{--Product</a>--}}
+                                <div class="col-sm-3" id="singleProduct">
+                                    <div class="product-image-wrapper smth_table">
+                                        <div class="single-products" style="height: 250px;">
+                                            <div class="productinfo text-center">
+                                                <a href="{{URL::to("/products/create?store=$store->id")}}"
+                                                   style="cursor: pointer;">
+                                                    <img src="{{asset('/images/plus-xxl.png')}}" alt=""
+                                                         style="height: 185px;box-shadow: 0px 1px gray;"/>
+
+                                                </a>
+                                                <p></p>
+                                                <h3>Add product</h3>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <br/>
+
+
                             @endif
                         @endif
+                        @if(count($store->products)>0)
 
+                            @foreach($store->products as $product)
+                                <div class="col-sm-3" id="singleProduct">
+                                    <div class="product-image-wrapper smth_table">
+                                        @if($product->is_new)
+                                            <div class="ribbon red"><span>New</span></div>
+                                        @endif
+                                        <div class="single-products" style="height: 250px;">
+                                            <div class="productinfo text-center">
+                                                <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
+                                                    <img src="{{$product->profile_url}}" alt=""
+                                                         style="height: 185px;box-shadow: 0px 1px gray;"/>
 
-                        @foreach($store->products as $product)
-                            <div class="col-sm-3" id="singleProduct">
-                                <div class="product-image-wrapper smth_table">
-                                    @if($product->is_new)
-                                        <div class="ribbon red"><span>New</span></div>
-                                    @endif
-                                    <div class="single-products" style="height: 250px;">
-                                        <div class="productinfo text-center">
-                                            <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
-                                                <img src="{{$product->profile_url}}" alt=""
-                                                     style="height: 185px;box-shadow: 0px 1px gray;"/>
+                                                    <p>{{$product->name}}</p></a>
+                                                <h3>{{$product->price}} {{$product->currency->iso}}</h3>
 
-                                                <p>{{$product->name}}</p></a>
-                                            <h3>{{$product->price}} {{$product->currency->iso}}</h3>
-
+                                            </div>
                                         </div>
+                                        @if(Auth::user())
+                                            <div class="choose">
+                                                <ul class="nav nav-pills nav-justified">
+                                                    <li><a id="preven" target="Iframe"
+                                                           href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
+                                                                    class="fa fa-plus-square"></i>Add to wishlist</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @endif
                                     </div>
-                                    @if(Auth::user())
-                                        <div class="choose">
-                                            <ul class="nav nav-pills nav-justified">
-                                                <li><a id="preven" target="Iframe"
-                                                       href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
-                                                                class="fa fa-plus-square"></i>Add to wishlist</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    @endif
                                 </div>
-                            </div>
-                        @endforeach
-                        <div class="col-sm-12">
-                            {!! $store->products->render() !!}
+                            @endforeach
+                            <div class="col-sm-12">
+                                {!! $store->products->render() !!}
 
-                        </div>
+                            </div>
+                        @else
+                            <h2 class="title text-center">No Products Added</h2>
+                        @endif
                     </div>
 
 
