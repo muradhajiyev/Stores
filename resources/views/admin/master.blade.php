@@ -355,37 +355,40 @@
 
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li>
-                    <a href="{{ url('/admin/categories') }}">
-                        <i class="fa fa-th"></i> <span>Categories</span>
-                        <span class="pull-right-container"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/admin/specifications') }}">
-                        <i class="fa fa-list" aria-hidden="true"></i> <span>Specifications</span>
-                        <span class="pull-right-container">
-               </span>
-                    </a>
-                </li>
+                @if(Auth::user())
+                    @if(Auth::user()->isAdmin())
+                        <li>
+                            <a href="{{ url('/admin/categories') }}">
+                                <i class="fa fa-th"></i> <span>Categories</span>
+                                <span class="pull-right-container"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/admin/specifications') }}">
+                                <i class="fa fa-list" aria-hidden="true"></i> <span>Specifications</span>
+                                <span class="pull-right-container">
+</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/admin/dropdowns') }}">
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i> <span>Dropdown Sources</span>
+                                <span class="pull-right-container">
+</span>
 
-                <li>
-                    <a href="{{ url('/admin/dropdowns') }}">
-                        <i class="fa fa-chevron-down" aria-hidden="true"></i> <span>Dropdown Sources</span>
-                        <span class="pull-right-container">
-               </span>
+                            </a>
+                        </li>
+                    @endif
+                    <li>
+                        <a href="{{ url('/admin/stores') }}">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
 
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/admin/stores') }}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Stores</span>
+                            <span class="pull-right-container">
+</span>
 
-                        <span class="pull-right-container">
-               </span>
-
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </section>
     </aside>
@@ -614,10 +617,10 @@
     <script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 
     <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
-     <!-- FastClick -->
-     <script src="{{ asset('plugins/fastclick/fastclick.js')}}"></script>
-     <!-- AdminLTE App -->
-     <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('plugins/fastclick/fastclick.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('dist/js/pages/dashboard.js')}}"></script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
