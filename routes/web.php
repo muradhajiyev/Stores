@@ -107,8 +107,8 @@ Route::group(['prefix' => 'api'], function () {
 });
 
 Route::get('/403', function () {
-    return view('403.403');
+    return view('errors.403');
 });
-Route::get('/404', function () {
-    return view('404.404');
-});
+//Route::get('/404', function () {
+//    return view('404.404');
+//});

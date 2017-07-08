@@ -15,7 +15,9 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href=" {{ URL::to('/store') }}">Store</a></li>
+                            @if(!empty($store))
+                            <li><a href=" {{ URL::to('/store?store_id='.$store->id) }}">Store</a></li>
+                            @endif
                             <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
 
                         </ul>

@@ -19,9 +19,10 @@
                             @if(!empty($store))
 
                                 <li><a href=" {{ URL::to('/store/blog/'.$store->id) }}">Blog</a></li>
+                                <li><a href=" {{ URL::to('/store?store_id='.$store->id) }}">Store</a></li>
                             @endif
 
-                            <li><a href=" {{ URL::to('/store') }}">Store</a></li>
+
                             <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
 
                         </ul>
