@@ -108,59 +108,61 @@
 
                 @include('layouts.left-sidebar')
                 <div class="col-sm-9 padding-right">
+                    @if(count($mostviewed)>0)
+                        <div class="recommended_items"><!--recommended_items most viewed products-->
 
-                    <div class="recommended_items"><!--recommended_items most viewed products-->
+                            <h2 class="title text-center">Most Viewed Products</h2>
 
-                        <h2 class="title text-center">Most Viewed Products</h2>
+                            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
 
-                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
+                                    @for($i = 0; $i < intdiv(count($mostviewed),3); $i++)
+                                        <div class="item {{ $i==0 ? 'active' : '' }}">
+                                            <div class="col-sm-2"></div>
+                                            @for($j = 0; $j < 3; $j++)
+                                                <div class="col-sm-3">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
 
-                                @for($i = 0; $i < intdiv(count($mostviewed),3); $i++)
-                                    <div class="item {{ $i==0 ? 'active' : '' }}">
-                                        <div class="col-sm-2"></div>
-                                        @for($j = 0; $j < 3; $j++)
-                                            <div class="col-sm-3">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
+                                                            <div class="productinfo text-center">
+                                                                <a href="/productdetails/{{$mostviewed[$j + $i*3]->id}}"
+                                                                   style="cursor: pointer;">
+                                                                    <img src="{{$mostviewed[$j + $i * 3]->profile_url}}"
+                                                                         alt=""
+                                                                         style="height: 200px;box-shadow: 0px 1px gray;"/>
+                                                                    <p style="margin-left: 0px; text-align: left; font-size: 12px">
+                                                                        <i class="fa fa-eye"
+                                                                           aria-hidden="true"></i> {{$mostviewed[$j + $i*3]->views}}
+                                                                    </p>
+                                                                    <h2>{{$mostviewed[$j + $i*3]->price}} {{$mostviewed[$j + $i*3]->currency->iso}}</h2>
+                                                                    <p>{{$mostviewed[$j + $i*3]->name}}</p></a>
+                                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            </div>
 
-                                                        <div class="productinfo text-center">
-                                                            <a href="/productdetails/{{$mostviewed[$j + $i*3]->id}}"
-                                                               style="cursor: pointer;">
-                                                                <img src="{{$mostviewed[$j + $i * 3]->profile_url}}"
-                                                                     alt=""
-                                                                     style="height: 200px;box-shadow: 0px 1px gray;"/>
-                                                                <p style="margin-left: 0px; text-align: left; font-size: 12px">
-                                                                    <i class="fa fa-eye"
-                                                                       aria-hidden="true"></i> {{$mostviewed[$j + $i*3]->views}}
-                                                                </p>
-                                                                <h2>{{$mostviewed[$j + $i*3]->price}} {{$mostviewed[$j + $i*3]->currency->iso}}</h2>
-                                                                <p>{{$mostviewed[$j + $i*3]->name}}</p></a>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i
-                                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
-
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endfor
-                                    </div>
-                                @endfor
+                                            @endfor
+                                        </div>
+                                    @endfor
+                                </div>
+
+                                <a class="left recommended-item-control" href="#recommended-item-carousel"
+                                   data-slide="prev">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                                <a class="right recommended-item-control" href="#recommended-item-carousel"
+                                   data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
                             </div>
-
-                            <a class="left recommended-item-control" href="#recommended-item-carousel"
-                               data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right recommended-item-control" href="#recommended-item-carousel"
-                               data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div><!--/recommended_items-->
-
+                        </div><!--/recommended_items-->
+                    @endif
                     <div class="features_items"><!--features_items-->
+                        @if(count($store->products)>0)
                         <h2 class="title text-center">{{$store->name}} Products</h2>
+                        @endif
                         @if(Auth::user())
                             @if(Auth::user()->isStoreOwner($store->id))
                                 {{--<a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add--}}
@@ -182,7 +184,6 @@
 
                                     </div>
                                 </div>
-
 
                             @endif
                         @endif
