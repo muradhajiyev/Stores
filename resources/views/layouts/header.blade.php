@@ -38,8 +38,8 @@
                     <div class="logo pull-left">
 
                         <a href="{{ url('/') }}"><img
-                                    src="{{asset("product/images/ico/apple-touch-icon-144-precomposed.png")}}" alt=""
-                                    style="width:70px;height:70px;"/></a>
+                                    src="{{asset("/images/shopin1.png")}}" alt=""
+                                    style="width:260px;height:80px;"/></a>
                     </div>
 
                 </div>

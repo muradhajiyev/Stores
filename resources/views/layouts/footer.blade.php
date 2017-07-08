@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="companyinfo">
-                        <h2><span>e</span>-shopper</h2>
+                        <h2>SHOP<span>IN1</span></h2>
                         <p style="font-size: 18px">All In One</p>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2017 E-SHOPPER Inc. All rights reserved.</p>
+                <p class="pull-left">Copyright © 2017 SHOPIN1 Inc. All rights reserved.</p>
                 <p class="pull-right">Developed by <span><a target="_blank" href="#">ATL Interns</a></span></p>
             </div>
         </div>
