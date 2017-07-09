@@ -53,8 +53,8 @@
                                         class="btn btn-md btn-warning">
                                     Search
                                 </button>
-                                <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
-                                    search</a>
+                                <a href="" data-toggle="modal" data-target="#advancedSearchModal" style="font-size: 12px;">Advanced
+                                    </a>
                             @endif
 
 

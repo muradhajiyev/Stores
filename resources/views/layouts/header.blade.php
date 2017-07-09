@@ -9,7 +9,7 @@
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
                             <li><a href=""><i class="fa fa-phone"></i>+994 (012) 404 18 60</a></li>
-                            <li><a href=""><i class="fa fa-envelope"></i> office@atl.az</a></li>
+                            <li><a href=""><i class="fa fa-envelope"></i> info@shopin1.az</a></li>
                         </ul>
                     </div>
                 </div>
