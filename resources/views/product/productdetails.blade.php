@@ -112,8 +112,7 @@
                                 @if(!empty($product->brand->name))
                                     <p><b>Brand:</b> {{$product->brand->name}}</p>
                                 @endif
-                                {{--<a href=""><img src="product/images/product-details/share.png"--}}
-                                {{--class="share img-responsive" alt=""/></a>--}}
+
                             </div><!-- /product-information -->
                         </div>
                     </div><!-- </product-details -->
@@ -121,15 +120,15 @@
                     <div class="category-tab shop-details-tab"><!--category-tab-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
-                                <li><a href="#details" data-toggle="tab">Related Products</a></li>
-                                <li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
-                                <li><a href="#tag" data-toggle="tab">Tag</a></li>
-                                <li class="active"><a href="#reviews" data-toggle="tab">Reviews</a></li>
+                                <li class="active"><a href="#productSpecs" data-toggle="tab">Product Details</a></li>
+                                <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
+                                <li><a href="#relatedProducts" data-toggle="tab">Related Products</a></li>
+
                             </ul>
                         </div>
                         <!-- details profile  -->
                         <div class="tab-content">
-                            <div class="tab-pane fade" id="details">
+                            <div class="tab-pane fade" id="relatedProducts">
                                 @foreach($relatedProducts as $relatedProduct)
                                     <div class="col-sm-3">
                                         <div class="product-image-wrapper">
@@ -148,15 +147,33 @@
                                 @endforeach
                             </div>
 
-                            <div class="tab-pane fade" id="companyprofile">
-
+                            <div class="tab-pane fade active in" id="productSpecs">
+                                <div class="col-md-6">
+                                    <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="active"  colspan="2">Item Specifics</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($specs as $spec)
+                                        <div hidden>
+                                            {{ $unit = \App\Unit::where('id',$spec->specification->unit_id)->get()}}
+                                        </div>
+                                        <tr>
+                                            <td >{{$spec->specification->name}}</td>
+                                            <td ><b>{{$spec->value}} @if(count($spec->specification->unit)>0){{$spec->specification->unit->name}}@endif </b></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="tab-pane fade" id="tag">
 
-                            </div>
-
-                            <div class="tab-pane fade active in" id="reviews">
+                            <div class="tab-pane fade" id="reviews">
                                 <div class="col-sm-12">
                                     <div id="comments-container">
                                         <input id="settings" type="hidden"

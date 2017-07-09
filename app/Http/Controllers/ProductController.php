@@ -35,12 +35,13 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->views = $product->views + 1;
         $product->save();
+        $specifications = Specification_Value::where('product_id',$id)->get();
         $relatedProducts = Product::where('store_id', $product->store_id)->where('category_id', $product->category_id)->where('id', '!=', $product->id)->get();
         if (count($relatedProducts) > 3) {
             $random = $relatedProducts->random(4);
-            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $random]);
+            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $random,'specs' => $specifications]);
         } else {
-            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $relatedProducts]);
+            return view('product.productdetails', ['product' => $product, 'relatedProducts' => $relatedProducts, 'specs' => $specifications]);
 
         }
     }
