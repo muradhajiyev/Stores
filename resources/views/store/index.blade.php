@@ -172,7 +172,7 @@
                                             <div class="productinfo text-center">
                                                 <a href="{{URL::to("/products/create?store=$store->id")}}"
                                                    style="cursor: pointer;">
-                                                    <img src="{{asset('/images/plus-xxl.png')}}" alt=""
+                                                    <img src="{{asset('/product/images/shop/plus-xxl.png')}}" alt=""
                                                          style="height: 185px;box-shadow: 0px 1px gray;"/>
 
                                                 </a>
