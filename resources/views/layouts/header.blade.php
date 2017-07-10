@@ -82,6 +82,11 @@
                             <a id="createStore" href="{{ url('/storeregister') }}" type="button"
                                class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> Create Store</a>
                         </div>
+                    @elseif(Auth::user()->isStore())
+                        <div class="btn-group pull-right">
+                            <a id="createStore" href="{{ url('/admin/stores/create') }}" type="button"
+                               class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> Create Store</a>
+                        </div>
                     @endif
                 </div>
             </div>

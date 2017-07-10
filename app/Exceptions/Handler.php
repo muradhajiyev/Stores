@@ -7,6 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,10 +47,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        //dd($exception);
         if ($exception instanceof NotFoundHttpException) {
 
             return response()->view('errors.404', [], 404);
+
+        } else if ($exception instanceof UnauthorizedHttpException) {
+            return response()->view('errors.403', [], 403);
         } // Custom error 500 view on production
         else if (app()->environment() == 'production') {
             return response()->view('errors.500', [], 500);
