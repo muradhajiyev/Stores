@@ -15,24 +15,14 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{ url('/') }}">Home</a></li>
-                            <li class="dropdown"><a href="{{ url('/store/shop') }}">Shop<i
-                                            class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="{{ url('/store/shop') }}">Products</a></li>
-                                    <li><a href="{{ url('/store/product-details') }}">Product Details</a></li>
-                                    <li><a href="{{ url('/store/checkout') }}">Checkout</a></li>
-                                    <li><a href="{{ url('/store/cart') }}">Cart</a></li>
-                                    <li><a href="{{ url('/store/login') }}">Login</a></li>
-
-                                </ul>
-                            </li>
 
                             @if(!empty($store))
 
                                 <li><a href=" {{ URL::to('/store/blog/'.$store->id) }}">Blog</a></li>
+                                <li><a href=" {{ URL::to('/store?store_id='.$store->id) }}">Store</a></li>
                             @endif
 
-                            <li><a href=" {{ URL::to('/store') }}">Store</a></li>
+
                             <li><a href="{{URL::to('/store/contactus') }}">Contact</a></li>
 
                         </ul>
@@ -64,8 +54,8 @@
                                         class="btn btn-md btn-warning">
                                     Search
                                 </button>
-                                <a href="" data-toggle="modal" data-target="#advancedSearchModal">Advanced
-                                    search</a>
+                                <a href="" data-toggle="modal" data-target="#advancedSearchModal" style="font-size: 12px;">Advanced
+                                    </a>
                             @endif
 
 

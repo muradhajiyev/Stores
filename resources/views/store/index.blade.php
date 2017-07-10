@@ -108,211 +108,128 @@
 
                 @include('layouts.left-sidebar')
                 <div class="col-sm-9 padding-right">
+                    @if(count($mostviewed)>0)
+                        <div class="recommended_items"><!--recommended_items most viewed products-->
 
-                    <div class="recommended_items"><!--recommended_items most viewed products-->
+                            <h2 class="title text-center">Most Viewed Products</h2>
 
-                        <h2 class="title text-center">Most Viewed Products</h2>
+                            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
 
-                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
+                                    @for($i = 0; $i < intdiv(count($mostviewed),3); $i++)
+                                        <div class="item {{ $i==0 ? 'active' : '' }}">
+                                            <div class="col-sm-2"></div>
+                                            @for($j = 0; $j < 3; $j++)
+                                                <div class="col-sm-3">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
 
-                                @for($i = 0; $i < intdiv(count($mostviewed),3); $i++)
-                                    <div class="item {{ $i==0 ? 'active' : '' }}">
-                                        <div class="col-sm-2"></div>
-                                        @for($j = 0; $j < 3; $j++)
-                                            <div class="col-sm-3">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-
-                                                        <div class="productinfo text-center">
-                                                            <a href="/productdetails/{{$mostviewed[$j + $i*3]->id}}"
-                                                               style="cursor: pointer;">
-                                                                <img src="{{$mostviewed[$j + $i * 3]->profile_url}}"
-                                                                     alt=""
-                                                                     style="height: 200px;box-shadow: 0px 1px gray;"/>
-                                                                <p style="margin-left: 0px; text-align: left; font-size: 12px">
-                                                                    <i class="fa fa-eye"
-                                                                       aria-hidden="true"></i> {{$mostviewed[$j + $i*3]->views}}
-                                                                </p>
-                                                                <h2>{{$mostviewed[$j + $i*3]->price}} {{$mostviewed[$j + $i*3]->currency->iso}}</h2>
-                                                                <p>{{$mostviewed[$j + $i*3]->name}}</p></a>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i
-                                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <div class="productinfo text-center">
+                                                                <a href="/productdetails/{{$mostviewed[$j + $i*3]->id}}"
+                                                                   style="cursor: pointer;">
+                                                                    <img src="{{$mostviewed[$j + $i * 3]->profile_url}}"
+                                                                         alt=""
+                                                                         style="height: 200px;box-shadow: 0px 1px gray;"/>
+                                                                    <p style="margin-left: 0px; text-align: left; font-size: 12px">
+                                                                        <i class="fa fa-eye"
+                                                                           aria-hidden="true"></i> {{$mostviewed[$j + $i*3]->views}}
+                                                                    </p>
+                                                                    <h2>{{$mostviewed[$j + $i*3]->price}} {{$mostviewed[$j + $i*3]->currency->iso}}</h2>
+                                                                    <p>{{$mostviewed[$j + $i*3]->name}}</p></a>
+                                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endfor
-                                    </div>
-                                @endfor
+                                            @endfor
+                                        </div>
+                                    @endfor
+                                </div>
+
+                                <a class="left recommended-item-control" href="#recommended-item-carousel"
+                                   data-slide="prev">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                                <a class="right recommended-item-control" href="#recommended-item-carousel"
+                                   data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
                             </div>
-
-                            <a class="left recommended-item-control" href="#recommended-item-carousel"
-                               data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right recommended-item-control" href="#recommended-item-carousel"
-                               data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div><!--/recommended_items-->
-
+                        </div><!--/recommended_items-->
+                    @endif
                     <div class="features_items"><!--features_items-->
+                        @if(count($store->products)>0)
                         <h2 class="title text-center">{{$store->name}} Products</h2>
+                        @endif
                         @if(Auth::user())
                             @if(Auth::user()->isStoreOwner($store->id))
-                                <div class="col-sm-12 col-sm-offset-9">
-                                    <a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add
-                                        Product</a>
+                                {{--<a href="{{URL::to("/products/create?store=$store->id")}}" class="btn btn-primary">Add--}}
+                                {{--Product</a>--}}
+                                <div class="col-sm-3" id="singleProduct">
+                                    <div class="product-image-wrapper smth_table">
+                                        <div class="single-products" style="height: 250px;">
+                                            <div class="productinfo text-center">
+                                                <a href="{{URL::to("/products/create?store=$store->id")}}"
+                                                   style="cursor: pointer;">
+                                                    <img src="{{asset('/product/images/shop/plus-xxl.png')}}" alt=""
+                                                         style="height: 185px;box-shadow: 0px 1px gray;"/>
+
+                                                </a>
+                                                <p></p>
+                                                <h3>Add product</h3>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <br/>
+
                             @endif
                         @endif
+                        @if(count($store->products)>0)
 
+                            @foreach($store->products as $product)
+                                <div class="col-sm-3" id="singleProduct">
+                                    <div class="product-image-wrapper smth_table">
+                                        @if($product->is_new)
+                                            <div class="ribbon red"><span>New</span></div>
+                                        @endif
+                                        <div class="single-products" style="height: 250px;">
+                                            <div class="productinfo text-center">
+                                                <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
+                                                    <img src="{{$product->profile_url}}" alt=""
+                                                         style="height: 185px;box-shadow: 0px 1px gray;"/>
 
-                        @foreach($store->products as $product)
-                            <div class="col-sm-3" id="singleProduct">
-                                <div class="product-image-wrapper smth_table">
-                                    @if($product->is_new)
-                                        <div class="ribbon red"><span>New</span></div>
-                                    @endif
-                                    <div class="single-products" style="height: 250px;">
-                                        <div class="productinfo text-center">
-                                            <a href="/productdetails/{{$product->id}}" style="cursor: pointer;">
-                                                <img src="{{$product->profile_url}}" alt=""
-                                                     style="height: 185px;box-shadow: 0px 1px gray;"/>
+                                                    <p>{{$product->name}}</p></a>
+                                                <h3>{{$product->price}} {{$product->currency->iso}}</h3>
 
-                                                <p>{{$product->name}}</p></a>
-                                            <h3>{{$product->price}} {{$product->currency->iso}}</h3>
-
+                                            </div>
                                         </div>
+                                        @if(Auth::user())
+                                            <div class="choose">
+                                                <ul class="nav nav-pills nav-justified">
+                                                    <li><a id="preven" target="Iframe"
+                                                           href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
+                                                                    class="fa fa-plus-square"></i>Add to wishlist</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @endif
                                     </div>
-                                    @if(Auth::user())
-                                        <div class="choose">
-                                            <ul class="nav nav-pills nav-justified">
-                                                <li><a id="preven" target="Iframe"
-                                                       href="{{route('test', ['pro' => $product->id, 'user'=>Auth::user()->id])}}"><i
-                                                                class="fa fa-plus-square"></i>Add to wishlist</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    @endif
                                 </div>
-                            </div>
-                        @endforeach
-                        <div class="col-sm-12">
-                            {!! $store->products->render() !!}
+                            @endforeach
+                            <div class="col-sm-12">
+                                {!! $store->products->render() !!}
 
-                        </div>
+                            </div>
+                        @else
+                            <h2 class="title text-center">No Products Added</h2>
+                        @endif
                     </div>
 
 
                     <!--features_items-->
 
-                    <div class="category-tab"><!--category-tab  store profile cate-->
-                        <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Blazers</a></li>
-                                <li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-                                <li><a href="#kids" data-toggle="tab">Kids</a></li>
-                                <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="tshirt">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/gallery1.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="blazers">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/gallery4.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="sunglass">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/product3.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="kids">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="poloshirt">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{asset("product/images/home/product5.jpg")}}" alt=""/>
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div><!--/category-tab-->
 
                 </div>
             </div>

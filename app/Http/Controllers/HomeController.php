@@ -94,7 +94,7 @@ class HomeController extends Controller
             return view('store.index', ['store' => $store, 'categories' => $parentCategories, 'brands' => $brands, 'mostviewed' => $product, 'subCategories' => $subCategories, 'category' => $category, 'jsonRequest' =>json_encode($request->all())]);
         } else {
 
-            return view('404.404');
+            return view('errors.404');
         }
     }
 
