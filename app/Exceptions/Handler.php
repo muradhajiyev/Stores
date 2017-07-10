@@ -47,11 +47,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
         if ($exception instanceof NotFoundHttpException) {
 
             return response()->view('errors.404', [], 404);
 
-        } else if ($exception instanceof UnauthorizedHttpException) {
+        } else if ($exception instanceof UnauthorizedHttpException || $exception instanceof AuthenticationException) {
             return response()->view('errors.403', [], 403);
         } // Custom error 500 view on production
         else if (app()->environment() == 'production') {
