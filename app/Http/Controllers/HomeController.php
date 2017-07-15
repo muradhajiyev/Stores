@@ -87,7 +87,7 @@ class HomeController extends Controller
 
             }
             $products = $this->search($request);
-            $store->setRelation('products', $products->paginate(10)->withPath($request->fullUrl()));
+            $store->setRelation('products', $products->paginate(12)->withPath($request->fullUrl()));
 
             Session::put('store_id1', $store_id);
             Session::put('category_id_product', $category_id);
